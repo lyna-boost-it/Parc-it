@@ -3,7 +3,7 @@
 
 <!DOCTYPE html>
 <html>
-@include('layouts.head')
+@include('layouts.headforKPIindex')
 
 @if ($month != '')
 
@@ -330,7 +330,7 @@
             });
         </script>
 
-        @include('layouts.footer')
+        @include('layouts.footerforKPIindex')
 
 
     </body>

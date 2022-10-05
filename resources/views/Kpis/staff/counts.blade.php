@@ -3,7 +3,7 @@
 
 <!DOCTYPE html>
 <html>
-@include('layouts.head')
+@include('layouts.headforKPIindex')
 
 
 
@@ -172,7 +172,7 @@
 
 
 
-    @include('layouts.footer')
+    @include('layouts.footerforKPIindex')
 </body>
 
 </html>

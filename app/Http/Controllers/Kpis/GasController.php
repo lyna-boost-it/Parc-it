@@ -33,6 +33,7 @@ $staffs=Staff::all();
 $GasPipesPrice=GasPipe ::sum('price');
 $GasPipesLitter=GasPipe ::sum('litter');
 
+
 foreach($gasVehicules as $gasVehicule){
     if($gasVehicule->type=='GLP'){$gpl=$gpl+$gasVehicule->litter; $totalGas=$totalGas+$gasVehicule->litter;
         $gplkm=$gplkm+$gasVehicule->km; $totalkm=$totalkm+$gasVehicule->km;
@@ -44,10 +45,12 @@ $essencekm=$essencekm+$gasVehicule->km; $totalkm=$totalkm+$gasVehicule->km;
 $gazolekm=$gazolekm+$gasVehicule->km; $totalkm=$totalkm+$gasVehicule->km;
 }
 }
+
+if($totalGas==0){$totalGas=1;}
 $gplP=$gpl/$totalGas*100;
 $gazoleP=$gazole/$totalGas*100;
 $essenceP=$essence/$totalGas*100;
-
+if($totalkm==0){$totalkm=1;}
 $gplPkm=$gplkm/$totalkm*100;
 $gazolePkm=$gazolekm/$totalkm*100;
 $essencePkm=$essencekm/$totalkm*100;
@@ -64,6 +67,7 @@ for($i=1;$i<=12;$i++){
 
 for($i=1;$i<=12;$i++){
     $data1 =GasVehicules ::whereMonth('created_at',$i)->where('type','=','GLP')->sum('litter');
+
     $gplArray[$i]=array($data1);
     $data2 =GasVehicules ::whereMonth('created_at',$i)->where('type','=','Essence')->sum('litter');
     $essenceArray[$i]=array($data2);

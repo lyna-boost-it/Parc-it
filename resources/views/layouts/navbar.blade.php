@@ -370,17 +370,7 @@
                             @endif
                             Carburant</a>
                         </li>
-                        <li>
-                            @if (Auth::user()->type == 'Gestionnaire parc' ||
-                                Auth::user()->type == 'Utilisateur' ||
-                                Auth::user()->type == 'Gestionnaire Sup')
-                                <a href="{{ route('Kpis.interventions.index') }}">
-                                @else
-                                    <a href="#" class="isDisabled">
-                            @endif
 
-                            Interventions</a>
-                        </li>
                         <li>
                             @if (Auth::user()->type == 'Gestionnaire parc' ||
                                 Auth::user()->type == 'Utilisateur' ||

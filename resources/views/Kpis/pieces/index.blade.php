@@ -3,7 +3,7 @@
 
 <!DOCTYPE html>
 <html>
-@include('layouts.head')
+@include('layouts.headforKPIindex')
 
 
 <body>
@@ -99,7 +99,7 @@
 
 
 
-        <div class="row">
+        <div style="text-align:right; margin:0px auto 0px auto;">
 
             <div class="col-md-6 mb-20">
                 <div class="card-box height-100-p pd-20">
@@ -111,168 +111,174 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 mb-20">
-                <div class="card-box height-100-p pd-20">
-                    <main>
-                        <h4 class="font-20 weight-500 mb-10 text-capitalize text-orange">Consommation des Pièces </h4>
 
-                        <input id="tab5" type="radio" name="tabsd" checked>
-                        <label for="tab5">VEHICULE</label>
-
-                        <input id="tab6" type="radio" name="tabsd">
-                        <label for="tab6"> MATÉRIELS MOTORISÉS</label>
-
-
-
-
-                        <section id="content5">
-                            <table class="table nowrap hover data-table-export">
-                                <thead>
-                                    <tr>
-                                        <th>Numero</th>
-                                        <th>ID</th>
-
-                                        <th> Numéro de Série</th>
-                                        <th>Pourcentage/DA</th>
-                                        <th>Pourcentage/P</th>
-
-
-                                    </tr>
-                                </thead>
-
-                                @php
-                                    $i = 0;
-
-                                @endphp
-
-
-                                <tbody>
-
-                                    @foreach ($vehicules as $vehicule)
-                                        @php
-                                            $i = $i + 1;
-                                        @endphp
-                                        @php
-                                            $consume = 0;
-
-                                        @endphp
-                                         @php
-                                         $consumeDA = 0;
-
-                                     @endphp
-                                        <tr>
-                                            <td> {{ $i }}</td>
-                                            <td>{{ $vehicule->id }}</td>
-
-                                            <td>{{ $vehicule->serial_numbers }} </td>
-                                            @foreach ($piecesV as $pieceV)
-                                                @if ($vehicule->id == $pieceV->vehicule_id)
-                                                    @php
-                                                        $consume = $consume + $pieceV->quantity;
-                                                    @endphp
-                                                     @php
-                                                     $consumeDA = $consumeDA + $pieceV->price;
-                                                 @endphp
-                                                @endif
-                                            @endforeach
-                                            <td style="color: orange;">
-                                                @if($piecesVTotalPrice!=0)
-                                                {{ number_format(((float) $consumeDA / $piecesVTotalPrice) * 100, 2, '.', '') }}% (DA)
-                                                @else
-                                                0% (DA)
-                                                @endif
-                                                @if($piecesVTotal!=0)
-                                                {{ number_format(((float) $consume / $piecesVTotal) * 100, 2, '.', '') }}% (Pièces)
-                                                @else
-                                                0% (Pièces)
-                                                @endif
-                                            </td>
-                                        </tr>
-                                    @endforeach
-
-
-                                </tbody>
-                            </table>
-                            </table>
-                        </section>
-
-                        <section id="content6">
-                            <table class="table nowrap hover data-table-export">
-                                <thead>
-                                    <tr>
-                                        <th>Numero</th>
-                                        <th>ID</th>
-
-                                        <th>Réf d'achat</th>
-                                        <th>Pourcentage/DA</th>
-                                        <th>Pourcentage/P</th>
-
-
-                                    </tr>
-                                </thead>
-
-                                @php
-                                    $i = 0;
-
-                                @endphp
-
-
-                                <tbody>
-
-                                    @foreach ($materials as $material)
-                                        @php
-                                            $i = $i + 1;
-                                        @endphp
-                                        @php
-                                            $consume = 0;
-
-                                        @endphp
-                                        @php
-                                            $consumeDA = 0;
-
-                                        @endphp
-                                        <tr>
-                                            <td> {{ $i }}</td>
-                                            <td>{{ $material->id }}</td>
-
-                                            <td>{{ $material->ref }} </td>
-                                            @foreach ($piecesM as $pieceM)
-                                                @if ($material->id == $pieceM->mm_id)
-                                                    @php
-                                                        $consume = $consume + $pieceM->quantity;
-                                                    @endphp
-                                                    @php
-                                                    $consumeDA = $consumeDA + $pieceM->price;
-                                                @endphp
-                                                @endif
-                                            @endforeach
-                                            <td style="color: orange;">
-                                                @if($piecesMTotalPrice!=0)
-                                                {{ number_format(((float) $consumeDA / $piecesMTotalPrice) * 100, 2, '.', '') }}% (DA)
-                                                @else
-                                                0% (DA)
-                                                @endif
-
-                                                @if($piecesMTotal!=0)
-                                              {{ number_format(((float) $consume / $piecesMTotal) * 100, 2, '.', '') }}% (Pièces)
-                                              @else
-                                              0% (Pièces)
-                                              @endif
-                                            </td>
-                                        </tr>
-                                    @endforeach
-
-
-                                </tbody>
-                            </table>
-                        </section>
-
-
-
-                    </main>
-                </div>
-            </div>
         </div>
+        <div style="position:absolute;right:5px;">
+            <div class="card-box pd-20 height-100-p mb-30">
+
+
+                <main>
+                    <h4 class="font-20 weight-500 mb-10 text-capitalize text-orange">Consommation des Pièces </h4>
+
+                    <input id="tab5" type="radio" name="tabsd" checked>
+                    <label for="tab5">VEHICULE</label>
+
+                    <input id="tab6" type="radio" name="tabsd">
+                    <label for="tab6"> MATÉRIELS MOTORISÉS</label>
+
+
+
+
+                    <section id="content5">
+                        <table class="table nowrap hover data-table-export">
+                            <thead>
+                                <tr>
+                                    <th>Numero</th>
+                                    <th>ID</th>
+
+                                    <th> Num de Séries</th>
+                                    <th>Pourcentage/DA</th>
+                                    <th>Pourcentage/P</th>
+
+
+                                </tr>
+                            </thead>
+
+                            @php
+                                $i = 0;
+
+                            @endphp
+
+
+                            <tbody>
+
+                                @foreach ($vehicules as $vehicule)
+                                    @php
+                                        $i = $i + 1;
+                                    @endphp
+                                    @php
+                                        $consume = 0;
+
+                                    @endphp
+                                     @php
+                                     $consumeDA = 0;
+
+                                 @endphp
+                                    <tr>
+                                        <td> {{ $i }}</td>
+                                        <td>{{ $vehicule->id }}</td>
+
+                                        <td>{{ $vehicule->serial_numbers }} </td>
+                                        @foreach ($piecesV as $pieceV)
+                                            @if ($vehicule->id == $pieceV->vehicule_id)
+                                                @php
+                                                    $consume = $consume + $pieceV->quantity;
+                                                @endphp
+                                                 @php
+                                                 $consumeDA = $consumeDA + $pieceV->price;
+                                             @endphp
+                                            @endif
+                                        @endforeach
+                                        <td style="color: orange;">
+                                            @if($piecesVTotalPrice!=0)
+                                            {{ number_format(((float) $consumeDA / $piecesVTotalPrice) * 100, 2, '.', '') }}% (DA)
+                                            @else
+                                            0% (DA)
+                                            @endif   </td> <td style="color: orange;">
+                                            @if($piecesVTotal!=0)
+                                            {{ number_format(((float) $consume / $piecesVTotal) * 100, 2, '.', '') }}% (Pièces)
+                                            @else
+                                            0% (Pièces)
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+
+                            </tbody>
+                        </table>
+                        </table>
+                    </section>
+
+                    <section id="content6">
+                        <table class="table nowrap hover data-table-export">
+                            <thead>
+                                <tr>
+                                    <th>Numero</th>
+                                    <th>ID</th>
+
+                                    <th>Réf d'achat</th>
+                                    <th>Pourcentage/DA</th>
+                                    <th>Pourcentage/P</th>
+
+
+                                </tr>
+                            </thead>
+
+                            @php
+                                $i = 0;
+
+                            @endphp
+
+
+                            <tbody>
+
+                                @foreach ($materials as $material)
+                                    @php
+                                        $i = $i + 1;
+                                    @endphp
+                                    @php
+                                        $consume = 0;
+
+                                    @endphp
+                                    @php
+                                        $consumeDA = 0;
+
+                                    @endphp
+                                    <tr>
+                                        <td> {{ $i }}</td>
+                                        <td>{{ $material->id }}</td>
+
+                                        <td>{{ $material->ref }} </td>
+                                        @foreach ($piecesM as $pieceM)
+                                            @if ($material->id == $pieceM->mm_id)
+                                                @php
+                                                    $consume = $consume + $pieceM->quantity;
+                                                @endphp
+                                                @php
+                                                $consumeDA = $consumeDA + $pieceM->price;
+                                            @endphp
+                                            @endif
+                                        @endforeach
+                                        <td style="color: orange;">
+                                            @if($piecesMTotalPrice!=0)
+                                            {{ number_format(((float) $consumeDA / $piecesMTotalPrice) * 100, 2, '.', '') }}% (DA)
+                                            @else
+                                            0% (DA)
+                                            @endif
+                                        </td><td style="color: orange;">
+                                            @if($piecesMTotal!=0)
+                                          {{ number_format(((float) $consume / $piecesMTotal) * 100, 2, '.', '') }}% (Pièces)
+                                          @else
+                                          0% (Pièces)
+                                          @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+
+                            </tbody>
+                        </table>
+                    </section>
+
+
+
+                </main>
+
+    </div>   </div>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
 
         <div class="row">
 
@@ -317,8 +323,7 @@
     <input type="hidden" value="{{ json_encode($piecesMArrayp, true) }}" id="piecesMArrayp">
 
 
-
-    @include('layouts.footer')
+    @include('layouts.footerforKPIindex')
 
 
 </body>

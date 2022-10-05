@@ -1,7 +1,7 @@
 
                             @if(Auth::user()->type=='Gestionnaire parc' ||Auth::user()->type=='Utilisateur'||Auth::user()->type=='Gestionnaire Sup'  )
 
-                            @else
+
 
 
 
@@ -9,7 +9,7 @@
 
 <!DOCTYPE html>
 <html>
-	@include('layouts.head')
+	@include('layouts.headforKPIindex')
 	<body>
 
         @include('layouts.header-bar')
@@ -179,7 +179,7 @@ une piece consommes
 			            </div>
 	    </div>
 
-        @include('layouts.footer')
+        @include('layouts.footerforKPIindex')
 
 	</body>
 </html>

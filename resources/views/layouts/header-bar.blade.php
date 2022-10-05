@@ -76,32 +76,31 @@
             </div>
         </div>
 
-        <div class="user-info-dropdown">
-            <div class="dropdown"  role="button" data-toggle="dropdown">
-
-
-
-
-                <a href="#">
-
+        <div class="dashboard-setting user-notification">
+            <div class="dropdown">
+                <a class="dropdown-toggle no-arrow"  href="#"   >
                     <span class="user-name">{{ Auth::user()->username }}</span>
                 </a>
-
             </div>
         </div>
 
-
-        <div class="user-info-dropdown">
-            <div class="dropdown" role="button" data-toggle="dropdown">
-
-
-                <a href="/">
-                    <i class="dw dw-logout"></i> Log Out</a>
-
+        <div class="dashboard-setting user-notification">
+            <div class="dropdown">
+                <a class="dropdown-toggle no-arrow"  href="/" >
+                    <i class="dw dw-logout"></i> Se déconnecter</a>
                 </a>
-
             </div>
         </div>
+
+
+
+
+
+
+
+
+
+
     </div>
 </div>
 

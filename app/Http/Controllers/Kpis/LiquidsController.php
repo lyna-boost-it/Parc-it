@@ -35,6 +35,8 @@ class LiquidsController extends Controller
             $data2 =Repair ::whereMonth('created_at',$i)->sum('liquid');
             $LubeArray[$i]=array($data2);
         }
+        if($totalLiquidConsumed==0){$totalLiquidConsumed=1;}
+        if($totalLubeConsumed==0){$totalLubeConsumed=1;}
 
         return view('Kpis.liquids.index',compact('date','repairs','totalLubeConsumed','totalLiquidConsumed','vehicules','totalLubeCurrent','totalLiquidCurrent',
          'repairs','LiquidArray','LubeArray'));

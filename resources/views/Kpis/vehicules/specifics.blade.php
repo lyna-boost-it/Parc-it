@@ -3,7 +3,7 @@
 
 <!DOCTYPE html>
 <html>
-@include('layouts.head')
+@include('layouts.headforKPIindex')
 
 @if ($action_type == 'Vehicule_Availability')
 
@@ -87,7 +87,7 @@
 
 
     </body>
-    @include('layouts.footer')
+    @include('layouts.footerforKPI')
 @endif
 
 
@@ -284,7 +284,7 @@
 
 
     </body>
-    @include('layouts.footer')
+    @include('layouts.footerforKPI')
 @endif
 
 

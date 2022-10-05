@@ -3,7 +3,7 @@
 
 <!DOCTYPE html>
 <html>
-@include('layouts.head')
+@include('layouts.headforKPIindex')
 
 
 <body>
@@ -233,7 +233,7 @@
                             <select id="monthStaff" type="text"
                                 class="form-control select2 @error('monthStaff')
                                 is-invalid @enderror"
-                                name="monthStaff" required autocomplete="monthStaff" autofocus>
+                                name="monthStaff"  autocomplete="monthStaff" autofocus>
                                 <option value="" disabled selected>mois</option>
 
                                 <option value="1">Janvier </option>
@@ -487,7 +487,7 @@
 
 
 
-            </div>
+
 
         </div>
     </div>
@@ -499,7 +499,7 @@
     <input type="hidden" value="{{ $pParck }} " id="pParck">
     <input type="hidden" value="{{ $pCentre }} " id="pCentre">
 
-    @include('layouts.footer')
+    @include('layouts.footerforKPIindex')
 
 
 </body>

@@ -3,7 +3,7 @@
 
 <!DOCTYPE html>
 <html>
-@include('layouts.head')
+@include('layouts.headforKPIindex')
 
 
 <body>
@@ -143,7 +143,7 @@
 
 
 
-            <div class="row">
+            <div style="text-align:right; margin:0px auto 0px auto;">
 
 
                 <div class="col-md-6 mb-20">
@@ -154,642 +154,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 mb-20">
-                    <div class="card-box height-100-p pd-20">
-                        <main>
-                            <h4 class="font-20 weight-500 mb-10 text-capitalize text-orange">Statistique </h4>
 
-                            <input id="tab1" type="radio" name="tabs" checked>
-                            <label for="tab1">Vehicules</label>
-                            <input id="tab2" type="radio" name="tabs">
-                            <label for="tab2">Machines</label>
-                            <input id="tab3" type="radio" name="tabs">
-                            <label for="tab3">Personnes</label>
-                            <section id="content1">
-                                <table class="table nowrap hover data-table-export">
-                                    <thead>
-                                        <tr>
-                                            <th>Numero</th>
-                                            <th>ID</th>
-
-                                            <th> Numéro de Série</th>
-                                            <th>Action</th>
-
-
-                                        </tr>
-                                    </thead>
-
-                                    @php
-                                        $i = 0;
-
-                                    @endphp
-
-
-                                    <tbody>
-
-                                        @foreach ($vehicules as $vehicule)
-                                            @php
-                                                $i = $i + 1;
-                                            @endphp
-
-                                            <tr>
-                                                <td> {{ $i }}</td>
-                                                <td>{{ $vehicule->id }}</td>
-
-                                                <td>{{ $vehicule->serial_numbers }} </td>
-
-                                                <td style="color: orange;">
-                                                    <div class="dropdown">
-                                                        <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
-                                                            href="#" role="button" data-toggle="dropdown">
-                                                            <i class="dw dw-more"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
-                                                            style="width: 400px;">
-
-                                                            <form style=" left:-10%;"
-                                                                action="{{ route('Kpis.pannes.show', $vehicule->id) }}"
-                                                                method="get" class="dropdown-item">
-                                                                @csrf
-                                                                <button " type="submit"
-                                                                    class="btn btn-outline-primary btn-round">{{ __('Temps moyen entre pannes') }}</button>
-
-
-                                                                <div class="form-group" style=" display: inline-block;">
-                                                                    <input type="number" max="2090" min="2000"
-                                                                        name="MTBFyear" class="form-control"
-                                                                        placeholder="année">
-                                                                </div>
-
-
-                                                                <input type="hidden" value="Vehicule"
-                                                                id="option_type" name="option_type">
-
-                                                            </form>
-
-
-                                                            <form style=" left:-10%;"
-                                                                action="{{ route('Kpis.pannes.show', $vehicule->id) }}"
-                                                                method="get" class="dropdown-item">
-                                                                @csrf
-                                                                <button type="submit"
-                                                                    class="btn btn-outline-primary btn-round">{{ __('Taux de défaillance') }}</button>
-
-                                                                <div class="form-group"
-                                                                    style=" display: inline-block;">
-                                                                    <select id="monthTF" type="text"
-                                                                        class="form-control select2 @error('monthTF')
-                                                                                        is-invalid @enderror"
-                                                                        name="monthTF" required autocomplete="monthTF"
-                                                                        autofocus>
-                                                                        <option value="" disabled selected>
-                                                                            mois
-                                                                        </option>
-                                                                        <option value="1">Ja </option>
-                                                                        <option value="2">Fév </option>
-                                                                        <option value="3">Mar</option>
-                                                                        <option value="4">Avr</option>
-                                                                        <option value="5">Mai</option>
-                                                                        <option value="6">Jun </option>
-                                                                        <option value="7">Jul </option>
-                                                                        <option value="8">Aou </option>
-                                                                        <option value="9">Sep </option>
-                                                                        <option value="10">Oct </option>
-                                                                        <option value="11">Nov </option>
-                                                                        <option value="12">Déc </option>
-
-
-                                                                    </select>
-                                                                </div>
-                                                                <div class="form-group"
-                                                                    style=" display: inline-block;">
-                                                                    <input type="number" max="2090"
-                                                                        min="2000" name="yearTF"
-                                                                        class="form-control" placeholder="année">
-                                                                </div>
-
-                                                                <input type="hidden" value="TDVehicule"
-                                                                    id="action_type" name="action_type">
-                                                                    <input type="hidden" value="Vehicule"
-                                                                    id="option_type" name="option_type">
-
-                                                            </form>
-                                                            <form style=" left:-10%;"
-                                                                action="{{ route('Kpis.pannes.show', $vehicule->id) }}"
-                                                                method="get" class="dropdown-item">
-                                                                @csrf
-                                                                <button type="submit"
-                                                                    class="btn btn-outline-primary btn-round">{{ __('Taux de réparation') }}</button>
-
-                                                                <div class="form-group"
-                                                                    style=" display: inline-block;">
-                                                                    <select id="monthTR" type="text"
-                                                                        class="form-control select2 @error('monthTR')
-                                                                                    is-invalid @enderror"
-                                                                        name="monthTR" required autocomplete="monthTR"
-                                                                        autofocus>
-                                                                        <option value="" disabled selected>
-                                                                            mois
-                                                                        </option>
-                                                                        <option value="1">Ja </option>
-                                                                        <option value="2">Fév </option>
-                                                                        <option value="3">Mar</option>
-                                                                        <option value="4">Avr</option>
-                                                                        <option value="5">Mai</option>
-                                                                        <option value="6">Jun </option>
-                                                                        <option value="7">Jul </option>
-                                                                        <option value="8">Aou </option>
-                                                                        <option value="9">Sep </option>
-                                                                        <option value="10">Oct </option>
-                                                                        <option value="11">Nov </option>
-                                                                        <option value="12">Déc </option>
-
-
-                                                                    </select>
-                                                                </div>
-                                                                <div class="form-group"
-                                                                    style=" display: inline-block;">
-                                                                    <input type="number" max="2090"
-                                                                        min="2000" name="yearTR"
-                                                                        class="form-control" placeholder="année">
-                                                                </div>
-
-                                                                <input type="hidden" value="TRVehicule"
-                                                                    id="action_type" name="action_type">
-                                                                    <input type="hidden" value="Vehicule"
-                                                                    id="option_type" name="option_type">
-
-                                                            </form>
-                                                            <form style=" left:-10%;"
-                                                                action="{{ route('Kpis.pannes.show', $vehicule->id) }}"
-                                                                method="get" class="dropdown-item">
-                                                                @csrf
-                                                                <button type="submit"
-                                                                    class="btn btn-outline-primary btn-round">{{ __('Moyenne de pannes') }}</button>
-
-
-                                                                <div class="form-group"
-                                                                    style=" display: inline-block;">
-                                                                    <input type="number" max="2090"
-                                                                        min="2000" name="yearMP"
-                                                                        class="form-control" placeholder="année">
-                                                                </div>
-
-                                                                <input type="hidden" value="MPVehicule"
-                                                                    id="action_type" name="action_type">
-                                                                    <input type="hidden" value="Vehicule"
-                                                                    id="option_type" name="option_type">
-
-                                                            </form>
-                                                            <form style=" left:-10%;"
-                                                                action="{{ route('Kpis.pannes.show', $vehicule->id) }}"
-                                                                method="get" class="dropdown-item">
-                                                                @csrf
-                                                                <button type="submit"
-                                                                    class="btn btn-outline-primary btn-round">{{ __('Temps moyen pour réparer') }}</button>
-
-                                                                <div class="form-group"
-                                                                    style=" display: inline-block;">
-                                                                    <select id="month" type="text"
-                                                                        class="form-control select2 @error('MTTRmonth')
-                                                                                is-invalid @enderror"
-                                                                        name="MTTRmonth" required autocomplete="MTTRmonth"
-                                                                        autofocus>
-                                                                        <option value="" disabled selected>
-                                                                            mois
-                                                                        </option>
-                                                                        <option value="1">Ja </option>
-                                                                        <option value="2">Fév </option>
-                                                                        <option value="3">Mar</option>
-                                                                        <option value="4">Avr</option>
-                                                                        <option value="5">Mai</option>
-                                                                        <option value="6">Jun </option>
-                                                                        <option value="7">Jul </option>
-                                                                        <option value="8">Aou </option>
-                                                                        <option value="9">Sep </option>
-                                                                        <option value="10">Oct </option>
-                                                                        <option value="11">Nov </option>
-                                                                        <option value="12">Déc </option>
-
-
-                                                                    </select>
-                                                                </div>
-                                                                <div class="form-group"
-                                                                    style=" display: inline-block;">
-                                                                    <input type="number" max="2090"
-                                                                        min="2000" name="MTTRyear"
-                                                                        class="form-control" placeholder="année">
-                                                                </div>
-
-                                                                <input type="hidden" value="MTTRVehicule"
-                                                                    id="action_type" name="action_type">
-                                                                    <input type="hidden" value="Vehicule"
-                                                                    id="option_type" name="option_type">
-
-                                                            </form>
-                                                        </div>
-                                                    </div>
-
-
-
-
-                                                </td>
-                                            </tr>
-                                        @endforeach
-
-
-                                    </tbody>
-                                </table>
-                            </section>
-                            <section id="content2">
-                                <table class="table nowrap hover data-table-export">
-                                    <thead>
-                                        <tr>
-                                            <th>Numero</th>
-                                            <th>ID</th>
-
-                                            <th>Réf d’achat</th>
-                                            <th>Action</th>
-
-
-                                        </tr>
-                                    </thead>
-
-                                    @php
-                                        $i = 0;
-
-                                    @endphp
-
-
-                                    <tbody>
-
-                                        @foreach ($materials as $machine)
-                                            @php
-                                                $i = $i + 1;
-                                            @endphp
-
-                                            <tr>
-                                                <td> {{ $i }}</td>
-                                                <td>{{ $machine->id }}</td>
-
-                                                <td>{{ $machine->ref }} </td>
-
-                                                <td style="color: orange;">
-                                                    <div class="dropdown">
-                                                        <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
-                                                            href="#" role="button" data-toggle="dropdown">
-                                                            <i class="dw dw-more"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
-                                                            style="width: 400px;">
-
-                                                            <form style=" left:-10%;"
-                                                                action="{{ route('Kpis.pannes.show', $machine->id) }}"
-                                                                method="get" class="dropdown-item">
-                                                                @csrf
-                                                                <button " type="submit"
-                                                                    class="btn btn-outline-primary btn-round">{{ __('Temps moyen entre pannes') }}</button>
-
-
-                                                                <div class="form-group" style=" display: inline-block;">
-                                                                    <input type="number" max="2090" min="2000"
-                                                                        name="MTBFyear" class="form-control"
-                                                                        placeholder="année">
-                                                                </div>
-
-
-                                                                    <input type="hidden" value="Machine"
-                                                                    id="option_type" name="option_type">
-
-                                                            </form>
-
-
-                                                            <form style=" left:-10%;"
-                                                                action="{{ route('Kpis.pannes.show', $machine->id) }}"
-                                                                method="get" class="dropdown-item">
-                                                                @csrf
-                                                                <button type="submit"
-                                                                    class="btn btn-outline-primary btn-round">{{ __('Taux de défaillance') }}</button>
-
-                                                                <div class="form-group"
-                                                                    style=" display: inline-block;">
-                                                                    <select id="month" type="text"
-                                                                        class="form-control select2 @error('month')
-                                                                                        is-invalid @enderror"
-                                                                        name="month" required autocomplete="month"
-                                                                        autofocus>
-                                                                        <option value="" disabled selected>
-                                                                            mois
-                                                                        </option>
-                                                                        <option value="1">Ja </option>
-                                                                        <option value="2">Fév </option>
-                                                                        <option value="3">Mar</option>
-                                                                        <option value="4">Avr</option>
-                                                                        <option value="5">Mai</option>
-                                                                        <option value="6">Jun </option>
-                                                                        <option value="7">Jul </option>
-                                                                        <option value="8">Aou </option>
-                                                                        <option value="9">Sep </option>
-                                                                        <option value="10">Oct </option>
-                                                                        <option value="11">Nov </option>
-                                                                        <option value="12">Déc </option>
-
-
-                                                                    </select>
-                                                                </div>
-                                                                <div class="form-group"
-                                                                    style=" display: inline-block;">
-                                                                    <input type="number" max="2090"
-                                                                        min="2000" name="year"
-                                                                        class="form-control" placeholder="année">
-                                                                        <input type="hidden" value="Machine"
-                                                                        id="option_type" name="option_type">
-                                                                </div>
-
-                                                                <input type="hidden" value="TDMachine"
-                                                                    id="action_type" name="action_type">
-
-                                                            </form>
-                                                            <form style=" left:-10%;"
-                                                                action="{{ route('Kpis.pannes.show', $machine->id) }}"
-                                                                method="get" class="dropdown-item">
-                                                                @csrf
-                                                                <button type="submit"
-                                                                    class="btn btn-outline-primary btn-round">{{ __('Taux de réparation') }}</button>
-
-                                                                <div class="form-group"
-                                                                    style=" display: inline-block;">
-                                                                    <select id="monthTR" type="text"
-                                                                        class="form-control select2 @error('monthTR')
-                                                                                    is-invalid @enderror"
-                                                                        name="monthTR" required autocomplete="monthTR"
-                                                                        autofocus>
-                                                                        <option value="" disabled selected>
-                                                                            mois
-                                                                        </option>
-                                                                        <option value="1">Ja </option>
-                                                                        <option value="2">Fév </option>
-                                                                        <option value="3">Mar</option>
-                                                                        <option value="4">Avr</option>
-                                                                        <option value="5">Mai</option>
-                                                                        <option value="6">Jun </option>
-                                                                        <option value="7">Jul </option>
-                                                                        <option value="8">Aou </option>
-                                                                        <option value="9">Sep </option>
-                                                                        <option value="10">Oct </option>
-                                                                        <option value="11">Nov </option>
-                                                                        <option value="12">Déc </option>
-
-
-                                                                    </select>
-                                                                </div>
-                                                                <div class="form-group"
-                                                                    style=" display: inline-block;">
-                                                                    <input type="number" max="2090"
-                                                                        min="2000" name="yearTR"
-                                                                        class="form-control" placeholder="année">
-                                                                </div>
-
-                                                                <input type="hidden" value="TRMachine"
-                                                                    id="action_type" name="action_type">
-                                                                    <input type="hidden" value="Machine"
-                                                                    id="option_type" name="option_type">
-
-                                                            </form>
-                                                            <form style=" left:-10%;"
-                                                                action="{{ route('Kpis.pannes.show', $machine->id) }}"
-                                                                method="get" class="dropdown-item">
-                                                                @csrf
-                                                                <button type="submit"
-                                                                    class="btn btn-outline-primary btn-round">{{ __('Moyenne de pannes') }}</button>
-
-
-                                                                <div class="form-group"
-                                                                    style=" display: inline-block;">
-                                                                    <input type="number" max="2090"
-                                                                        min="2000" name="yearMP"
-                                                                        class="form-control" placeholder="année">
-                                                                </div>
-
-                                                                <input type="hidden" value="MPMachine"
-                                                                    id="action_type" name="action_type">
-                                                                    <input type="hidden" value="Machine"
-                                                                    id="option_type" name="option_type">
-
-                                                            </form>
-                                                            <form style=" left:-10%;"
-                                                                action="{{ route('Kpis.pannes.show', $machine->id) }}"
-                                                                method="get" class="dropdown-item">
-                                                                @csrf
-                                                                <button type="submit"
-                                                                    class="btn btn-outline-primary btn-round">{{ __('Temps moyen pour réparer') }}</button>
-
-                                                                <div class="form-group"
-                                                                    style=" display: inline-block;">
-                                                                    <select id="MTTRmonth" type="text"
-                                                                        class="form-control select2 @error('MTTRmonth')
-                                                                                is-invalid @enderror"
-                                                                        name="MTTRmonth" required autocomplete="MTTRmonth"
-                                                                        autofocus>
-                                                                        <option value="" disabled selected>
-                                                                            mois
-                                                                        </option>
-                                                                        <option value="1">Ja </option>
-                                                                        <option value="2">Fév </option>
-                                                                        <option value="3">Mar</option>
-                                                                        <option value="4">Avr</option>
-                                                                        <option value="5">Mai</option>
-                                                                        <option value="6">Jun </option>
-                                                                        <option value="7">Jul </option>
-                                                                        <option value="8">Aou </option>
-                                                                        <option value="9">Sep </option>
-                                                                        <option value="10">Oct </option>
-                                                                        <option value="11">Nov </option>
-                                                                        <option value="12">Déc </option>
-
-
-                                                                    </select>
-                                                                </div>
-                                                                <div class="form-group"
-                                                                    style=" display: inline-block;">
-                                                                    <input type="number" max="2090"
-                                                                        min="2000" name="MTTRyear"
-                                                                        class="form-control" placeholder="année">
-                                                                </div>
-
-                                                                <input type="hidden" value="MTTRMachine"
-                                                                    id="action_type" name="action_type">
-                                                                    <input type="hidden" value="Machine"
-                                                                    id="option_type" name="option_type">
-
-                                                            </form>
-                                                        </div>
-                                                    </div>
-
-
-
-
-                                                </td>
-                                            </tr>
-                                        @endforeach
-
-
-                                    </tbody>
-                                </table>
-                            </section>
-                            <section id="content3">
-                                <table class="table nowrap hover data-table-export">
-                                    <thead>
-                                        <tr>
-                                            <th>Numero</th>
-                                            <th>ID</th>
-
-                                            <th>Nome et Prénom</th>
-                                            <th>Action</th>
-
-
-                                        </tr>
-                                    </thead>
-
-                                    @php
-                                        $i = 0;
-
-                                    @endphp
-
-
-                                    <tbody>
-
-                                        @foreach ($staffs as $staff)
-                                            @php
-                                                $i = $i + 1;
-                                            @endphp
-
-                                            <tr>
-                                                <td> {{ $i }}</td>
-                                                <td>{{ $staff->id }}</td>
-
-                                                <td>{{ $staff->name }} {{ $staff->last_name }} </td>
-
-                                                <td style="color: orange;">
-                                                    <div class="dropdown">
-                                                        <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
-                                                            href="#" role="button" data-toggle="dropdown">
-                                                            <i class="dw dw-more"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
-                                                            style="width: 400px;">
-
-
-                                                            <form style=" left:-10%;"
-                                                                action="{{ route('Kpis.pannes.show', $staff->id) }}"
-                                                                method="get" class="dropdown-item">
-                                                                @csrf
-                                                                <button type="submit"
-                                                                    class="btn btn-outline-primary btn-round">{{ __('Taux de réparation') }}</button>
-
-                                                                <div class="form-group"
-                                                                    style=" display: inline-block;">
-                                                                    <select id="monthTR" type="text"
-                                                                        class="form-control select2 @error('monthTR')
-                                                                                    is-invalid @enderror"
-                                                                        name="monthTR" required autocomplete="monthTR"
-                                                                        autofocus>
-                                                                        <option value="" disabled selected>
-                                                                            mois
-                                                                        </option>
-                                                                        <option value="1">Ja </option>
-                                                                        <option value="2">Fév </option>
-                                                                        <option value="3">Mar</option>
-                                                                        <option value="4">Avr</option>
-                                                                        <option value="5">Mai</option>
-                                                                        <option value="6">Jun </option>
-                                                                        <option value="7">Jul </option>
-                                                                        <option value="8">Aou </option>
-                                                                        <option value="9">Sep </option>
-                                                                        <option value="10">Oct </option>
-                                                                        <option value="11">Nov </option>
-                                                                        <option value="12">Déc </option>
-
-
-                                                                    </select>
-                                                                </div>
-                                                                <div class="form-group"
-                                                                    style=" display: inline-block;">
-                                                                    <input type="number" max="2090"
-                                                                        min="2000" name="yearTR"
-                                                                        class="form-control" placeholder="année">
-                                                                </div>
-
-                                                                <input type="hidden" value="TRStaff"
-                                                                    id="action_type" name="action_type">
-                                                                    <input type="hidden" value="Staff"
-                                                                    id="option_type" name="option_type">
-
-                                                            </form>
-
-                                                            <form style=" left:-10%;"
-                                                                action="{{ route('Kpis.pannes.show', $staff->id) }}"
-                                                                method="get" class="dropdown-item">
-                                                                @csrf
-                                                                <button type="submit"
-                                                                    class="btn btn-outline-primary btn-round">{{ __('Temps moyen pour réparer') }}</button>
-
-                                                                <div class="form-group"
-                                                                    style=" display: inline-block;">
-                                                                    <select id="MTTRmonth" type="text"
-                                                                        class="form-control select2 @error('MTTRmonth')
-                                                                                is-invalid @enderror"
-                                                                        name="MTTRmonth" required autocomplete="MTTRmonth"
-                                                                        autofocus>
-                                                                        <option value="" disabled selected>
-                                                                            mois
-                                                                        </option>
-                                                                        <option value="1">Ja </option>
-                                                                        <option value="2">Fév </option>
-                                                                        <option value="3">Mar</option>
-                                                                        <option value="4">Avr</option>
-                                                                        <option value="5">Mai</option>
-                                                                        <option value="6">Jun </option>
-                                                                        <option value="7">Jul </option>
-                                                                        <option value="8">Aou </option>
-                                                                        <option value="9">Sep </option>
-                                                                        <option value="10">Oct </option>
-                                                                        <option value="11">Nov </option>
-                                                                        <option value="12">Déc </option>
-
-
-                                                                    </select>
-                                                                </div>
-                                                                <div class="form-group"
-                                                                    style=" display: inline-block;">
-                                                                    <input type="number" max="2090"
-                                                                        min="2000" name="MTTRyear"
-                                                                        class="form-control" placeholder="année">
-                                                                </div>
-
-                                                                <input type="hidden" value="MTTRStaff"
-                                                                    id="action_type" name="action_type">
-                                                                    <input type="hidden" value="Staff"
-                                                                    id="option_type" name="option_type">
-
-                                                            </form>
-                                                        </div>
-                                                    </div>
-
-
-
-
-                                                </td>
-                                            </tr>
-                                        @endforeach
-
-
-                                    </tbody>
-                                </table>
-                            </section>
-                        </main>
-                    </div>
-                </div>
 
             </div>
 
@@ -800,15 +165,653 @@
     </div>
 
     </div>
+    <div style="position:absolute;right:20px;">
+        <div class="card-box pd-20 height-100-p mb-30">
+            <main>
+                <h4 class="font-20 weight-500 mb-10 text-capitalize text-orange">Statistique </h4>
+
+                <input id="tab1" type="radio" name="tabs" checked>
+                <label for="tab1">Vehicules</label>
+                <input id="tab2" type="radio" name="tabs">
+                <label for="tab2">Machines</label>
+                <input id="tab3" type="radio" name="tabs">
+                <label for="tab3">Personnes</label>
+                <section id="content1">
+                    <table class="table nowrap hover data-table-export">
+                        <thead>
+                            <tr>
+                                <th>Numero</th>
+                                <th>ID</th>
+
+                                <th> Numéro de Série</th>
+                                <th>Action</th>
 
 
+                            </tr>
+                        </thead>
+
+                        @php
+                            $i = 0;
+
+                        @endphp
+
+
+                        <tbody>
+
+                            @foreach ($vehicules as $vehicule)
+                                @php
+                                    $i = $i + 1;
+                                @endphp
+
+                                <tr>
+                                    <td> {{ $i }}</td>
+                                    <td>{{ $vehicule->id }}</td>
+
+                                    <td>{{ $vehicule->serial_numbers }} </td>
+
+                                    <td style="color: orange;">
+                                        <div class="dropdown">
+                                            <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+                                                href="#" role="button" data-toggle="dropdown">
+                                                <i class="dw dw-more"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
+                                                style="width: 400px;">
+
+                                                <form style=" left:-10%;"
+                                                    action="{{ route('Kpis.pannes.show', $vehicule->id) }}"
+                                                    method="get" class="dropdown-item">
+                                                    @csrf
+                                                    <button " type="submit"
+                                                        class="btn btn-outline-primary btn-round">{{ __('Temps moyen entre pannes') }}</button>
+
+
+                                                    <div class="form-group" style=" display: inline-block;">
+                                                        <input type="number" max="2090" min="2000"
+                                                            name="MTBFyear" class="form-control"
+                                                            placeholder="année">
+                                                    </div>
+
+
+                                                    <input type="hidden" value="Vehicule"
+                                                    id="option_type" name="option_type">
+
+                                                </form>
+
+
+                                                <form style=" left:-10%;"
+                                                    action="{{ route('Kpis.pannes.show', $vehicule->id) }}"
+                                                    method="get" class="dropdown-item">
+                                                    @csrf
+                                                    <button type="submit"
+                                                        class="btn btn-outline-primary btn-round">{{ __('Taux de défaillance') }}</button>
+
+                                                    <div class="form-group"
+                                                        style=" display: inline-block;">
+                                                        <select id="monthTF" type="text"
+                                                            class="form-control select2 @error('monthTF')
+                                                                            is-invalid @enderror"
+                                                            name="monthTF" required autocomplete="monthTF"
+                                                            autofocus>
+                                                            <option value="" disabled selected>
+                                                                mois
+                                                            </option>
+                                                            <option value="1">Ja </option>
+                                                            <option value="2">Fév </option>
+                                                            <option value="3">Mar</option>
+                                                            <option value="4">Avr</option>
+                                                            <option value="5">Mai</option>
+                                                            <option value="6">Jun </option>
+                                                            <option value="7">Jul </option>
+                                                            <option value="8">Aou </option>
+                                                            <option value="9">Sep </option>
+                                                            <option value="10">Oct </option>
+                                                            <option value="11">Nov </option>
+                                                            <option value="12">Déc </option>
+
+
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group"
+                                                        style=" display: inline-block;">
+                                                        <input type="number" max="2090"
+                                                            min="2000" name="yearTF"
+                                                            class="form-control" placeholder="année">
+                                                    </div>
+
+                                                    <input type="hidden" value="TDVehicule"
+                                                        id="action_type" name="action_type">
+                                                        <input type="hidden" value="Vehicule"
+                                                        id="option_type" name="option_type">
+
+                                                </form>
+                                                <form style=" left:-10%;"
+                                                    action="{{ route('Kpis.pannes.show', $vehicule->id) }}"
+                                                    method="get" class="dropdown-item">
+                                                    @csrf
+                                                    <button type="submit"
+                                                        class="btn btn-outline-primary btn-round">{{ __('Taux de réparation') }}</button>
+
+                                                    <div class="form-group"
+                                                        style=" display: inline-block;">
+                                                        <select id="monthTR" type="text"
+                                                            class="form-control select2 @error('monthTR')
+                                                                        is-invalid @enderror"
+                                                            name="monthTR" required autocomplete="monthTR"
+                                                            autofocus>
+                                                            <option value="" disabled selected>
+                                                                mois
+                                                            </option>
+                                                            <option value="1">Ja </option>
+                                                            <option value="2">Fév </option>
+                                                            <option value="3">Mar</option>
+                                                            <option value="4">Avr</option>
+                                                            <option value="5">Mai</option>
+                                                            <option value="6">Jun </option>
+                                                            <option value="7">Jul </option>
+                                                            <option value="8">Aou </option>
+                                                            <option value="9">Sep </option>
+                                                            <option value="10">Oct </option>
+                                                            <option value="11">Nov </option>
+                                                            <option value="12">Déc </option>
+
+
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group"
+                                                        style=" display: inline-block;">
+                                                        <input type="number" max="2090"
+                                                            min="2000" name="yearTR"
+                                                            class="form-control" placeholder="année">
+                                                    </div>
+
+                                                    <input type="hidden" value="TRVehicule"
+                                                        id="action_type" name="action_type">
+                                                        <input type="hidden" value="Vehicule"
+                                                        id="option_type" name="option_type">
+
+                                                </form>
+                                                <form style=" left:-10%;"
+                                                    action="{{ route('Kpis.pannes.show', $vehicule->id) }}"
+                                                    method="get" class="dropdown-item">
+                                                    @csrf
+                                                    <button type="submit"
+                                                        class="btn btn-outline-primary btn-round">{{ __('Moyenne de pannes') }}</button>
+
+
+                                                    <div class="form-group"
+                                                        style=" display: inline-block;">
+                                                        <input type="number" max="2090"
+                                                            min="2000" name="yearMP"
+                                                            class="form-control" placeholder="année">
+                                                    </div>
+
+                                                    <input type="hidden" value="MPVehicule"
+                                                        id="action_type" name="action_type">
+                                                        <input type="hidden" value="Vehicule"
+                                                        id="option_type" name="option_type">
+
+                                                </form>
+                                                <form style=" left:-10%;"
+                                                    action="{{ route('Kpis.pannes.show', $vehicule->id) }}"
+                                                    method="get" class="dropdown-item">
+                                                    @csrf
+                                                    <button type="submit"
+                                                        class="btn btn-outline-primary btn-round">{{ __('Temps moyen pour réparer') }}</button>
+
+                                                    <div class="form-group"
+                                                        style=" display: inline-block;">
+                                                        <select id="month" type="text"
+                                                            class="form-control select2 @error('MTTRmonth')
+                                                                    is-invalid @enderror"
+                                                            name="MTTRmonth" required autocomplete="MTTRmonth"
+                                                            autofocus>
+                                                            <option value="" disabled selected>
+                                                                mois
+                                                            </option>
+                                                            <option value="1">Ja </option>
+                                                            <option value="2">Fév </option>
+                                                            <option value="3">Mar</option>
+                                                            <option value="4">Avr</option>
+                                                            <option value="5">Mai</option>
+                                                            <option value="6">Jun </option>
+                                                            <option value="7">Jul </option>
+                                                            <option value="8">Aou </option>
+                                                            <option value="9">Sep </option>
+                                                            <option value="10">Oct </option>
+                                                            <option value="11">Nov </option>
+                                                            <option value="12">Déc </option>
+
+
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group"
+                                                        style=" display: inline-block;">
+                                                        <input type="number" max="2090"
+                                                            min="2000" name="MTTRyear"
+                                                            class="form-control" placeholder="année">
+                                                    </div>
+
+                                                    <input type="hidden" value="MTTRVehicule"
+                                                        id="action_type" name="action_type">
+                                                        <input type="hidden" value="Vehicule"
+                                                        id="option_type" name="option_type">
+
+                                                </form>
+                                            </div>
+                                        </div>
+
+
+
+
+                                    </td>
+                                </tr>
+                            @endforeach
+
+
+                        </tbody>
+                    </table>
+                </section>
+                <section id="content2">
+                    <table class="table nowrap hover data-table-export">
+                        <thead>
+                            <tr>
+                                <th>Numero</th>
+                                <th>ID</th>
+
+                                <th>Réf d’achat</th>
+                                <th>Action</th>
+
+
+                            </tr>
+                        </thead>
+
+                        @php
+                            $i = 0;
+
+                        @endphp
+
+
+                        <tbody>
+
+                            @foreach ($materials as $machine)
+                                @php
+                                    $i = $i + 1;
+                                @endphp
+
+                                <tr>
+                                    <td> {{ $i }}</td>
+                                    <td>{{ $machine->id }}</td>
+
+                                    <td>{{ $machine->ref }} </td>
+
+                                    <td style="color: orange;">
+                                        <div class="dropdown">
+                                            <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+                                                href="#" role="button" data-toggle="dropdown">
+                                                <i class="dw dw-more"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
+                                                style="width: 400px;">
+
+                                                <form style=" left:-10%;"
+                                                    action="{{ route('Kpis.pannes.show', $machine->id) }}"
+                                                    method="get" class="dropdown-item">
+                                                    @csrf
+                                                    <button " type="submit"
+                                                        class="btn btn-outline-primary btn-round">{{ __('Temps moyen entre pannes') }}</button>
+
+
+                                                    <div class="form-group" style=" display: inline-block;">
+                                                        <input type="number" max="2090" min="2000"
+                                                            name="MTBFyear" class="form-control"
+                                                            placeholder="année">
+                                                    </div>
+
+
+                                                        <input type="hidden" value="Machine"
+                                                        id="option_type" name="option_type">
+
+                                                </form>
+
+
+                                                <form style=" left:-10%;"
+                                                    action="{{ route('Kpis.pannes.show', $machine->id) }}"
+                                                    method="get" class="dropdown-item">
+                                                    @csrf
+                                                    <button type="submit"
+                                                        class="btn btn-outline-primary btn-round">{{ __('Taux de défaillance') }}</button>
+
+                                                    <div class="form-group"
+                                                        style=" display: inline-block;">
+                                                        <select id="month" type="text"
+                                                            class="form-control select2 @error('month')
+                                                                            is-invalid @enderror"
+                                                            name="month" required autocomplete="month"
+                                                            autofocus>
+                                                            <option value="" disabled selected>
+                                                                mois
+                                                            </option>
+                                                            <option value="1">Ja </option>
+                                                            <option value="2">Fév </option>
+                                                            <option value="3">Mar</option>
+                                                            <option value="4">Avr</option>
+                                                            <option value="5">Mai</option>
+                                                            <option value="6">Jun </option>
+                                                            <option value="7">Jul </option>
+                                                            <option value="8">Aou </option>
+                                                            <option value="9">Sep </option>
+                                                            <option value="10">Oct </option>
+                                                            <option value="11">Nov </option>
+                                                            <option value="12">Déc </option>
+
+
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group"
+                                                        style=" display: inline-block;">
+                                                        <input type="number" max="2090"
+                                                            min="2000" name="year"
+                                                            class="form-control" placeholder="année">
+                                                            <input type="hidden" value="Machine"
+                                                            id="option_type" name="option_type">
+                                                    </div>
+
+                                                    <input type="hidden" value="TDMachine"
+                                                        id="action_type" name="action_type">
+
+                                                </form>
+                                                <form style=" left:-10%;"
+                                                    action="{{ route('Kpis.pannes.show', $machine->id) }}"
+                                                    method="get" class="dropdown-item">
+                                                    @csrf
+                                                    <button type="submit"
+                                                        class="btn btn-outline-primary btn-round">{{ __('Taux de réparation') }}</button>
+
+                                                    <div class="form-group"
+                                                        style=" display: inline-block;">
+                                                        <select id="monthTR" type="text"
+                                                            class="form-control select2 @error('monthTR')
+                                                                        is-invalid @enderror"
+                                                            name="monthTR" required autocomplete="monthTR"
+                                                            autofocus>
+                                                            <option value="" disabled selected>
+                                                                mois
+                                                            </option>
+                                                            <option value="1">Ja </option>
+                                                            <option value="2">Fév </option>
+                                                            <option value="3">Mar</option>
+                                                            <option value="4">Avr</option>
+                                                            <option value="5">Mai</option>
+                                                            <option value="6">Jun </option>
+                                                            <option value="7">Jul </option>
+                                                            <option value="8">Aou </option>
+                                                            <option value="9">Sep </option>
+                                                            <option value="10">Oct </option>
+                                                            <option value="11">Nov </option>
+                                                            <option value="12">Déc </option>
+
+
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group"
+                                                        style=" display: inline-block;">
+                                                        <input type="number" max="2090"
+                                                            min="2000" name="yearTR"
+                                                            class="form-control" placeholder="année">
+                                                    </div>
+
+                                                    <input type="hidden" value="TRMachine"
+                                                        id="action_type" name="action_type">
+                                                        <input type="hidden" value="Machine"
+                                                        id="option_type" name="option_type">
+
+                                                </form>
+                                                <form style=" left:-10%;"
+                                                    action="{{ route('Kpis.pannes.show', $machine->id) }}"
+                                                    method="get" class="dropdown-item">
+                                                    @csrf
+                                                    <button type="submit"
+                                                        class="btn btn-outline-primary btn-round">{{ __('Moyenne de pannes') }}</button>
+
+
+                                                    <div class="form-group"
+                                                        style=" display: inline-block;">
+                                                        <input type="number" max="2090"
+                                                            min="2000" name="yearMP"
+                                                            class="form-control" placeholder="année">
+                                                    </div>
+
+                                                    <input type="hidden" value="MPMachine"
+                                                        id="action_type" name="action_type">
+                                                        <input type="hidden" value="Machine"
+                                                        id="option_type" name="option_type">
+
+                                                </form>
+                                                <form style=" left:-10%;"
+                                                    action="{{ route('Kpis.pannes.show', $machine->id) }}"
+                                                    method="get" class="dropdown-item">
+                                                    @csrf
+                                                    <button type="submit"
+                                                        class="btn btn-outline-primary btn-round">{{ __('Temps moyen pour réparer') }}</button>
+
+                                                    <div class="form-group"
+                                                        style=" display: inline-block;">
+                                                        <select id="MTTRmonth" type="text"
+                                                            class="form-control select2 @error('MTTRmonth')
+                                                                    is-invalid @enderror"
+                                                            name="MTTRmonth" required autocomplete="MTTRmonth"
+                                                            autofocus>
+                                                            <option value="" disabled selected>
+                                                                mois
+                                                            </option>
+                                                            <option value="1">Ja </option>
+                                                            <option value="2">Fév </option>
+                                                            <option value="3">Mar</option>
+                                                            <option value="4">Avr</option>
+                                                            <option value="5">Mai</option>
+                                                            <option value="6">Jun </option>
+                                                            <option value="7">Jul </option>
+                                                            <option value="8">Aou </option>
+                                                            <option value="9">Sep </option>
+                                                            <option value="10">Oct </option>
+                                                            <option value="11">Nov </option>
+                                                            <option value="12">Déc </option>
+
+
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group"
+                                                        style=" display: inline-block;">
+                                                        <input type="number" max="2090"
+                                                            min="2000" name="MTTRyear"
+                                                            class="form-control" placeholder="année">
+                                                    </div>
+
+                                                    <input type="hidden" value="MTTRMachine"
+                                                        id="action_type" name="action_type">
+                                                        <input type="hidden" value="Machine"
+                                                        id="option_type" name="option_type">
+
+                                                </form>
+                                            </div>
+                                        </div>
+
+
+
+
+                                    </td>
+                                </tr>
+                            @endforeach
+
+
+                        </tbody>
+                    </table>
+                </section>
+                <section id="content3">
+                    <table class="table nowrap hover data-table-export">
+                        <thead>
+                            <tr>
+                                <th>Numero</th>
+                                <th>ID</th>
+
+                                <th>Nome et Prénom</th>
+                                <th>Action</th>
+
+
+                            </tr>
+                        </thead>
+
+                        @php
+                            $i = 0;
+
+                        @endphp
+
+
+                        <tbody>
+
+                            @foreach ($staffs as $staff)
+                                @php
+                                    $i = $i + 1;
+                                @endphp
+
+                                <tr>
+                                    <td> {{ $i }}</td>
+                                    <td>{{ $staff->id }}</td>
+
+                                    <td>{{ $staff->name }} {{ $staff->last_name }} </td>
+
+                                    <td style="color: orange;">
+                                        <div class="dropdown">
+                                            <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+                                                href="#" role="button" data-toggle="dropdown">
+                                                <i class="dw dw-more"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
+                                                style="width: 400px;">
+
+
+                                                <form style=" left:-10%;"
+                                                    action="{{ route('Kpis.pannes.show', $staff->id) }}"
+                                                    method="get" class="dropdown-item">
+                                                    @csrf
+                                                    <button type="submit"
+                                                        class="btn btn-outline-primary btn-round">{{ __('Taux de réparation') }}</button>
+
+                                                    <div class="form-group"
+                                                        style=" display: inline-block;">
+                                                        <select id="monthTR" type="text"
+                                                            class="form-control select2 @error('monthTR')
+                                                                        is-invalid @enderror"
+                                                            name="monthTR" required autocomplete="monthTR"
+                                                            autofocus>
+                                                            <option value="" disabled selected>
+                                                                mois
+                                                            </option>
+                                                            <option value="1">Ja </option>
+                                                            <option value="2">Fév </option>
+                                                            <option value="3">Mar</option>
+                                                            <option value="4">Avr</option>
+                                                            <option value="5">Mai</option>
+                                                            <option value="6">Jun </option>
+                                                            <option value="7">Jul </option>
+                                                            <option value="8">Aou </option>
+                                                            <option value="9">Sep </option>
+                                                            <option value="10">Oct </option>
+                                                            <option value="11">Nov </option>
+                                                            <option value="12">Déc </option>
+
+
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group"
+                                                        style=" display: inline-block;">
+                                                        <input type="number" max="2090"
+                                                            min="2000" name="yearTR"
+                                                            class="form-control" placeholder="année">
+                                                    </div>
+
+                                                    <input type="hidden" value="TRStaff"
+                                                        id="action_type" name="action_type">
+                                                        <input type="hidden" value="Staff"
+                                                        id="option_type" name="option_type">
+
+                                                </form>
+
+                                                <form style=" left:-10%;"
+                                                    action="{{ route('Kpis.pannes.show', $staff->id) }}"
+                                                    method="get" class="dropdown-item">
+                                                    @csrf
+                                                    <button type="submit"
+                                                        class="btn btn-outline-primary btn-round">{{ __('Temps moyen pour réparer') }}</button>
+
+                                                    <div class="form-group"
+                                                        style=" display: inline-block;">
+                                                        <select id="MTTRmonth" type="text"
+                                                            class="form-control select2 @error('MTTRmonth')
+                                                                    is-invalid @enderror"
+                                                            name="MTTRmonth" required autocomplete="MTTRmonth"
+                                                            autofocus>
+                                                            <option value="" disabled selected>
+                                                                mois
+                                                            </option>
+                                                            <option value="1">Ja </option>
+                                                            <option value="2">Fév </option>
+                                                            <option value="3">Mar</option>
+                                                            <option value="4">Avr</option>
+                                                            <option value="5">Mai</option>
+                                                            <option value="6">Jun </option>
+                                                            <option value="7">Jul </option>
+                                                            <option value="8">Aou </option>
+                                                            <option value="9">Sep </option>
+                                                            <option value="10">Oct </option>
+                                                            <option value="11">Nov </option>
+                                                            <option value="12">Déc </option>
+
+
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group"
+                                                        style=" display: inline-block;">
+                                                        <input type="number" max="2090"
+                                                            min="2000" name="MTTRyear"
+                                                            class="form-control" placeholder="année">
+                                                    </div>
+
+                                                    <input type="hidden" value="MTTRStaff"
+                                                        id="action_type" name="action_type">
+                                                        <input type="hidden" value="Staff"
+                                                        id="option_type" name="option_type">
+
+                                                </form>
+                                            </div>
+                                        </div>
+
+
+
+
+                                    </td>
+                                </tr>
+                            @endforeach
+
+
+                        </tbody>
+                    </table>
+                </section>
+            </main>
+
+        </div>
+
+    </div>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     <input type="hidden" value="{{ $lourde }} " id="lourde">
     <input type="hidden" value="{{ $moyene }} " id="moyene">
     <input type="hidden" value="{{ $legere }} " id="legere">
 
 
 
-    @include('layouts.footer')
+    @include('layouts.footerforKPIindex')
 
 
 </body>

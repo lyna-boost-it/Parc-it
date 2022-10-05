@@ -3,7 +3,7 @@
 
 <!DOCTYPE html>
 <html>
-@include('layouts.head')
+@include('layouts.headforKPI')
 
 
 
@@ -127,7 +127,7 @@
                         <div class="rounded-lg bg-white shadow-lg md:shadow-xl relative overflow-hidden">
                             <div class="px-3 pt-12 pb-10 text-center relative z-20">
                                 <h1 class="text-sm uppercase text-gray-500 leading-tight" style="font-size: 2.5em;">
-                                    Consomation Lubrifiant:: </h1>
+                                    Consomation Lubrifiant:</h1>
                                 <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">
                                     {{ $lubricantL }} L <br> {{ $lubricantDA }} DA</h3>
 
@@ -156,7 +156,7 @@
 
 
 
-    @include('layouts.footer')
+    @include('layouts.footerforKPI')
 
 
 </body>

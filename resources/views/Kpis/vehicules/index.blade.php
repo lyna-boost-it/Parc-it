@@ -3,7 +3,7 @@
 
 <!DOCTYPE html>
 <html>
-@include('layouts.head')
+@include('layouts.headforKPIindex')
 
 
 <body>
@@ -99,7 +99,7 @@
 
 
 
-        <div class="row">
+        <div style="text-align:right; margin:0px auto 0px auto;">
 
             <div class="col-md-6 mb-20">
                 <div class="card-box height-100-p pd-20">
@@ -112,131 +112,140 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 mb-20">
-                <div class="card-box height-100-p pd-20">
-                    <main>
-                        <h4 class="font-20 weight-500 mb-10 text-capitalize text-orange">Statistique des Véhicules</h4>
 
-                        <input id="tab5" type="radio" name="tabsd" checked>
-                        <label for="tab5">Vehicules</label>
-                        <section id="content5">
-                            <table class="table nowrap hover data-table-export">
-                                <thead>
-                                    <tr>
-                                        <th>Numero</th>
-                                        <th>ID</th>
-
-                                        <th> Numéro de Série</th>
-                                        <th>Action</th>
-
-
-                                    </tr>
-                                </thead>
-
-                                @php
-                                    $i = 0;
-
-                                @endphp
-
-
-                                <tbody>
-
-                                    @foreach ($vehicules as $vehicule)
-                                        @php
-                                            $i = $i + 1;
-                                        @endphp
-
-                                        <tr>
-                                            <td> {{ $i }}</td>
-                                            <td>{{ $vehicule->id }}</td>
-
-                                            <td>{{ $vehicule->serial_numbers }} </td>
-
-                                            <td style="color: orange;">
-                                                <div class="dropdown">
-                                                    <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
-                                                        href="#" role="button" data-toggle="dropdown">
-                                                        <i class="dw dw-more"></i>
-                                                    </a>
-                                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list" style="width: 390px;">
-
-                                                        <form action="{{ route('Kpis.vehicules.show', $vehicule->id) }}"
-                                                            method="get" class="dropdown-item">
-                                                            @csrf
-                                                            <button type="submit"
-                                                            class="btn btn-outline-primary btn-round">{{ __('Vehicule disponibilité') }}</button>
-
-
-                                                            <div class="form-group" style=" display: inline-block;">
-                                                                <input type="number" max="2090" min="2000"
-                                                                    name="yearVA" class="form-control"
-                                                                    placeholder="année">
-                                                            </div>
-
-                                                            <input type="hidden" value="Vehicule_Availability"
-                                                            id="action_type" name="action_type">
-                                                            <i class="dw dw-car"></i>
-                                                        </form>
-
-
-                                                        <form action="{{ route('Kpis.vehicules.show', $vehicule->id) }}"
-                                                            method="get" class="dropdown-item">
-                                                            @csrf
-                                                            <button type="submit"
-                                                            class="btn btn-outline-primary btn-round">{{ __('Taux d\'utilisation') }}</button>
-
-                                                            <div class="form-group" style=" display: inline-block;">
-                                                                <select id="month" type="text"
-                                                                    class="form-control select2 @error('month')
-                                                                            is-invalid @enderror"
-                                                                    name="month" required autocomplete="month"
-                                                                    autofocus>
-                                                                    <option value="" disabled selected>mois
-                                                                    </option>
-                                                                    <option value="1">Ja </option>
-                                                                    <option value="2">Fév </option>
-                                                                    <option value="3">Mar</option>
-                                                                    <option value="4">Avr</option>
-                                                                    <option value="5">Mai</option>
-                                                                    <option value="6">Jun </option>
-                                                                    <option value="7">Jul </option>
-                                                                    <option value="8">Aou </option>
-                                                                    <option value="9">Sep </option>
-                                                                    <option value="10">Oct </option>
-                                                                    <option value="11">Nov </option>
-                                                                    <option value="12">Déc </option>
-
-
-                                                                </select>
-                                                            </div>
-                                                            <div class="form-group" style=" display: inline-block;">
-                                                                <input type="number" max="2090" min="2000"
-                                                                    name="year" class="form-control"
-                                                                    placeholder="année">
-                                                            </div>
-
-                                                            <input type="hidden" value="used_time"
-                                                            id="used_time" name="action_type">
-                                                            <i class="dw dw-calendar"></i>
-                                                        </form>
-                                                    </div>
-                                                </div>
-
-
-
-
-                                            </td>
-                                        </tr>
-                                    @endforeach
-
-
-                                </tbody>
-                            </table>
-                        </section>
-                    </main>
-                </div>
-            </div>
         </div>
+        <div style="position:absolute;right:20px;">
+            <div class="card-box pd-20 height-100-p mb-30">
+
+
+                <main>
+                    <h4 class="font-20 weight-500 mb-10 text-capitalize text-orange">Statistique des Véhicules</h4>
+
+                    <input id="tab5" type="radio" name="tabsd" checked>
+                    <label for="tab5">Vehicules</label>
+                    <section id="content5">
+                        <table class="table nowrap hover data-table-export">
+                            <thead>
+                                <tr>
+                                    <th>Numero</th>
+                                    <th>ID</th>
+
+                                    <th> Numéro de Série</th>
+                                    <th>Action</th>
+
+
+                                </tr>
+                            </thead>
+
+                            @php
+                                $i = 0;
+
+                            @endphp
+
+
+                            <tbody>
+
+                                @foreach ($vehicules as $vehicule)
+                                    @php
+                                        $i = $i + 1;
+                                    @endphp
+
+                                    <tr>
+                                        <td> {{ $i }}</td>
+                                        <td>{{ $vehicule->id }}</td>
+
+                                        <td>{{ $vehicule->serial_numbers }} </td>
+
+                                        <td style="color: orange;">
+                                            <div class="dropdown">
+                                                <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+                                                    href="#" role="button" data-toggle="dropdown">
+                                                    <i class="dw dw-more"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list" style="width: 390px;">
+
+                                                    <form action="{{ route('Kpis.vehicules.show', $vehicule->id) }}"
+                                                        method="get" class="dropdown-item">
+                                                        @csrf
+                                                        <button type="submit"
+                                                        class="btn btn-outline-primary btn-round">{{ __('Vehicule disponibilité') }}</button>
+
+
+                                                        <div class="form-group" style=" display: inline-block;">
+                                                            <input type="number" max="2090" min="2000"
+                                                                name="yearVA" class="form-control"
+                                                                placeholder="année">
+                                                        </div>
+
+                                                        <input type="hidden" value="Vehicule_Availability"
+                                                        id="action_type" name="action_type">
+                                                        <i class="dw dw-car"></i>
+                                                    </form>
+
+
+                                                    <form action="{{ route('Kpis.vehicules.show', $vehicule->id) }}"
+                                                        method="get" class="dropdown-item">
+                                                        @csrf
+                                                        <button type="submit"
+                                                        class="btn btn-outline-primary btn-round">{{ __('Taux d\'utilisation') }}</button>
+
+                                                        <div class="form-group" style=" display: inline-block;">
+                                                            <select id="month" type="text"
+                                                                class="form-control select2 @error('month')
+                                                                        is-invalid @enderror"
+                                                                name="month" required autocomplete="month"
+                                                                autofocus>
+                                                                <option value="" disabled selected>mois
+                                                                </option>
+                                                                <option value="1">Ja </option>
+                                                                <option value="2">Fév </option>
+                                                                <option value="3">Mar</option>
+                                                                <option value="4">Avr</option>
+                                                                <option value="5">Mai</option>
+                                                                <option value="6">Jun </option>
+                                                                <option value="7">Jul </option>
+                                                                <option value="8">Aou </option>
+                                                                <option value="9">Sep </option>
+                                                                <option value="10">Oct </option>
+                                                                <option value="11">Nov </option>
+                                                                <option value="12">Déc </option>
+
+
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group" style=" display: inline-block;">
+                                                            <input type="number" max="2090" min="2000"
+                                                                name="year" class="form-control"
+                                                                placeholder="année">
+                                                        </div>
+
+                                                        <input type="hidden" value="used_time"
+                                                        id="used_time" name="action_type">
+                                                        <i class="dw dw-calendar"></i>
+                                                    </form>
+                                                </div>
+                                            </div>
+
+
+
+
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+
+                            </tbody>
+                        </table>
+                    </section>
+                </main>
+
+
+    </div>
+
+        </div>
+
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 
         <div class="row">
@@ -268,7 +277,7 @@
 <input type="hidden" value="{{ $eage}} " id="eage">
 <input type="hidden" value="{{ $fage}} " id="fage">
 
-    @include('layouts.footer')
+    @include('layouts.footerforKPIindex')
 
 
 </body>
