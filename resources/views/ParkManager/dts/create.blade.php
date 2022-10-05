@@ -1,0 +1,471 @@
+@if(Auth::user()->type=='Gestionnaire parc' ||Auth::user()->type=='Utilisateur'||Auth::user()->type=='Demandeur'   )
+
+
+<!DOCTYPE html>
+<html>
+	@include('layouts.headForindexx')
+
+	<body>
+
+        @include('layouts.header-bar')
+        @include('layouts.navbar')
+
+		<div class="mobile-menu-overlay"></div>
+
+		<div class="main-container">
+        <div class="row">
+
+            <div class="col-md-12 text-center">
+                                <form action="{{route('ParkManager.dts.store',$dt->id)}}" method="post" enctype="multipart/form-data">
+
+    @csrf
+
+                    <div class="card">
+
+
+                        <div class="card-header">
+                            <h3 class="title">{{ __('Créer une demandes de travaux (DT)  ') }}</h3>
+                        </div>
+
+
+
+                        <div class="card-body">
+                            <div class="row">
+                                <label class="col-md-3 col-form-label">{{ __('Type de Panne') }}</label>
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                        <select  name="type_panne" class="form-control"
+                                            id="type_panne">
+                                            <option value="" disabled selected>Choisissez un type de Panne</option>
+                                            <option value="Legere" {{ old('type_panne', $dt->type_panne) === 'Legere' ? 'selected' : '' }} >Legere</option>
+                                            <option value="Lourde" {{ old('type_panne', $dt->type_panne) === 'Lourde' ? 'selected' : '' }} >Lourde</option>
+                                            <option value="Moyenne" {{ old('type_panne', $dt->type_panne) === 'Moyenne' ? 'selected' : '' }} >Moyenne</option>
+
+
+                                        </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-body" >
+                            <div class="row">
+                                <label class="col-md-3 col-form-label">{{ __('Nature De Panne') }}</label>
+                                <div class="col-md-9" >
+                                    <div class="form-group">
+                                        <input type="text"  name="nature_panne" class="form-control"
+                                        placeholder="Nature De Panne"
+                                        value="{{  $dt->nature_panne }}" required>
+                                    </div>
+                                    @if ($errors->has('nature_panne'))
+                                        <span class="invalid-feedback" style="display: block;" role="alert">
+                                            <strong>{{ $errors->first('nature_panne') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                        <div class="card-body" >
+                            <div class="row">
+                                <label class="col-md-3 col-form-label">{{ __('  Nom et prénom du conducteur EDEVAL') }}</label>
+                                <div class="col-md-9" for="conducteur_field_for_absence">
+                                    <div class="form-group">
+                                        <select  name="driver_id"   placeholder="  Nom et prénom de l\'absent"
+                                        value="{{ old('driver_id'),$dt->driver_id }}"class="form-control"
+                                            id="staff_type">
+                                            @foreach ($drivers as $driver)
+
+                                            <option value="{{ $driver->id }}"
+                                            {{ old('driver_id', $dt->driver_id)
+                                             === 'driver_id' ? 'selected' : '' }}>
+                                             {{ $driver->name }} {{ $driver->last_name }}</option>
+                                            @endforeach
+
+                                        </select></div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="card-body" >
+                            <div class="row">
+                                <label class="col-md-3 col-form-label">{{ __(' Affectation') }}</label>
+                                <div class="col-md-9" for="conducteur_field_for_absence">
+                                    <div class="form-group">
+                                        <select  name="unit_id"   placeholder="Choisissez une unite"
+                                        value="{{ old('unit_id'),$dt->unit_id }}"class="form-control"
+                                            id="staff_type">
+                                            @foreach ($units as $unit)
+
+                                            <option value="{{ $unit->id }}"
+                                            {{ old('unit_id', $dt->unit_id)
+                                             === 'unit_id' ? 'selected' : '' }}>
+                                            {{ $unit->name }}</option>
+                                            @endforeach
+
+                                        </select></div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body" >
+                            <div class="row">
+                                <label class="col-md-3 col-form-label">{{ __('  Nom et prénom du Réception ') }}</label>
+                                <div class="col-md-9" for="conducteur_field_for_absence">
+                                    <div class="form-group">
+                                        <select  name="staff_id"   placeholder="  Nom et prénom de l\'absent"
+                                        value="{{ old('staff_id'),$dt->staff_id }}"class="form-control"
+                                            id="staff_id">
+                                            @foreach ($staffs as $staff)
+
+                                            <option value="{{ $staff->id }}"
+                                            {{ old('staff_id', $dt->staff_id)
+                                             === 'staff_id' ? 'selected' : '' }}>
+                                             {{ $staff->name }} {{ $staff->last_name }}</option>
+                                            @endforeach
+
+                                        </select></div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <label class="col-md-3 col-form-label">{{ __('Action d\'entre') }}</label>
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                        <select  name="action" class="form-control"
+                                            id="action">
+                                            <option value="" disabled selected>Action d'entre</option>
+                                            <option value="En maintenance" {{ old('action', $dt->action) === 'En maintenance' ? 'selected' : '' }}  required>En maintenance</option>
+                                            <option value="En panne (à l'arrêt)" {{ old('action', $dt->action) === 'en panne (à l\'arrêt)' ? 'selected' : '' }} required >en panne (à l'arrêt)</option>
+                                            <option value=" A programmer mais opérationnel" {{ old('action', $dt->action) === 'A programmer mais opérationnel' ? 'selected' : '' }}  required>A programmer mais opérationnel</option>
+                                         <option value="A programmer mais en panne" {{ old('action', $dt->action) === 'A programmer mais en panne' ? 'selected' : '' }}  required>A programmer mais en panne</option>
+
+
+                                        </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body" >
+                            <div class="row">
+                                <label class="col-md-3 col-form-label">{{ __('Date d\'entre ') }}</label>
+                                <div class="col-md-9" >
+                                    <div class="form-group">
+                                        <input type="date"  name="enter_date" class="form-control"
+                                        placeholder="Date d\'entre"
+                                        value="{{ $dt->enter_date }}" required>
+                                    </div>
+                                    @if ($errors->has('enter_date'))
+                                        <span class="invalid-feedback" style="display: block;" role="alert">
+                                            <strong>{{ $errors->first('enter_date') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body" >
+                            <div class="row">
+                                <label class="col-md-3 col-form-label">{{ __('Heure d\'entre ') }}</label>
+                                <div class="col-md-9" >
+                                    <div class="form-group">
+                                        <input type="time"  name="enter_time" class="form-control"
+                                        placeholder="Heure d\'entre"
+                                        value="{{ $dt->enter_time }}" required>
+                                    </div>
+                                    @if ($errors->has('enter_time'))
+                                        <span class="invalid-feedback" style="display: block;" role="alert">
+                                            <strong>{{ $errors->first('enter_time') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body" >
+                            <div class="row">
+                                <label class="col-md-3 col-form-label">{{ __('Observation') }}</label>
+                                <div class="col-md-9" >
+                                    <div class="form-group">
+                                        <input type="text"  name="observation" class="form-control"
+                                        placeholder="Observation"
+                                        value="{{  $dt->observation }}" required>
+                                    </div>
+                                    @if ($errors->has('observation'))
+                                        <span class="invalid-feedback" style="display: block;" role="alert">
+                                            <strong>{{ $errors->first('observation') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <label class="col-md-3 col-form-label">{{ __('Type de Vehicule') }}</label>
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                        <select  name="vehicule_type" class="form-control"
+                                            id="vehicule_type">
+                                            <option value="" disabled selected>Choisissez un type de véhicule</option>
+                                            <option value="pick-up"  >pick-up</option>
+                                            <option value="mini-fourgonnettes" >mini-fourgonnettes</option>
+                                            <option value="minibus" >minibus</option>
+
+                                        </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="mini-fourgonnettes_Div">
+                            <div class="card-body" >
+                                <div class="row">
+                                    <label class="col-md-3 col-form-label">{{ __('  Vehicules de type mini-fourgonnettes') }}</label>
+                                    <div class="col-md-9" for="Territoire">
+                                        <div class="form-group">
+
+                                            <select  name="vehicule1"   placeholder="  Vehicule"id="fourgonnettes"
+                                          class="form-control"
+                                               >
+                                               <option value=" "
+                                               >Vehicule
+                                                </option>
+                                                @foreach ($fourgonnettes as $vehicule)
+
+                                                <option value="{{ $vehicule->id }}"
+                                               >
+                                                 {{ $vehicule->code }} </option>
+                                                @endforeach
+
+                                            </select>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div id="minibus_Div">
+                            <div class="card-body" >
+                                <div class="row">
+                                    <label class="col-md-3 col-form-label">{{ __('  Vehicules de type Minibus') }}</label>
+                                    <div class="col-md-9" for="minibus_Div">
+                                        <div class="form-group">
+
+                                            <select  name="vehicule2"   placeholder="  Vehicule"id="minibus"
+                                            class="form-control"
+                                                id="minibus">
+                                                <option value=" "
+                                                >Vehicule
+                                                 </option>
+                                                @foreach ($minibuses as $v)
+
+                                                <option value="{{ $v->id }}"
+                                                >
+                                                 {{ $v->code }} </option>
+                                                @endforeach
+
+                                            </select>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div id="pick-up_Div">
+                                <div class="card-body" >
+                                <div class="row">
+                                    <label class="col-md-3 col-form-label">{{ __('  Vehicules de type Pick-up') }}</label>
+                                    <div class="col-md-9"
+                                        <div class="form-group">
+
+                                            <select  name="vehicule3"   placeholder="  Vehicule"id="pick-up"
+                                            class="form-control"
+                                                id="pick-up">
+                                                <option value=" "
+                                                    >Vehicule
+                                                     </option>
+                                                @foreach ($pickups as $e)
+
+                                                <option value="{{ $e->id }}"
+                                                >
+                                                 {{ $e->code }} </option>
+                                                @endforeach
+
+                                            </select>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <label class="col-md-3 col-form-label">{{ __('Type de Maintenance') }}</label>
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                        <select  name="type_maintenance" class="form-control"
+                                            id="type_maintenance">
+                                            <option value="" disabled selected>Choisissez un de Maintenance</option>
+                                            <option value="Reparation" {{ old('type_maintenance', $dt->type_maintenance)
+                                            === 'Reparation' ? 'selected' : '' }} >Reparation</option>
+                                            <option value="Entretien" {{ old('type_maintenance', $dt->type_maintenance)
+                                            === 'Entretien' ? 'selected' : '' }} >Entretien</option>
+                                            <option value="Maintenance Externe"
+                                            {{ old('type_maintenance', $dt->type_maintenance) ===
+                                            'Maintenance Externe' ? 'selected' : '' }}
+                                            >Maintenance Externe</option>
+                                         <option value="Pieces Consommees"
+                                         {{ old('type_maintenance', $dt->type_maintenance) === '
+                                         Pieces Consommees' ? 'selected' : '' }} >Pieces Consommees</option>
+
+                                        </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer ">
+                            <div class="row">
+                             <div class="col-md-12 text-center">
+                                    <button type="submit" class="btn btn-info btn-round">{{ __('Ajouter') }}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    @include('layouts.footerForIndexx')
+
+</body>
+<script>
+    $("#vehicule_type").change(function() {
+        if ($(this).val() == "pick-up" ) {
+            $('#pick-up_Div').show();
+            $('#pick-up').attr('required','');
+            $('#pick-up').attr('data-error', 'This field is required.');
+        } else {
+            $('#pick-up_Div').hide();
+            $('#pick-up').removeAttr('required');
+            $('#pick-up').removeAttr('data-error');
+        }
+    });
+    $("#vehicule_type").trigger("change");
+
+
+      </script>
+   <script>
+    $("#vehicule_type").change(function() {
+        if ($(this).val() == "mini-fourgonnettes" ) {
+            $('#mini-fourgonnettes_Div').show();
+            $('#mini-fourgonnettes').attr('required','');
+            $('#mini-fourgonnettes').attr('data-error', 'This field is required.');
+
+        } else {
+            $('#mini-fourgonnettes_Div').hide();
+            $('#mini-fourgonnettes').removeAttr('required');
+            $('#mini-fourgonnettes').removeAttr('data-error');
+        }
+    });
+    $("#vehicule_type").trigger("change");
+
+
+      </script>
+   <script>
+    $("#vehicule_type").change(function() {
+        if ($(this).val() == "minibus" ) {
+            $('#minibus_Div').show();
+            $('#minibus').attr('required','');
+            $('#minibus').attr('data-error', 'This field is required.');
+
+                } else {
+            $('#minibus_Div').hide();
+            $('#minibus').removeAttr('required');
+            $('#minibus').removeAttr('data-error');
+        }
+    });
+    $("#vehicule_type").trigger("change");
+
+
+      </script>
+</html>
+@else
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:500,800" rel="stylesheet">
+  <title>Document</title>
+</head>
+<body>
+  <use>
+  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve" class="whistle">
+<metadata> Svg Vector Icons : http://www.onlinewebfonts.com/icon </metadata>
+<g><g transform="translate(0.000000,511.000000) scale(0.100000,-0.100000)">
+<path d="M4295.8,3963.2c-113-57.4-122.5-107.2-116.8-622.3l5.7-461.4l63.2-55.5c72.8-65.1,178.1-74.7,250.8-24.9c86.2,61.3,97.6,128.3,97.6,584c0,474.8-11.5,526.5-124.5,580.1C4393.4,4001.5,4372.4,4001.5,4295.8,3963.2z"/><path d="M3053.1,3134.2c-68.9-42.1-111-143.6-93.8-216.4c7.7-26.8,216.4-250.8,476.8-509.3c417.4-417.4,469.1-463.4,526.5-463.4c128.3,0,212.5,88.1,212.5,224c0,67-26.8,97.6-434.6,509.3c-241.2,241.2-459.5,449.9-488.2,465.3C3181.4,3180.1,3124,3178.2,3053.1,3134.2z"/><path d="M2653,1529.7C1644,1445.4,765.1,850,345.8-32.7C62.4-628.2,22.2-1317.4,234.8-1960.8C451.1-2621.3,947-3186.2,1584.6-3500.2c1018.6-501.6,2228.7-296.8,3040.5,515.1c317.8,317.8,561,723.7,670.1,1120.1c101.5,369.5,158.9,455.7,360,553.3c114.9,57.4,170.4,65.1,1487.7,229.8c752.5,93.8,1392,181.9,1420.7,193.4C8628.7-857.9,9900,1250.1,9900,1328.6c0,84.3-67,172.3-147.4,195.3c-51.7,15.3-790.8,19.1-2558,15.3l-2487.2-5.7l-55.5-63.2l-55.5-61.3v-344.6V719.8h-411.7h-411.7v325.5c0,509.3,11.5,499.7-616.5,494C2921,1537.3,2695.1,1533.5,2653,1529.7z"/></g></g>
+</svg>
+</use>
+<h1>403</h1>
+<h2>VOUS N'AVEZ PAS ACCÈS À CETTE PAGE!</h2>
+</body>
+</html>
+<style>* {
+    margin:0;
+    padding: 0;
+  }
+  body{
+    background: #233142;
+
+  }
+  .whistle{
+    width: 20%;
+    fill: #f95959;
+    margin: 100px 40%;
+    text-align: left;
+    transform: translate(-50%, -50%);
+    transform: rotate(0);
+    transform-origin: 80% 30%;
+    animation: wiggle .2s infinite;
+  }
+
+  @keyframes wiggle {
+    0%{
+      transform: rotate(3deg);
+    }
+    50%{
+      transform: rotate(0deg);
+    }
+    100%{
+      transform: rotate(3deg);
+    }
+  }
+  h1{
+    margin-top: -100px;
+    margin-bottom: 20px;
+    color: #facf5a;
+    text-align: center;
+    font-family: 'Raleway';
+    font-size: 90px;
+    font-weight: 800;
+  }
+  h2{
+    color: #455d7a;
+    text-align: center;
+    font-family: 'Raleway';
+    font-size: 30px;
+    text-transform: uppercase;
+  }</style>
+                            @endif
