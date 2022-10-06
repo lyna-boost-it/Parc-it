@@ -23,7 +23,10 @@
 						</div>
                         <a  style="position: absolute;
                         left: 1245px;
-
+                        @if (Auth::user()->type == 'Gestionnaire Sup')   color: currentColor;
+  cursor: not-allowed;
+  opacity: 0.5;
+  text-decoration: none;  @endif
                         " href="{{route('ParkManager.dts.create')}}" class="btn btn-sm btn-success"
 
 @if (Auth::user()->type == 'Gestionnaire Sup') disabled @endif>
@@ -87,12 +90,10 @@
                                                             class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
 
                                                             <a class="dropdown-item" href="{{route('ParkManager.dts.edit',$maintenance->id)}}"
-                                                                ><i class="dw dw-edit2"
                                                                 @if (Auth::user()->type == 'Gestionnaire Sup') style="  color: currentColor;
-                                                                cursor: not-allowed;
-                                                                opacity: 0.5;
-                                                                text-decoration: none;" @endif
-                                                                ></i> Modifier</a>
+                                                                            cursor: not-allowed;
+                                                                            opacity: 0.5;
+                                                                            text-decoration: none;" @endif><i class="dw dw-edit2"></i> Modifier</a>
                     <a class="dropdown-item" href="{{route('ParkManager.dts.show',$maintenance->id)}}"
                                                                 ><i class="dw dw-eye"></i> Consulter</a>
 

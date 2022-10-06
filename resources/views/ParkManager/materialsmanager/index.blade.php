@@ -23,7 +23,10 @@
 						</div>
                         <a  style="position: absolute;
                         left: 1245px;
-
+                        @if (Auth::user()->type == 'Gestionnaire Sup')   color: currentColor;
+  cursor: not-allowed;
+  opacity: 0.5;
+  text-decoration: none;  @endif
                         " href="{{route('ParkManager.materialsmanager.create')}}" class="btn btn-sm btn-success">
                             Créer un  matériel motorisé
                         </a>
@@ -81,20 +84,31 @@
                                                             class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
 
                                                             <a class="dropdown-item" href="{{route('ParkManager.materialsmanager.edit',$material->id)}}"
-                                                                ><i class="dw dw-edit2"></i> Modifier</a>
+                                                                @if (Auth::user()->type == 'Gestionnaire Sup') style="  color: currentColor;
+                                                                cursor: not-allowed;
+                                                                opacity: 0.5;
+                                                                text-decoration: none;" @endif  ><i class="dw dw-edit2"></i> Modifier</a>
                                                                <a class="dropdown-item" href="{{route('ParkManager.materialsmanager.show',$material->id)}}"
                                                                 ><i class="dw dw-eye"></i> Consulter</a>
+                                                                @if (Auth::user()->type == 'Gestionnaire Sup')   <a class="dropdown-item"  style="  color: currentColor;
+                                                                cursor: not-allowed;
+                                                                opacity: 0.5;
+                                                                text-decoration: none;"  > <i class="dw dw-delete-3"></i>Supprimer</a>
 
-                                                            <form class="form-delete dropdown-item" method="post" action="{{route('ParkManager.materialsmanager.destroy',$material->id)}}">
+                                                              @else
+ <form class="form-delete dropdown-item" method="post" action="{{route('ParkManager.materialsmanager.destroy',$material->id)}}">
                                                                 @method('DELETE')
                                                                 @csrf
                                                                 <button   type="submit" style=" background-color: transparent;
                                                                 border-color: transparent;" onclick="return confirm('êtes-vous sûr?')" >
 
-                                                                    <i class="dw dw-delete-3">Supprimer</i>
+                                                                    <i class="dw dw-delete-3"></i>Supprimer
 
                                                                 </button>
                                                             </form>
+
+                                                              @endif
+
                                                         </div>
                                                     </div>
                                                 </td>

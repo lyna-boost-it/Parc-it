@@ -26,7 +26,10 @@
                         </div>
                         <a style="position: absolute;
                         left: 1245px;
-
+                        @if (Auth::user()->type == 'Gestionnaire Sup') color: currentColor;
+  cursor: not-allowed;
+  opacity: 0.5;
+  text-decoration: none; @endif
                         "
                             href="{{ route('ParkManager.accidents.create') }}" class="btn btn-sm btn-success"
                             @if (Auth::user()->type == 'Gestionnaire Sup') disabled @endif>
@@ -106,13 +109,14 @@
                                                                 text-decoration: none;" @endif>
                                                                         <i class="dw dw-delete-3"></i> Supprimer</a>
                                                                 @else
-                                                                    <form class="form-delete dropdown-item" method="post"
+                                                                    <form class="form-delete dropdown-item"
+                                                                        method="post"
                                                                         action="{{ route('ParkManager.accidents.destroy', $accident->id) }}">
                                                                         @method('DELETE')
                                                                         @csrf
-                                                                        <button  type="submit"
+                                                                        <button type="submit"
                                                                             style=" background-color: transparent;
-    border-color: transparent;"
+                                                                             border-color: transparent;"
                                                                             onclick="return confirm('êtes-vous sûr?')">
 
                                                                             <i class="dw dw-delete-3">Supprimer</i>

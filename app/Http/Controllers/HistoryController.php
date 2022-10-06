@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Activitylog\Models\Activity;
+
 class HistoryController extends Controller
 {
     /**
@@ -14,9 +16,10 @@ class HistoryController extends Controller
      */
     public function index()
     {
-       $histories=Activity::all();
-$users=User::all();
-       return view('history',compact('histories','users'));
+        $histories = Activity::all();
+        $users = User::all();
+        $curentUser = Auth::user();
+        return view('history', compact('histories', 'users','curentUser'));
     }
 
     /**

@@ -72,10 +72,16 @@
                                                             class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
 
                                                             <a class="dropdown-item" href="{{route('ParkManager.liquids.edit',$liquid->id)}}"
-                                                                ><i class="icon-copy dw dw-add"></i> Ajouter qte</a>
+                                                                @if (Auth::user()->type == 'Gestionnaire Sup') style="  color: currentColor;
+                                                                cursor: not-allowed;
+                                                                opacity: 0.5;
+                                                                text-decoration: none;" @endif ><i class="icon-copy dw dw-add"></i> Ajouter qte</a>
 
                                                                 <a class="dropdown-item" href="{{route('ParkManager.liquids.show',$liquid->id)}}"
-                                                                    ><i class="dw dw-edit2"></i> Mettre à jour le prix</a>
+                                                                    @if (Auth::user()->type == 'Gestionnaire Sup') style="  color: currentColor;
+                                                                    cursor: not-allowed;
+                                                                    opacity: 0.5;
+                                                                    text-decoration: none;" @endif  ><i class="dw dw-edit2"></i> Mettre à jour le prix</a>
 
                                                         </div>
                                                     </div>

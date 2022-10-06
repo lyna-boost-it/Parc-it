@@ -27,10 +27,12 @@
                         </div>
                         <a style="position: absolute;
                                                         left: 1245px;
-
+@if (Auth::user()->type == 'Gestionnaire Sup') color: currentColor;
+  cursor: not-allowed;
+  opacity: 0.5;
+  text-decoration: none; @endif
                                                         "
-                            href="{{ route('ParkManager.absences.create') }}" class="btn btn-sm btn-success"
-                            @if (Auth::user()->type == 'Gestionnaire Sup') disabled @endif>
+                            href="{{ route('ParkManager.absences.create') }}" class="btn btn-sm btn-success">
                             Créer une absence
                         </a>
                     </div>
@@ -92,45 +94,38 @@
 
                                                                 <a class="dropdown-item"
                                                                     href="{{ route('ParkManager.absences.edit', $absence->id) }}"
-                                                                    @if( Auth::user()->type=='Gestionnaire Sup'  )
-                                                                    style="  color: currentColor;
+                                                                    @if (Auth::user()->type == 'Gestionnaire Sup') style="  color: currentColor;
                                                                     cursor: not-allowed;
                                                                     opacity: 0.5;
-                                                                    text-decoration: none;"
-
-                                                                    @endif>
+                                                                    text-decoration: none;" @endif>
                                                                     <i class="dw dw-edit2"></i> Modifier</a>
 
 
 
 
 
-                                                                @if( Auth::user()->type=='Gestionnaire Sup'  )
-                                                                <a class="dropdown-item"
-                                                                href="{{ route('ParkManager.absences.destroy', $absence->id) }}"
-                                                                @if( Auth::user()->type=='Gestionnaire Sup'  )
-                                                                style="  color: currentColor;
+                                                                @if (Auth::user()->type == 'Gestionnaire Sup')
+                                                                    <a class="dropdown-item"
+                                                                        href="{{ route('ParkManager.absences.destroy', $absence->id) }}"
+                                                                        @if (Auth::user()->type == 'Gestionnaire Sup') style="  color: currentColor;
                                                                 cursor: not-allowed;
                                                                 opacity: 0.5;
-                                                                text-decoration: none;"
-
-                                                                @endif>
-                                                                <i class="dw dw-delete-3"></i> Supprimer</a>
-
-@else
-<form class=" dropdown-item" method="post"
-action="{{ route('ParkManager.absences.destroy', $absence->id) }}">
-@method('DELETE')
-@csrf
-<button type="submit"
-    style=" background-color: transparent;
+                                                                text-decoration: none;" @endif>
+                                                                        <i class="dw dw-delete-3"></i> Supprimer</a>
+                                                                @else
+                                                                    <form class=" dropdown-item" method="post"
+                                                                        action="{{ route('ParkManager.absences.destroy', $absence->id) }}">
+                                                                        @method('DELETE')
+                                                                        @csrf
+                                                                        <button type="submit"
+                                                                            style=" background-color: transparent;
                         border-color: transparent;"
-    onclick="return confirm('êtes-vous sûr?')">
+                                                                            onclick="return confirm('êtes-vous sûr?')">
 
-    <i class="dw dw-delete-3">Supprimer</i>
+                                                                            <i class="dw dw-delete-3">Supprimer</i>
 
-</button>
-</form>
+                                                                        </button>
+                                                                    </form>
                                                                 @endif
 
 

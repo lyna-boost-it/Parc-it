@@ -26,7 +26,10 @@
                         </div>
                         <a style="position: absolute;
                         left: 1245px;
-
+                        @if (Auth::user()->type == 'Gestionnaire Sup')   color: currentColor;
+  cursor: not-allowed;
+  opacity: 0.5;
+  text-decoration: none;  @endif
                         "
                             href="{{ route('ParkManager.missions.create') }}" class="btn btn-sm btn-success">
                             Créer une mission
@@ -85,11 +88,19 @@
                                                                 class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
 
                                                                 <a class="dropdown-item"
-                                                                    href="{{ route('ParkManager.missions.edit', $mission->id) }}"><i
+                                                        </div>
+                                                        href="{{ route('ParkManager.missions.edit', $mission->id) }}" ><i
                                                                         class="dw dw-edit2"></i> Modifier</a>
                                                                 <a class="dropdown-item"
                                                                     href="{{ route('ParkManager.missions.show', $mission->id) }}"><i
                                                                         class="dw dw-eye"></i> Consulter</a>
+                                                                        @if (Auth::user()->type == 'Gestionnaire Sup')   <a class="dropdown-item"  style="  color: currentColor;
+                                                                        cursor: not-allowed;
+                                                                        opacity: 0.5;
+                                                                        text-decoration: none;"  > <i class="dw dw-delete-3"></i>Supprimer</a>
+
+                                                                      @else
+
 
                                                                 <form class="form-delete dropdown-item" method="post"
                                                                     action="{{ route('ParkManager.missions.destroy', $mission->id) }}">
@@ -100,10 +111,12 @@
                                                             border-color: transparent;"
                                                                         onclick="return confirm('êtes-vous sûr?')">
 
-                                                                        <i class="dw dw-delete-3">Supprimer</i>
+                                                                        <i class="dw dw-delete-3"></i>Supprimer
 
                                                                     </button>
                                                                 </form>
+                                                                      @endif
+
                                                             </div>
                                                         </div>
                                                     </td>

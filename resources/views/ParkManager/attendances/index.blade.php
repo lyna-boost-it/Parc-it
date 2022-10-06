@@ -110,17 +110,16 @@
                                                         </a>
                                                         <div
                                                             class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+
                                                             @if ($staff->staff_state == 'pas au travail' || $staff->staff_state == 'en mission')
                                                                 <a class="dropdown-item"
                                                                     href="{{ route('ParkManager.attendances.createAttendance', $staff->id) }}"
                                                                     @if (Auth::user()->type == 'Gestionnaire Sup') style="  color: currentColor;
                                                                     cursor: not-allowed;
                                                                     opacity: 0.5;
-                                                                    text-decoration: none;" @endif
-                                                                    >
+                                                                    text-decoration: none;" @endif>
                                                                     <span class="fa fa-check-square  "
-                                                                        style="color: #4cbb3d; font-size:18px;"
-                                                                        >
+                                                                        style="color: #4cbb3d; font-size:18px;">
                                                                         marquer la présence
                                                                     </span></a>
                                                             @endif
@@ -135,9 +134,7 @@
                                                                             @if (Auth::user()->type == 'Gestionnaire Sup') style="  color: currentColor;
                                                                             cursor: not-allowed;
                                                                             opacity: 0.5;
-                                                                            text-decoration: none;" @endif
-
-                                                                       >
+                                                                            text-decoration: none;" @endif>
                                                                             <span class="fa fa-sign-out  "
                                                                                 style="color: #bb3d3d; font-size:18px;">
                                                                                 marquer la sortie

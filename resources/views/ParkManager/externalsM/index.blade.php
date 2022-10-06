@@ -72,20 +72,37 @@
                                                             class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
 
                                                             <a class="dropdown-item" href="{{route('ParkManager.externalsM.editExternal',$external->id)}}"
-                                                                ><i class="dw dw-edit2"></i> Modifier</a>
+                                                                @if (Auth::user()->type == 'Gestionnaire Sup') style="  color: currentColor;
+                                                                cursor: not-allowed;
+                                                                opacity: 0.5;
+                                                                text-decoration: none;" @endif ><i class="dw dw-edit2"></i> Modifier</a>
+
+
                                                        <a class="dropdown-item" href="{{route('ParkManager.externalsM.showExternal',$external->id)}}"
                                                                 ><i class="dw dw-eye"></i> Consulter</a>
 
-                                                            <form class="form-delete dropdown-item" method="post" action="{{route('ParkManager.externalsM.destroyExternal',$external->id)}}">
-                                                                @method('DELETE')
-                                                                @csrf
-                                                                <button   type="submit" style=" background-color: transparent;
-                                                                border-color: transparent;" onclick="return confirm('êtes-vous sûr?')" >
 
-                                                                    <i class="dw dw-delete-3">Supprimer</i>
 
-                                                                </button>
-                                                            </form>
+                                                                @if (Auth::user()->type == 'Gestionnaire Sup')
+                                                                <a class="dropdown-item" href="{{route('ParkManager.externalsM.editExternal',$external->id)}}"
+                                                                    @if (Auth::user()->type == 'Gestionnaire Sup') style="  color: currentColor;
+                                                                    cursor: not-allowed;
+                                                                    opacity: 0.5;
+                                                                    text-decoration: none;" @endif ><i class="dw dw-delete-3">Supprimer</i></a>
+
+                                                                @else
+                                                                <form class="form-delete dropdown-item" method="post" action="{{route('ParkManager.externalsM.destroyExternal',$external->id)}}">
+                                                                    @method('DELETE')
+                                                                    @csrf
+                                                                    <button   type="submit" style=" background-color: transparent;
+                                                                    border-color: transparent;" onclick="return confirm('êtes-vous sûr?')" >
+
+                                                                        <i class="dw dw-delete-3">Supprimer</i>
+
+                                                                    </button>
+                                                                </form>
+                                                                @endif
+
                                                         </div>
                                                     </div>
                                                 </td>
@@ -121,7 +138,10 @@
                                         </div>
                                         <a  style="position: absolute;
                                         left: 1245px;
-
+                                        @if (Auth::user()->type == 'Gestionnaire Sup')   color: currentColor;
+  cursor: not-allowed;
+  opacity: 0.5;
+  text-decoration: none;  @endif
                                         " href="{{route('ParkManager.dtsM.create')}}" class="btn btn-sm btn-success">
                                         Créer une demande
                                         </a>
@@ -183,7 +203,10 @@
 
 
                                                                           <a class="dropdown-item" href="{{route('ParkManager.externalsM.createExternal',$dt->id)}}"
-                                                                          > <i class="icon-copy dw dw-add"></i> Ajouter</a>
+                                                                            @if (Auth::user()->type == 'Gestionnaire Sup') style="  color: currentColor;
+                                                                            cursor: not-allowed;
+                                                                            opacity: 0.5;
+                                                                            text-decoration: none;" @endif> <i class="icon-copy dw dw-add"></i> Ajouter</a>
 
 
                                                                           @endif
