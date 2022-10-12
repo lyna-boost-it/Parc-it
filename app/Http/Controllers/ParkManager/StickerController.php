@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\ParkManager;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use App\MoreNotifs;
+use App\Notifications\StickersNotification;
 use App\Sticker;
 use App\Vehicule;
 use Carbon\Carbon;
@@ -72,6 +75,17 @@ class StickerController extends Controller
 
                 }
  $sticker->save();
+ $usersA = User::all()->where('type', '=', 'Gestionnaire parc');
+ $usersB = User::all()->where('type', '=', 'Utilisateur');
+ $notif = new MoreNotifs();
+ $notif->details = 'la vignette de vehcule: ' . $sticker->vehicle_id . '  a été mis à jour';
+ $notif->save();
+ foreach ($usersA as $user) {
+     $user->notify(new StickersNotification($sticker, $notif));
+ }
+ foreach ($usersB as $user) {
+     $user->notify(new StickersNotification($sticker, $notif));
+ }
  AllSticker_Checker( );
        return redirect()->route ('ParkManager.stickers.index');
     }

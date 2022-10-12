@@ -4,12 +4,10 @@ namespace App\Http\Controllers\ParkManager;
 
 use App\DrivingLicence;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\MoreNotifs;
-use App\Notifications\LicenceNotif;
-use App\Sticker;
-use App\User;
+use App\Notifications\LicenseNotification;
 use App\Vehicule;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 class DrivingLicenceController extends Controller
 { public function __construct()
@@ -75,6 +73,19 @@ class DrivingLicenceController extends Controller
 
             }
 $licence->save();
+$usersA = User::all()->where('type', '=', 'Gestionnaire parc');
+$usersB = User::all()->where('type', '=', 'Utilisateur');
+$notif = new MoreNotifs();
+
+        $notif->details = 'le permis de circulation de vehcule: ' . $licence->vehicle_id . ' a été mis à jour';
+        $notif->save();
+        foreach ($usersA as $user) {
+            $user->notify(new LicenseNotification($licence, $notif));
+        }
+        foreach ($usersB as $user) {
+            $user->notify(new LicenseNotification($licence, $notif));
+        }
+
 AllLisence_Checker( );
    return redirect()->route ('ParkManager.licences.index');
     }

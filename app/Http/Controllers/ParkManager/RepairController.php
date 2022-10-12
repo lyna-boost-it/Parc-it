@@ -5,11 +5,16 @@ namespace App\Http\Controllers\ParkManager;
 use App\Dt;
 use App\Http\Controllers\Controller;
 use App\Liquids;
+use App\Models\User;
+use App\MoreNotifs;
+use App\Notifications\RepairVNotification;
 use App\Repair;
 use App\Repair_Staff;
 use App\Staff;
 use App\Vehicule;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 class RepairController extends Controller
 { public function __construct()
     {
@@ -88,6 +93,21 @@ $liquid->quantity=$liquid->quantity-$request->liquid;
 $liquid->save();
 $lubrifiant->quantity=$lubrifiant->quantity-$request->lubricant;
 $lubrifiant->save();
+
+$usersA = User::all()->where('type', '=', 'Gestionnaire parc');
+$usersB = User::all()->where('type', '=', 'Utilisateur');
+
+$currentUser=User::find($dt->user_id);
+$notif = new MoreNotifs();
+$notif->details = 'la reparation de vehcule: ' . $repair->vehicle_id . ' est fait';
+$notif->save();
+foreach ($usersA as $user) {
+    $user->notify(new RepairVNotification($repair, $notif));
+}
+foreach ($usersB as $user) {
+    $user->notify(new RepairVNotification($repair, $notif));
+}
+$currentUser->notify(new RepairVNotification($repair, $notif));
     return redirect ('/ParkManager/repairs');
     }
 

@@ -7,6 +7,9 @@ use App\Dt;
 use App\DtMaterial;
 use App\Http\Controllers\Controller;
 use App\Material;
+use App\Models\User;
+use App\MoreNotifs;
+use App\Notifications\DtMNotification;
 use App\Staff;
 use App\Unit;
 use App\Vehicule;
@@ -84,7 +87,7 @@ $maintenance->save();
     {
 
         $dt=DtMaterial:: create($request->only(  'id','code_dt','enter_time','enter_date','type_panne','nature_panne','emp_id','unit_id'
-        ,'staff_id','action' ,'observation','mm_id','type_maintenance','state'));
+        ,'staff_id','action' ,'observation','mm_id','type_maintenance','state','user_id'));
         $year = substr($dt->enter_date, 2, 2);
         $month = substr($dt->enter_date, 5, 2);
         if(Str::length($dt->id)==1){  $zero='000'; }
@@ -114,6 +117,14 @@ $maintenance->save();
                        }
 
 
+                       $usersA = User::all()->where('type', '=', 'Gestionnaire parc');
+
+                       $notif = new MoreNotifs();
+                       $notif->details = 'une demandes de travaux pour machine: ' . $dt->mm_id . ' est créé';
+                       $notif->save();
+                       foreach ($usersA as $user) {
+                           $user->notify(new DtMNotification($dt, $notif));
+                       }
 
         return redirect()->route ('ParkManager.dtsM.index');
     }

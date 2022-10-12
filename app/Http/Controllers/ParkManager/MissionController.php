@@ -74,8 +74,7 @@ class MissionController extends Controller
         'from',
         'territory',
         'mission_state'));
-        $mission->mission_state="En attente";
-$mission->save();
+
         return redirect()->route ('ParkManager.missions.index');
     }
 

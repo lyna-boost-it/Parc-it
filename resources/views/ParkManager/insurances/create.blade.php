@@ -317,7 +317,56 @@
             </div>
         </div>
     </div>
+    <script>
+        $("#vehicule_type").change(function() {
+            if ($(this).val() == "pick-up" ) {
+                $('#pick-up_Div').show();
+                $('#pick-up').attr('required','');
+                $('#pick-up').attr('data-error', 'This field is required.');
+            } else {
+                $('#pick-up_Div').hide();
+                $('#pick-up').removeAttr('required');
+                $('#pick-up').removeAttr('data-error');
+            }
+        });
+        $("#vehicule_type").trigger("change");
 
+
+          </script>
+       <script>
+        $("#vehicule_type").change(function() {
+            if ($(this).val() == "mini-fourgonnettes" ) {
+                $('#mini-fourgonnettes_Div').show();
+                $('#mini-fourgonnettes').attr('required','');
+                $('#mini-fourgonnettes').attr('data-error', 'This field is required.');
+
+            } else {
+                $('#mini-fourgonnettes_Div').hide();
+                $('#mini-fourgonnettes').removeAttr('required');
+                $('#mini-fourgonnettes').removeAttr('data-error');
+            }
+        });
+        $("#vehicule_type").trigger("change");
+
+
+          </script>
+       <script>
+        $("#vehicule_type").change(function() {
+            if ($(this).val() == "minibus" ) {
+                $('#minibus_Div').show();
+                $('#minibus').attr('required','');
+                $('#minibus').attr('data-error', 'This field is required.');
+
+                    } else {
+                $('#minibus_Div').hide();
+                $('#minibus').removeAttr('required');
+                $('#minibus').removeAttr('data-error');
+            }
+        });
+        $("#vehicule_type").trigger("change");
+
+
+          </script>
     @include('layouts.footerForIndexx')
 
 </body>

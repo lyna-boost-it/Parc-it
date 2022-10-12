@@ -14,60 +14,99 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-Route:: post('/login/custom',[
-    'uses'=>'LoginController@login',
-    'as'=>'login.custom']);
-Route:: group(['middleware'=>'auth'],function (){
-    Route::get('/home_Utilisateur',function (){
+Route::post('/login/custom', [
+    'uses' => 'LoginController@login',
+    'as' => 'login.custom'
+]);
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/home_Utilisateur', function () {
         return view('home_Utilisateur');
     })->name('home_Utilisateur');
 
-    Route::get('/home_Gestionnaire_parc',function (){
+    Route::get('/home_Gestionnaire_parc', function () {
         return view('home_Gestionnaire_parc');
     })->name('home_Gestionnaire_parc');
 
-    Route::get('/home_Gestionnaire_Sup',function (){
+    Route::get('/home_Gestionnaire_Sup', function () {
         return view('home_Gestionnaire_Sup');
     })->name('home_Gestionnaire_Sup');
-
-
-
-
 });
 
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-Route::get('markAllRead',function(){
+Route::get('markAllRead', function () {
     auth()->user()->unreadNotifications->markAsRead();
-    return redirect()-> back();
-
+    return redirect()->back();
 })->name('markAllRead');
 
 
 
-Route::get('markAsRead/{id}',function($id){
-    Auth::user()->notifications->find($id);
-    $id = auth()->user()-> Notifications[0]->id;
-    $notification=auth()->user()->Notifications->where('id', $id);
-    $notification->markAsRead();
-
-return redirect()-> back();
-
-
+Route::get('markAsRead/{id}', function ($id) {
+    foreach (Auth::user()->notifications as $notification) {
+        if ($notification->id == $id) {
+            $notification->markAsRead();
+            if ($notification->type == 'App\Notifications\AbsenceNotification') {
+                return  redirect('ParkManager/absences/');
+            }
+            if ($notification->type == 'App\Notifications\MissionNotification') {
+                return  redirect('ParkManager/missions/');
+            }
+            if ($notification->type == 'App\Notifications\ControllNotification') {
+                return  redirect('ParkManager/technicalcontrols/');
+            }
+            if ($notification->type == 'App\Notifications\CpVNotification') {
+                return  redirect('ParkManager/cps/');
+            }
+            if ($notification->type == 'App\Notifications\CpMNotification') {
+                return  redirect('ParkManager/piecesMaterial/');
+            }
+            if ($notification->type == 'App\Notifications\DtMNotification') {
+                return  redirect('ParkManager/dtsM/');
+            }
+            if ($notification->type == 'App\Notifications\DtVNotification') {
+                return  redirect('ParkManager/dts/');
+            }
+            if ($notification->type == 'App\Notifications\ExternamVNotification') {
+                return  redirect('ParkManager/externals/');
+            }
+            if ($notification->type == 'App\Notifications\ExternamMNotification') {
+                return  redirect('ParkManager/externalsM/');
+            }
+            if ($notification->type == 'App\Notifications\InsuranceNotification') {
+                return  redirect('ParkManager/insurances/');
+            }
+            if ($notification->type == 'App\Notifications\LicenseNotification') {
+                return  redirect('ParkManager/licences/');
+            }
+            if ($notification->type == 'App\Notifications\MaintenaceNotification') {
+                return  redirect('ParkManager/maintenances/');
+            }
+            if ($notification->type == 'App\Notifications\RepairMNotification') {
+                return  redirect('ParkManager/repairsM/');
+            }
+            if ($notification->type == 'App\Notifications\RepairVNotification') {
+                return  redirect('ParkManager/repairs/');
+            }
+            if ($notification->type == 'App\Notifications\StickersNotification') {
+                return  redirect('ParkManager/stickers/');
+            }
+        }
+    }
 })->name('markAsRead');
 
-
+Route::resource('/notification', 'NotificationController');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-Route::namespace('ParkManager')->prefix('ParkManager')->name('ParkManager.')->group(function (){
-    Route::resource('/users','UserController');
-    Route::resource('/staffs','StaffController');
-    Route::resource('/units','UnitController');
-    Route::resource('/vehicules','VehiculeController');
+Route::namespace('ParkManager')->prefix('ParkManager')->name('ParkManager.')->group(function () {
+    Route::resource('/users', 'UserController');
+    Route::resource('/staffs', 'StaffController');
+    Route::resource('/units', 'UnitController');
+    Route::resource('/vehicules', 'VehiculeController');
+
 
 
 
@@ -78,21 +117,21 @@ Route::namespace('ParkManager')->prefix('ParkManager')->name('ParkManager.')->gr
     Route::post('/attendances/storeAttendance', 'AttendanceController@storeAttendance')->name('attendances.storeAttendance');
     Route::put('/attendances/updateAttendance/{id}', 'AttendanceController@updateAttendance')->name('attendances.updateAttendance');
     Route::get('/attendances/{id}/editAttendance', 'AttendanceController@editAttendance')->name('attendances.editAttendance');
-    Route::resource('/attendances','AttendanceController');
+    Route::resource('/attendances', 'AttendanceController');
 
 
-    Route::resource('/absences','AbsenceController');
-    Route::resource('/missions','MissionController');
-    Route::resource('/gasVehicules','GasVehiculesController');
-    Route::resource('/gasPipes','GasPipeController');
-    Route::resource('/insurances','InsuranceController');
-    Route::resource('/accidents','AccidentController');
-    Route::resource('/stickers','StickerController');
-    Route::resource('/licences','DrivingLicenceController');
-    Route::resource('/technicalcontrols','TechnicalControlController');
-    Route::resource('/guarantis','GuarantiControlController');
-    Route::resource('/dts','DtController');
-    Route::resource('/liquids','LiquidsController');
+    Route::resource('/absences', 'AbsenceController');
+    Route::resource('/missions', 'MissionController');
+    Route::resource('/gasVehicules', 'GasVehiculesController');
+    Route::resource('/gasPipes', 'GasPipeController');
+    Route::resource('/insurances', 'InsuranceController');
+    Route::resource('/accidents', 'AccidentController');
+    Route::resource('/stickers', 'StickerController');
+    Route::resource('/licences', 'DrivingLicenceController');
+    Route::resource('/technicalcontrols', 'TechnicalControlController');
+    Route::resource('/guarantis', 'GuarantiControlController');
+    Route::resource('/dts', 'DtController');
+    Route::resource('/liquids', 'LiquidsController');
     Route::put('/liquids/update/{id}', 'LiquidsController@update')->name('liquids.update');
     Route::get('/liquids/{id}/edit', 'LiquidsController@edit')->name('liquids.edit');
 
@@ -121,7 +160,7 @@ Route::namespace('ParkManager')->prefix('ParkManager')->name('ParkManager.')->gr
     Route::post('/cps/storeCps', 'ConsumedPiecesController@storeCps')->name('cps.storeCps');
     Route::put('/cps/updateCps/{id}', 'ConsumedPiecesController@updateCps')->name('cps.updateCps');
     Route::get('/cps/{id}/editCps', 'ConsumedPiecesController@editCps')->name('cps.editCps');
- Route::get('/cps', 'ConsumedPiecesController@index')->name('cps.index');
+    Route::get('/cps', 'ConsumedPiecesController@index')->name('cps.index');
 
 
 
@@ -132,8 +171,8 @@ Route::namespace('ParkManager')->prefix('ParkManager')->name('ParkManager.')->gr
     Route::put('/externals/updateExternal/{id}', 'ExternalController@updateExternal')->name('externals.updateExternal');
     Route::get('/externals/{id}/editExternal', 'ExternalController@editExternal')->name('externals.editExternal');
     Route::get('/externals', 'ExternalController@index')->name('externals.index');
-    Route::resource('/materialsmanager','MaterialManagerController');
-    Route::resource('/dtsM','DtMController');
+    Route::resource('/materialsmanager', 'MaterialManagerController');
+    Route::resource('/dtsM', 'DtMController');
 
     Route::get('/piecesMaterial/createCps/{id}', 'PiecesMController@createCps')->name('piecesMaterial.createCps');
     Route::get('/piecesMaterial/showCps/{id}', 'PiecesMController@showCps')->name('piecesMaterial.showCps');
@@ -144,34 +183,45 @@ Route::namespace('ParkManager')->prefix('ParkManager')->name('ParkManager.')->gr
     Route::get('/piecesMaterial', 'PiecesMController@index')->name('piecesMaterial.index');
 
     Route::get('/repairsM', 'RepairMController@index')->name('repairsM.index');
-   Route::get('/repairsM/createRepairs/{id}', 'RepairMController@createRepairs')->name('repairsM.createRepairs');
-   Route::get('/repairsM/showRepairs/{id}', 'RepairMController@showRepairs')->name('repairsM.showRepairs');
-   Route::delete('/repairsM/destroyRepairs/{id}', 'RepairMController@destroyRepairs')->name('repairsM.destroyRepairs');
-   Route::post('/repairsM/storeRepairs', 'RepairMController@storeRepairs')->name('repairsM.storeRepairs');
-   Route::put('/repairsM/updateRepairs/{id}', 'RepairMController@updateRepairs')->name('repairsM.updateRepairs');
-   Route::get('/repairsM/{id}/editRepairs', 'RepairMController@editRepairs')->name('repairsM.editRepairs');
+    Route::get('/repairsM/createRepairs/{id}', 'RepairMController@createRepairs')->name('repairsM.createRepairs');
+    Route::get('/repairsM/showRepairs/{id}', 'RepairMController@showRepairs')->name('repairsM.showRepairs');
+    Route::delete('/repairsM/destroyRepairs/{id}', 'RepairMController@destroyRepairs')->name('repairsM.destroyRepairs');
+    Route::post('/repairsM/storeRepairs', 'RepairMController@storeRepairs')->name('repairsM.storeRepairs');
+    Route::put('/repairsM/updateRepairs/{id}', 'RepairMController@updateRepairs')->name('repairsM.updateRepairs');
+    Route::get('/repairsM/{id}/editRepairs', 'RepairMController@editRepairs')->name('repairsM.editRepairs');
 
 
 
-   Route::get('/externalsM/createExternal/{id}', 'ExternalMController@createExternal')->name('externalsM.createExternal');
-   Route::get('/externalsM/showExternal/{id}', 'ExternalMController@showExternal')->name('externalsM.showExternal');
-   Route::delete('/externalsM/destroyExternal/{id}', 'ExternalMController@destroyExternal')->name('externalsM.destroyExternal');
-   Route::post('/externalsM/storeExternal', 'ExternalMController@storeExternal')->name('externalsM.storeExternal');
-   Route::put('/externalsM/updateExternal/{id}', 'ExternalMController@updateExternal')->name('externalsM.updateExternal');
-   Route::get('/externalsM/{id}/editExternal', 'ExternalMController@editExternal')->name('externalsM.editExternal');
-   Route::get('/externalsM', 'ExternalMController@index')->name('externalsM.index');
+    Route::get('/externalsM/createExternal/{id}', 'ExternalMController@createExternal')->name('externalsM.createExternal');
+    Route::get('/externalsM/showExternal/{id}', 'ExternalMController@showExternal')->name('externalsM.showExternal');
+    Route::delete('/externalsM/destroyExternal/{id}', 'ExternalMController@destroyExternal')->name('externalsM.destroyExternal');
+    Route::post('/externalsM/storeExternal', 'ExternalMController@storeExternal')->name('externalsM.storeExternal');
+    Route::put('/externalsM/updateExternal/{id}', 'ExternalMController@updateExternal')->name('externalsM.updateExternal');
+    Route::get('/externalsM/{id}/editExternal', 'ExternalMController@editExternal')->name('externalsM.editExternal');
+    Route::get('/externalsM', 'ExternalMController@index')->name('externalsM.index');
+
+    Route::get('/validation/createV/{id}', 'ValidateContoller@createV')->name('validation.createV');
+    //Route::get('/externalsM/showExternal/{id}', 'ValidateContoller@showV')->name('validation.showV');
+    // Route::delete('/externalsM/destroyExternal/{id}', 'ValidateContoller@destroyV')->name('validation.destroyV');
+    Route::post('/validation/storeV/{id}', 'ValidateContoller@storeV')->name('validation.storeV');
+    //  Route::put('/externalsM/updateExternal/{id}', 'ValidateContoller@updateV')->name('validation.updateExternal');
+    // Route::get('/externalsM/{id}/editExternal', 'ValidateContoller@editV')->name('validation.editExternal');
+    // Route::get('/externalsM', 'ValidateContoller@index')->name('validation.index');
+
+
+    // Route::resource('/validation','ValidateContoller');
 
 });
 
-Route::namespace('Kpis')->prefix('Kpis')->name('Kpis.')->group(function (){
-    Route::resource('/gas','GasController');
-    Route::resource('/dts','DTController');
-    Route::resource('/interventions','InterventionsController');
-    Route::resource('/liquids','LiquidsController');
-    Route::resource('/materials','MaterialsController');
-    Route::resource('/pannes','PanneController');
-    Route::resource('/pieces','PiecesController');
-    Route::resource('/staff','StaffController');
-    Route::resource('/vehicules','VehiculesController');
-    Route::resource('/repairs','RepairsController');
+Route::namespace('Kpis')->prefix('Kpis')->name('Kpis.')->group(function () {
+    Route::resource('/gas', 'GasController');
+    Route::resource('/dts', 'DTController');
+    Route::resource('/interventions', 'InterventionsController');
+    Route::resource('/liquids', 'LiquidsController');
+    Route::resource('/materials', 'MaterialsController');
+    Route::resource('/pannes', 'PanneController');
+    Route::resource('/pieces', 'PiecesController');
+    Route::resource('/staff', 'StaffController');
+    Route::resource('/vehicules', 'VehiculesController');
+    Route::resource('/repairs', 'RepairsController');
 });

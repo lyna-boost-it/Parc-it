@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Liquids;
 use App\Maintenance;
 use App\Maintenance_Staff;
+use App\Models\User;
+use App\MoreNotifs;
+use App\Notifications\MaintenaceNotification;
 use App\Repair;
 use App\Repair_Staff;
 use App\Staff;
@@ -89,6 +92,21 @@ $liquid->quantity=$liquid->quantity-$request->liquid;
 $liquid->save();
 $lubrifiant->quantity=$lubrifiant->quantity-$request->lubricant;
 $lubrifiant->save();
+
+$usersA = User::all()->where('type', '=', 'Gestionnaire parc');
+$usersB = User::all()->where('type', '=', 'Utilisateur');
+
+$currentUser=User::find($dt->user_id);
+$notif = new MoreNotifs();
+$notif->details = 'l\'entretien de vehcule: ' . $maintenance->vehicule_id . ' est fait';
+$notif->save();
+foreach ($usersA as $user) {
+    $user->notify(new MaintenaceNotification($maintenance, $notif));
+}
+foreach ($usersB as $user) {
+    $user->notify(new MaintenaceNotification($maintenance, $notif));
+}
+$currentUser->notify(new MaintenaceNotification($maintenance, $notif));
     return redirect ('/ParkManager/maintenances');
     }
 

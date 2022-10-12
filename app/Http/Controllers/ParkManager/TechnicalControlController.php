@@ -4,6 +4,9 @@ namespace App\Http\Controllers\ParkManager;
 
 use App\Accident;
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use App\MoreNotifs;
+use App\Notifications\ControllNotification;
 use App\Staff;
 use App\TechnicalControl;
 use App\Vehicule;
@@ -55,7 +58,8 @@ class TechnicalControlController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+       {$usersA = User::all()->where('type', '=', 'Gestionnaire parc');
+        $usersB = User::all()->where('type', '=', 'Utilisateur');
         $technicalcontrol=TechnicalControl:: create($request->only(
             'id',
             'technical_control_number',
@@ -79,6 +83,15 @@ class TechnicalControlController extends Controller
 
                 }
     $technicalcontrol->save();
+    $notif = new MoreNotifs();
+        $notif->details = 'le contrôles techniques de vehcule: ' . $technicalcontrol->vehicle_id . ' a été mis à jour';
+        $notif->save();
+        foreach ($usersA as $user) {
+            $user->notify(new ControllNotification($technicalcontrol, $notif));
+        }
+        foreach ($usersB as $user) {
+            $user->notify(new ControllNotification($technicalcontrol, $notif));
+        }
     AllControll_Checker( );
        return redirect()->route ('ParkManager.technicalcontrols.index');
     }

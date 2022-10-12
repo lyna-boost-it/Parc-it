@@ -9,6 +9,9 @@ use App\External;
 use App\ExternalMaterial;
 use App\Http\Controllers\Controller;
 use App\Material;
+use App\Models\User;
+use App\MoreNotifs;
+use App\Notifications\ExternamMNotification;
 use App\Staff;
 use App\Vehicule;
 use Illuminate\Http\Request;
@@ -71,6 +74,20 @@ $material=Material::find($external->mm_id);
 $material->previous_state=$material->material_state;
 $material->material_state='Libre';
 $material->save();
+$usersA = User::all()->where('type', '=', 'Gestionnaire parc');
+$usersB = User::all()->where('type', '=', 'Utilisateur');
+
+$currentUser=User::find($dt->user_id);
+$notif = new MoreNotifs();
+$notif->details = ' la maintenance externe pour machine: ' . $external->vehicule_id . ' est fait';
+$notif->save();
+foreach ($usersA as $user) {
+    $user->notify(new ExternamMNotification($external, $notif));
+}
+foreach ($usersB as $user) {
+    $user->notify(new ExternamMNotification($external, $notif));
+}
+$currentUser->notify(new ExternamMNotification($external, $notif));
     return redirect ('/ParkManager/externalsM');
     }
 

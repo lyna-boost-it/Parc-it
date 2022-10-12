@@ -399,6 +399,90 @@
             </div>
         </div>
     </div>
+    <script>
+        $("#vehicule_type").change(function() {
+            if ($(this).val() == "pick-up" ) {
+                $('#pick-up_Div').show();
+                $('#pick-up').attr('required','');
+                $('#pick-up').attr('data-error', 'This field is required.');
+            } else {
+                $('#pick-up_Div').hide();
+                $('#pick-up').removeAttr('required');
+                $('#pick-up').removeAttr('data-error');
+            }
+        });
+        $("#vehicule_type").trigger("change");
+
+
+          </script>
+       <script>
+        $("#vehicule_type").change(function() {
+            if ($(this).val() == "mini-fourgonnettes" ) {
+                $('#mini-fourgonnettes_Div').show();
+                $('#mini-fourgonnettes').attr('required','');
+                $('#mini-fourgonnettes').attr('data-error', 'This field is required.');
+
+            } else {
+                $('#mini-fourgonnettes_Div').hide();
+                $('#mini-fourgonnettes').removeAttr('required');
+                $('#mini-fourgonnettes').removeAttr('data-error');
+            }
+        });
+        $("#vehicule_type").trigger("change");
+
+
+          </script>
+       <script>
+        $("#vehicule_type").change(function() {
+            if ($(this).val() == "minibus" ) {
+                $('#minibus_Div').show();
+                $('#minibus').attr('required','');
+                $('#minibus').attr('data-error', 'This field is required.');
+
+                    } else {
+                $('#minibus_Div').hide();
+                $('#minibus').removeAttr('required');
+                $('#minibus').removeAttr('data-error');
+            }
+        });
+        $("#vehicule_type").trigger("change");
+
+
+          </script>
+
+   <script>
+    $("#destination_type").change(function() {
+        if ($(this).val() == "Destination (A->B)" ) {
+            $('#AB_Div').show();
+            $('#AB').attr('required','');
+            $('#AB').attr('data-error', 'This field is required.');
+        } else {
+            $('#AB_Div').hide();
+            $('#AB').removeAttr('required');
+            $('#AB').removeAttr('data-error');
+        }
+    });
+    $("#destination_type").trigger("change");
+
+
+      </script>
+
+   <script>
+    $("#destination_type").change(function() {
+        if ($(this).val() == "Territoire" ) {
+            $('#Territoire_Div').show();
+            $('#Territoire').attr('required','');
+            $('#Territoire').attr('data-error', 'This field is required.');
+        } else {
+            $('#Territoire_Div').hide();
+            $('#Territoire').removeAttr('required');
+            $('#Territoire').removeAttr('data-error');
+        }
+    });
+    $("#destination_type").trigger("change");
+
+
+      </script>
     @include('layouts.footerForIndexx')
 
 </body>

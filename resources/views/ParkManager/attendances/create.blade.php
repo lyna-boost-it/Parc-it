@@ -34,8 +34,8 @@
 
                         <div class="card-body">
 
-
-
+                            <input type="hidden" id="user_id" name="user_id"
+                            value="{{ Auth::user()->id }}">
 
 
                             <input type="hidden" id="staff_id" name="staff_id" value="{{ $staff->id }}">

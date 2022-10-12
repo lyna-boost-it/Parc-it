@@ -90,6 +90,8 @@
                                 </div>
                             </div>
                         </div>
+                        <input type="hidden" id="user_id" name="user_id"
+                        value="{{ Auth::user()->id }}">
 
 
                         <div class="card-body" >

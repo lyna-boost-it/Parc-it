@@ -233,6 +233,57 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $("#staff_type_for_absence").change(function() {
+            if ($(this).val() == "Conducteur") {
+                $('#conducteur_fieldDiv_for_absence').show();
+                $('#conducteur_field_for_absence').attr('required','');
+                $('#conducteur_field_for_absence').attr('data-error', 'This field is required.');
+            } else {
+                $('#conducteur_fieldDiv_for_absence').hide();
+                $('#conducteur_field_for_absence').removeAttr('required');
+                $('#conducteur_field_for_absence').removeAttr('data-error');
+            }
+        });
+        $("#staff_type_for_absence").trigger("change");
+
+
+          </script>
+
+        <script>
+        $("#staff_type_for_absence").change(function() {
+            if ($(this).val() == "Personnel du centre de maintenance" ) {
+                $('#Mstaff_fieldDiv_for_absence').show();
+                $('#Mstaff_field_for_absence').attr('required','');
+                $('#Mstaff_field_for_absence').attr('data-error', 'This field is required.');
+            } else {
+                $('#Mstaff_fieldDiv_for_absence').hide();
+                $('#Mstaff_field_for_absence').removeAttr('required');
+                $('#Mstaff_field_for_absence').removeAttr('data-error');
+            }
+        });
+        $("#staff_type_for_absence").trigger("change");
+
+
+        </script>
+
+        <script>
+        $("#staff_type_for_absence").change(function() {
+            if ($(this).val() == "Personnel du parc" ) {
+                $('#Msctaff_fieldDiv_for_absence').show();
+                $('#Msctaff_field_for_absence').attr('required','');
+                $('#Msctaff_field_for_absence').attr('data-error', 'This field is required.');
+            } else {
+                $('#Msctaff_fieldDiv_for_absence').hide();
+                $('#Msctaff_field_for_absence').removeAttr('required');
+                $('#Msctaff_field_for_absence').removeAttr('data-error');
+            }
+        });
+        $("#staff_type_for_absence").trigger("change");
+
+
+          </script>
     @include('layouts.footerForIndexx')
 
 </body>

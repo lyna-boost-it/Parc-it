@@ -381,7 +381,8 @@
                                             <table>
 
                                                     <tr>
-                                                        <th>Heures de Jour et Nuit</th>
+                                                        <th>Heures de Jour</th>
+                                                 <th>Heures de Nuit</th>
 
                                                         <th> Vendredi</th>
                                                         <th>Jours Feriés</th>
@@ -393,13 +394,16 @@
                                                     <tr>
                                                         <td> {{ DB::table('hours')->where('staff_id', '=', $staff->id)->where('type_days', '=', 'Journée de travail')->sum('day_hours') }}
                                                         </td>
+                                                        <td> {{ DB::table('hours')->where('staff_id', '=', $staff->id)->where('type_days', '=', 'Journée de travail')->sum('night_hours') }}
+                                                        </td>
                                                         <td> {{ DB::table('hours')->where('staff_id', '=', $staff->id)->where('type_days', '=', 'Vendredi')->count() }}
                                                         </td>
                                                         <td> {{ DB::table('hours')->where('staff_id', '=', $staff->id)->where('type_days', '=', 'Jour férié')->count() }}
                                                         </td>
 
                                                         <td>{{ round(
-                                                            (DB::table('hours')->where('staff_id', '=', $staff->id)->where('type_days', '=', 'Journée de travail')->sum('day_hours') +
+                                                            (CheckDayHours(DB::table('hours')->where('staff_id', '=', $staff->id)->where('type_days', '=', 'Journée de travail')->sum('day_hours'))+
+                                                            (DB::table('hours')->where('staff_id', '=', $staff->id)->where('type_days', '=', 'Journée de travail')->sum('night_hours')*2) +
                                                                 (DB::table('hours')->where('staff_id', '=', $staff->id)->where('type_days', '=', 'Vendredi')->count() +
                                                                     DB::table('hours')->where('staff_id', '=', $staff->id)->where('type_days', '=', 'Jour férié')->count())*8) /
                                                                 8,

@@ -30,6 +30,8 @@
                             <h5 class="title">{{ __('Créer une demandes de travaux (DT)  ') }}</h5>
                         </div>
 
+                        <input type="hidden" id="user_id" name="user_id"
+                        value="{{ Auth::user()->id }}">
 
 
                         <div class="card-body">

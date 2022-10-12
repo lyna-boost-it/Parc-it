@@ -34,31 +34,18 @@
                                 </a>
                             </li>
                             @foreach (Auth::user()->notifications as $notification)
-                                <li>
-                                    <a href="{{ route('ParkManager.missions.show', $notification->data['id']) }}">
-                                        <h3 style="display:inline">
-                                            @if ($notification->read_at != null)
-                                                ✅
-                                            @else
-                                                <span class="fa fa-circle" style="color: black">
-                                                </span>
-                                            @endif {{ $notification->data['from'] }}
-                                        </h3>
-                                        <p>
-                                            {{ $notification->data['details'] }}
-                                        </p>
 
-                                    </a>
-                                </li>
 
-                                @if ($notification->data['type'] == 'mission')
-                                    <li>
-                                        <a href="{{ route('ParkManager.missions.index') }}">
+
+                                    <li @if ($notification->read_at == null)
+                                        style="background-color:rgb(238, 173, 173)"
+                                        @endif >
+                                        <a   href="{{route('markAsRead',$notification->id)}} "  >
                                             <h3 style="display:inline">
                                                 @if ($notification->read_at != null)
                                                     ✅
                                                 @else
-                                                    <span class="fa fa-circle" style="color: black">
+                                                    <span class="fa fa-circle" style="color: red">
                                                     </span>
                                                 @endif {{ $notification->data['from'] }}
                                             </h3>
@@ -68,7 +55,8 @@
 
                                         </a>
                                     </li>
-                                @endif
+
+
                             @endforeach
                         </ul>
                     </div>

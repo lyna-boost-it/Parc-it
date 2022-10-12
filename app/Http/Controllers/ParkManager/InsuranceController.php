@@ -6,6 +6,9 @@ use App\Attendance;
 use App\Http\Controllers\Controller;
 use App\GasVehicules;
 use App\Insurance;
+use App\Models\User;
+use App\MoreNotifs;
+use App\Notifications\InsuranceNotification;
 use App\Shift_Staff;
 use App\Staff;
 use App\Unit;
@@ -69,8 +72,8 @@ $vehicule1=' ';
         'agency_address','insurance_type','vehicle_id'  ));
         if( $request->vehicule1 !=null){
 
-$insurance->vehicle_id= $request->vehicule1;
-$insurance->save();
+        $insurance->vehicle_id= $request->vehicule1;
+        $insurance->save();
         }elseif
         ( $request->vehicule2!=null ){
             $insurance->vehicle_id= $request->vehicule2;
@@ -78,8 +81,17 @@ $insurance->save();
         }else{          $insurance->vehicle_id= $request->vehicule3;
             $insurance->save();
         }
-
-
+        $usersA = User::all()->where('type', '=', 'Gestionnaire parc');
+        $usersB = User::all()->where('type', '=', 'Utilisateur');
+        $notif = new MoreNotifs();
+        $notif->details = 'l\'assurance de vehcule: ' . $insurance->vehicle_id . ' a été mis à jour';
+        $notif->save();
+        foreach ($usersA as $user) {
+            $user->notify(new InsuranceNotification($insurance, $notif));
+        }
+        foreach ($usersB as $user) {
+            $user->notify(new InsuranceNotification($insurance, $notif));
+        }
         AllInsurance_checker();
         return redirect()->route ('ParkManager.insurances.index');
     }

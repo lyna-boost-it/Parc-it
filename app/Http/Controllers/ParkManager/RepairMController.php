@@ -6,6 +6,9 @@ use App\Dt;
 use App\DtMaterial;
 use App\Http\Controllers\Controller;
 use App\Material;
+use App\Models\User;
+use App\MoreNotifs;
+use App\Notifications\RepairMNotification;
 use App\RepairsMaterial;
 use App\RepairsMaterial_Staff;
 use App\Staff;
@@ -78,7 +81,20 @@ $staff_repair->save();
 $material=Material::find($repair->mm_id);
 $material->previous_state=$material->material_state;
 $material->material_state='Libre';
+$usersA = User::all()->where('type', '=', 'Gestionnaire parc');
+$usersB = User::all()->where('type', '=', 'Utilisateur');
 
+$currentUser=User::find($dt->user_id);
+$notif = new MoreNotifs();
+$notif->details = 'la reparation de machine: ' . $repair->mm_id . ' est fait';
+$notif->save();
+foreach ($usersA as $user) {
+    $user->notify(new RepairMNotification($repair, $notif));
+}
+foreach ($usersB as $user) {
+    $user->notify(new RepairMNotification($repair, $notif));
+}
+$currentUser->notify(new RepairMNotification($repair, $notif));
 $material->save();
     return redirect ('/ParkManager/repairsM');
     }
@@ -152,6 +168,6 @@ $material->save();
     }
 
         $repair->delete();
-        return redirect('/ParkManager/repairs');
+        return redirect('/ParkManager/repairsM');
     }}
 

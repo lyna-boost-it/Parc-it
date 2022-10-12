@@ -97,12 +97,13 @@ class StaffController extends Controller
         $year=$request->year;
         $staff=DB::table('staff')->find($id);
         $hours=DB::table('hours')->whereYear('created_at', $year)->whereMonth('created_at', $month)->where('staff_id', '=', $staff->id)->where('type_days', '=', 'Journée de travail')->sum('day_hours');
+         $Nhours=DB::table('hours')->whereYear('created_at', $year)->whereMonth('created_at', $month)->where('staff_id', '=', $staff->id)->where('type_days', '=', 'Journée de travail')->sum('night_hours');
         $fridays=DB::table('hours')->whereYear('created_at', $year)->whereMonth('created_at', $month)->where('staff_id', '=', $staff->id)->where('type_days', '=', 'Vendredi')->count();
         $freedays=DB::table('hours')->whereYear('created_at', $year)->whereMonth('created_at', $month)->where('staff_id', '=', $staff->id)->where('type_days', '=', 'Jour férié')->count();
-        $days= round(($hours+((($fridays+$freedays)*8)))/8);
+        $days= round(((CheckDayHours($hours))+($Nhours*2)+((($fridays+$freedays)*8)))/8);
        // dd($month,$year,$staff, $hours,$fridays,$freedays,$days);
         return view('Kpis.staff.counts',
-        compact( 'month','year' ,'staff','hours','fridays','freedays','days' ));
+        compact( 'month','year' ,'staff','hours','Nhours','fridays','freedays','days' ));
     }
 
     /**

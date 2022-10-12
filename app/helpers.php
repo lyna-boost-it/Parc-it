@@ -7,14 +7,23 @@ use App\Insurance;
 use App\Mission;
 use App\Models\User;
 use App\MoreNotifs;
+use App\Notification;
 use App\Notifications\AbsenceNotification;
+use App\Notifications\ControllNotification;
+use App\Notifications\InsuranceNotification;
+use App\Notifications\LicenseNotification;
 use App\Notifications\MissionNotification;
+use App\Notifications\StickersNotification;
 use App\Staff;
 use App\Sticker;
 use App\TechnicalControl;
 use App\Unit;
 use App\Vehicule;
 use Carbon\Carbon;
+use Illuminate\Notifications\Events\NotificationSent;
+
+use Illuminate\Support\Facades\Auth;
+
 
 function motivation()
 {
@@ -69,6 +78,7 @@ function Missions_cheker()
         $usersA = User::all()->where('type', '=', 'Gestionnaire parc');
         $usersB = User::all()->where('type', '=', 'Utilisateur');
         if ($ldate > $end_date && $mission->mission_state == "en cours") {
+
             $mission->mission_state = "fait";
             $vehicule->previous_state = $vehicule->vehicle_state;
             $vehicule->vehicle_state = 'en mission';
@@ -173,194 +183,234 @@ function CalculateHours($start_att, $end_att, Hours $hour)
     $end_a = new DateTime($end_att);
 
 
-    //Start at 8 and finishes between 00 and 05
-    if ($start_a >= $start_shift && $end_a <= $night_end &&  $end_a != $zero) {
-        $diff = ($midnight->diff($end_a))->format('%h');
-        $result = CheckDayHours($diff) + (($end_a->diff($zero))->format('%h') * 2);
-        $hour->day_hours = $hour->day_hours + $result;
+    //Start at 8 and finishes between 00 and 05//DONE AND TESTED//.
+    if ($start_a >= $start_shift && $start_a < $end_shift && $end_a <= $night_end &&  $end_a != $zero) {
+        $diff = ($end_a->diff($zero))->format('%h');
+        $diff2 = ($midnight->diff($night_start))->format('%h');
+        $diff3 = 5;
+        $hour->day_hours = $hour->day_hours + $diff3;
+        $hour->night_hours = $hour->night_hours + $diff2 + $diff;
         $hour->save();
+        // dd(-1);
     }
-    //Start between 16 and 21 and finishes between 21 and 00 //DONE AND TESTED
-    if ($start_a >= $end_shift && $end_a < $midnight &&  $end_a != $zero) {
+    //Start between 16 and 21 and finishes between 21 and 00 //DONE AND TESTED//.
+    if ($start_a >= $end_shift && $start_a < $night_start && $end_a < $midnight && $end_a > $night_end &&  $end_a != $zero) {
         $diff = ($night_start->diff($start_a))->format('%h');
-        $result = CheckDayHours($diff) + (($end_a->diff($night_start))->format('%h') * 2);
-        $hour->day_hours = $hour->day_hours + $result;
+        $diff2 = ($end_a->diff($night_start))->format('%h');
+        $hour->day_hours = $hour->day_hours + $diff;
+        $hour->night_hours = $hour->night_hours + $diff2;
         $hour->save();
+        //dd(-2);
     }
-    //Start between 16 and 21 and finishes at 00 //DONE AND TESTED
-    if ($start_a >= $end_shift && $end_a < $midnight &&  $end_a == $zero) {
-        $diff = ($night_start->diff($start_a))->format('%h');
-        $result = CheckDayHours($diff) + 6;
-        $hour->day_hours = $hour->day_hours + $result;
-        $hour->save();
-    }
-    //Start between 16 and 21 and finishes between 00 and 05   //DONE AND TESTED
+    //Start between 16 and 21 and finishes between 00 and 05   //DONE AND TESTED//.
     if ($start_a >= $end_shift && $end_a <= $night_end &&  $end_a > $zero) {
         $diff = ($night_start->diff($start_a))->format('%h');
-        $result = CheckDayHours($diff) + 6 + (($end_a->diff($zero))->format('%h') * 2);
-        $hour->day_hours = $hour->day_hours + $result - 44;
+        $diff2 = ($end_a->diff($zero))->format('%h') + 3;
+        $hour->day_hours = $hour->day_hours + $diff;
+        $hour->night_hours = $hour->night_hours + $diff2;
         $hour->save();
         return true;
+        //  dd(-3);
     }
-    //Start at 21 and finishes before   00 //DONE AND TESTED
-    if ($start_a >= $night_start && $end_a <= $midnight && $end_a > $night_start) {
-        $result = ($end_a->diff($start_a))->format('%h') * 2;
-        $hour->day_hours = $hour->day_hours + $result - 2;
+    //Start between 16 and 21 and finishes at 00 //DONE AND TESTED//.
+    if ($start_a >= $end_shift &&  $end_a == $zero) {
+        $diff = ($night_start->diff($start_a))->format('%h');
+        $diff2 = 3;
+        $hour->day_hours = $hour->day_hours + $diff;
+        $hour->night_hours = $hour->night_hours + $diff2;
         $hour->save();
-        return true;
+        //  dd(-4);
     }
-    //Start at 21 and finishes  at 00 //DONE AND TESTED
-    if ($start_a >= $night_start &&  $end_a == $zero) {
 
-        $hour->day_hours = $hour->day_hours + 6;
+    //Start at 21 and finishes before   00 //DONE AND TESTED//.
+    if ($start_a >= $night_start && $end_a <= $midnight && $end_a > $night_start) {
+        $diff = ($end_a->diff($start_a))->format('%h');
+        $hour->night_hours = $hour->night_hours + $diff;
+        $hour->save();
+        // dd(-5);
+    }
+    /*  //Start at 21 and finishes  at 00 //DONE AND TESTED
+    if ($start_a >= $night_start &&  $end_a == $zero) {
+        $hour->night_hours = $hour->night_hours + 3;
         $hour->save();
         return true;
-    }
-    //Starts at 21 and finishes between 00 and 05 //DONE AND TESTED
+    }*/
+    //Starts at 21 and finishes between 00 and 05 //DONE AND TESTED//.
     if ($start_a >= $night_start && $end_a <= $night_end &&  $end_a != $zero) {
-        $result = (($midnight->diff($night_start))->format('%h') * 2)
-            + (($end_a->diff($zero))->format('%h') * 2);
-        $hour->day_hours = $hour->day_hours + $result - 100;
+        $diff = (($midnight->diff($night_start))->format('%h'))
+            + (($end_a->diff($zero))->format('%h'));
+        $hour->night_hours = $hour->night_hours + $diff - 4;
+
+        $hour->day_hours = $hour->day_hours + 4;
         $hour->save();
-        return true;
+        // dd(-6);
     }
-    // Starts at 21 and finishes between 05 and 07 //DONE AND TESTED
+    // Starts at 21 and finishes between 05 and 07 //DONE AND TESTED//.
     if ($start_a >= $night_start && $end_a > $night_end && $end_a <= $start_shift &&  $end_a != $zero) {
-        $result = 16;
-        $diff = CheckDayHours((($end_a->diff($night_end))->format('%h')));
-        $hour->day_hours = $hour->day_hours + $result + $diff - 42;
-        $hour->save();
-        return true;
-    }
-    //Starts between 05 and 07 and finishes at 16 //DONE AND TESTED
-    if ($start_a >= $night_end && $start_a < $start_shift && $end_a == $end_shift &&  $end_a != $zero) {
-        $result = ($start_shift->diff($start_a))->format('%h');
-        $diff = CheckDayHours($result);
+        $diff = (($end_a->diff($night_end))->format('%h'));
+        $hour->night_hours = $hour->night_hours + 8;
         $hour->day_hours = $hour->day_hours + $diff;
         $hour->save();
-        return true;
+        // dd(-5);
     }
-    //Starts between 05 and 07 and finishes between 16 and 21 //DONE AND TESTED
-    if ($start_a >= $night_end && $start_a < $start_shift && $end_a <= $night_start &&  $end_a != $zero) {
-        $result1 = ($start_shift->diff($start_a))->format('%h');
-        $diff1 = CheckDayHours($result1);
-        $result2 = ($end_a->diff($end_shift))->format('%h');
-        $diff2 = CheckDayHours($result2);
-        $hour->day_hours = $hour->day_hours + $diff1 + $diff2;
+    //Starts between 05 and 07 and finishes at 16 //DONE AND TESTED
+    /* if ($start_a >= $night_end && $start_a < $start_shift && $end_a == $end_shift &&  $end_a != $zero) {
+        $diff = ($start_shift->diff($start_a))->format('%h');
+        $hour->day_hours = $hour->day_hours + $diff;
         $hour->save();
-        return true;
+
+    }*/
+    //Starts between 05 and 07 and finishes between 16 and 21 //DONE AND TESTED//.
+    if ($start_a >= $night_end && $start_a < $start_shift && $end_a <= $night_start && $end_a > $end_shift &&  $end_a != $zero) {
+        $diff = ($start_shift->diff($start_a))->format('%h');
+        $diff2 = ($end_a->diff($end_shift))->format('%h');
+        $hour->day_hours = $hour->day_hours + $diff + $diff2;
+        $hour->save();
+        // dd(-6);
     }
-    //Starts between 05 and 07 and finishes between 21 and 00 //DONE AND TESTED
+    //Starts between 05 and 07 and finishes between 21 and 00 //DONE AND TESTED//.
     if ($start_a >= $night_end && $start_a < $start_shift && $end_a <= $midnight && $end_a > $night_start &&  $end_a != $zero) {
-        $result1 = ($start_shift->diff($start_a))->format('%h');
-        $diff1 = CheckDayHours($result1);
-        $result2 = ($end_shift->diff($end_a))->format('%h');
-        $diff2 = CheckDayHours($result2);
-        $hour->day_hours = $hour->day_hours + $diff1 + $diff2;
+        $diff = ($start_shift->diff($start_a))->format('%h');
+
+        $diff3 = ($end_a->diff($night_start))->format('%h');
+        $hour->day_hours = $hour->day_hours + $diff + 5;
+        $hour->night_hours = $hour->night_hours + $diff3;
         $hour->save();
-        return true;
+        //dd(-7);
     }
-    //Starts between 05 and 07 and finishes  00 //DONE AND TESTED
+    //Starts between 05 and 07 and finishes  00 //DONE AND TESTED//.
     if ($start_a >= $night_end && $start_a < $start_shift &&  $end_a == $zero) {
-        $result1 = ($start_shift->diff($start_a))->format('%h');
-        $diff1 = CheckDayHours($result1);
-        $hour->day_hours = $hour->day_hours + $diff1 + 11.5;
+        $diff = ($start_shift->diff($start_a))->format('%h');
+        $hour->day_hours = $hour->day_hours + $diff + 5;
+        $hour->night_hours = $hour->night_hours + 3;
         $hour->save();
-        return true;
+        //dd(-8);
     }
-    //Starts between 05 and 07 and finishes between 00 and 05 //DONE AND TESTED but not woking cus other ifs
+    //Starts between 05 and 07 and finishes between 00 and 05 //DONE AND TESTED//.
     if ($start_a >= $night_end && $start_a < $start_shift && $end_a <= $night_end && $end_a >= $one  && $end_a != $zero) {
-        $result1 = ($start_shift->diff($start_a))->format('%h');
-        $diff1 = CheckDayHours($result1);
+        $diff = ($start_shift->diff($start_a))->format('%h');
+        $diff2 = ($end_a->diff($zero))->format('%h');
 
-        $result3 = ($end_a->diff($zero))->format('%h');
-        $diff3 = $result3 * 2;
-
-        $hour->day_hours = $hour->day_hours + $diff1 + 11.5 + $diff3;
+        $hour->day_hours = $hour->day_hours + $diff + 5;
+        $hour->night_hours = $hour->night_hours + 3 + $diff2;
         $hour->save();
-        return true;
+        //dd(8);
     }
 }
 
 
 
 
-function Insurance_checker
-(Insurance $insurance){
+function Insurance_checker(Insurance $insurance)
+{   $usersA = User::all()->where('type', '=', 'Gestionnaire parc');
+    $usersB = User::all()->where('type', '=', 'Utilisateur');
     $date = date($insurance->expiration_date);
     $ldate =  date(Carbon::now());
 
-if($date<=$ldate){
-
-$insurance->state='expiré';
-$insurance->save();
-
-}
-else {
-    if($date>$ldate){
-    $insurance->state='en cours';
-    $insurance->save();
-}}}
-function AllInsurance_checker
-()
-{$insurances=Insurance::all();
-foreach($insurances as $insurance){
-    Insurance_checker($insurance);
+    if ($date <= $ldate &&  $insurance->state == 'en cours') {
+        $notif = new MoreNotifs();
+        $notif->details = 'l\'assurance de vehcule: ' . $insurance->vehicle_id . ' a expiré';
+        $notif->save();
+        foreach ($usersA as $user) {
+            $user->notify(new InsuranceNotification($insurance, $notif));
+        }
+        foreach ($usersB as $user) {
+            $user->notify(new InsuranceNotification($insurance, $notif));
+        }
+        $insurance->state = 'expiré';
+        $insurance->save();
+    }
 }
 
 
+function AllInsurance_checker()
+{
+    $insurances = Insurance::all();
+    foreach ($insurances as $insurance) {
+        Insurance_checker($insurance);
+    }
 }
 
 
-function Sticker_Checker(Sticker $sticker){
+function Sticker_Checker(Sticker $sticker)
+{   $usersA = User::all()->where('type', '=', 'Gestionnaire parc');
+    $usersB = User::all()->where('type', '=', 'Utilisateur');
     $date = $sticker->year;
     $ldate =  Carbon::now()->format('Y');
-    if($date<$ldate){
-        $sticker->validity="Non valide";
-        $sticker->save();
-    }else{if($date>=$ldate){ $sticker->validity="Valide";
-        $sticker->save();}
+    if ($date < $ldate && $sticker->validity == "Valide") {
 
-}}
-function AllSticker_Checker( ){
-$stickers=Sticker::all();
-foreach($stickers as $sticker){
-    Sticker_Checker($sticker);
+        //dd($sticker);
+        $notif = new MoreNotifs();
+        $notif->details = 'la vignette de vehcule: ' . $sticker->vehicle_id . ' Non valide';
+        $notif->save();
+        foreach ($usersA as $user) {
+            $user->notify(new StickersNotification($sticker, $notif));
+        }
+        foreach ($usersB as $user) {
+            $user->notify(new StickersNotification($sticker, $notif));
+        }
+        $sticker->validity = "Non valide";
+        $sticker->save();
+    }
 }
+function AllSticker_Checker()
+{
+    $stickers = Sticker::all();
+    foreach ($stickers as $sticker) {
+        Sticker_Checker($sticker);
+    }
 }
-function Controll_Checker(TechnicalControl $technical){
+function Controll_Checker(TechnicalControl $technical)
+{   $usersA = User::all()->where('type', '=', 'Gestionnaire parc');
+    $usersB = User::all()->where('type', '=', 'Utilisateur');
     $date = date($technical->expiration_date);
     $ldate =  date(Carbon::now());
 
-    if($date<=$ldate){
-        $technical->state="Non valide";
+    if ($date <= $ldate && $technical->state== "Valide" ) {
+        $technical->state = "Non valide";
         $technical->save();
-    }else{if($date>$ldate){
-         $technical->state="Valide";
-        $technical->save();}
-
-}}
-function AllControll_Checker( ){
-    $technicals=TechnicalControl::all();
-    foreach($technicals as $technical){
+        $notif = new MoreNotifs();
+        $notif->details = 'le contrôles techniques de vehcule: ' . $technical->vehicle_id . ' est Non valide';
+        $notif->save();
+        foreach ($usersA as $user) {
+            $user->notify(new ControllNotification($technical, $notif));
+        }
+        foreach ($usersB as $user) {
+            $user->notify(new ControllNotification($technical, $notif));
+        }
+    }
+}
+function AllControll_Checker()
+{
+    $technicals = TechnicalControl::all();
+    foreach ($technicals as $technical) {
         Controll_Checker($technical);
     }
+}
+function Lisence_Checker(DrivingLicence $lisence)
+{   $usersA = User::all()->where('type', '=', 'Gestionnaire parc');
+    $usersB = User::all()->where('type', '=', 'Utilisateur');
+    $date = date($lisence->end_date);
+    $ldate =  date(Carbon::now());
+
+    if ($date <= $ldate && $lisence->state == "en cours") {
+        $lisence->state = "expiré";
+        $lisence->save();
+        $notif = new MoreNotifs();
+        $notif->details = 'le permis de circulation de vehcule: ' . $lisence->vehicle_id . ' a expiré';
+        $notif->save();
+        foreach ($usersA as $user) {
+            $user->notify(new LicenseNotification($lisence, $notif));
+        }
+        foreach ($usersB as $user) {
+            $user->notify(new LicenseNotification($lisence, $notif));
+        }
     }
-    function Lisence_Checker(DrivingLicence $lisence){
-        $date = date($lisence->end_date);
-        $ldate =  date(Carbon::now());
-
-        if($date<=$ldate){
-            $lisence->state="expiré";
-            $lisence->save();
-        }else{if($date>$ldate){
-             $lisence->state="En cours";
-            $lisence->save();}
-
-    }}
-    function AllLisence_Checker( ){
-        $technicals=DrivingLicence::all();
-        foreach($technicals as $technical){
-            Lisence_Checker($technical);
-        }
-        }
+}
+function AllLisence_Checker()
+{
+    $technicals = DrivingLicence::all();
+    foreach ($technicals as $technical) {
+        Lisence_Checker($technical);
+    }
+}

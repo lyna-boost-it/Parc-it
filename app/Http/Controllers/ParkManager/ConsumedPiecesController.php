@@ -5,6 +5,9 @@ namespace App\Http\Controllers\ParkManager;
 use App\ConsumedPieces;
 use App\Dt;
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use App\MoreNotifs;
+use App\Notifications\CpVNotification;
 use App\Staff;
 use App\Vehicule;
 use Illuminate\Http\Request;
@@ -70,6 +73,21 @@ $vehicule=Vehicule::find($cp->vehicule_id);
 $vehicule->previous_state=$vehicule->vehicle_state;
 $vehicule->vehicle_state='Libre';
 $vehicule->save();
+
+$usersA = User::all()->where('type', '=', 'Gestionnaire parc');
+$usersB = User::all()->where('type', '=', 'Utilisateur');
+
+$currentUser=User::find($dt->user_id);
+$notif = new MoreNotifs();
+$notif->details = 'la demande des Pièces consommées pour vehcule: ' . $cp->vehicule_id . ' est exécuter';
+$notif->save();
+foreach ($usersA as $user) {
+    $user->notify(new CpVNotification($cp, $notif));
+}
+foreach ($usersB as $user) {
+    $user->notify(new CpVNotification($cp, $notif));
+}
+$currentUser->notify(new CpVNotification($cp, $notif));
     return redirect ('/ParkManager/cps');
     }
 

@@ -5,6 +5,9 @@ namespace App\Http\Controllers\ParkManager;
 
 use App\Dt;
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use App\MoreNotifs;
+use App\Notifications\DtVNotification;
 use App\Staff;
 use App\Unit;
 use App\Vehicule;
@@ -88,7 +91,7 @@ $maintenance->save();
     public function store(Request $request)
     {
         $dt=Dt:: create($request->only('unit_id','staff_id' ,'perso_id',1,
-        'action','observation','type_maintenance','type_panne','nature_panne',
+        'action','observation','type_maintenance','type_panne','nature_panne','user_id',
         'enter_time', 'enter_date','driver_id','code_dt' ));
         $year = substr($dt->enter_date, 2, 2);
         $month = substr($dt->enter_date, 5, 2);
@@ -127,7 +130,14 @@ $maintenance->save();
                        $vehicule->save();
                        }
 
+                       $usersA = User::all()->where('type', '=', 'Gestionnaire parc');
 
+                       $notif = new MoreNotifs();
+                       $notif->details = 'une demandes de travaux pour vehicule: ' . $dt->vehicule_id . ' est créé';
+                       $notif->save();
+                       foreach ($usersA as $user) {
+                           $user->notify(new DtVNotification($dt, $notif));
+                       }
 
         return redirect()->route ('ParkManager.dts.index');
 

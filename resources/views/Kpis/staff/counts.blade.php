@@ -106,7 +106,8 @@
                             <tr>
 
                                 <th> Nom</th> <th>Et Prénom</th>
-                                <th>Heures de Jour et Nuit</th>
+                                <th>Heures de Jour</th>
+<th>Heures de Nuit</th>
 
                                 <th> Vendredi</th>
                                 <th>Jours Feriés</th>
@@ -122,6 +123,7 @@
                                 <tr>
                                     <td> {{ $staff->name }}</td>  <td>{{ $staff->last_name }}</td>
                                     <td> {{ $hours }}
+                                    </td> <td> {{ $Nhours }}
                                     </td>
                                     <td> {{ $fridays }}
                                     </td>

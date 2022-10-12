@@ -46,7 +46,7 @@
                                     <th>Affectation</th>
                                     <th>Etat</th>
                                     <th class="datatable-nosort">Action</th>
-                                    <th class="datatable-nosort">Historique</th>
+
 
 
                                 </tr>
@@ -152,14 +152,7 @@
 
                                                 </td>
 
-                                                <td> <a
-                                                        href="{{ route('ParkManager.attendances.showAttendance', $staff->id) }}">
-                                                        <button class="col-xs-4" type="submit"
-                                                            style=" background-color: transparent; border-color: transparent;">
 
-                                                            <span class="fa fa-eye  " style="color: #7e3dbb"> </span>
-                                                        </button>
-                                                    </a></td>
 
 
 

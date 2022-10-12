@@ -7,6 +7,9 @@ use App\Dt;
 use App\DtMaterial;
 use App\Http\Controllers\Controller;
 use App\Material;
+use App\Models\User;
+use App\MoreNotifs;
+use App\Notifications\CpMNotification;
 use App\PieceMaterial;
 use App\Staff;
 use App\Vehicule;
@@ -69,6 +72,22 @@ $material=Material::find($cp->mm_id);
 $material->previous_state=$material->material_state;
 $material->material_state='Libre';
 $material->save();
+
+
+$usersA = User::all()->where('type', '=', 'Gestionnaire parc');
+$usersB = User::all()->where('type', '=', 'Utilisateur');
+
+$currentUser=User::find($dt->user_id);
+$notif = new MoreNotifs();
+$notif->details = 'la demande des Pièces consommées pour machine: ' . $cp->vehicule_id . ' est exécuter';
+$notif->save();
+foreach ($usersA as $user) {
+    $user->notify(new CpMNotification($cp, $notif));
+}
+foreach ($usersB as $user) {
+    $user->notify(new CpMNotification($cp, $notif));
+}
+$currentUser->notify(new CpMNotification($cp, $notif));
     return redirect ('/ParkManager/piecesMaterial');
     }
 
