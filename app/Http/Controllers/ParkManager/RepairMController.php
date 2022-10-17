@@ -96,7 +96,7 @@ foreach ($usersB as $user) {
 }
 $currentUser->notify(new RepairMNotification($repair, $notif));
 $material->save();
-    return redirect ('/ParkManager/repairsM');
+    return redirect ('/ParkManager/repairsM')->with('success',"vous avez ajouter une reparation avec succès");
     }
 
     /**
@@ -144,7 +144,7 @@ $material->save();
     {
         $repair =RepairsMaterial::find($id);
         $repair->update($request->only('id', 'dt_code', 'intervention_date', 'repaired_breakdowns', 'end_date','end_time',  'observation', 'mm_id'));
-    return redirect ('/ParkManager/repairsM');
+    return redirect ('/ParkManager/repairsM')->with('success',"vous avez modifier une reparation avec succès");
     }
 
     /**
@@ -168,6 +168,7 @@ $material->save();
     }
 
         $repair->delete();
-        return redirect('/ParkManager/repairsM');
+        return redirect('/ParkManager/repairsM')
+        ->with('success',"vous avez supprimer une reparation avec succès");
     }}
 

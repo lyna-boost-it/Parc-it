@@ -17,8 +17,8 @@
 
         <div class="main-container">
             <div class="xs-pd-20-10 pd-ltr-20">
-                @include('inc.flash')
                 <div class="page-header">
+                    @include('inc.flash')
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="title">

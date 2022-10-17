@@ -88,7 +88,7 @@ foreach ($usersB as $user) {
     $user->notify(new CpMNotification($cp, $notif));
 }
 $currentUser->notify(new CpMNotification($cp, $notif));
-    return redirect ('/ParkManager/piecesMaterial');
+    return redirect ('/ParkManager/piecesMaterial')->with('success',"vous avez ajouter une pièces consommée avec succès");
     }
 
     /**
@@ -134,7 +134,7 @@ $currentUser->notify(new CpMNotification($cp, $notif));
         $cp->update($request->only( 'id', 'dt_code' ,'ref','quantity','price','designation','receip','mm_id'));
         $cp->full_price=$cp->price*$cp->quantity;
         $cp->save();
-        return redirect ('/ParkManager/piecesMaterial');
+        return redirect ('/ParkManager/piecesMaterial')->with('success',"vous avez modifier une pièces consommée avec succès");
     }
 
     /**
@@ -153,7 +153,7 @@ $currentUser->notify(new CpMNotification($cp, $notif));
     $material->material_state=    $material->previous_state;
     $material->save();
         $cp->delete();
-        return redirect('/ParkManager/piecesMaterial');
+        return redirect('/ParkManager/piecesMaterial')->with('success',"vous avez supprimer une pièces consommée avec succès");
     }
     }
 

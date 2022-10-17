@@ -93,7 +93,7 @@ $vehicule1=' ';
             $user->notify(new InsuranceNotification($insurance, $notif));
         }
         AllInsurance_checker();
-        return redirect()->route ('ParkManager.insurances.index');
+        return redirect()->route ('ParkManager.insurances.index')->with('success',"vous avez ajouter une assurance avec succès");
     }
 
     /**
@@ -137,7 +137,7 @@ $vehicule1=' ';
         'police_number','effective_date','expiration_date','company_name','agency_code',
         'agency_address','insurance_type','vehicle_id'      ));
         AllInsurance_checker();
-                return redirect('/ParkManager/insurances');
+                return redirect('/ParkManager/insurances')->with('success',"vous avez modifier une assurance avec succès");
     }
 
     /**
@@ -151,6 +151,6 @@ $vehicule1=' ';
         $insurance=Insurance::find($id);
 
         $insurance->delete();
-        return redirect('/ParkManager/insurances');
+        return redirect('/ParkManager/insurances')->with('success',"vous avez supprimer une assurance avec succès");
     }
 }

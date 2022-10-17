@@ -25,7 +25,7 @@
 
 
         <div class="card-header">
-            <h3 class="title">{{ __('Modifier une vignettes ') }}</h3>
+            <h3 class="title">{{ __('Renouvler une vignettes ') }}</h3>
         </div>
 
 

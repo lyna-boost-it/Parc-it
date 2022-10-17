@@ -65,7 +65,8 @@ class GasPipeController extends Controller
         $gaspipe=GasPipe:: create($request->only(   'id',
         'driver_id','staff_id','unit_id','ticket','price','litter','litter_price'
         ));
-        return redirect()->route ('ParkManager.gasPipes.index');
+        return redirect()->route ('ParkManager.gasPipes.index')
+        ->with('success',"vous avez ajouter une consommations de carburant pour équipements motorisés avec succès");
     }
 
     /**
@@ -117,7 +118,7 @@ class GasPipeController extends Controller
         'driver_id','staff_id','unit_id','ticket','price','litter_price','litter'
         ));
 
-                return redirect('/ParkManager/gasPipes');
+                return redirect('/ParkManager/gasPipes')->with('success',"vous avez modifier une consommations de carburant pour équipements motorisés avec succès");
     }
 
     /**
@@ -131,6 +132,6 @@ class GasPipeController extends Controller
         $gaspipe=GasPipe::find($id);
 
         $gaspipe->delete();
-        return redirect('/ParkManager/gasPipes');
+        return redirect('/ParkManager/gasPipes')->with('success',"vous avez supprimer une consommations de carburant pour équipements motorisés avec succès");;
     }
 }

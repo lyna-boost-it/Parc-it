@@ -25,18 +25,18 @@
 
         <br><br><br>
         <div class="card-header">
-            <h3 class="title">{{ __('Modifier un contrôles techniques  ') }}</h3>
+            <h3 class="title">{{ __('Renouvler un contrôles techniques  ') }}</h3>
         </div>
 
 
 
         <div class="card-body" >
             <div class="row">
-                <label class="col-md-3 col-form-label">{{ __('Date de d’effet ') }}</label>
+                <label class="col-md-3 col-form-label">{{ __('Date d’effet ') }}</label>
                 <div class="col-md-9" >
                     <div class="form-group">
                         <input type="date" name="effective_date" class="form-control"
-                        placeholder=" Date de d’effet "
+                        placeholder=" Date d’effet "
                         value="{{ $technicalcontrol->effective_date }}" required>
                     </div>
                     @if ($errors->has('effective_date'))
@@ -55,11 +55,11 @@
 
         <div class="card-body" >
             <div class="row">
-                <label class="col-md-3 col-form-label">{{ __('Date de d’effet') }}</label>
+                <label class="col-md-3 col-form-label">{{ __('Date d’expiration') }}</label>
                 <div class="col-md-9" >
                     <div class="form-group">
                         <input type="date"  name="expiration_date" class="form-control"
-                        placeholder="Date de d’effet "
+                        placeholder="Date d’expiration "
                         value="{{ $technicalcontrol->expiration_date }}" required>
                     </div>
                     @if ($errors->has('expiration_date'))
@@ -73,24 +73,6 @@
 
 
 
-
-        <div class="card-body" >
-            <div class="row">
-                <label class="col-md-3 col-form-label">{{ __('Observation') }}</label>
-                <div class="col-md-9" >
-                    <div class="form-group">
-                        <input type="text" name="observation" class="form-control"
-                        placeholder=" Observation"
-                        value="{{ $technicalcontrol->observation }}" required>
-                    </div>
-                    @if ($errors->has('observation'))
-                        <span class="invalid-feedback" style="display: block;" role="alert">
-                            <strong>{{ $errors->first('observation') }}</strong>
-                        </span>
-                    @endif
-                </div>
-            </div>
-        </div>
 
 
 

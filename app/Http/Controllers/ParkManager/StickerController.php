@@ -87,7 +87,7 @@ class StickerController extends Controller
      $user->notify(new StickersNotification($sticker, $notif));
  }
  AllSticker_Checker( );
-       return redirect()->route ('ParkManager.stickers.index');
+       return redirect()->route ('ParkManager.stickers.index')->with('success',"vous avez ajouter un vignette avec succès");
     }
 
     /**
@@ -130,7 +130,7 @@ class StickerController extends Controller
             'id', 'year','validity','vehicle_id'));
             AllSticker_Checker( );
 
-                return redirect('/ParkManager/stickers');
+                return redirect('/ParkManager/stickers')->with('success',"vous avez modifier un vignette avec succès");
     }
 
     /**
@@ -144,6 +144,6 @@ class StickerController extends Controller
         $sticker=Sticker::find($id);
 
         $sticker->delete();
-        return redirect('/ParkManager/stickers');
+        return redirect('/ParkManager/stickers')->with('success',"vous avez supprimer un vignette avec succès");
     }
 }

@@ -75,8 +75,8 @@ $request->path->move(public_path().'/files/carteGrise_files', $fileName);
 
 $vehicule->path=$fileName;
 $vehicule->save();
- 
-        return redirect('ParkManager/vehicules');
+
+        return redirect('ParkManager/vehicules')->with('success', "vous avez ajouter un vehicule avec succès");
     }
 
     /**
@@ -129,7 +129,7 @@ $vehicule->save();
    'unit_id',
        'vehicle_type',
        'vehicle_state'));
-            return redirect('/ParkManager/vehicules')->with('success', "le véhicules a ete modifier ");
+            return redirect('/ParkManager/vehicules')->with('success', "vous avez modifier un vehicule avec succès");
 
     }
 
@@ -142,7 +142,7 @@ $vehicule->save();
     public function destroy(Vehicule $vehicule)
     {
          $vehicule->delete();
-        return redirect('/ParkManager/vehicules')->with('success',"Votre véhicules a été supprimée");
+        return redirect('/ParkManager/vehicules')->with('success',"vous avez supprimer un vehicule avec succès");
 
     }
 }

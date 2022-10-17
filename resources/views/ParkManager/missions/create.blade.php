@@ -186,7 +186,7 @@
             <div class="col-md-9" >
                 <div class="form-group">
                     <input type="text"  name="p_name" class="form-control"
-                    placeholder=" Nom du personne conduite"
+                    placeholder="  Nom du personne accompagné"
                     value="{{ $mission->p_name }}" required>
                 </div>
                 @if ($errors->has('p_name'))
@@ -205,7 +205,7 @@
             <div class="col-md-9" >
                 <div class="form-group">
                     <input type="text"  name="p_last_name" class="form-control"
-                    placeholder="Prénom du personne conduite"
+                    placeholder="Prénom du personne accompagné"
                     value="{{ $mission->p_last_name }}" required>
                 </div>
                 @if ($errors->has('p_last_name'))

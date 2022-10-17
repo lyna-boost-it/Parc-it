@@ -86,7 +86,7 @@ class GuarantiControlController extends Controller
                 }
  $guaranti->save();
 
-       return redirect()->route ('ParkManager.guarantis.index');
+       return redirect()->route ('ParkManager.guarantis.index')->with('success',"vous avez ajouter un Service après-vente avec succès");
     }
 
     /**
@@ -140,7 +140,7 @@ class GuarantiControlController extends Controller
            'after_sold_service'));
 
 
-                return redirect('/ParkManager/guarantis');
+                return redirect('/ParkManager/guarantis')->with('success',"vous avez modifier un Service après-vente avec succès");
     }
 
     /**
@@ -154,6 +154,7 @@ class GuarantiControlController extends Controller
         $guaranti=Garanti::find($id);
 
         $guaranti->delete();
-        return redirect('/ParkManager/guarantis');
+        return redirect('/ParkManager/guarantis')
+        ->with('success',"vous avez supprimer un Service après-vente avec succès");
     }
 }

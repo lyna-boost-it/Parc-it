@@ -14,7 +14,9 @@
 		<div class="main-container">
 			<div class="xs-pd-20-10 pd-ltr-20">
 				<div class="page-header">
+                    @include('inc.flash')
 					<div class="row">
+
 						<div class="col-md-6 col-sm-12">
 							<div class="title">
 								<h4>Gestion des vignettes</h4>
@@ -87,7 +89,7 @@
                                                                 @if (Auth::user()->type == 'Gestionnaire Sup') style="  color: currentColor;
                                                                 cursor: not-allowed;
                                                                 opacity: 0.5;
-                                                                text-decoration: none;" @endif ><i class="dw dw-edit2"></i> Modifier</a>
+                                                                text-decoration: none;" @endif ><i class="dw dw-edit2"></i> Renouvler</a>
                                                                <a class="dropdown-item" href="{{route('ParkManager.stickers.show',$sticker->id)}}"
                                                                 ><i class="dw dw-eye"></i> Consulter</a>
                                                                 @if (Auth::user()->type == 'Gestionnaire Sup')   <a class="dropdown-item"  style="  color: currentColor;

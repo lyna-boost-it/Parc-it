@@ -26,62 +26,7 @@
         <br><br><br>
 
                                 <div class="card-header">
-                                    <h3 class="title">{{ __('Modifier une assurance ') }}</h3>
-                                </div>
-
-                                <div class="card-body" >
-                                    <div class="row">
-                                        <label class="col-md-3 col-form-label">{{ __('  Numéro de police d’Assurance') }}</label>
-                                        <div class="col-md-9" >
-                                            <div class="form-group">
-                                                <input type="number" maxlength="10" minlength="10"  name="police_number" class="form-control"
-                                                placeholder=" Numéro de police d’Assurance"
-                                                value="{{ $insurance->police_number }}" required>
-                                            </div>
-                                            @if ($errors->has('police_number'))
-                                                <span class="invalid-feedback" style="display: block;" role="alert">
-                                                    <strong>{{ $errors->first('police_number') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="card-body" >
-                                    <div class="row">
-                                        <label class="col-md-3 col-form-label">{{ __(' Nom de la  compagnie ') }}</label>
-                                        <div class="col-md-9" >
-                                            <div class="form-group">
-                                                <input type="text"   name="company_name" class="form-control"
-                                                placeholder="Nom de la  compagnie"
-                                                value="{{ $insurance->company_name }}" required>
-                                            </div>
-                                            @if ($errors->has('company_name'))
-                                                <span class="invalid-feedback" style="display: block;" role="alert">
-                                                    <strong>{{ $errors->first('company_name') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="card-body" >
-                                    <div class="row">
-                                        <label class="col-md-3 col-form-label">{{ __(' Code de l’Agence ') }}</label>
-                                        <div class="col-md-9" >
-                                            <div class="form-group">
-                                                <input type="text"   name="agency_code" class="form-control"
-                                                placeholder="Code de l’Agence"
-                                                value="{{ $insurance->agency_code }}" required>
-                                            </div>
-                                            @if ($errors->has('agency_code'))
-                                                <span class="invalid-feedback" style="display: block;" role="alert">
-                                                    <strong>{{ $errors->first('agency_code') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                    </div>
+                                    <h3 class="title">{{ __('Renouvler une assurance ') }}</h3>
                                 </div>
 
 
@@ -90,23 +35,6 @@
 
 
 
-                                <div class="card-body" >
-                                    <div class="row">
-                                        <label class="col-md-3 col-form-label">{{ __(' Adresse de l’agence  ') }}</label>
-                                        <div class="col-md-9" >
-                                            <div class="form-group">
-                                                <input type="text"   name="agency_address" class="form-control"
-                                                placeholder=" Adresse de l’agence "
-                                                value="{{ $insurance->agency_address }}" required>
-                                            </div>
-                                            @if ($errors->has('agency_address'))
-                                                <span class="invalid-feedback" style="display: block;" role="alert">
-                                                    <strong>{{ $errors->first('agency_address') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
 
 
 
@@ -148,27 +76,6 @@
                                     </div>
                                 </div>
 
-
-
-
-
-                                <div class="card-body" >
-                                    <div class="row">
-                                        <label class="col-md-3 col-form-label">{{ __('  Type d’assurance ') }}</label>
-                                        <div class="col-md-9" >
-                                            <div class="form-group">
-                                                <input type="text"  name="insurance_type" class="form-control"
-                                                placeholder=" Type d’assurance"
-                                                value="{{ $insurance->insurance_type }}" required>
-                                            </div>
-                                            @if ($errors->has('insurance_type'))
-                                                <span class="invalid-feedback" style="display: block;" role="alert">
-                                                    <strong>{{ $errors->first('insurance_type') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
 
 
 

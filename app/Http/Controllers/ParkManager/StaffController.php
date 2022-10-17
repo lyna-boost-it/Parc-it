@@ -85,7 +85,7 @@ if($type=='Personnel du parc'){
 
 }
 
-        return redirect()->route ('ParkManager.staffs.index');
+        return redirect()->route ('ParkManager.staffs.index')->with('success', "vous avez ajouter un personnel avec succès");
     }
 
     /**
@@ -143,7 +143,7 @@ if($type=='Personnel du parc'){
         'driver_license_date',
         'diploma'
         ));
-        return redirect('/ParkManager/staffs');
+        return redirect('/ParkManager/staffs')->with('success', "vous avez modifier un personnel avec succès");
     }
 
     /**
@@ -155,7 +155,7 @@ if($type=='Personnel du parc'){
     public function destroy(Staff $staff)
     {
         $staff->delete();
-        return redirect('/ParkManager/staffs')->with('success',"Votre L'unités a été supprimée");
+        return redirect('/ParkManager/staffs')->with('success',"vous avez supprimer un personnel avec succès");
 
     }
 }

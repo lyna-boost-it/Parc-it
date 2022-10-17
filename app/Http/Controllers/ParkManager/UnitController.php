@@ -59,7 +59,7 @@ class UnitController extends Controller
         'contact_mail',));
 
 
-        return redirect()->route ('ParkManager.units.index');
+        return redirect()->route ('ParkManager.units.index')->with('success',"vous avez ajouter une unité avec succès");
     }
 
     /**
@@ -100,7 +100,7 @@ class UnitController extends Controller
         'contact_function',
         'contact_phone',
         'contact_mail',));
-        return redirect('/ParkManager/units')->with('success', "L'unités a ete modifier ");
+        return redirect('/ParkManager/units')->with('success',"vous avez modifier une unité avec succès");
 
     }
 
@@ -133,7 +133,7 @@ class UnitController extends Controller
             }
         }*/
         $unit->delete();
-        return redirect('/ParkManager/units')->with('success',"Votre L'unités a été supprimée");
+        return redirect('/ParkManager/units')->with('success',"vous avez supprimer une unité avec succès");
 
     }
 }

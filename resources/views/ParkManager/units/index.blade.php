@@ -14,6 +14,7 @@
 		<div class="main-container">
 			<div class="xs-pd-20-10 pd-ltr-20">
 				<div class="page-header">
+                    @include('inc.flash')
 					<div class="row">
 						<div class="col-md-6 col-sm-12">
 							<div class="title">
@@ -28,7 +29,7 @@
   opacity: 0.5;
   text-decoration: none;  @endif
                         " href="{{route('ParkManager.units.create')}}" class="btn btn-sm btn-success">
-                            Créer une unités
+                            Créer une unité
                         </a>
 					</div>
 				</div>
@@ -99,7 +100,7 @@
                                                                 <button  type="submit" style=" background-color: transparent;
                                                                 border-color: transparent;" onclick="return confirm('êtes-vous sûr?')" >
 
-                                                                    <i class="dw dw-delete-3">Supprimer</i>
+                                                                    <i class="dw dw-delete-3"></i>Supprimer
 
                                                                 </button>
                                                             </form>

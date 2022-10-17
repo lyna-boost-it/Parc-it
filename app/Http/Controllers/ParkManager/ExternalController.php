@@ -5,6 +5,7 @@ namespace App\Http\Controllers\ParkManager;
 use App\ConsumedPieces;
 use App\Dt;
 use App\External;
+use App\Garanti;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\MoreNotifs;
@@ -12,8 +13,10 @@ use App\Notifications\ExternamVNotification;
 use App\Staff;
 use App\Vehicule;
 use Illuminate\Http\Request;
+
 class ExternalController extends Controller
-{ public function __construct()
+{
+    public function __construct()
     {
         $this->middleware('auth');
     }
@@ -24,16 +27,14 @@ class ExternalController extends Controller
      */
     public function index()
     {
-        $dts=Dt::all()->where('type_maintenance','=','Maintenance Externe');
+        $dts = Dt::all()->where('type_maintenance', '=', 'Maintenance Externe');
 
-        $externals=External::all();
-        $vehicules=Vehicule::all();
-        $drivers=Staff::all()->where('person_type','=','Conducteur');
+        $externals = External::all();
+        $vehicules = Vehicule::all();
+        $drivers = Staff::all()->where('person_type', '=', 'Conducteur');
 
         return view('ParkManager.externals.index')
-        ->with('externals',$externals)->with('vehicules',$vehicules)->with('drivers',$drivers)->with('dts',$dts);
-
-
+            ->with('externals', $externals)->with('vehicules', $vehicules)->with('drivers', $drivers)->with('dts', $dts);
     }
 
     /**
@@ -44,14 +45,23 @@ class ExternalController extends Controller
     public function createExternal($id)
     {
 
-        $dt=Dt::find($id);
-        $vehicule=Vehicule::find($dt->vehicule_id);
+        $dt = Dt::find($id);
+        $vehicule = Vehicule::find($dt->vehicule_id);
         $external = new External();
-       $staffs=Staff::all()->where('person_type','=','Personnel du parc');
-        $drivers=Staff::all()->where('person_type','=','Conducteur');
-          return view('ParkManager.externals.create',
-          compact('external','dt'
-          , 'drivers', 'staffs', 'vehicule'));
+        $staffs = Staff::all()->where('person_type', '=', 'Personnel du parc');
+        $drivers = Staff::all()->where('person_type', '=', 'Conducteur');
+        $garanties = Garanti::all();
+        return view(
+            'ParkManager.externals.create',
+            compact(
+                'external',
+                'dt',
+                'drivers',
+                'staffs',
+                'vehicule',
+                'garanties'
+            )
+        );
     }
 
     /**
@@ -63,33 +73,43 @@ class ExternalController extends Controller
     public function storeExternal(Request $request)
     {
 
-        $external=External:: create($request->only( 'id', 'dt_code', 'vehicule_id', 'contract', 'supplier', 'panne_type',  'changed_piece', 'start_date', 'end_date', 'price',
-    ));
+        $external = External::create($request->only(
+            'id',
+            'dt_code',
+            'vehicule_id',
+            'contract',
+            'supplier_id',
+            'panne_type',
+            'changed_piece',
+            'start_date',
+            'end_date',
+            'price',
+        ));
 
-    $dt=Dt::find($external->dt_code);
-    $dt->previous_state=$dt->state;
-    $dt->state='fait';
-    $dt->save();
-$vehicule=Vehicule::find($external->vehicule_id);
-$vehicule->previous_state=$vehicule->vehicle_state;
-$vehicule->vehicle_state='Libre';
-$vehicule->save();
+        $dt = Dt::find($external->dt_code);
+        $dt->previous_state = $dt->state;
+        $dt->state = 'fait';
+        $dt->save();
+        $vehicule = Vehicule::find($external->vehicule_id);
+        $vehicule->previous_state = $vehicule->vehicle_state;
+        $vehicule->vehicle_state = 'Libre';
+        $vehicule->save();
 
-$usersA = User::all()->where('type', '=', 'Gestionnaire parc');
-$usersB = User::all()->where('type', '=', 'Utilisateur');
+        $usersA = User::all()->where('type', '=', 'Gestionnaire parc');
+        $usersB = User::all()->where('type', '=', 'Utilisateur');
 
-$currentUser=User::find($dt->user_id);
-$notif = new MoreNotifs();
-$notif->details = ' la maintenance externe pour vehcule: ' . $external->vehicule_id . ' est fait';
-$notif->save();
-foreach ($usersA as $user) {
-    $user->notify(new ExternamVNotification($external, $notif));
-}
-foreach ($usersB as $user) {
-    $user->notify(new ExternamVNotification($external, $notif));
-}
-$currentUser->notify(new ExternamVNotification($external, $notif));
-    return redirect ('/ParkManager/externals');
+        $currentUser = User::find($dt->user_id);
+        $notif = new MoreNotifs();
+        $notif->details = ' la maintenance externe pour vehcule: ' . $external->vehicule_id . ' est fait';
+        $notif->save();
+        foreach ($usersA as $user) {
+            $user->notify(new ExternamVNotification($external, $notif));
+        }
+        foreach ($usersB as $user) {
+            $user->notify(new ExternamVNotification($external, $notif));
+        }
+        $currentUser->notify(new ExternamVNotification($external, $notif));
+        return redirect('/ParkManager/externals')->with('success', "vous avez ajouter une Maintenances externes avec succès");
     }
 
     /**
@@ -100,14 +120,21 @@ $currentUser->notify(new ExternamVNotification($external, $notif));
      */
     public function showExternal($id)
     {
-        $external =External::find($id);
-        $dt=Dt::find($external->dt_code);
-        $vehicule=Vehicule::find($external->vehicule_id);
-        $staffs=Staff::all()->where('person_type','=','Personnel du parc');
-        $driver=Staff::find($external->driver_id);
-        return view('ParkManager.externals.view',
-        compact('external','dt'
-        , 'driver',  'vehicule','staffs'));
+        $external = External::find($id);
+        $dt = Dt::find($external->dt_code);
+        $vehicule = Vehicule::find($external->vehicule_id);
+        $staffs = Staff::all()->where('person_type', '=', 'Personnel du parc');
+        $driver = Staff::find($external->driver_id);
+        return view(
+            'ParkManager.externals.view',
+            compact(
+                'external',
+                'dt',
+                'driver',
+                'vehicule',
+                'staffs'
+            )
+        );
     }
 
     /**
@@ -118,14 +145,21 @@ $currentUser->notify(new ExternamVNotification($external, $notif));
      */
     public function editExternal($id)
     {
-        $external =External::find($id);
-        $dt=Dt::find($external->dt_code);
-        $vehicule=Vehicule::find($external->vehicule_id);
-        $staffs=Staff::all()->where('person_type','=','Personnel du parc');
-        $drivers=Staff::all()->where('person_type','=','Conducteur');
-          return view('ParkManager.externals.edit',
-          compact('dt','external'
-          , 'drivers', 'staffs', 'vehicule'));
+        $external = External::find($id);
+        $dt = Dt::find($external->dt_code);
+        $vehicule = Vehicule::find($external->vehicule_id);
+        $staffs = Staff::all()->where('person_type', '=', 'Personnel du parc');
+        $drivers = Staff::all()->where('person_type', '=', 'Conducteur');
+        return view(
+            'ParkManager.externals.edit',
+            compact(
+                'dt',
+                'external',
+                'drivers',
+                'staffs',
+                'vehicule'
+            )
+        );
     }
 
     /**
@@ -137,10 +171,20 @@ $currentUser->notify(new ExternamVNotification($external, $notif));
      */
     public function updateExternal(Request $request, $id)
     {
-        $external =External::find($id);
-        $external->update($request->only('id', 'dt_code', 'vehicule_id', 'contract', 'supplier', 'panne_type',  'changed_piece', 'start_date', 'end_date', 'price',
-    ));
-    return redirect ('/ParkManager/externals');
+        $external = External::find($id);
+        $external->update($request->only(
+            'id',
+            'dt_code',
+            'vehicule_id',
+            'contract',
+            'supplier',
+            'panne_type',
+            'changed_piece',
+            'start_date',
+            'end_date',
+            'price',
+        ));
+        return redirect('/ParkManager/externals')->with('success', "vous avez modifier une Maintenances externes avec succès");
     }
 
     /**
@@ -151,15 +195,15 @@ $currentUser->notify(new ExternamVNotification($external, $notif));
      */
     public function destroyExternal($id)
     {
-        $external=External::find($id);
-        $dt=Dt::find($external->dt_code);
-        $dt->state=$dt->previous_state;
+        $external = External::find($id);
+        $dt = Dt::find($external->dt_code);
+        $dt->state = $dt->previous_state;
         $dt->save();
-    $vehicule=Vehicule::find($external->vehicule_id);
-    $vehicule->vehicle_state=    $vehicule->previous_state;
-    $vehicule->save();
+        $vehicule = Vehicule::find($external->vehicule_id);
+        $vehicule->vehicle_state =    $vehicule->previous_state;
+        $vehicule->save();
 
         $external->delete();
-        return redirect('/ParkManager/externals');
+        return redirect('/ParkManager/externals')->with('success', "vous avez supprimer une Maintenances externes avec succès");
     }
 }

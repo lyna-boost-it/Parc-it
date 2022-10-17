@@ -7,6 +7,7 @@ use App\Dt;
 use App\DtMaterial;
 use App\External;
 use App\ExternalMaterial;
+use App\Garanti;
 use App\Http\Controllers\Controller;
 use App\Material;
 use App\Models\User;
@@ -15,8 +16,10 @@ use App\Notifications\ExternamMNotification;
 use App\Staff;
 use App\Vehicule;
 use Illuminate\Http\Request;
+
 class ExternalMController extends Controller
-{public function __construct()
+{
+    public function __construct()
     {
         $this->middleware('auth');
     }
@@ -27,14 +30,13 @@ class ExternalMController extends Controller
      */
     public function index()
     {
-        $dts=DtMaterial::all()->where('type_maintenance','=','Maintenance Externe');
+        $dts = DtMaterial::all()->where('type_maintenance', '=', 'Maintenance Externe');
 
-        $externals=ExternalMaterial::all();
-        $materials=Material::all();
+        $externals = ExternalMaterial::all();
+        $materials = Material::all();
 
         return view('ParkManager.externalsM.index')
-        ->with('externals',$externals)->with('materials',$materials) ->with('dts',$dts);
-
+            ->with('externals', $externals)->with('materials', $materials)->with('dts', $dts);
     }
 
     /**
@@ -45,12 +47,14 @@ class ExternalMController extends Controller
     public function createExternal($id)
     {
 
-        $dt=DtMaterial::find($id);
-        $material=Material::find($dt->mm_id);
+        $dt = DtMaterial::find($id);
+        $material = Material::find($dt->mm_id);
         $external = new ExternalMaterial();
-
-          return view('ParkManager.externalsM.create',
-          compact('external','dt', 'material'));
+$garanties=Garanti::all();
+        return view(
+            'ParkManager.externalsM.create',
+            compact('external', 'dt', 'material','garanties')
+        );
     }
 
     /**
@@ -62,33 +66,42 @@ class ExternalMController extends Controller
     public function storeExternal(Request $request)
     {
 
-        $external=ExternalMaterial:: create($request->only(       'id', 'dt_code', 'mm_id',
-        'contract', 'supplier', 'panne_type',  'changed_piece', 'start_date', 'end_date', 'price',
-));
+        $external = ExternalMaterial::create($request->only(
+            'id',
+            'dt_code',
+            'mm_id',
+            'contract',
+            'supplier_id',
+            'panne_type',
+            'changed_piece',
+            'start_date',
+            'end_date',
+            'price',
+        ));
 
-    $dt=DtMaterial::find($external->dt_code);
-    $dt->previous_state=$dt->state;
-    $dt->state='fait';
-    $dt->save();
-$material=Material::find($external->mm_id);
-$material->previous_state=$material->material_state;
-$material->material_state='Libre';
-$material->save();
-$usersA = User::all()->where('type', '=', 'Gestionnaire parc');
-$usersB = User::all()->where('type', '=', 'Utilisateur');
+        $dt = DtMaterial::find($external->dt_code);
+        $dt->previous_state = $dt->state;
+        $dt->state = 'fait';
+        $dt->save();
+        $material = Material::find($external->mm_id);
+        $material->previous_state = $material->material_state;
+        $material->material_state = 'Libre';
+        $material->save();
+        $usersA = User::all()->where('type', '=', 'Gestionnaire parc');
+        $usersB = User::all()->where('type', '=', 'Utilisateur');
 
-$currentUser=User::find($dt->user_id);
-$notif = new MoreNotifs();
-$notif->details = ' la maintenance externe pour machine: ' . $external->vehicule_id . ' est fait';
-$notif->save();
-foreach ($usersA as $user) {
-    $user->notify(new ExternamMNotification($external, $notif));
-}
-foreach ($usersB as $user) {
-    $user->notify(new ExternamMNotification($external, $notif));
-}
-$currentUser->notify(new ExternamMNotification($external, $notif));
-    return redirect ('/ParkManager/externalsM');
+        $currentUser = User::find($dt->user_id);
+        $notif = new MoreNotifs();
+        $notif->details = ' la maintenance externe pour machine: ' . $external->vehicule_id . ' est fait';
+        $notif->save();
+        foreach ($usersA as $user) {
+            $user->notify(new ExternamMNotification($external, $notif));
+        }
+        foreach ($usersB as $user) {
+            $user->notify(new ExternamMNotification($external, $notif));
+        }
+        $currentUser->notify(new ExternamMNotification($external, $notif));
+        return redirect('/ParkManager/externalsM')->with('success', "vous avez ajouter une Maintenances externe avec succès");
     }
 
     /**
@@ -99,12 +112,14 @@ $currentUser->notify(new ExternamMNotification($external, $notif));
      */
     public function showExternal($id)
     {
-        $external =ExternalMaterial::find($id);
-        $dt=DtMaterial::find($external->dt_code);
-        $material=Material::find($external->mm_id);
+        $external = ExternalMaterial::find($id);
+        $dt = DtMaterial::find($external->dt_code);
+        $material = Material::find($external->mm_id);
 
-        return view('ParkManager.externalsM.view',
-        compact('external','dt' ,'material' ));
+        return view(
+            'ParkManager.externalsM.view',
+            compact('external', 'dt', 'material')
+        );
     }
 
     /**
@@ -115,12 +130,14 @@ $currentUser->notify(new ExternamMNotification($external, $notif));
      */
     public function editExternal($id)
     {
-        $external =ExternalMaterial::find($id);
-        $dt=DtMaterial::find($external->dt_code);
-        $material=Material::find($external->mm_id);
+        $external = ExternalMaterial::find($id);
+        $dt = DtMaterial::find($external->dt_code);
+        $material = Material::find($external->mm_id);
 
-          return view('ParkManager.externalsM.edit',
-          compact( 'dt' , 'material','external'));
+        return view(
+            'ParkManager.externalsM.edit',
+            compact('dt', 'material', 'external')
+        )->with('success', "vous avez modifier une Maintenances externe avec succès");
     }
 
     /**
@@ -132,10 +149,20 @@ $currentUser->notify(new ExternamMNotification($external, $notif));
      */
     public function updateExternal(Request $request, $id)
     {
-        $external =ExternalMaterial::find($id);
-        $external->update($request->only('id', 'dt_code', 'mm_id', 'contract', 'supplier', 'panne_type',  'changed_piece', 'start_date', 'end_date', 'price',
-));
-    return redirect ('/ParkManager/externalsM');
+        $external = ExternalMaterial::find($id);
+        $external->update($request->only(
+            'id',
+            'dt_code',
+            'mm_id',
+            'contract',
+            'supplier',
+            'panne_type',
+            'changed_piece',
+            'start_date',
+            'end_date',
+            'price',
+        ));
+        return redirect('/ParkManager/externalsM')->with('success', "vous avez modifier une Maintenances externe avec succès");
     }
 
     /**
@@ -146,15 +173,15 @@ $currentUser->notify(new ExternamMNotification($external, $notif));
      */
     public function destroyExternal($id)
     {
-        $external=ExternalMaterial::find($id);
-        $dt=DtMaterial::find($external->dt_code);
-        $dt->state=$dt->previous_state;
+        $external = ExternalMaterial::find($id);
+        $dt = DtMaterial::find($external->dt_code);
+        $dt->state = $dt->previous_state;
         $dt->save();
-    $material=Material::find($external->mm_id);
-    $material->material_state= $material->previous_state;
-    $material->save();
+        $material = Material::find($external->mm_id);
+        $material->material_state = $material->previous_state;
+        $material->save();
 
         $external->delete();
-        return redirect('/ParkManager/externalsM');
+        return redirect('/ParkManager/externalsM')->with('success', "vous avez supprimer une Maintenances externe avec succès");
     }
 }

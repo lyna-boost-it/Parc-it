@@ -88,7 +88,7 @@ foreach ($usersB as $user) {
     $user->notify(new CpVNotification($cp, $notif));
 }
 $currentUser->notify(new CpVNotification($cp, $notif));
-    return redirect ('/ParkManager/cps');
+    return redirect ('/ParkManager/cps')->with('success',"vous avez ajouter une Pièces consommées avec succès");
     }
 
     /**
@@ -142,7 +142,7 @@ $currentUser->notify(new CpVNotification($cp, $notif));
            ));
            $cp->full_price=$cp->price*$cp->quantity;
            $cp->save();
-    return redirect ('/ParkManager/cps');
+    return redirect ('/ParkManager/cps')->with('success',"vous avez modifier une Pièces consommées avec succès");
     }
 
     /**
@@ -162,6 +162,6 @@ $currentUser->notify(new CpVNotification($cp, $notif));
     $vehicule->save();
 
         $cp->delete();
-        return redirect('/ParkManager/cps');
+        return redirect('/ParkManager/cps')->with('success',"vous avez supprimer une Pièces consommées avec succès");
     }
 }

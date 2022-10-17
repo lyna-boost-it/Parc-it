@@ -126,7 +126,7 @@ $maintenance->save();
                            $user->notify(new DtMNotification($dt, $notif));
                        }
 
-        return redirect()->route ('ParkManager.dtsM.index');
+        return redirect()->route ('ParkManager.dtsM.index')->with('success',"vous avez ajouter une demandes de travaux avec succès");
     }
 
     /**
@@ -174,7 +174,7 @@ $maintenance->save();
         $dt = DtMaterial::find($id);
         $dt->update($request->only('id','code_dt','enter_time','enter_date','type_panne','nature_panne','emp_id','unit_id'
         ,'staff_id','action' ,'observation','mm_id','type_maintenance','state'
-        ));     return redirect()->route ('ParkManager.dtsM.index');
+        ));     return redirect()->route ('ParkManager.dtsM.index')->with('success',"vous avez modifier une demandes de travaux avec succès");
 
     }
 
@@ -191,6 +191,6 @@ $maintenance->save();
         $material->material_state=$material->previous_state;
         $material->save();
         $maintenance->delete();
-        return redirect()->route ('ParkManager.dtsM.index');
+        return redirect()->route ('ParkManager.dtsM.index')->with('success',"vous avez supprimer une demandes de travaux avec succès");
     }
 }

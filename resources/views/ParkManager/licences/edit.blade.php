@@ -25,7 +25,7 @@
 
         <br><br><br>
         <div class="card-header">
-            <h3 class="title">{{ __('Modifier un  permis de circulation ') }}</h3>
+            <h3 class="title">{{ __('Renouvler un  permis de circulation ') }}</h3>
         </div>
 
 

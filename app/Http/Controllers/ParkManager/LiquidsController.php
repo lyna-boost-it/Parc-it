@@ -82,7 +82,7 @@ class LiquidsController extends Controller
         $liquid->price=$request->price;
         $liquid->save();
 
-        return redirect('/ParkManager/liquids');
+        return redirect('/ParkManager/liquids')->with('success',"Modification enregistrée");
     }
 
     /**

@@ -15,6 +15,7 @@
 		<div class="main-container">
 			<div class="xs-pd-20-10 pd-ltr-20">
 				<div class="page-header">
+                    @include('inc.flash')
 					<div class="row">
 						<div class="col-md-6 col-sm-12">
 							<div class="title">
@@ -103,7 +104,7 @@
                                                       <a class="dropdown-item" href="{{route('ParkManager.gasPipes.show',$gaspipe->id)}}"
                                                       ><i class="dw dw-eye"></i> Consulter</a>
 
-                                                      
+
 
                                                         @if (Auth::user()->type == 'Gestionnaire Sup')   <a class="dropdown-item"  style="  color: currentColor;
                                                         cursor: not-allowed;

@@ -108,7 +108,7 @@ foreach ($usersB as $user) {
     $user->notify(new RepairVNotification($repair, $notif));
 }
 $currentUser->notify(new RepairVNotification($repair, $notif));
-    return redirect ('/ParkManager/repairs');
+    return redirect ('/ParkManager/repairs')->with('success',"vous avez ajouter une Reparation avec succès");
     }
 
     /**
@@ -161,7 +161,7 @@ $currentUser->notify(new RepairVNotification($repair, $notif));
             'id', 'dt_code', 'intervention_date',    'diagnostic', 'repaired_breakdowns', 'liquid',  'lubricant',
             'end_date', 'end_time', 'driver_id', 'observation', 'vehicule_id',
     ));
-    return redirect ('/ParkManager/repairs');
+    return redirect ('/ParkManager/repairs')->with('success',"vous avez modifier une Reparation avec succès");
     }
 
     /**
@@ -190,6 +190,6 @@ $liquid->save();
 $lubrifiant->quantity=$lubrifiant->quantity+$repair->lubricant;
 $lubrifiant->save();
         $repair->delete();
-        return redirect('/ParkManager/repairs');
+        return redirect('/ParkManager/repairs')->with('success',"vous avez supprimer une Reparation avec succès");
     }
 }

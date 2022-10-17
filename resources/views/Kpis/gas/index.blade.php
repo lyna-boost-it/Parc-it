@@ -333,7 +333,16 @@
                 </div>
 
 
+                <div class="card-box pd-20 height-100-p mb-30">
+                    <div class="row align-items-center">
+                        <div class="weight-600 font-30 text-grey">       Consommation de Carburant pour matériels motorisés
 
+                        </div>
+
+
+
+                    </div>
+                </div>
                 <div class="row">
 
 
