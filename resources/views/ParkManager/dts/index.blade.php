@@ -136,7 +136,7 @@
                                                             style=" background-color: transparent;
                                                         border-color: transparent;"
                                                              >
-                                                             <input type="hidden" value="Machine"
+                                                             <input type="hidden" value="Vehicule"
                                                              id="type" name="type">
                                                             <i class="dw dw-check"></i>Valider
 

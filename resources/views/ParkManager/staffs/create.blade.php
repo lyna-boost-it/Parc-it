@@ -150,22 +150,32 @@
                                         </div>
 
 
-
-
                                         <div class="card-body">
                                             <div class="row">
                                                 <label
-                                                    class="col-md-3 col-form-label">{{ __(' Diplôme pour les conducteurs d\'engins') }}</label>
-                                                <div class="col-md-9" for="conducteur_field">
+                                                    class="col-md-3 col-form-label">{{ __('Diplôme pour les conducteurs d\'engins') }}</label>
+                                                <div class="col-md-9">
                                                     <div class="form-group">
-                                                        <input type="number" id="conducteur_field" name="diploma"
-                                                            class="form-control" placeholder="Diplôme"
-                                                            value="{{ $staff->diploma }}">
-                                                    </div>
+                                                        <select name="diploma1"
+                                                            value="{{ old('diploma1'), $staff->diploma }}"class="form-control"
+                                                            id="staff_type">
+                                                            <option value="Pas de diplôme">
+                                                                Pas de diplôme</option> <option value="CAP conducteur d'engins de travaux publics et carrières">
+                                                                CAP conducteur d'engins de travaux publics et carrières</option>
+                                                                <option value="TP conducteur d'engins de travaux publics ">
+                                                                TP conducteur d'engins de travaux publics </option>
+                                                                <option value="TP conducteur de pelle hydraulique et de chargeuse pelleteuse">
+                                                                TP conducteur de pelle hydraulique et de chargeuse pelleteuse</option>
+                                                                <option value="TP conducteur de bouteur et de chargeuse">
+                                                                TP conducteur de bouteur et de chargeuse</option>
 
+                                                        </select>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
+
+
 
                                     </div>
                                 </div>
@@ -182,7 +192,7 @@
                                             <label class="col-md-3 col-form-label">{{ __('  Diplôme') }}</label>
                                             <div class="col-md-9" for="Mstaff_field">
                                                 <div class="form-group">
-                                                    <input type="text" id="Mstaff_field" name="diploma"
+                                                    <input type="text" id="Mstaff_field" name="diploma2"
                                                         class="form-control" placeholder="Diplôme"
                                                         value="{{ $staff->diploma }}">
                                                 </div>
@@ -441,6 +451,7 @@
                                         </div>
                                     </div>
                                 </div>
+
 
 
 

@@ -111,7 +111,7 @@
                                             <div class="panel">
                                                 <div class="panel-body bio-desk">
                                                     <h4  style="display: inline;" >Les informations de la CARTE GRISE:</h4>
-                                                    <h5 style="display: inline;">  <a  href="/files/carteGrise_files/{{ $vehicule->path }}" >
+                                                    <h5 style="display: inline;"> <a  href="/files/carteGrise_files/{{ $vehicule->path }}" >
 
 
                                                         <span class="fa fa-eye  " style="color: #7e3dbb"> </span>

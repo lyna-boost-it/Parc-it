@@ -53,7 +53,7 @@
                                 </div>
                             </div>
 
-              
+
 
 
 
@@ -93,7 +93,8 @@
 
                                                 <select name="vehicule1" placeholder="  Vehicule" id="fourgonnettes"
                                                     id="v1" class="form-control">
-
+                                                    <option value=" "
+                                                    > </option>
                                                     @foreach ($fourgonnettes as $vehicule)
                                                         <option value="{{ $vehicule->id }}">
                                                             {{ $vehicule->code }} </option>
@@ -126,7 +127,8 @@
 
                                                 <select name="vehicule2" placeholder="  Vehicule" id="v2"
                                                     class="form-control" id="minibus">
-
+                                                    <option value=" "
+                                                    > </option>
                                                     @foreach ($minibuses as $v)
                                                         <option value="{{ $v->id }}">
                                                             {{ $v->code }} </option>
@@ -158,7 +160,8 @@
 
                                             <select name="vehicule3" placeholder="  Vehicule" id="pick-up"
                                                 id="v3" class="form-control" id="pick-up">
-
+                                                <option value=" "
+                                                > </option>
                                                 @foreach ($pickups as $e)
                                                     <option value="{{ $e->id }}">
                                                         {{ $e->code }} </option>

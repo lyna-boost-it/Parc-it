@@ -73,6 +73,9 @@ class StaffController extends Controller
         'driver_license_date',
         'diploma'
         ));
+        if($request->diploma1=='Pas de diplôme'){
+            $staff->diploma=$request->diploma2;$staff->save();
+        }else{$staff->diploma=$request->diploma1;$staff->save();}
 $type=$request->person_type;
 if($type=='Personnel du centre de maintenance'){
     $staff->function=$request->function1;

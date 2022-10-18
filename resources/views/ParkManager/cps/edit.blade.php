@@ -19,7 +19,7 @@
 
             </div>
             <div class="col-md-12 text-center">
-                                <form action="{{route('ParkManager.cps.updateCps',$cp->id)}}" method="post">
+                                <form action="{{route('ParkManager.cps.update',$cp->id)}}" method="post">
 
     @csrf      {{method_field('PUT')}}
 
@@ -30,16 +30,6 @@
         <div class="card-header">
             <h3 class="title">{{ __('Modifier une pièce consommée') }}</h3>
         </div>
-
-    <div class="card-header">
-            <h4 class="title">{{ __(' N° de la Demande de Travaux (DT):') }} {{ $dt->code_dt }}</h4>
-        </div>
-
-        <div class="card-header">
-            <h5 class="title">{{ __('Vehicule:') }} {{ $vehicule->code }}</h5>
-        </div>
-
-
 
 
 
@@ -171,13 +161,6 @@
                 </div>
             </div>
         </div>
-
-
-
-
-
-        <input type="hidden" id="vehicule_id" name="vehicule_id" value="{{ $vehicule->id }}">
-        <input type="hidden" id="dt_code" name="dt_code" value="{{ $dt->id }}">
 
 
 

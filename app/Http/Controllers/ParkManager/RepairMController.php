@@ -27,7 +27,7 @@ class RepairMController extends Controller
      */
     public function index()
     {
-        $dts=DtMaterial::all()->where('type_maintenance','=','Reparation');
+        $dts=DtMaterial::all()->where('type_maintenance','=','Reparation')->where('answer','=','Accepter');
         $repairs=RepairsMaterial::all();
         $materials=Material::all();
          return view('ParkManager.repairsM.index')

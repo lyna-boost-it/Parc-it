@@ -27,7 +27,7 @@ class MaintenanceController extends Controller
      */
     public function indexMaintenance()
     {
-        $dts=Dt::all()->where('type_maintenance','=','Entretien');
+        $dts=Dt::all()->where('type_maintenance','=','Entretien')->where('answer','=','Accepter');
 
         $maintenances=Maintenance::all();
         $vehicules=Vehicule::all();

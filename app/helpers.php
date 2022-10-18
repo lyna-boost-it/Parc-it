@@ -21,7 +21,8 @@ use App\Unit;
 use App\Vehicule;
 use Carbon\Carbon;
 use Illuminate\Notifications\Events\NotificationSent;
-
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -319,6 +320,20 @@ function Insurance_checker(Insurance $insurance)
         }
         $insurance->state = 'expiré';
         $insurance->save();
+    }else{
+        if ($date > $ldate &&  $insurance->state == 'expiré'){
+            $notif = new MoreNotifs();
+            $notif->details = 'l\'assurance de vehcule: ' . $insurance->vehicle_id . ' a a été mis à jour';
+            $notif->save();
+            foreach ($usersA as $user) {
+                $user->notify(new InsuranceNotification($insurance, $notif));
+            }
+            foreach ($usersB as $user) {
+                $user->notify(new InsuranceNotification($insurance, $notif));
+            }
+            $insurance->state = 'en cours';
+            $insurance->save();
+        }
     }
 }
 
@@ -378,7 +393,19 @@ function Controll_Checker(TechnicalControl $technical)
         foreach ($usersB as $user) {
             $user->notify(new ControllNotification($technical, $notif));
         }
-    }
+    }else {if($date > $ldate && $technical->state== "Non valide"){
+        $technical->state = "Valide";
+        $technical->save();
+        $notif = new MoreNotifs();
+        $notif->details = 'le contrôles techniques de vehcule: ' . $technical->vehicle_id . ' a été mis à jour';
+        $notif->save();
+        foreach ($usersA as $user) {
+            $user->notify(new ControllNotification($technical, $notif));
+        }
+        foreach ($usersB as $user) {
+            $user->notify(new ControllNotification($technical, $notif));
+        }
+    }}
 }
 function AllControll_Checker()
 {
@@ -414,3 +441,10 @@ function AllLisence_Checker()
         Lisence_Checker($technical);
     }
 }
+
+
+function pdf($fileName)
+    {
+        $path = storage_path('app/'.'pdf'.'/'.$fileName);
+        return response()->file($path);
+    }

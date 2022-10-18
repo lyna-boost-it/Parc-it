@@ -18,7 +18,7 @@
 
             </div>
             <div class="col-md-12 text-center">
-                                <form action="{{route('ParkManager.piecesMaterial.storeCps',$cp->id)}}" method="post">
+                                <form action="{{route('ParkManager.piecesMaterial.store',$cp->id)}}" method="post">
 
     @csrf
 
@@ -29,15 +29,6 @@
                         <div class="card-header">
                             <h3 class="title">{{ __('Créer une pièce consommée') }}</h3>
                         </div>
-
-                    <div class="card-header">
-                            <h4 class="title">{{ __(' N° de la Demande de Travaux (DT):') }} {{ $dt->code_dt }}</h4>
-                        </div>
-
-                        <div class="card-header">
-                            <h5 class="title">{{ __('matériel motorisé:') }} {{ $material->code }}</h5>
-                        </div>
-
 
 
 
@@ -143,15 +134,6 @@
 
 
 
-
-
-
-
-
-
-
-                        <input type="hidden" id="mm_id" name="mm_id" value="{{ $material->id }}">
-                        <input type="hidden" id="dt_code" name="dt_code" value="{{ $dt->id }}">
 
 
 

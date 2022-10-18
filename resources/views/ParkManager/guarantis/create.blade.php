@@ -246,7 +246,8 @@
                                             <select  name="vehicule1"   placeholder="  Vehicule"id="fourgonnettes"
                                           class="form-control"
                                                >
-
+                                               <option value=" "
+                                               >choisir un véhicule </option>
                                                 @foreach ($fourgonnettes as $vehicule)
 
                                                 <option value="{{ $vehicule->id }}"
@@ -281,7 +282,8 @@
                                             <select  name="vehicule2"   placeholder="  Vehicule"id="minibus"
                                             class="form-control"
                                                 id="minibus">
-
+                                                <option value=" "
+                                                >choisir un véhicule </option>
                                                 @foreach ($minibuses as $v)
 
                                                 <option value="{{ $v->id }}"
@@ -316,7 +318,8 @@
                                             <select  name="vehicule3"   placeholder="  Vehicule"id="pick-up"
                                             class="form-control"
                                                 id="pick-up">
-
+                                                <option value=" "
+                                                >choisir un véhicule </option>
                                                 @foreach ($pickups as $e)
 
                                                 <option value="{{ $e->id }}"

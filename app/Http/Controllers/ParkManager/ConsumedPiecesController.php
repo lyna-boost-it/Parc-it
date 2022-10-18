@@ -26,11 +26,10 @@ class ConsumedPiecesController extends Controller
         $dts=Dt::all()->where('type_maintenance','=','Pieces Consommees');
 
         $cps=ConsumedPieces::all();
-        $vehicules=Vehicule::all();
-        $drivers=Staff::all()->where('person_type','=','Conducteur');
+
 
         return view('ParkManager.cps.index')
-        ->with('cps',$cps)->with('vehicules',$vehicules)->with('drivers',$drivers)->with('dts',$dts);
+        ->with('cps',$cps)->with('dts',$dts);
 
 
     }
@@ -40,16 +39,15 @@ class ConsumedPiecesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function createCps($id)
+    public function create()
     {
-        $dt=Dt::find($id);
-        $vehicule=Vehicule::find($dt->vehicule_id);
+
         $cp = new ConsumedPieces();
        $staffs=Staff::all()->where('person_type','=','Personnel du parc');
         $drivers=Staff::all()->where('person_type','=','Conducteur');
           return view('ParkManager.cps.create',
-          compact('cp','dt'
-          , 'drivers', 'staffs', 'vehicule'));
+          compact('cp'
+          , 'drivers', 'staffs'));
     }
 
     /**
@@ -58,36 +56,15 @@ class ConsumedPiecesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storeCps(Request $request)
+    public function store(Request $request)
     {
         $cp=ConsumedPieces:: create($request->only(
             'id', 'dt_code' ,'reference','quantity',
             'price','designation','receip','vehicule_id'   ));
    $cp->full_price=$cp->price*$cp->quantity;
    $cp->save();
-    $dt=Dt::find($cp->dt_code);
-    $dt->previous_state=$dt->state;
-    $dt->state='fait';
-    $dt->save();
-$vehicule=Vehicule::find($cp->vehicule_id);
-$vehicule->previous_state=$vehicule->vehicle_state;
-$vehicule->vehicle_state='Libre';
-$vehicule->save();
 
-$usersA = User::all()->where('type', '=', 'Gestionnaire parc');
-$usersB = User::all()->where('type', '=', 'Utilisateur');
 
-$currentUser=User::find($dt->user_id);
-$notif = new MoreNotifs();
-$notif->details = 'la demande des Pièces consommées pour vehcule: ' . $cp->vehicule_id . ' est exécuter';
-$notif->save();
-foreach ($usersA as $user) {
-    $user->notify(new CpVNotification($cp, $notif));
-}
-foreach ($usersB as $user) {
-    $user->notify(new CpVNotification($cp, $notif));
-}
-$currentUser->notify(new CpVNotification($cp, $notif));
     return redirect ('/ParkManager/cps')->with('success',"vous avez ajouter une Pièces consommées avec succès");
     }
 
@@ -97,16 +74,14 @@ $currentUser->notify(new CpVNotification($cp, $notif));
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showCps($id)
+    public function show($id)
     {
         $cp =ConsumedPieces::find($id);
-        $dt=Dt::find($cp->dt_code);
-        $vehicule=Vehicule::find($cp->vehicule_id);
-        $staffs=Staff::all()->where('person_type','=','Personnel du parc');
-        $driver=Staff::find($cp->driver_id);
+
+
+
         return view('ParkManager.cps.view',
-        compact('cp','dt'
-        , 'driver',  'vehicule','staffs'));
+        compact('cp'));
     }
 
     /**
@@ -115,16 +90,12 @@ $currentUser->notify(new CpVNotification($cp, $notif));
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function editCps($id)
+    public function edit($id)
     {
         $cp =ConsumedPieces::find($id);
-        $dt=Dt::find($cp->dt_code);
-        $vehicule=Vehicule::find($cp->vehicule_id);
-        $staffs=Staff::all()->where('person_type','=','Personnel du parc');
-        $drivers=Staff::all()->where('person_type','=','Conducteur');
+
           return view('ParkManager.cps.edit',
-          compact('cp','dt'
-          , 'drivers', 'staffs', 'vehicule'));
+          compact('cp'));
     }
 
     /**
@@ -134,7 +105,7 @@ $currentUser->notify(new CpVNotification($cp, $notif));
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function updateCps(Request $request, $id)
+    public function update(Request $request, $id)
     { $cp =ConsumedPieces::find($id);
         $cp->update($request->only(
             'id', 'dt_code' ,'reference','quantity',
@@ -151,15 +122,10 @@ $currentUser->notify(new CpVNotification($cp, $notif));
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroyCps($id)
+    public function destroy($id)
     {
         $cp=ConsumedPieces::find($id);
-        $dt=Dt::find($cp->dt_code);
-        $dt->state=$dt->previous_state;
-        $dt->save();
-    $vehicule=Vehicule::find($cp->vehicule_id);
-    $vehicule->vehicle_state=    $vehicule->previous_state;
-    $vehicule->save();
+
 
         $cp->delete();
         return redirect('/ParkManager/cps')->with('success',"vous avez supprimer une Pièces consommées avec succès");

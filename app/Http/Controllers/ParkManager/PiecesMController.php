@@ -27,13 +27,11 @@ class PiecesMController extends Controller
      */
     public function index()
     {
-        $dts=DtMaterial::all()->where('type_maintenance','=','Pieces Consommees');
 
         $cps=PieceMaterial::all();
-        $materials=Material::all();
 
         return view('ParkManager.piecesMaterial.index')
-        ->with('cps',$cps)->with('materials',$materials) ->with('dts',$dts);
+        ->with('cps',$cps) ;
 
 
     }
@@ -43,14 +41,13 @@ class PiecesMController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function createCps($id)
+    public function create( )
     {
-        $dt=DtMaterial::find($id);
-        $material=Material::find($dt->mm_id);
+
         $cp = new PieceMaterial();
 
           return view('ParkManager.piecesMaterial.create',
-          compact('cp','dt' , 'material'));
+          compact('cp' ));
     }
 
     /**
@@ -59,35 +56,14 @@ class PiecesMController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storeCps(Request $request)
+    public function store(Request $request)
     {
         $cp=PieceMaterial:: create($request->only( 'id', 'dt_code' ,'ref','quantity','price','designation','receip','mm_id'   ));
         $cp->full_price=$cp->price*$cp->quantity;
         $cp->save();
-    $dt=DtMaterial::find($cp->dt_code);
-    $dt->previous_state=$dt->state;
-    $dt->state='fait';
-    $dt->save();
-$material=Material::find($cp->mm_id);
-$material->previous_state=$material->material_state;
-$material->material_state='Libre';
-$material->save();
 
 
-$usersA = User::all()->where('type', '=', 'Gestionnaire parc');
-$usersB = User::all()->where('type', '=', 'Utilisateur');
 
-$currentUser=User::find($dt->user_id);
-$notif = new MoreNotifs();
-$notif->details = 'la demande des Pièces consommées pour machine: ' . $cp->vehicule_id . ' est exécuter';
-$notif->save();
-foreach ($usersA as $user) {
-    $user->notify(new CpMNotification($cp, $notif));
-}
-foreach ($usersB as $user) {
-    $user->notify(new CpMNotification($cp, $notif));
-}
-$currentUser->notify(new CpMNotification($cp, $notif));
     return redirect ('/ParkManager/piecesMaterial')->with('success',"vous avez ajouter une pièces consommée avec succès");
     }
 
@@ -97,13 +73,12 @@ $currentUser->notify(new CpMNotification($cp, $notif));
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showCps($id)
+    public function show($id)
     {
         $cp =PieceMaterial::find($id);
-        $dt=DtMaterial::find($cp->dt_code);
-        $material=Material::find($cp->mm_id);
+
         return view('ParkManager.piecesMaterial.view',
-        compact('cp','dt','material'));
+        compact('cp' ));
     }
 
     /**
@@ -112,13 +87,12 @@ $currentUser->notify(new CpMNotification($cp, $notif));
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function editCps($id)
+    public function edit($id)
     {
         $cp =PieceMaterial::find($id);
-        $dt=DtMaterial::find($cp->dt_code);
-        $material=Material::find($cp->mm_id);
+
           return view('ParkManager.piecesMaterial.edit',
-          compact('cp','dt','material'));
+          compact('cp' ));
     }
 
     /**
@@ -128,7 +102,7 @@ $currentUser->notify(new CpMNotification($cp, $notif));
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function updateCps(Request $request, $id)
+    public function update(Request $request, $id)
     {
         $cp =PieceMaterial::find($id);
         $cp->update($request->only( 'id', 'dt_code' ,'ref','quantity','price','designation','receip','mm_id'));
@@ -143,15 +117,10 @@ $currentUser->notify(new CpMNotification($cp, $notif));
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroyCps($id)
+    public function destroy($id)
     {
         $cp=PieceMaterial::find($id);
-        $dt=DtMaterial::find($cp->dt_code);
-        $dt->state=$dt->previous_state;
-        $dt->save();
-    $material=Material::find($cp->mm_id);
-    $material->material_state=    $material->previous_state;
-    $material->save();
+
         $cp->delete();
         return redirect('/ParkManager/piecesMaterial')->with('success',"vous avez supprimer une pièces consommée avec succès");
     }

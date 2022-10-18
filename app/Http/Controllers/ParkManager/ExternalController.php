@@ -27,7 +27,7 @@ class ExternalController extends Controller
      */
     public function index()
     {
-        $dts = Dt::all()->where('type_maintenance', '=', 'Maintenance Externe');
+        $dts = Dt::all()->where('type_maintenance', '=', 'Maintenance Externe')->where('answer','=','Accepter');
 
         $externals = External::all();
         $vehicules = Vehicule::all();

@@ -118,6 +118,9 @@ Route::namespace('ParkManager')->prefix('ParkManager')->name('ParkManager.')->gr
     Route::put('/attendances/updateAttendance/{id}', 'AttendanceController@updateAttendance')->name('attendances.updateAttendance');
     Route::get('/attendances/{id}/editAttendance', 'AttendanceController@editAttendance')->name('attendances.editAttendance');
     Route::resource('/attendances', 'AttendanceController');
+    Route::resource('/cps', 'ConsumedPiecesController');
+   Route::resource('/piecesMaterial', 'PiecesMController');
+
 
 
     Route::resource('/absences', 'AbsenceController');
@@ -154,13 +157,7 @@ Route::namespace('ParkManager')->prefix('ParkManager')->name('ParkManager.')->gr
     Route::get('/maintenances', 'MaintenanceController@indexMaintenance')->name('maintenances.indexMaintenance');
 
 
-    Route::get('/cps/createCps/{id}', 'ConsumedPiecesController@createCps')->name('cps.createCps');
-    Route::get('/cps/showCps/{id}', 'ConsumedPiecesController@showCps')->name('cps.showCps');
-    Route::delete('/cps/destroyCps/{id}', 'ConsumedPiecesController@destroyCps')->name('cps.destroyCps');
-    Route::post('/cps/storeCps', 'ConsumedPiecesController@storeCps')->name('cps.storeCps');
-    Route::put('/cps/updateCps/{id}', 'ConsumedPiecesController@updateCps')->name('cps.updateCps');
-    Route::get('/cps/{id}/editCps', 'ConsumedPiecesController@editCps')->name('cps.editCps');
-    Route::get('/cps', 'ConsumedPiecesController@index')->name('cps.index');
+
 
 
 
@@ -174,13 +171,6 @@ Route::namespace('ParkManager')->prefix('ParkManager')->name('ParkManager.')->gr
     Route::resource('/materialsmanager', 'MaterialManagerController');
     Route::resource('/dtsM', 'DtMController');
 
-    Route::get('/piecesMaterial/createCps/{id}', 'PiecesMController@createCps')->name('piecesMaterial.createCps');
-    Route::get('/piecesMaterial/showCps/{id}', 'PiecesMController@showCps')->name('piecesMaterial.showCps');
-    Route::delete('/piecesMaterial/destroyCps/{id}', 'PiecesMController@destroyCps')->name('piecesMaterial.destroyCps');
-    Route::post('/piecesMaterial/storeCps', 'PiecesMController@storeCps')->name('piecesMaterial.storeCps');
-    Route::put('/piecesMaterial/updateCps/{id}', 'PiecesMController@updateCps')->name('piecesMaterial.updateCps');
-    Route::get('/piecesMaterial/{id}/editCps', 'PiecesMController@editCps')->name('piecesMaterial.editCps');
-    Route::get('/piecesMaterial', 'PiecesMController@index')->name('piecesMaterial.index');
 
     Route::get('/repairsM', 'RepairMController@index')->name('repairsM.index');
     Route::get('/repairsM/createRepairs/{id}', 'RepairMController@createRepairs')->name('repairsM.createRepairs');

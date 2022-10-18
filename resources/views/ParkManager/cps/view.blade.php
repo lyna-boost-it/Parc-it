@@ -20,7 +20,7 @@
                     <div class="page-header">
                         <div class="row">
                                 <div class="title">
-                                    <h4>Information d'une pièce consommée {{ $dt->code_dt }}: </h4>
+                                    <h4>Information d'une pièce consommée: </h4>
                                 </div>
 
                         </div>
@@ -60,27 +60,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6  ">
-                            <div class="panel">
-                                <div class="panel-body bio-chart"  >
-                                        <h4  style="display: inline; ">VEHICULE: </h4>
-                                        <h5  style="display: inline;"> {{ $vehicule->vehicle_type }}</h5>
-                                        <br>
-                                        <h4 style="display: inline;" > Numéro de Série:</h4>
-                                        <h5 style="display: inline;">{{ $vehicule->code }}</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6  ">
-                            <div class="panel">
-                                <div class="panel-body bio-desk">
-                                        <h4   style="display: inline;">Date d’acquisition: </h4>
-                                        <h5 style="display: inline;">{{ $vehicule->acquisition_date }}</h5>
 
-
-                                </div>
-                            </div>
-                        </div>
 
 
 

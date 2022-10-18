@@ -30,7 +30,7 @@
   opacity: 0.5;
   text-decoration: none;  @endif
                         " href="{{route('ParkManager.technicalcontrols.create')}}" class="btn btn-sm btn-success">
-                          Créer un permis de circulation
+                          Créer un contrôles technique
                         </a>
 
 					</div>

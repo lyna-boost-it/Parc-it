@@ -26,7 +26,7 @@ class RepairController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   $dts=Dt::all()->where('type_maintenance','=','Reparation');
+    {   $dts=Dt::all()->where('type_maintenance','=','Reparation')->where('answer','=','Accepter');
         $repairs=Repair::all();
         $vehicules=Vehicule::all();
         $drivers=Staff::all()->where('person_type','=','Conducteur');

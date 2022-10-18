@@ -20,7 +20,7 @@
                     <div class="page-header">
                         <div class="row">
                                 <div class="title">
-                                    <h3>Information d'une pièce consommée {{ $dt->code_dt }}:</h3>
+                                    <h3>Information d'une pièce consommée :</h3>
                                  </div>
 
                         </div>
@@ -51,50 +51,21 @@
                         <div class="col-md-6  ">
                             <div class="panel">
                                 <div class="panel-body bio-desk">
-                                        <h4   style="display: inline;">Type de la machine: </h4>
-                                        <h5 style="display: inline;">{{ $material->type_of_machine}} </h5>
-                                        <br>
+
                                         <h4 style="display: inline;" >Qte: </h4>
                                         <h5 style="display: inline;">{{ $cp->quantity }} </h5>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6  ">
-                            <div class="panel">
-                                <div class="panel-body bio-chart"  >
-                                        <h4  style="display: inline; ">Modèle: </h4>
-                                        <h5  style="display: inline;">{{ $material->model }} </h5>
                                         <br>
                                         <h4 style="display: inline;" >Prix: </h4>
                                         <h5 style="display: inline;">{{  $cp->price }}</h5>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-
-                        <div class="col-md-6  ">
-                            <div class="panel">
-                                <div class="panel-body bio-chart"  >
-                                        <h4  style="display: inline; ">matériel motorisé: </h4>
-                                        <h5  style="display: inline;">{{ $material->type_of_machine }} </h5>
-                                        <br>
-                                        <h4 style="display: inline;" >Numéro de Série: </h4>
-                                        <h5 style="display: inline;">{{ $material->code }} </h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6  ">
-                            <div class="panel">
-                                <div class="panel-body bio-desk">
-                                        <h4   style="display: inline;">Date d'acquisition: </h4>
-                                        <h5 style="display: inline;">{{ $material->acquisition_date }} </h5>
 
                                 </div>
                             </div>
                         </div>
+
+
+
+
+
                     </div>
 
 
