@@ -89,10 +89,13 @@
                 @enderror" name="vehicle_type" required autocomplete="vehicle_type" autofocus>
                     <option value="" disabled selected> Choisissez un type de véhicule</option>
 
-                    <option value="mini-fourgonnettes" {{ old('vehicle_type', $vehicule->vehicle_type) === 'mini-fourgonnettes' ? 'selected' : '' }} >mini-fourgonnettes</option>
-                <option value="pick-up" {{ old('vehicle_type', $vehicule->vehicle_type) === 'pick-up' ? 'selected' : '' }} >pick-up</option>
-                <option value="minibus" {{ old('vehicle_type', $vehicule->vehicle_type) === 'minibus' ? 'selected' : '' }} >minibus
-                </option>
+                <option value="Camion-citerne" {{ old('vehicle_type', $vehicule->vehicle_type) === 'Camion-citerne' ? 'selected' : '' }} >Camion-citerne</option>
+                <option value="Camion benne" {{ old('vehicle_type', $vehicule->vehicle_type) === 'Camion benne' ? 'selected' : '' }} >Camion benne</option>
+                <option value="Autobus" {{ old('vehicle_type', $vehicule->vehicle_type) === 'Autobus' ? 'selected' : '' }} >Autobus </option>
+
+                <option value="Automobile" {{ old('vehicle_type', $vehicule->vehicle_type) === 'Automobile' ? 'selected' : '' }} >Automobile </option>
+
+                <option value="Voiture" {{ old('vehicle_type', $vehicule->vehicle_type) === 'Voiture' ? 'selected' : '' }} >Voiture </option>
 
 
                 </select>
@@ -408,7 +411,7 @@
      <div class="card-footer ">
           <div class="row">
                 <div class="col-md-12 text-center">
-                    <button type="submit" class="btn btn-info btn-round">{{ __('Modifier') }}</button>
+                    <button type="submit" class="btn  btn-round" style="background:#EE643A;color:#ffffff;">{{ __('Modifier') }}</button>
                 </div>
             </div>
         </div>

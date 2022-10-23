@@ -136,7 +136,7 @@
                                     <h1 class="text-sm uppercase text-gray-500 leading-tight" style="font-size: 2.5em;">
                                         Taux des absences:</h1>
                                     <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">
-                                        {{ $absenceP }} %</h3>
+                                        {{ ($totalAbsences*30)/100 }}  %</h3>
 
                                 </div>
 

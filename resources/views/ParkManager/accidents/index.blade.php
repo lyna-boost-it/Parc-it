@@ -21,21 +21,11 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="title">
-                                <h4>Gestion des accidents</h4>
+                                <h3 style="color:#EE643A; ">Gestion des accidents</h3>
                             </div>
 
                         </div>
-                        <a style="position: absolute;
-                        left: 1245px;
-                        @if (Auth::user()->type == 'Gestionnaire Sup') color: currentColor;
-  cursor: not-allowed;
-  opacity: 0.5;
-  text-decoration: none; @endif
-                        "
-                            href="{{ route('ParkManager.accidents.create') }}" class="btn btn-sm btn-success"
-                            @if (Auth::user()->type == 'Gestionnaire Sup') disabled @endif>
-                            Créer un accidents
-                        </a>
+
                     </div>
                 </div>
 
@@ -44,7 +34,16 @@
                 <div class="card-box mb-30">
                     <div class="pd-20">
 
-
+                        <a style="background:#EE643A;color:#ffffff;float: right;
+                        @if (Auth::user()->type == 'Gestionnaire Sup') color: currentColor;
+  cursor: not-allowed;
+  opacity: 0.5;
+  text-decoration: none; @endif
+                        "
+                            href="{{ route('ParkManager.accidents.create') }}" class="btn btn-sm  "
+                            @if (Auth::user()->type == 'Gestionnaire Sup') disabled @endif>
+                            Créer un accident
+                        </a>
                     </div>
                     <div class="pb-20">
 
@@ -57,7 +56,7 @@
                                     <th>Type d'accident</th>
                                     <th> Date de déclaration</th>
                                     <th>Date de l'expertise</th>
-                                    <th>Vehicule</th>
+                                    <th>Véhicule</th>
 
                                     <th class="datatable-nosort">Action</th>
 

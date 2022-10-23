@@ -194,7 +194,7 @@
 
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle">
-                        <span class="micon fi-torso-business"></span><span class="mtext">GESTION DU CENTRE <br> DE
+                        <span class="micon fa fa-toolbox"></span><span class="mtext">GESTION DU CENTRE <br> DE
                             MAINTENANCES</span>
                     </a>
                     <ul class="submenu">
@@ -277,21 +277,10 @@
                                 <button style=" position: absolute;
                                 right: 20px; top:14px; background-color: transparent;
                                 border-color: transparent; "
-                                onclick="location.href=' {{ route('ParkManager.dts.create') }}'"><i style="color: orangered; " class="fa fa-plus" aria-hidden="true"></i>
+                                onclick="location.href=' {{ route('ParkManager.dtsM.create') }}'"><i style="color: orangered; " class="fa fa-plus" aria-hidden="true"></i>
                             </button>
                             </div>
-                                <li>
-                                    @if (Auth::user()->type == 'Gestionnaire parc' ||
-                                        Auth::user()->type == 'Utilisateur' ||
-                                        Auth::user()->type == 'Gestionnaire Sup')
-                                        <a style="right: 60px;"  href="{{ route('ParkManager.piecesMaterial.index') }}">
-                                        @else
-                                            <a style="right: 60px;" href="#" class="isDisabled">
-                                    @endif
 
-                                    Gestion des pièces
-                                    consommées</a>
-                                </li>
                                 <li>
                                     @if (Auth::user()->type == 'Gestionnaire parc' ||
                                         Auth::user()->type == 'Utilisateur' ||
@@ -384,7 +373,7 @@
                 </li>
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle">
-                        <span class="micon fa fa-group"></span><span class="mtext">GESTION DES <br> CONSOMMATIONS<br> DE
+                        <span class="micon fa fa-gas-pump"></span><span class="mtext">GESTION DES <br> CONSOMMATIONS<br> DE
                             CARBURANT</span>
                     </a>
                     <ul class="submenu">
@@ -427,11 +416,11 @@
                     </button>
                 </div>
                     </ul>
-                </li>
+
 
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle">
-                        <span class="micon fa fa-group"></span><span class="mtext">POINTAGES<br> ET ABSENCES</span>
+                        <span class="micon fa fa-clipboard-user"></span><span class="mtext">POINTAGES<br> ET ABSENCES</span>
                     </a>
                     <ul class="submenu">
 
@@ -461,7 +450,7 @@
 
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle">
-                        <span class="micon fa fa-group"></span><span class="mtext">MISSIONS <br>ET DEPLACEMENTS </span>
+                        <span class="micon fa fa-car"></span><span class="mtext">MISSIONS <br>ET DEPLACEMENTS </span>
                     </a>
                     <ul class="submenu">
                         <div style=" display: inline-block;">
@@ -540,7 +529,7 @@
                                     <a style="right: 60px;" href="#" class="isDisabled">
                             @endif
 
-                            Vehicules</a>
+                            Véhicules</a>
                         </li>
                         <li>
                             @if (Auth::user()->type == 'Gestionnaire parc' ||
@@ -562,7 +551,7 @@
                                     <a style="right: 60px;" href="#" class="isDisabled">
                             @endif
 
-                            Mintenances</a>
+                            Maintenances</a>
                         </li>
 
                         <li>

@@ -14,14 +14,7 @@
 <script src="{{URL('assets/vendors/scripts/script.min.js')}}";></script>
 <script src="{{URL('assets/vendors/scripts/process.js')}}";></script>
 <script src="{{URL('assets/vendors/scripts/layout-settings.js')}}";></script>
-
-
-
-
-
-
-
-
+<link rel="stylesheet" type="text/css" href="{{ URL('assets/vendors/styles/icon-font.min.css') }}"; />
 <script src="{{URL('assets/src/plugins/datatables/js/jquery.dataTables.min.js')}}";></script>
 <script src="{{URL('assets/src/plugins/datatables/js/dataTables.bootstrap4.min.js')}}";></script>
 <script src="{{URL('assets/src/plugins/datatables/js/dataTables.responsive.min.js')}}";></script>

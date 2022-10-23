@@ -20,20 +20,12 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="title">
-                                <h4>Gestion des Service après-vente et Garantis</h4>
+                                <h3 style="color:#EE643A; ">
+                                    Gestion des Service après-vente et Garantis</h3>
                             </div>
 
                         </div>
-                        <a style="position: absolute;
-                        left: 1245px;
-                        @if (Auth::user()->type == 'Gestionnaire Sup') color: currentColor;
-  cursor: not-allowed;
-  opacity: 0.5;
-  text-decoration: none; @endif
-                        "
-                            href="{{ route('ParkManager.guarantis.create') }}" class="btn btn-sm btn-success">
-                            Créer un Service après-vente et Garantis
-                        </a>
+
                     </div>
                 </div>
 
@@ -41,7 +33,15 @@
 
                 <div class="card-box mb-30">
                     <div class="pd-20">
-
+                        <a style="background:#EE643A;color:#ffffff;float: right;
+                        @if (Auth::user()->type == 'Gestionnaire Sup') color: currentColor;
+  cursor: not-allowed;
+  opacity: 0.5;
+  text-decoration: none; @endif
+                        "
+                            href="{{ route('ParkManager.guarantis.create') }}" class="btn btn-sm  ">
+                            Créer un Service après-vente et Garantis
+                        </a>
 
                     </div>
                     <div class="pb-20">

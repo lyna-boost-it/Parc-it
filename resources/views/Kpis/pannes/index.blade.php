@@ -45,7 +45,7 @@
             <div class="xs-pd-20-10 pd-ltr-20">
                 <div class="card-box pd-20 height-100-p mb-30">
                     <div class="row align-items-center">
-                        <div class="weight-600 font-30 text-grey">Taux des DT (Demandes de Traveux) traitées
+                        <div class="weight-600 font-30 text-grey">Taux des DT (Demandes de Travaux) traitées
                             dans:
                         </div>
                         <div class="col-md-8">
@@ -94,7 +94,7 @@
             <div class="xs-pd-20-10 pd-ltr-20">
                 <div class="card-box pd-20 height-100-p mb-30">
                     <div class="row align-items-center">
-                        <div class="weight-600 font-30 text-grey">Classement des pannes et des reparations par type
+                        <div class="weight-600 font-30 text-grey">Classement des pannes et des réparations  par type
                             dans:
                         </div>
                         <div class="col-md-8">
@@ -171,7 +171,7 @@
                 <h4 class="font-20 weight-500 mb-10 text-capitalize text-orange">Statistique </h4>
 
                 <input id="tab1" type="radio" name="tabs" checked>
-                <label for="tab1">Vehicules</label>
+                <label for="tab1">Véhicules</label>
                 <input id="tab2" type="radio" name="tabs">
                 <label for="tab2">Machines</label>
                 <input id="tab3" type="radio" name="tabs">
@@ -180,7 +180,7 @@
                     <table class="table nowrap hover data-table-export">
                         <thead>
                             <tr>
-                                <th>Numero</th>
+                                <th>Numéro</th>
                                 <th>ID</th>
 
                                 <th> Numéro de Série</th>
@@ -416,7 +416,7 @@
                     <table class="table nowrap hover data-table-export">
                         <thead>
                             <tr>
-                                <th>Numero</th>
+                                <th>Numéro</th>
                                 <th>ID</th>
 
                                 <th>Réf d’achat</th>
@@ -652,7 +652,7 @@
                     <table class="table nowrap hover data-table-export">
                         <thead>
                             <tr>
-                                <th>Numero</th>
+                                <th>Numéro</th>
                                 <th>ID</th>
 
                                 <th>Nome et Prénom</th>

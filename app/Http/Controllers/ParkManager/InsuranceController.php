@@ -47,15 +47,10 @@ class InsuranceController extends Controller
     public function create()
     {
         $insurance = new Insurance();
-        $minibuses=Vehicule::all()->where('vehicle_type','=','minibus');
-        $fourgonnettes=Vehicule::all()->where('vehicle_type','=','mini-fourgonnettes');
-        $pickups=Vehicule::all()->where('vehicle_type','=','pick-up');
-$vehicule1=' ';
- $vehicule2=' ';
- $vehicule3=' ';
+        $vehicules=Vehicule::all();
+
         return view('ParkManager.insurances.create',
-        compact('insurance'
-        ,'minibuses','fourgonnettes','pickups','vehicule1','vehicule2','vehicule3'));
+        compact('insurance','vehicules'));
     }
 
     /**
@@ -70,17 +65,6 @@ $vehicule1=' ';
         $insurance=Insurance:: create($request->only(      'police_number','effective_date'
         ,'expiration_date','company_name','agency_code',
         'agency_address','insurance_type','vehicle_id'  ));
-        if( $request->vehicule1 !=null){
-
-        $insurance->vehicle_id= $request->vehicule1;
-        $insurance->save();
-        }elseif
-        ( $request->vehicule2!=null ){
-            $insurance->vehicle_id= $request->vehicule2;
-            $insurance->save();
-        }else{          $insurance->vehicle_id= $request->vehicule3;
-            $insurance->save();
-        }
         $usersA = User::all()->where('type', '=', 'Gestionnaire parc');
         $usersB = User::all()->where('type', '=', 'Utilisateur');
         $notif = new MoreNotifs();

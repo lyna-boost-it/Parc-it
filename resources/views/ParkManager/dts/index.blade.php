@@ -23,21 +23,12 @@
                         <div class="col-md-6 col-sm-12">
                             <div class="title">
 
-                                <h4>Gestion des demandes de travaux </h4>
+                                <h3 style="color:#EE643A; ">Gestion des demandes de travaux
+                                </h3>
                             </div>
 
                         </div>
-                        <a style="position: absolute;
-                        left: 1245px;
-                        @if (Auth::user()->type == 'Gestionnaire Sup') color: currentColor;
-  cursor: not-allowed;
-  opacity: 0.5;
-  text-decoration: none; @endif
-                        "
-                            href="{{ route('ParkManager.dts.create') }}" class="btn btn-sm btn-success"
-                            @if (Auth::user()->type == 'Gestionnaire Sup') disabled @endif>
-                            Créer une demande
-                        </a>
+
                     </div>
                 </div>
 
@@ -45,7 +36,16 @@
 
                 <div class="card-box mb-30">
                     <div class="pd-20">
-
+                        <a style="background:#EE643A;color:#ffffff;float: right;
+                        @if (Auth::user()->type == 'Gestionnaire Sup') color: currentColor;
+  cursor: not-allowed;
+  opacity: 0.5;
+  text-decoration: none; @endif
+                        "
+                            href="{{ route('ParkManager.dts.create') }}" class="btn btn-sm  "
+                            @if (Auth::user()->type == 'Gestionnaire Sup') disabled @endif>
+                            Créer une demande
+                        </a>
 
                     </div>
                     <div class="pb-20">
@@ -58,8 +58,8 @@
                                     <th>Nature de Panne</th>
                                     <th>Action d'entrée</th>
                                     <th>DATE ET HEURE D'ENTREE</th>
-                                    <th>Dalidité</th>
-                                    <th>VEHICULE</th>
+                                    <th>Validité</th>
+                                    <th>Véhicule</th>
 
                                     <th class="datatable-nosort">Action</th>
 

@@ -90,7 +90,7 @@
                                         <div class="col-md-6  ">
                                             <div class="panel">
                                                 <div class="panel-body bio-chart">
-                                                    <h4 class="green"> Prix du litre</h4>
+                                                    <h4 class="green"> Prix du litre:</h4>
                                                     <h3>{{ $gaspipe->litter_price }}</h3>
                                                 </div>
                                             </div>
@@ -106,6 +106,8 @@
 
                 </div>
             </div>
+        </div>
+        
             <button class="btn btn-warning btn-round"> <a href="javascript:generatePDF()">Télécharger le PDF</a></button>
         </div>
 

@@ -21,20 +21,11 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="title">
-                                <h4>Gestion des Missions</h4>
+                                <h3 style="color:#EE643A; ">Gestion des Missions</h4>
                             </div>
 
                         </div>
-                        <a style="position: absolute;
-                        left: 1245px;
-                        @if (Auth::user()->type == 'Gestionnaire Sup')   color: currentColor;
-  cursor: not-allowed;
-  opacity: 0.5;
-  text-decoration: none;  @endif
-                        "
-                            href="{{ route('ParkManager.missions.create') }}" class="btn btn-sm btn-success">
-                            Créer une mission
-                        </a>
+
                     </div>
                 </div>
 
@@ -43,7 +34,16 @@
                 <div class="card-box mb-30">
                     <div class="pd-20">
 
+                        <a style="background:#EE643A;color:#ffffff;float: right;
 
+                        @if (Auth::user()->type == 'Gestionnaire Sup')   color: currentColor;
+  cursor: not-allowed;
+  opacity: 0.5;
+  text-decoration: none;  @endif
+                        "
+                            href="{{ route('ParkManager.missions.create') }}" class="btn btn-sm  ">
+                            Créer une mission
+                        </a>
                     </div>
                     <div class="pb-20">
 
@@ -90,7 +90,7 @@
 
                                                                 <a class="dropdown-item"
                                                         </div>
-                                                        href="{{ route('ParkManager.missions.edit', $mission->id) }}" ><i
+                                                   <a class="dropdown-item"      href="{{ route('ParkManager.missions.edit', $mission->id) }}" ><i
                                                                         class="dw dw-edit2"></i> Modifier</a>
                                                                 <a class="dropdown-item"
                                                                     href="{{ route('ParkManager.missions.show', $mission->id) }}"><i

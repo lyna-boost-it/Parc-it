@@ -18,7 +18,8 @@
 					<div class="row">
 						<div class="col-md-6 col-sm-12">
 							<div class="title">
-								<h4>Gestion des Liquides et Lubrifiants</h4>
+								<h3 style="color:#EE643A; "
+                                >Gestion des Liquides et Lubrifiants</h3>
                      		</div>
 
 						</div>

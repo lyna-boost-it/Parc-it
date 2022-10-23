@@ -123,13 +123,13 @@
                                             <select name="sex"
                                                 value="{{ old('sex'), $staff->sex }}"class="form-control"
                                                 id="sex">
-                                                <option value="female">Female</option>
-                                                <option value="male">Male</option>
+                                                <option value="Femelle">Femelle</option>
+                                                <option value="Mâle">Mâle</option>
 
                                             </select>
                                         </div>
                                     </div>
-                                </div>
+                                </div>     </div>
 
 
                                 <div class="card-body">
@@ -150,6 +150,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="card-body">
                                     <div class="row">
                                         <label class="col-md-3 col-form-label">{{ __('Lieu de naissance') }}</label>
@@ -279,7 +280,7 @@
             <div class="card-footer ">
                 <div class="row">
                         <div class="col-md-12 text-center">
-                                    <button type="submit" class="btn btn-success btn-round">{{ __('Modifier') }}</button>
+                                    <button type="submit" class="btn  btn-round" style="background:#EE643A;color:#ffffff;">{{ __('Modifier') }}</button>
                                 </div>
                             </div>
                         </div>

@@ -68,17 +68,13 @@ $maintenance->save();
 
         $dt = new Dt();
         $units=Unit::all();
-        $minibuses=Vehicule::all()->where('vehicle_type','=','minibus');
-        $fourgonnettes=Vehicule::all()->where('vehicle_type','=','mini-fourgonnettes');
-        $pickups=Vehicule::all()->where('vehicle_type','=','pick-up');
+        $vehicules=Vehicule::all();
         $drivers=Staff::all()->where('person_type','=','Conducteur')->where('staff_state','=','au travail');
         $staffs=Staff::all()->where('person_type','=','Personnel du parc')->where('staff_state','=','au travail');
-        $vehicule1=' ';
-        $vehicule2=' ';
-        $vehicule3=' ';
+
         return view('ParkManager.dts.create', compact('dt',
-        'units' ,'drivers','minibuses','fourgonnettes','pickups',
-        'vehicule1','vehicule2','vehicule3','staffs'));
+        'units' ,'drivers' ,
+        'vehicules' ,'staffs'));
 
         }
 
@@ -101,15 +97,7 @@ $maintenance->save();
         $code='DT'.$zero.$dt->id.$month.$year;
         $dt->code_dt=$code;
         $dt->save();
-        if( $request->vehicule1 !=null){
-            $dt->vehicule_id= $request->vehicule1;
-            $dt->save();}elseif
-                    ( $request->vehicule2 !=null ){
-                        $dt->vehicule_id= $request->vehicule2;
-                        $dt->save();
-                    }else{
-                        $dt->vehicule_id= $request->vehicule3;
-                        $dt->save();  }
+
                         $vehicule=Vehicule::find($dt->vehicule_id);
                         if($dt->action!='A programmer mais opérationnel'){
                             $vehicule->previous_state=$vehicule->vehicle_state;

@@ -39,7 +39,7 @@
                                                 <select  name="type_panne" class="form-control"
                                                     id="type_panne">
                                                     <option value="" disabled selected>Choisissez un type de Panne</option>
-                                                    <option value="Legere" {{ old('type_panne', $dt->type_panne) === 'Legere' ? 'selected' : '' }} >Legere</option>
+                                                    <option value="Légère" {{ old('type_panne', $dt->type_panne) === 'Légère' ? 'selected' : '' }} >Légère</option>
                                                     <option value="Lourde" {{ old('type_panne', $dt->type_panne) === 'Lourde' ? 'selected' : '' }} >Lourde</option>
                                                     <option value="Moyenne" {{ old('type_panne', $dt->type_panne) === 'Moyenne' ? 'selected' : '' }} >Moyenne</option>
 
@@ -163,8 +163,8 @@
                                                 <select  name="type_maintenance" class="form-control"
                                                     id="type_maintenance">
                                                     <option value="" disabled selected>Choisissez un de Maintenance</option>
-                                                    <option value="Reparation" {{ old('type_maintenance', $dt->type_maintenance)
-                                                    === 'Reparation' ? 'selected' : '' }} >Reparation</option>
+                                                    <option value="Réparation" {{ old('type_maintenance', $dt->type_maintenance)
+                                                    === 'Réparation' ? 'selected' : '' }} >Réparation</option>
 
                                                     <option value="Maintenance Externe"
                                                     {{ old('type_maintenance', $dt->type_maintenance) ===
@@ -188,7 +188,7 @@
                         <div class="card-footer ">
                             <div class="row">
                                 <div class="col-md-12 text-center">
-                                    <button type="submit" class="btn btn-info btn-round">{{ __('Modifier') }}</button>
+                                    <button type="submit" class="btn  btn-round" style="background:#EE643A;color:#ffffff;">{{ __('Modifier') }}</button>
                                 </div>
                             </div>
                         </div>

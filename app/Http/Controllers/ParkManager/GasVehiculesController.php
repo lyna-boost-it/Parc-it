@@ -43,16 +43,12 @@ class GasVehiculesController extends Controller
     {
         $gasvehicule = new GasVehicules();
         $drivers=Staff::all()->where('person_type','=','Conducteur');
-        $minibuses=Vehicule::all()->where('vehicle_type','=','minibus');
-        $fourgonnettes=Vehicule::all()->where('vehicle_type','=','mini-fourgonnettes');
-        $pickups=Vehicule::all()->where('vehicle_type','=','pick-up');
+        $vehicules=Vehicule::all();
         $staffs=Staff::all()->where("person_type",'=','Personnel du parc');
-        $vehicule1=' ';
-        $vehicule2=' ';
-        $vehicule3=' ';
+
         return view('ParkManager.gasVehicules.create',
         compact('gasvehicule'
-        ,'drivers','minibuses','fourgonnettes','pickups','staffs','vehicule1','vehicule2','vehicule3'));
+        ,'drivers','vehicules' ,'staffs' ));
     }
 
     /**

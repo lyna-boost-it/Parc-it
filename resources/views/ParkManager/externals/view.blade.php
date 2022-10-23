@@ -43,7 +43,7 @@
                                            <h5  style="display: inline;">{{ $external->contract }} </h5>
                                            <br>
                                            <h4 style="display: inline;" >Nom du fournisseur: </h4>
-                                           <h5 style="display: inline;">{{ $external->supplier }} </h5>
+                                           <h5 style="display: inline;">{{ $guaranti->name_vendor }} </h5>
                                    </div>
                                </div>
                            </div>
@@ -88,7 +88,7 @@
                         <div class="col-md-6  ">
                             <div class="panel">
                                 <div class="panel-body bio-chart"  >
-                                        <h4  style="display: inline; "> VEHICULE:<a  href="{{route('ParkManager.vehicules.show',$vehicule->id)}}"  > <span class="fa fa-eye  " style="color: #3d5fbb"></span> </a>
+                                        <h4  style="display: inline; "> Véhicule:<a  href="{{route('ParkManager.vehicules.show',$vehicule->id)}}"  > <span class="fa fa-eye  " style="color: #3d5fbb"></span> </a>
                                         </h4>
                                         <h5  style="display: inline;"> {{ $vehicule->vehicle_type }}</h5>
                                         <br>
@@ -112,6 +112,7 @@
 
                 </div>
             </div>
+            <br>
             <button class="btn btn-warning btn-round"> <a href="javascript:generatePDF()">Télécharger le PDF</a></button>
         </div>
 

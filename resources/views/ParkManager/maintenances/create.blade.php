@@ -35,7 +35,7 @@
                         </div>
 
                         <div class="card-header">
-                            <h5 class="title">{{ __('Vehicule:') }} {{ $vehicule->code }}</h5>
+                            <h5 class="title">{{ __('Véhicule:') }} {{ $vehicule->code }}</h5>
                         </div>
 
                         <div class="card-body" >
@@ -210,7 +210,7 @@
                          <div class="card-footer ">
                             <div class="row">
                              <div class="col-md-12 text-center">
-                                    <button type="submit" class="btn btn-info btn-round">{{ __('Ajouter') }}</button>
+                                    <button type="submit" class="btn  btn-round" style="background:#EE643A;color:#ffffff;">{{ __('Ajouter') }}</button>
                                 </div>
                             </div>
                         </div>

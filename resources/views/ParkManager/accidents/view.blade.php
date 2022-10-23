@@ -85,7 +85,7 @@
 
 
 
-                                    <h5 style="display: inline;">  <a  href="/files/accidents_files/{{ $accident->path }}" >
+                                    <h5 style="display: inline;">  <a  href="https://parcit.edeval.dz/public/files/accidents_files/{{ $accident->path }}" >
 
 
                                         <span class="fa fa-eye  " style="color: #7e3dbb"> </span>
@@ -131,6 +131,7 @@
 
                 </div>
             </div>
+            <br>
             <button class="btn btn-warning btn-round"> <a href="javascript:generatePDF()">Télécharger le PDF</a></button>
         </div>
 

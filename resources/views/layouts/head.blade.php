@@ -177,6 +177,7 @@ href="vendors/styles/icon-font.min.css"
 				f.parentNode.insertBefore(j, f);
 			})(window, document, "script", "dataLayer", "GTM-NXZMQSS");
 		</script>
+            <script src="https://kit.fontawesome.com/4812ff0186.js" crossorigin="anonymous"></script>
 	<body  >
  <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script>
         @stack('scripts')

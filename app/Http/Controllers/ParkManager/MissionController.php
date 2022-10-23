@@ -41,13 +41,12 @@ class MissionController extends Controller
         Absence_cheker();
         $drivers=Staff::all()->where('person_type','=','Conducteur')->where('staff_state','=','au travail');
         //Maintenance checker
-        $minibuses=Vehicule::all()->where('vehicle_state','=','Libre')->where('vehicle_type','=','minibus');
-        $fourgonnettes=Vehicule::all()->where('vehicle_state','=','Libre')->where('vehicle_type','=','mini-fourgonnettes');
-        $pickups=Vehicule::all()->where('vehicle_state','=','Libre')->where('vehicle_type','=','pick-up');
+        $vehicules=Vehicule::all();
+
 
         return view('ParkManager.missions.create',
         compact('drivers'
-        ,'minibuses','fourgonnettes','pickups','mission'));
+        ,'vehicules' ,'mission'));
 
     }
 

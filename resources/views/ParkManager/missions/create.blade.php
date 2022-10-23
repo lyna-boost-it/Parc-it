@@ -1,107 +1,85 @@
-@if(Auth::user()->type=='Gestionnaire parc' ||Auth::user()->type=='Utilisateur'   )
+@if (Auth::user()->type == 'Gestionnaire parc' || Auth::user()->type == 'Utilisateur')
 
-<!DOCTYPE html>
-<html>
-	@include('layouts.headForindexx')
+    <!DOCTYPE html>
+    <html>
+    @include('layouts.headForindexx')
 
-	<body>
+    <body>
 
         @include('layouts.header-bar')
         @include('layouts.navbar')
 
-		<div class="mobile-menu-overlay"></div>
+        <div class="mobile-menu-overlay"></div>
 
-		<div class="main-container">
-        <div class="row">
-            <div class="col-md-4">
-
-
-            </div>
-            <div class="col-md-12 text-center">
-                                <form action="{{route('ParkManager.missions.store',$mission->id)}}" method="post">
-
-    @csrf
-
-                    <div class="card">
+        <div class="main-container">
+            <div class="row">
+                <div class="col-md-4">
 
 
+                </div>
+                <div class="col-md-12 text-center">
+                    <form action="{{ route('ParkManager.missions.store', $mission->id) }}" method="post">
 
-                        <div class="card-header">
-                            <h5 class="title">{{ __('Créer une mission ') }}</h5>
-                        </div>
+                        @csrf
+
+                        <div class="card">
 
 
 
+                            <div class="card-header">
+                                <h5 class="title">{{ __('Créer une mission ') }}</h5>
+                            </div>
 
-                        <div class="card-body" >
-                            <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('  Nom et prénom du conducteur') }}</label>
-                                <div class="col-md-9" for="conducteur_field_for_absence">
-                                    <div class="form-group">
-                                        <select  name="driver_id"   placeholder="  Nom et prénom de l\'absent"
-                                        value="{{ old('driver_id'),$mission->driver_id }}"class="form-control"
-                                            id="staff_type">
-                                            @foreach ($drivers as $driver)
 
-                                            <option value="{{ $driver->id }}"
-                                            {{ old('driver_id', $mission->driver_id)
-                                             === 'driver_id' ? 'selected' : '' }}>
-                                             {{ $driver->name }} {{ $driver->last_name }}</option>
+
+
+                            <div class="card-body">
+                                <div class="row">
+                                    <label
+                                        class="col-md-3 col-form-label">{{ __('  Nom et prénom du conducteur') }}</label>
+                                    <div class="col-md-9" for="conducteur_field_for_absence">
+                                        <div class="form-group">
+                                            <select name="driver_id" placeholder="  Nom et prénom de l\'absent"
+                                                value="{{ old('driver_id'), $mission->driver_id }}"class="form-control"
+                                                id="staff_type">
+                                                @foreach ($drivers as $driver)
+                                                    <option value="{{ $driver->id }}"
+                                                        {{ old('driver_id', $mission->driver_id) === 'driver_id' ? 'selected' : '' }}>
+                                                        {{ $driver->name }} {{ $driver->last_name }}</option>
+                                                @endforeach
+
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+                            <div class="card-body">
+                                <div class="row">
+                                    <label class="col-md-3 col-form-label">{{ __('Véhicule') }}</label>
+                                    <div class="col-md-9">
+                                        <div class="form-group">
+
+
+                                            <select style="width: 300px" id="vehicle_id" name="vehicle_id">
+                                                <option></option>
+                                                @foreach ($vehicules as $vehicule)
+                                                <option value="{{ $vehicule->id }}">
+                                                    {{ $vehicule->code }} </option>
                                             @endforeach
-
-                                        </select></div>
-
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                        <div class="card-body">
-                            <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('Type de Vehicule') }}</label>
-                                <div class="col-md-9">
-                                    <div class="form-group">
-                                        <select  name="vehicule_type" class="form-control"
-                                            id="vehicule_type">
-                                            <option value="" disabled selected>Choisissez un type de véhicule</option>
-                                            <option value="pick-up"  >pick-up</option>
-                                            <option value="mini-fourgonnettes" >mini-fourgonnettes</option>
-                                            <option value="minibus" >minibus</option>
-
-                                        </select>     </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div id="mini-fourgonnettes_Div">
-                            <div class="card-body" >
-                                <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __('  Vehicules de type mini-fourgonnettes') }}</label>
-                                    <div class="col-md-9" for="Territoire">
-                                        <div class="form-group">
-
-                                            <select  name="vehicle_id"   placeholder="  Vehicule"id="fourgonnettes"
-                                          class="form-control"
-                                                id="fourgonnettes">
-                                                @foreach ($fourgonnettes as $vehicule)
-
-                                                <option value="{{ $vehicule->id }}"
-                                               >
-                                                 {{ $vehicule->code }} </option>
-                                                @endforeach
-
-                                            </select>
+                                              </select>
 
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
 
 
-                        </div>
 
 
 
@@ -109,67 +87,50 @@
 
 
 
-<div id="minibus_Div">
-                            <div class="card-body" >
+
+
+
+
+                            <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __('  Vehicules de type Minibus') }}</label>
-                                    <div class="col-md-9" for="minibus_Div">
+                                    <label
+                                        class="col-md-3 col-form-label">{{ __(' Nom du personne accompagné') }}</label>
+                                    <div class="col-md-9">
                                         <div class="form-group">
-
-                                            <select  name="vehicle_id"   placeholder="  Vehicule"id="minibus"
-                                            class="form-control"
-                                                id="minibus">
-                                                @foreach ($minibuses as $vehicule)
-
-                                                <option value="{{ $vehicule->id }}"
-                                                >
-                                                 {{ $vehicule->code }} </option>
-                                                @endforeach
-
-                                            </select>
-
+                                            <input type="text" name="p_name" class="form-control"
+                                                placeholder="  Nom du personne accompagné"
+                                                value="{{ $mission->p_name }}" required>
                                         </div>
-
+                                        @if ($errors->has('p_name'))
+                                            <span class="invalid-feedback" style="display: block;" role="alert">
+                                                <strong>{{ $errors->first('p_name') }}</strong>
+                                            </span>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
 
 
-                        </div>
-
-
-
-
-
-
-
-<div id="pick-up_Div">
-                            <div class="card-body" >
+                            <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __('  Vehicules de type Pick-up') }}</label>
-                                    <div class="col-md-9" for="Territoire">
+                                    <label
+                                        class="col-md-3 col-form-label">{{ __(' Prénom du personne accompagné') }}</label>
+                                    <div class="col-md-9">
                                         <div class="form-group">
-
-                                            <select  name="vehicle_id"   placeholder="  Vehicule"id="pick-up"
-                                            class="form-control"
-                                                id="pick-up">
-                                                @foreach ($pickups as $vehicule)
-
-                                                <option value="{{ $vehicule->id }}"
-                                                >
-                                                 {{ $vehicule->code }} </option>
-                                                @endforeach
-
-                                            </select>
-
+                                            <input type="text" name="p_last_name" class="form-control"
+                                                placeholder="Prénom du personne accompagné"
+                                                value="{{ $mission->p_last_name }}" required>
                                         </div>
-
+                                        @if ($errors->has('p_last_name'))
+                                            <span class="invalid-feedback" style="display: block;" role="alert">
+                                                <strong>{{ $errors->first('p_last_name') }}</strong>
+                                            </span>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
 
 
-                        </div>
 
 
 
@@ -180,99 +141,46 @@
 
 
 
-    <div class="card-body" >
-        <div class="row">
-            <label class="col-md-3 col-form-label">{{ __(' Nom du personne accompagné') }}</label>
-            <div class="col-md-9" >
-                <div class="form-group">
-                    <input type="text"  name="p_name" class="form-control"
-                    placeholder="  Nom du personne accompagné"
-                    value="{{ $mission->p_name }}" required>
-                </div>
-                @if ($errors->has('p_name'))
-                    <span class="invalid-feedback" style="display: block;" role="alert">
-                        <strong>{{ $errors->first('p_name') }}</strong>
-                    </span>
-                @endif
-            </div>
-        </div>
-    </div>
-
-
-    <div class="card-body" >
-        <div class="row">
-            <label class="col-md-3 col-form-label">{{ __(' Prénom du personne accompagné') }}</label>
-            <div class="col-md-9" >
-                <div class="form-group">
-                    <input type="text"  name="p_last_name" class="form-control"
-                    placeholder="Prénom du personne accompagné"
-                    value="{{ $mission->p_last_name }}" required>
-                </div>
-                @if ($errors->has('p_last_name'))
-                    <span class="invalid-feedback" style="display: block;" role="alert">
-                        <strong>{{ $errors->first('p_last_name') }}</strong>
-                    </span>
-                @endif
-            </div>
-        </div>
-    </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <label
+                                        class="col-md-3 col-form-label">{{ __(' Date de validité (Début)') }}</label>
+                                    <div class="col-md-9">
+                                        <div class="form-group">
+                                            <input type="date" name="start_date" class="form-control"
+                                                placeholder=" Date de validité (Debut)"
+                                                value="{{ $mission->start_date }}" required>
+                                        </div>
+                                        @if ($errors->has('start_date'))
+                                            <span class="invalid-feedback" style="display: block;" role="alert">
+                                                <strong>{{ $errors->first('start_date') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
 
 
 
 
 
-
-
-
-
-
-
-
-    <div class="card-body" >
-        <div class="row">
-            <label class="col-md-3 col-form-label">{{ __(' Date de validité (Debut)') }}</label>
-            <div class="col-md-9" >
-                <div class="form-group">
-                    <input type="date"
-                    name="start_date"
-                    class="form-control"
-
-                    placeholder=" Date de validité (Debut)"
-                    value="{{ $mission->start_date }}" required>
-                </div>
-                @if ($errors->has('start_date'))
-                    <span class="invalid-feedback" style="display: block;" role="alert">
-                        <strong>{{ $errors->first('start_date') }}</strong>
-                    </span>
-                @endif
-            </div>
-        </div>
-    </div>
-
-
-
-
-
-    <div class="card-body" >
-        <div class="row">
-            <label class="col-md-3 col-form-label">{{ __(' Date de validité (Fin)') }}</label>
-            <div class="col-md-9" >
-                <div class="form-group">
-                    <input type="date"
-                    name="end_date"
-                    class="form-control"
-
-                    placeholder=" Date de validité (Fin)"
-                    value="{{ $mission->end_date }}" required>
-                </div>
-                @if ($errors->has('end_date'))
-                    <span class="invalid-feedback" style="display: block;" role="alert">
-                        <strong>{{ $errors->first('end_date') }}</strong>
-                    </span>
-                @endif
-            </div>
-        </div>
-    </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <label class="col-md-3 col-form-label">{{ __(' Date de validité (Fin)') }}</label>
+                                    <div class="col-md-9">
+                                        <div class="form-group">
+                                            <input type="date" name="end_date" class="form-control"
+                                                placeholder=" Date de validité (Fin)" value="{{ $mission->end_date }}"
+                                                required>
+                                        </div>
+                                        @if ($errors->has('end_date'))
+                                            <span class="invalid-feedback" style="display: block;" role="alert">
+                                                <strong>{{ $errors->first('end_date') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
 
 
 
@@ -281,278 +189,249 @@
 
 
 
-    <div class="card-body" >
-        <div class="row">
-            <label class="col-md-3 col-form-label">{{ __(' Description') }}</label>
-            <div class="col-md-9" >
-                <div class="form-group">
-                    <input type="text"
-                     name="description"
-                     class="form-control"
-                     placeholder="Description"
-                      value="{{ $mission->description }}" required>
-                </div>
-                @if ($errors->has('description'))
-                    <span class="invalid-feedback" style="display: block;" role="alert">
-                        <strong>{{ $errors->first('description') }}</strong>
-                    </span>
-                @endif
-            </div>
-        </div>
-    </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <label class="col-md-3 col-form-label">{{ __(' Description') }}</label>
+                                    <div class="col-md-9">
+                                        <div class="form-group">
+                                            <input type="text" name="description" class="form-control"
+                                                placeholder="Description" value="{{ $mission->description }}" required>
+                                        </div>
+                                        @if ($errors->has('description'))
+                                            <span class="invalid-feedback" style="display: block;" role="alert">
+                                                <strong>{{ $errors->first('description') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
 
 
-    <div class="card-body" >
-        <div class="row">
-            <label class="col-md-3 col-form-label">{{ __(' Motivation') }}</label>
-            <div class="col-md-9" >
-                <div class="form-group">
-                    <input type="text"
-                     name="reason"
-                     class="form-control"
-                     placeholder="Motivation"
-                      value="{{ $mission->reason}}" required>
-                </div>
-                @if ($errors->has('reason'))
-                    <span class="invalid-feedback" style="display: block;" role="alert">
-                        <strong>{{ $errors->first('reason') }}</strong>
-                    </span>
-                @endif
-            </div>
-        </div>
-    </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <label class="col-md-3 col-form-label">{{ __(' Motivation') }}</label>
+                                    <div class="col-md-9">
+                                        <div class="form-group">
+                                            <input type="text" name="reason" class="form-control"
+                                                placeholder="Motivation" value="{{ $mission->reason }}" required>
+                                        </div>
+                                        @if ($errors->has('reason'))
+                                            <span class="invalid-feedback" style="display: block;" role="alert">
+                                                <strong>{{ $errors->first('reason') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
 
 
-    <div class="card-body">
-        <div class="row">
-            <label class="col-md-3 col-form-label">{{ __('Type de destination') }}</label>
-            <div class="col-md-9">
-                <div class="form-group">
-                    <select  name="destination_type" class="form-control"
-                        id="destination_type">
-                        <option value="Destination (A->B)">Destination (A->B) </option>
-                          <option value="Territoire">Territoire</option>
+                            <div class="card-body">
+                                <div class="row">
+                                    <label class="col-md-3 col-form-label">{{ __('Type de destination') }}</label>
+                                    <div class="col-md-9">
+                                        <div class="form-group">
+                                            <select name="destination_type" class="form-control"
+                                                id="destination_type">
+                                                <option value="Destination (A->B)">Destination (A->B) </option>
+                                                <option value="Territoire">Territoire</option>
 
-                    </select>     </div>
-            </div>
-        </div>
-    </div>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-    <div id="AB_Div">
+                            <div id="AB_Div">
 
 
 
-        <div class="card-body" >
-            <div class="row">
-                <label class="col-md-3 col-form-label">{{ __('Destination (A->B)') }}</label>
-                <div class="col-md-9" >
-                    <div class="form-group" for="AB">
-                        <input type="text"  name="from" class="form-control"
-                        placeholder="Destination A "
-                        value="{{ $mission->from }}">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <label class="col-md-3 col-form-label">{{ __('Destination (A->B)') }}</label>
+                                        <div class="col-md-9">
+                                            <div class="form-group" for="AB">
+                                                <input type="text" name="from" class="form-control"
+                                                    placeholder="Destination A " value="{{ $mission->from }}">
 
-                        <input type="text"  name="to" class="form-control"
-                        placeholder=" Destination B "
-                        value="{{ $mission->to }}" >
-                    </div>
-                  </div>
-            </div>
-        </div>
+                                                <input type="text" name="to" class="form-control"
+                                                    placeholder=" Destination B " value="{{ $mission->to }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
 
-    </div>
+                            </div>
 
 
 
-    <div id="Territoire_Div">
+                            <div id="Territoire_Div">
 
 
 
-        <div class="card-body" >
-            <div class="row">
-                <label class="col-md-3 col-form-label">{{ __('  Territoire') }}</label>
-                <div class="col-md-9" for="Territoire">
-                    <div class="form-group">
-                        <input type="text" id="territory" name="territory" class="form-control"
-                        placeholder="Territoire"
-                        value="{{ $mission->territory }}">
-                    </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <label class="col-md-3 col-form-label">{{ __('  Territoire') }}</label>
+                                        <div class="col-md-9" for="Territoire">
+                                            <div class="form-group">
+                                                <input type="text" id="territory" name="territory"
+                                                    class="form-control" placeholder="Territoire"
+                                                    value="{{ $mission->territory }}">
+                                            </div>
 
-                </div>
-            </div>
-        </div>
-
-
-    </div>
+                                        </div>
+                                    </div>
+                                </div>
 
 
-                         <div class="card-footer ">
-                            <div class="row">
-                             <div class="col-md-12 text-center">
-                                    <button type="submit" class="btn btn-info btn-round">{{ __('Ajouter') }}</button>
+                            </div>
+
+
+                            <div class="card-footer ">
+                                <div class="row">
+                                    <div class="col-md-12 text-center">
+                                        <button type="submit" class="btn  btn-round"
+                                            style="background:#EE643A;color:#ffffff;">{{ __('Ajouter') }}</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-        </div>
-                </form>
+                    </form>
 
+                </div>
             </div>
         </div>
-    </div>
-    <script>
-        $("#vehicule_type").change(function() {
-            if ($(this).val() == "pick-up" ) {
-                $('#pick-up_Div').show();
-                $('#pick-up').attr('required','');
-                $('#pick-up').attr('data-error', 'This field is required.');
-            } else {
-                $('#pick-up_Div').hide();
-                $('#pick-up').removeAttr('required');
-                $('#pick-up').removeAttr('data-error');
-            }
-        });
-        $("#vehicule_type").trigger("change");
 
+        <script>
+            $("#destination_type").change(function() {
+                if ($(this).val() == "Destination (A->B)") {
+                    $('#AB_Div').show();
+                    $('#AB').attr('required', '');
+                    $('#AB').attr('data-error', 'This field is required.');
+                } else {
+                    $('#AB_Div').hide();
+                    $('#AB').removeAttr('required');
+                    $('#AB').removeAttr('data-error');
+                }
+            });
+            $("#destination_type").trigger("change");
+        </script>
 
-          </script>
-       <script>
-        $("#vehicule_type").change(function() {
-            if ($(this).val() == "mini-fourgonnettes" ) {
-                $('#mini-fourgonnettes_Div').show();
-                $('#mini-fourgonnettes').attr('required','');
-                $('#mini-fourgonnettes').attr('data-error', 'This field is required.');
+        <script>
+            $("#destination_type").change(function() {
+                if ($(this).val() == "Territoire") {
+                    $('#Territoire_Div').show();
+                    $('#Territoire').attr('required', '');
+                    $('#Territoire').attr('data-error', 'This field is required.');
+                } else {
+                    $('#Territoire_Div').hide();
+                    $('#Territoire').removeAttr('required');
+                    $('#Territoire').removeAttr('data-error');
+                }
+            });
+            $("#destination_type").trigger("change");
+        </script>
+        @include('layouts.footerForIndexx')
 
-            } else {
-                $('#mini-fourgonnettes_Div').hide();
-                $('#mini-fourgonnettes').removeAttr('required');
-                $('#mini-fourgonnettes').removeAttr('data-error');
-            }
-        });
-        $("#vehicule_type").trigger("change");
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+        <script type="text/javascript">
 
-
-          </script>
-       <script>
-        $("#vehicule_type").change(function() {
-            if ($(this).val() == "minibus" ) {
-                $('#minibus_Div').show();
-                $('#minibus').attr('required','');
-                $('#minibus').attr('data-error', 'This field is required.');
-
-                    } else {
-                $('#minibus_Div').hide();
-                $('#minibus').removeAttr('required');
-                $('#minibus').removeAttr('data-error');
-            }
-        });
-        $("#vehicule_type").trigger("change");
-
-
-          </script>
-
-   <script>
-    $("#destination_type").change(function() {
-        if ($(this).val() == "Destination (A->B)" ) {
-            $('#AB_Div').show();
-            $('#AB').attr('required','');
-            $('#AB').attr('data-error', 'This field is required.');
-        } else {
-            $('#AB_Div').hide();
-            $('#AB').removeAttr('required');
-            $('#AB').removeAttr('data-error');
-        }
-    });
-    $("#destination_type").trigger("change");
-
-
+            $("#vehicle_id").select2({
+                  placeholder: "Sélectionner un véhicule",
+                  allowClear: true
+              });
       </script>
+    </body>
 
-   <script>
-    $("#destination_type").change(function() {
-        if ($(this).val() == "Territoire" ) {
-            $('#Territoire_Div').show();
-            $('#Territoire').attr('required','');
-            $('#Territoire').attr('data-error', 'This field is required.');
-        } else {
-            $('#Territoire_Div').hide();
-            $('#Territoire').removeAttr('required');
-            $('#Territoire').removeAttr('data-error');
-        }
-    });
-    $("#destination_type").trigger("change");
-
-
-      </script>
-    @include('layouts.footerForIndexx')
-
-</body>
-</html>
+    </html>
 @else
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link href="https://fonts.googleapis.com/css?family=Raleway:500,800" rel="stylesheet">
-  <title>Document</title>
-</head>
-<body>
-  <use>
-  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve" class="whistle">
-<metadata> Svg Vector Icons : http://www.onlinewebfonts.com/icon </metadata>
-<g><g transform="translate(0.000000,511.000000) scale(0.100000,-0.100000)">
-<path d="M4295.8,3963.2c-113-57.4-122.5-107.2-116.8-622.3l5.7-461.4l63.2-55.5c72.8-65.1,178.1-74.7,250.8-24.9c86.2,61.3,97.6,128.3,97.6,584c0,474.8-11.5,526.5-124.5,580.1C4393.4,4001.5,4372.4,4001.5,4295.8,3963.2z"/><path d="M3053.1,3134.2c-68.9-42.1-111-143.6-93.8-216.4c7.7-26.8,216.4-250.8,476.8-509.3c417.4-417.4,469.1-463.4,526.5-463.4c128.3,0,212.5,88.1,212.5,224c0,67-26.8,97.6-434.6,509.3c-241.2,241.2-459.5,449.9-488.2,465.3C3181.4,3180.1,3124,3178.2,3053.1,3134.2z"/><path d="M2653,1529.7C1644,1445.4,765.1,850,345.8-32.7C62.4-628.2,22.2-1317.4,234.8-1960.8C451.1-2621.3,947-3186.2,1584.6-3500.2c1018.6-501.6,2228.7-296.8,3040.5,515.1c317.8,317.8,561,723.7,670.1,1120.1c101.5,369.5,158.9,455.7,360,553.3c114.9,57.4,170.4,65.1,1487.7,229.8c752.5,93.8,1392,181.9,1420.7,193.4C8628.7-857.9,9900,1250.1,9900,1328.6c0,84.3-67,172.3-147.4,195.3c-51.7,15.3-790.8,19.1-2558,15.3l-2487.2-5.7l-55.5-63.2l-55.5-61.3v-344.6V719.8h-411.7h-411.7v325.5c0,509.3,11.5,499.7-616.5,494C2921,1537.3,2695.1,1533.5,2653,1529.7z"/></g></g>
-</svg>
-</use>
-<h1>403</h1>
-<h2>VOUS N'AVEZ PAS ACCÈS À CETTE PAGE!</h2>
-</body>
-</html>
-<style>* {
-    margin:0;
-    padding: 0;
-  }
-  body{
-    background: #233142;
+    <!DOCTYPE html>
+    <html lang="en">
 
-  }
-  .whistle{
-    width: 20%;
-    fill: #f95959;
-    margin: 100px 40%;
-    text-align: left;
-    transform: translate(-50%, -50%);
-    transform: rotate(0);
-    transform-origin: 80% 30%;
-    animation: wiggle .2s infinite;
-  }
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link href="https://fonts.googleapis.com/css?family=Raleway:500,800" rel="stylesheet">
+        <title>Document</title>
+    </head>
 
-  @keyframes wiggle {
-    0%{
-      transform: rotate(3deg);
-    }
-    50%{
-      transform: rotate(0deg);
-    }
-    100%{
-      transform: rotate(3deg);
-    }
-  }
-  h1{
-    margin-top: -100px;
-    margin-bottom: 20px;
-    color: #facf5a;
-    text-align: center;
-    font-family: 'Raleway';
-    font-size: 90px;
-    font-weight: 800;
-  }
-  h2{
-    color: #455d7a;
-    text-align: center;
-    font-family: 'Raleway';
-    font-size: 30px;
-    text-transform: uppercase;
-  }</style>
-                            @endif
+    <body>
+        <use>
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px" y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000"
+                xml:space="preserve" class="whistle">
+                <metadata> Svg Vector Icons : http://www.onlinewebfonts.com/icon </metadata>
+                <g>
+                    <g transform="translate(0.000000,511.000000) scale(0.100000,-0.100000)">
+                        <path
+                            d="M4295.8,3963.2c-113-57.4-122.5-107.2-116.8-622.3l5.7-461.4l63.2-55.5c72.8-65.1,178.1-74.7,250.8-24.9c86.2,61.3,97.6,128.3,97.6,584c0,474.8-11.5,526.5-124.5,580.1C4393.4,4001.5,4372.4,4001.5,4295.8,3963.2z" />
+                        <path
+                            d="M3053.1,3134.2c-68.9-42.1-111-143.6-93.8-216.4c7.7-26.8,216.4-250.8,476.8-509.3c417.4-417.4,469.1-463.4,526.5-463.4c128.3,0,212.5,88.1,212.5,224c0,67-26.8,97.6-434.6,509.3c-241.2,241.2-459.5,449.9-488.2,465.3C3181.4,3180.1,3124,3178.2,3053.1,3134.2z" />
+                        <path
+                            d="M2653,1529.7C1644,1445.4,765.1,850,345.8-32.7C62.4-628.2,22.2-1317.4,234.8-1960.8C451.1-2621.3,947-3186.2,1584.6-3500.2c1018.6-501.6,2228.7-296.8,3040.5,515.1c317.8,317.8,561,723.7,670.1,1120.1c101.5,369.5,158.9,455.7,360,553.3c114.9,57.4,170.4,65.1,1487.7,229.8c752.5,93.8,1392,181.9,1420.7,193.4C8628.7-857.9,9900,1250.1,9900,1328.6c0,84.3-67,172.3-147.4,195.3c-51.7,15.3-790.8,19.1-2558,15.3l-2487.2-5.7l-55.5-63.2l-55.5-61.3v-344.6V719.8h-411.7h-411.7v325.5c0,509.3,11.5,499.7-616.5,494C2921,1537.3,2695.1,1533.5,2653,1529.7z" />
+                    </g>
+                </g>
+            </svg>
+        </use>
+        <h1>403</h1>
+        <h2>VOUS N'AVEZ PAS ACCÈS À CETTE PAGE!</h2>
+    </body>
+
+    </html>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #233142;
+
+        }
+
+        .whistle {
+            width: 20%;
+            fill: #f95959;
+            margin: 100px 40%;
+            text-align: left;
+            transform: translate(-50%, -50%);
+            transform: rotate(0);
+            transform-origin: 80% 30%;
+            animation: wiggle .2s infinite;
+        }
+
+        @keyframes wiggle {
+            0% {
+                transform: rotate(3deg);
+            }
+
+            50% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(3deg);
+            }
+        }
+
+        h1 {
+            margin-top: -100px;
+            margin-bottom: 20px;
+            color: #facf5a;
+            text-align: center;
+            font-family: 'Raleway';
+            font-size: 90px;
+            font-weight: 800;
+        }
+
+        h2 {
+            color: #455d7a;
+            text-align: center;
+            font-family: 'Raleway';
+            font-size: 30px;
+            text-transform: uppercase;
+        }
+    </style>
+@endif

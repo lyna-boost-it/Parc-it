@@ -31,6 +31,22 @@
                             <h3 class="title">{{ __('Créer une pièce consommée') }}</h3>
                         </div>
 
+                        <div class="card-body">
+                            <div class="row">
+                                <label class="col-md-3 col-form-label">{{ __('Type') }}</label>
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                        <select name="type"
+                                            value="{{ old('type'), $cp->type }}"class="form-control"
+                                            id="type">
+                                            <option value="Véhicule">Véhicule</option>
+                                            <option value="Machine">Machine</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+    </div>
 
 
 
@@ -172,7 +188,7 @@
                          <div class="card-footer ">
                             <div class="row">
                              <div class="col-md-12 text-center">
-                                    <button type="submit" class="btn btn-info btn-round">{{ __('Ajouter') }}</button>
+                                    <button type="submit" class="btn   btn-round" style="background:#EE643A;color:#ffffff;">{{ __('Ajouter') }}</button>
                                 </div>
                             </div>
                         </div>

@@ -21,20 +21,12 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="title">
-                                <h4>Gestion des assurances</h4>
+                                <h3 style="color:#EE643A; ">Gestion des assurances
+                                </h3>
                             </div>
 
                         </div>
-                        <a style="position: absolute;
-                        left: 1245px;
-                        @if (Auth::user()->type == 'Gestionnaire Sup') color: currentColor;
-  cursor: not-allowed;
-  opacity: 0.5;
-  text-decoration: none; @endif
-                        "
-                            href="{{ route('ParkManager.insurances.create') }}" class="btn btn-sm btn-success">
-                            Créer une assurances
-                        </a>
+
                     </div>
                 </div>
 
@@ -42,7 +34,15 @@
 
                 <div class="card-box mb-30">
                     <div class="pd-20">
-
+                        <a   style="background:#EE643A;color:#ffffff;float: right;
+                        @if (Auth::user()->type == 'Gestionnaire Sup') color: currentColor;
+  cursor: not-allowed;
+  opacity: 0.5;
+  text-decoration: none; @endif
+                        "
+                            href="{{ route('ParkManager.insurances.create') }}" class="btn btn-sm  ">
+                            Créer une assurance
+                        </a>
 
                     </div>
                     <div class="pb-20">
@@ -54,7 +54,7 @@
 
                                     <th>Type d'assurance</th>
                                     <th>Etat</th>
-                                    <th> VEHICULE</th>
+                                    <th> Véhicule</th>
                                     <th class="datatable-nosort">Action</th>
 
 
@@ -97,7 +97,7 @@
                                                                 cursor: not-allowed;
                                                                 opacity: 0.5;
                                                                 text-decoration: none;" @endif><i
-                                                                    class="dw dw-edit2"></i> Renouvler</a>
+                                                                    class="dw dw-edit2"></i> Renouveler</a>
 
 
                                                             <a class="dropdown-item"

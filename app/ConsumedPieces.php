@@ -8,10 +8,10 @@ class ConsumedPieces extends Model
 {use LogsActivity;
      protected $fillable = [
        'id', 'dt_code' ,'reference','quantity',
-        'price','designation','receip','vehicule_id' ];
+        'price','designation','receip','vehicule_id','type' ];
 
 
         protected static $logAttributes = [
             'id', 'dt_code' ,'reference','quantity',
-            'price','designation','receip','vehicule_id' ];
+            'price','designation','receip','vehicule_id' ,'type'];
 }

@@ -122,12 +122,12 @@
                     <h4 class="font-20 weight-500 mb-10 text-capitalize text-orange">Statistique des Véhicules</h4>
 
                     <input id="tab5" type="radio" name="tabsd" checked>
-                    <label for="tab5">Vehicules</label>
+                    <label for="tab5">Veéicules</label>
                     <section id="content5">
                         <table class="table nowrap hover data-table-export">
                             <thead>
                                 <tr>
-                                    <th>Numero</th>
+                                    <th>Numéro</th>
                                     <th>ID</th>
 
                                     <th> Numéro de Série</th>
@@ -299,7 +299,7 @@ var fage  = JSON.parse($("#fage").val());
             type: 'column'
         },
         title: {
-            text: 'Taux d\'equipement selon la tranche d\'age'
+            text: 'Taux d\'équipement selon la tranche d\'âge'
         },
 
         xAxis: {

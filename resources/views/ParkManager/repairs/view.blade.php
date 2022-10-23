@@ -107,7 +107,7 @@
                         <div class="col-md-6  ">
                             <div class="panel">
                                 <div class="panel-body bio-desk">
-                                        <h4   style="display: inline;">Observatio: </h4>
+                                        <h4   style="display: inline;">Observation: </h4>
                                         <h5 style="display: inline;">{{ $repair->observation }}</h5>
                                         <br>
                                         <h4 style="display: inline;" >Conducteur (sortie): </h4>
@@ -122,6 +122,7 @@
 
                 </div>
             </div>
+            <br>
             <button class="btn btn-warning btn-round"> <a href="javascript:generatePDF()">Télécharger le PDF</a></button>
         </div>
 

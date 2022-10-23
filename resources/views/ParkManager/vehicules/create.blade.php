@@ -81,12 +81,11 @@
                         <div class="col-md-9" >
                             <div class="form-group">
                                 <select id="vehicle_type" type="text" class="form-control select2 @error('vehicle_type') is-invalid @enderror" name="vehicle_type" required autocomplete="vehicle_type" autofocus>
-                                    <option value="" disabled selected>Choisissez un type de véhicule</option>
-                                    <option value="pick-up" {{ old('vehicle_type', $vehicule->vehicle_type) === 'pick-up' ? 'selected' : '' }} >pick-up</option>
-                                    <option value="mini-fourgonnettes" {{ old('vehicle_type', $vehicule->vehicle_type) === 'mini-fourgonnettes' ? 'selected' : '' }} >mini-fourgonnettes</option>
-                                    <option value="minibus" {{ old('vehicle_type', $vehicule->vehicule_type) === 'minibus' ? 'selected' : '' }} >minibus</option>
-
-
+                                    <option value="Camion-citerne" {{ old('vehicle_type', $vehicule->vehicle_type) === 'Camion-citerne' ? 'selected' : '' }} >Camion-citerne</option>
+                                    <option value="Camion benne" {{ old('vehicle_type', $vehicule->vehicle_type) === 'Camion benne' ? 'selected' : '' }} >Camion benne</option>
+                                    <option value="Autobus" {{ old('vehicle_type', $vehicule->vehicle_type) === 'Autobus' ? 'selected' : '' }} >Autobus </option>
+                                    <option value="Automobile" {{ old('vehicle_type', $vehicule->vehicle_type) === 'Automobile' ? 'selected' : '' }} >Automobile </option>
+                                    <option value="Voiture" {{ old('vehicle_type', $vehicule->vehicle_type) === 'Voiture' ? 'selected' : '' }} >Voiture </option>
                                 </select>
                             </div>
                             @if ($errors->has('serial_numbers'))
@@ -392,7 +391,7 @@
                      <div class="card-footer ">
                           <div class="row">
                                 <div class="col-md-12 text-center">
-                                    <button type="submit" class="btn btn-info btn-round">{{ __('Ajouter') }}</button>
+                                    <button type="submit" class="btn   btn-round" style="background:#EE643A;color:#ffffff;">{{ __('Ajouter') }}</button>
                                 </div>
                             </div>
                         </div>

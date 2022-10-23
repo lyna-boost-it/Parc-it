@@ -82,7 +82,11 @@ function Missions_cheker()
 
             $mission->mission_state = "fait";
             $vehicule->previous_state = $vehicule->vehicle_state;
-            $vehicule->vehicle_state = 'en mission';
+            $vehicule->vehicle_state = 'Libre';
+            $vehicule->save();
+            $driver=Staff::find($mission->driver_id);
+            $driver->staff_state='pas au travail';
+            $driver->save();
             $notif = new MoreNotifs();
             $notif->details = 'la mission ' . $mission->id . ' est terminée';
             $notif->save();
@@ -97,7 +101,10 @@ function Missions_cheker()
             $mission->mission_state = "en cours";
             $vehicule->previous_state = $vehicule->vehicle_state;
             $vehicule->vehicle_state = 'en mission';
-
+            $vehicule->save();
+            $driver=Staff::find($mission->driver_id);
+            $driver->staff_state='en mission';
+            $driver->save();
             $notif = new MoreNotifs();
             $notif->details = 'la mission ' . $mission->id . ' a commencé';
             $notif->save();

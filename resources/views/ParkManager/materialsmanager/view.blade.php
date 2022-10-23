@@ -88,6 +88,7 @@
 
                 </div>
             </div>
+            <br>
             <button class="btn btn-warning btn-round"> <a href="javascript:generatePDF()">Télécharger le PDF</a></button>
         </div>
 

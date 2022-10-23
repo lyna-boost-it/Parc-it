@@ -39,16 +39,10 @@ class TechnicalControlController extends Controller
     public function create()
     {
         $technicalcontrol = new TechnicalControl();
-        $minibuses=Vehicule::all()->where('vehicle_type','=','minibus');
-          $fourgonnettes=Vehicule::all()->where('vehicle_type','=','mini-fourgonnettes');
-          $pickups=Vehicule::all()->where('vehicle_type','=','pick-up');
-            $vehicule1=' ';
-          $vehicule2=' ';
-          $vehicule3=' ';
+        $vehicules=Vehicule::all();
           return view('ParkManager.technicalcontrols.create',
           compact('technicalcontrol'
-          , 'minibuses','fourgonnettes','pickups',
-           'vehicule1','vehicule2','vehicule3'));
+          , 'vehicules' ));
     }
 
     /**
@@ -71,17 +65,6 @@ class TechnicalControlController extends Controller
             'SirGaz',
             'vehicle_id' ));
 
-       if( $request->vehicule1 !=null){
-
-        $technicalcontrol->vehicle_id= $request->vehicule1;
-        $technicalcontrol->save();
-                }elseif
-                ( $request->vehicule2 !=null ){
-                    $technicalcontrol->vehicle_id= $request->vehicule2;
-                    $technicalcontrol->save();
-                }else{          $technicalcontrol->vehicle_id= $request->vehicule3;
-
-                }
     $technicalcontrol->save();
     $notif = new MoreNotifs();
         $notif->details = 'le contrôles techniques de vehcule: ' . $technicalcontrol->vehicle_id . ' a été mis à jour';

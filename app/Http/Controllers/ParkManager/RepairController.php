@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\ParkManager;
 
+use App\ConsumedPieces;
 use App\Dt;
+use App\DT_Piece;
 use App\Http\Controllers\Controller;
 use App\Liquids;
 use App\Models\User;
@@ -26,7 +28,7 @@ class RepairController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   $dts=Dt::all()->where('type_maintenance','=','Reparation')->where('answer','=','Accepter');
+    {   $dts=Dt::all()->where('type_maintenance','=','Réparation')->where('answer','=','Accepter');
         $repairs=Repair::all();
         $vehicules=Vehicule::all();
         $drivers=Staff::all()->where('person_type','=','Conducteur');
@@ -42,17 +44,18 @@ class RepairController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function createRepairs($id)
-    {   $dt=Dt::find($id);
+    {$repair=new Repair();
+        $dt=Dt::find($id);
         $vehicule=Vehicule::find($dt->vehicule_id);
-        $repair = new Repair();
-        $liquid=Liquids:: where('type','=','Liquide')->first();
+        $pieces=ConsumedPieces::all()->where('type','=','Véhicule');
         $lubrifiant=Liquids:: where('type','=','Lubrifiant')->first();
+$liquid=Liquids:: where('type','=','Liquide')->first();
        $staffs=Staff::all()->where('person_type','=','Personnel du centre de maintenance')->where('function','!=','Mécanicien spécialisé (matériel motorisé)');
 
         $drivers=Staff::all()->where('person_type','=','Conducteur');
           return view('ParkManager.repairs.create',
           compact('repair','dt'
-          , 'drivers', 'staffs', 'vehicule','lubrifiant','liquid'));
+          , 'drivers', 'staffs', 'vehicule','lubrifiant','liquid','pieces'));
     }
 
     /**
@@ -67,6 +70,21 @@ class RepairController extends Controller
             'id', 'dt_code', 'intervention_date',    'diagnostic', 'repaired_breakdowns', 'liquid',  'lubricant',
             'end_date', 'end_time', 'driver_id', 'observation', 'vehicule_id',
     ));
+
+
+    $products = $request->input('pieces', []);
+    $quantities = $request->input('quantities', []);
+    for ($product=0; $product < count($products); $product++) {
+        if ($products[$product] != '') {
+            $dt_piece=new DT_Piece();
+            $dt_piece->piece_id=$products[$product];
+            $dt_piece->quantity=$quantities[$product];
+            $dt_piece->dt_id=$request->dt_code;
+            $dt_piece->save();
+        }
+    }
+
+
 $staffs=$request['staff'];
 
     foreach($staffs as $s){

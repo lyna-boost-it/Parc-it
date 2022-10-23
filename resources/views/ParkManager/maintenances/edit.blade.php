@@ -24,7 +24,7 @@
     <div class="card">
 
         <div class="card-header">
-            <h3 class="title">{{ __('Modifier une reparation ') }}</h3>
+            <h3 class="title">{{ __('Modifier un entretien ') }}</h3>
         </div>
 
 
@@ -85,7 +85,7 @@
 
         <div class="card-body" >
             <div class="row">
-                <label class="col-md-3 col-form-label">{{ __('Liquide consommés (littre)') }}</label>
+                <label class="col-md-3 col-form-label">{{ __('Liquide consommés (litre)') }}</label>
                 <div class="col-md-9" >
                     <div class="form-group">
                         <input type="number"
@@ -112,7 +112,7 @@
 
         <div class="card-body" >
             <div class="row">
-                <label class="col-md-3 col-form-label">{{ __('Lubrifiant consommés (littre)') }}</label>
+                <label class="col-md-3 col-form-label">{{ __('Lubrifiant consommés (litre)') }}</label>
                 <div class="col-md-9" >
                     <div class="form-group">
                         <input type="number"
@@ -140,7 +140,7 @@
                         <div class="card-footer ">
                             <div class="row">
                                 <div class="col-md-12 text-center">
-                                    <button type="submit" class="btn btn-info btn-round">{{ __('Modifier') }}</button>
+                                    <button type="submit" class="btn  btn-round" style="background:#EE643A;color:#ffffff;">{{ __('Modifier') }}</button>
                                 </div>
                             </div>
                         </div>

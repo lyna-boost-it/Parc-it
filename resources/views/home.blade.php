@@ -37,13 +37,11 @@
                     </div>
                     <div class="col-md-8">
                         <h4 class="font-20 weight-500 mb-10 text-capitalize">
-                            Bienvenue
+                          
                             <div class="weight-600 font-30 text-green">{{ auth()->user()->username }}</div>
                         </h4>
                         <p class="font-18 max-width-600">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde
-                            hic non repellendus debitis iure, doloremque assumenda. Autem
-                            modi, corrupti, nobis ea iure fugiat, veniam non quaerat
+                            Bienvenue sur le tableau de bord Parc'it
                         </p>
                     </div>
                 </div>
@@ -245,7 +243,7 @@
                         <div class="icon h1 text-white"
                             style="border-right: 50px solid transparent;border-left: 50px solid transparent;">
                             <i class="icon-copy fa fa-car" aria-hidden="true"></i>
-                            <div class="font-14">Vehicules <br> en mission</div>
+                            <div class="font-14">Véhicules <br> en mission</div>
                             <div class="font-24 weight-500">
                                 {{ DB::table('vehicules')->where('vehicle_state', '=', 'en mission')->count() }}</div>
 
@@ -275,7 +273,7 @@
                         <div class="icon h1 text-white"
                             style="border-right: 50px solid transparent;border-left: 50px solid transparent;">
                             <i class="icon-copy fa fa-car" aria-hidden="true"></i>
-                            <div class="font-14">Vehicules <br> disponible</div>
+                            <div class="font-14">Véhicules <br> disponible</div>
                             <div class="font-24 weight-500">
                                 {{ DB::table('vehicules')->where('vehicle_state', '=', 'Libre')->count() }}</div>
 
@@ -331,7 +329,7 @@
                             <table class="table nowrap hover data-table-export">
                                 <thead>
                                     <tr>
-                                        <th>Numero</th>
+                                        <th>Numéro</th>
                                         <th>ID</th>
                                         <th> Nom</th>
                                         <th> Pourcentage</th>
@@ -376,7 +374,7 @@
                             <table class="table nowrap hover data-table-export">
                                 <thead>
                                     <tr>
-                                        <th>Numero</th>
+                                        <th>Numéro</th>
 
                                         <th>Intervale d'age</th>
                                         <th>Pourcentage</th>
@@ -444,7 +442,7 @@
                             <table class="table nowrap hover data-table-export">
                                 <thead>
                                     <tr>
-                                        <th>Numero</th>
+                                        <th>Numéro</th>
                                         <th>ID</th>
 
                                         <th> Nom Et Prénom</th>
@@ -521,9 +519,9 @@
 
                                 <thead>
                                     <tr>
-                                        <th>Numero</th>
+                                        <th>Numéro</th>
                                         <th>ID</th>
-                                        <th> VEHICULE</th>
+                                        <th> Véhicule</th>
                                         <th> Pourcentage</th>
                                     </tr>
                                 </thead>
@@ -592,7 +590,12 @@
                                                 @endif
                                             @endforeach
                                             <td style="color: orange;">
-                                                {{ (DB::table('repair__staff')->where('staff_id', '=', $staff->id)->count() /DB::table('repair__staff')->count()) *100 }}%
+												@if(DB::table('repair__staff')->count()==0)
+												0%
+												@else
+												 {{ (DB::table('repair__staff')->where('staff_id', '=', $staff->id)->count() /DB::table('repair__staff')->count()) *100 }}%
+												@endif
+                                               
                                             </td>
                                         </tr>
                                     @endforeach

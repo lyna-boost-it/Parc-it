@@ -42,15 +42,15 @@
                                         <h4  style="display: inline;color:rgb(42, 165, 124)">ID: </h4>
                                         <h5  style="display: inline;">{{ $licence->id }}</h5>
                                         <br>
-                                        <h4 style="display: inline;" >Durée: </h4>
-                                        <h5 style="display: inline;">{{ $licence->duration }}</h5>
+                                        <h4 style="display: inline;" >Etat: </h4>
+                                        <h5 style="display: inline;">{{ $licence->state }}</h5>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6  ">
                             <div class="panel">
                                 <div class="panel-body bio-desk">
-                                        <h4   style="display: inline;">Date debut: </h4>
+                                        <h4   style="display: inline;">Date début: </h4>
                                         <h5 style="display: inline;">{{ $licence->start_date }}</h5>
                                         <br>
                                         <h4 style="display: inline;" >Date fin: </h4>
@@ -65,6 +65,7 @@
 
                 </div>
             </div>
+            <br>
             <button class="btn btn-warning btn-round"> <a href="javascript:generatePDF()">Télécharger le PDF</a></button>
         </div>
 

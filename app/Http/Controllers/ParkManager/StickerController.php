@@ -39,15 +39,11 @@ class StickerController extends Controller
     public function create()
     {
         $sticker = new Sticker();
-      $minibuses=Vehicule::all()->where('vehicle_type','=','minibus');
-        $fourgonnettes=Vehicule::all()->where('vehicle_type','=','mini-fourgonnettes');
-        $pickups=Vehicule::all()->where('vehicle_type','=','pick-up');
-          $vehicule1=' ';
-        $vehicule2=' ';
-        $vehicule3=' ';
+        $vehicules=Vehicule::all();
+
         return view('ParkManager.stickers.create',
         compact('sticker'
-        , 'minibuses','fourgonnettes','pickups','vehicule1','vehicule2','vehicule3'));
+        , 'vehicules' ));
     }
 
     /**
@@ -63,17 +59,7 @@ class StickerController extends Controller
             'id', 'year','validity','vehicle_id'
     ));
 
-       if( $request->vehicule1 !=null){
 
-        $sticker->vehicle_id= $request->vehicule1;
-        $sticker->save();
-                }elseif
-                ( $request->vehicule2 !=null ){
-                    $sticker->vehicle_id= $request->vehicule2;
-                    $sticker->save();
-                }else{          $sticker->vehicle_id= $request->vehicule3;
-
-                }
  $sticker->save();
  $usersA = User::all()->where('type', '=', 'Gestionnaire parc');
  $usersB = User::all()->where('type', '=', 'Utilisateur');

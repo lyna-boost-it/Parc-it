@@ -24,7 +24,7 @@
 
 
                         <div class="card-header">
-                            <h3 class="title">{{ __('Créer une demandes de travaux (DT)  ') }}</h3>
+                            <h3 class="title">{{ __('Créer une demande de travaux (DT)  ') }}</h3>
                         </div>
 
 
@@ -37,7 +37,7 @@
                                         <select  name="type_panne" class="form-control"
                                             id="type_panne">
                                             <option value="" disabled selected>Choisissez un type de Panne</option>
-                                            <option value="Legere" {{ old('type_panne', $dt->type_panne) === 'Legere' ? 'selected' : '' }} >Legere</option>
+                                            <option value="Légère" {{ old('type_panne', $dt->type_panne) === 'Légère' ? 'selected' : '' }} >Légère</option>
                                             <option value="Lourde" {{ old('type_panne', $dt->type_panne) === 'Lourde' ? 'selected' : '' }} >Lourde</option>
                                             <option value="Moyenne" {{ old('type_panne', $dt->type_panne) === 'Moyenne' ? 'selected' : '' }} >Moyenne</option>
 
@@ -138,12 +138,12 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('Action d\'entre') }}</label>
+                                <label class="col-md-3 col-form-label">{{ __('Action d\'entrée') }}</label>
                                 <div class="col-md-9">
                                     <div class="form-group">
                                         <select  name="action" class="form-control"
                                             id="action">
-                                            <option value="" disabled selected>Action d'entre</option>
+                                            <option value="" disabled selected>Action d'entrée</option>
                                             <option value="En maintenance" {{ old('action', $dt->action) === 'En maintenance' ? 'selected' : '' }}  required>En maintenance</option>
                                             <option value="En panne (à l'arrêt)" {{ old('action', $dt->action) === 'en panne (à l\'arrêt)' ? 'selected' : '' }} required >en panne (à l'arrêt)</option>
                                             <option value=" A programmer mais opérationnel" {{ old('action', $dt->action) === 'A programmer mais opérationnel' ? 'selected' : '' }}  required>A programmer mais opérationnel</option>
@@ -156,7 +156,7 @@
                         </div>
                         <div class="card-body" >
                             <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('Date d\'entre ') }}</label>
+                                <label class="col-md-3 col-form-label">{{ __('Date d\'entrée ') }}</label>
                                 <div class="col-md-9" >
                                     <div class="form-group">
                                         <input type="date"  name="enter_date" class="form-control"
@@ -173,7 +173,7 @@
                         </div>
                         <div class="card-body" >
                             <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('Heure d\'entre ') }}</label>
+                                <label class="col-md-3 col-form-label">{{ __('Heure d\'entrée ') }}</label>
                                 <div class="col-md-9" >
                                     <div class="form-group">
                                         <input type="time"  name="enter_time" class="form-control"
@@ -207,110 +207,24 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('Type de Vehicule') }}</label>
+                                <label class="col-md-3 col-form-label">{{ __('Véhicule') }}</label>
                                 <div class="col-md-9">
                                     <div class="form-group">
-                                        <select  name="vehicule_type" class="form-control"
-                                            id="vehicule_type">
-                                            <option value="" disabled selected>Choisissez un type de véhicule</option>
-                                            <option value="pick-up"  >pick-up</option>
-                                            <option value="mini-fourgonnettes" >mini-fourgonnettes</option>
-                                            <option value="minibus" >minibus</option>
 
-                                        </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="mini-fourgonnettes_Div">
-                            <div class="card-body" >
-                                <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __('  Vehicules de type mini-fourgonnettes') }}</label>
-                                    <div class="col-md-9" for="Territoire">
-                                        <div class="form-group">
 
-                                            <select  name="vehicule1"   placeholder="  Vehicule"id="fourgonnettes"
-                                          class="form-control"
-                                               >
-                                               <option value=" "
-                                               >Vehicule
-                                                </option>
-                                                @foreach ($fourgonnettes as $vehicule)
-
-                                                <option value="{{ $vehicule->id }}"
-                                               >
-                                                 {{ $vehicule->code }} </option>
-                                                @endforeach
-
-                                            </select>
-
-                                        </div>
+                                        <select style="width: 300px" id="vehicle_id" name="vehicle_id">
+                                            <option></option>
+                                            @foreach ($vehicules as $vehicule)
+                                            <option value="{{ $vehicule->id }}">
+                                                {{ $vehicule->code }} </option>
+                                        @endforeach
+                                          </select>
 
                                     </div>
                                 </div>
                             </div>
-
-
                         </div>
-                        <div id="minibus_Div">
-                            <div class="card-body" >
-                                <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __('  Vehicules de type Minibus') }}</label>
-                                    <div class="col-md-9" for="minibus_Div">
-                                        <div class="form-group">
 
-                                            <select  name="vehicule2"   placeholder="  Vehicule"id="minibus"
-                                            class="form-control"
-                                                id="minibus">
-                                                <option value=" "
-                                                >Vehicule
-                                                 </option>
-                                                @foreach ($minibuses as $v)
-
-                                                <option value="{{ $v->id }}"
-                                                >
-                                                 {{ $v->code }} </option>
-                                                @endforeach
-
-                                            </select>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
-                        <div id="pick-up_Div">
-                                <div class="card-body" >
-                                <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __('  Vehicules de type Pick-up') }}</label>
-                                    <div class="col-md-9"
-                                        <div class="form-group">
-
-                                            <select  name="vehicule3"   placeholder="  Vehicule"id="pick-up"
-                                            class="form-control"
-                                                id="pick-up">
-                                                <option value=" "
-                                                    >Vehicule
-                                                     </option>
-                                                @foreach ($pickups as $e)
-
-                                                <option value="{{ $e->id }}"
-                                                >
-                                                 {{ $e->code }} </option>
-                                                @endforeach
-
-                                            </select>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
                         <div class="card-body">
                             <div class="row">
                                 <label class="col-md-3 col-form-label">{{ __('Type de Maintenance') }}</label>
@@ -319,8 +233,8 @@
                                         <select  name="type_maintenance" class="form-control"
                                             id="type_maintenance">
                                             <option value="" disabled selected>Choisissez un de Maintenance</option>
-                                            <option value="Reparation" {{ old('type_maintenance', $dt->type_maintenance)
-                                            === 'Reparation' ? 'selected' : '' }} >Reparation</option>
+                                            <option value="Réparation" {{ old('type_maintenance', $dt->type_maintenance)
+                                            === 'Réparation' ? 'selected' : '' }} >Réparation</option>
                                             <option value="Entretien" {{ old('type_maintenance', $dt->type_maintenance)
                                             === 'Entretien' ? 'selected' : '' }} >Entretien</option>
                                             <option value="Maintenance Externe"
@@ -338,7 +252,9 @@
                         <div class="card-footer ">
                             <div class="row">
                              <div class="col-md-12 text-center">
-                                    <button type="submit" class="btn btn-info btn-round">{{ __('Ajouter') }}</button>
+                                    <button type="submit" class="btn   btn-round"
+                                    style="background:#EE643A;color:#ffffff;"
+                                    >{{ __('Ajouter') }}</button>
                                 </div>
                             </div>
                         </div>
@@ -349,58 +265,17 @@
         </div>
     </div>
     @include('layouts.footerForIndexx')
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+    <script type="text/javascript">
 
+        $("#vehicle_id").select2({
+              placeholder: "Sélectionner un véhicule",
+              allowClear: true
+          });
+  </script>
 </body>
-<script>
-    $("#vehicule_type").change(function() {
-        if ($(this).val() == "pick-up" ) {
-            $('#pick-up_Div').show();
-            $('#pick-up').attr('required','');
-            $('#pick-up').attr('data-error', 'This field is required.');
-        } else {
-            $('#pick-up_Div').hide();
-            $('#pick-up').removeAttr('required');
-            $('#pick-up').removeAttr('data-error');
-        }
-    });
-    $("#vehicule_type").trigger("change");
 
-
-      </script>
-   <script>
-    $("#vehicule_type").change(function() {
-        if ($(this).val() == "mini-fourgonnettes" ) {
-            $('#mini-fourgonnettes_Div').show();
-            $('#mini-fourgonnettes').attr('required','');
-            $('#mini-fourgonnettes').attr('data-error', 'This field is required.');
-
-        } else {
-            $('#mini-fourgonnettes_Div').hide();
-            $('#mini-fourgonnettes').removeAttr('required');
-            $('#mini-fourgonnettes').removeAttr('data-error');
-        }
-    });
-    $("#vehicule_type").trigger("change");
-
-
-      </script>
-   <script>
-    $("#vehicule_type").change(function() {
-        if ($(this).val() == "minibus" ) {
-            $('#minibus_Div').show();
-            $('#minibus').attr('required','');
-            $('#minibus').attr('data-error', 'This field is required.');
-
-                } else {
-            $('#minibus_Div').hide();
-            $('#minibus').removeAttr('required');
-            $('#minibus').removeAttr('data-error');
-        }
-    });
-    $("#vehicule_type").trigger("change");
-
-
-      </script>
 </html>
 @else
 <!DOCTYPE html>

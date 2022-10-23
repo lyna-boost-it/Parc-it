@@ -20,7 +20,7 @@
                     <div class="page-header">
                         <div class="row">
                                 <div class="title">
-                                    <h4>Information d'assurence: </h4>
+                                    <h4>Information d'assurance: </h4>
                                 </div>
 
                         </div>

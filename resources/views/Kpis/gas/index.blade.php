@@ -49,7 +49,7 @@
                     <div class="card-box pd-20 height-100-p mb-30">
                         <div class="row align-items-center">
                             <div class="weight-600 font-30 text-grey">Taux de consommation de Carburant pour les
-                                vehicules par <b>Littre</b> dans :
+                                véhicules par <b>Litre</b> dans :
 
                             </div>
                             <div class="col-md-8">
@@ -104,7 +104,7 @@
                     <div class="card-box pd-20 height-100-p mb-30">
                         <div class="row align-items-center">
                             <div class="weight-600 font-30 text-grey">Taux de consommation de Carburant pour les
-                                vehicules par <b>DA</b> dans :
+                                véhicules par <b>DA</b> dans :
 
                             </div>
                             <div class="col-md-8">
@@ -179,7 +179,7 @@
                         <div class="card-box height-100-p pd-20">
                             <main>
                                 <h4 class="font-20 weight-500 mb-10 text-capitalize text-orange">Consommation carburant
-                                    pour Vehicule</h4>
+                                    pour Véhicule</h4>
 
                                 <input id="tab5" type="radio" name="tabsd" checked>
                                 <label for="tab5">Personne</label>
@@ -194,7 +194,7 @@
                                     <table class="table nowrap hover data-table-export">
                                         <thead>
                                             <tr>
-                                                <th>Numero</th>
+                                                <th>Numéro</th>
                                                 <th>ID</th>
 
                                                 <th> Nom Et Prénom</th>
@@ -246,7 +246,7 @@
                                     <table class="table nowrap hover data-table-export">
                                         <thead>
                                             <tr>
-                                                <th>Numero</th>
+                                                <th>Numéro</th>
                                                 <th>ID</th>
 
                                                 <th>Unité</th>
@@ -355,9 +355,9 @@
                                     <div class="px-3 pt-12 pb-10 text-center relative z-20">
                                         <h1 class="text-sm uppercase text-gray-500 leading-tight"
                                             style="font-size: 2.5em;">Consomation tottale du Carburant pour les
-                                            matériels motorisés (littre): </h1>
+                                            matériels motorisés (litre): </h1>
                                         <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">
-                                            {{ $GasPipesLitter }} Littre</h3>
+                                            {{ $GasPipesLitter }} Litre</h3>
 
                                     </div>
 
@@ -405,7 +405,7 @@
                                     <table class="table nowrap hover data-table-export">
                                         <thead>
                                             <tr>
-                                                <th>Numero</th>
+                                                <th>Numéro</th>
                                                 <th>ID</th>
 
                                                 <th> Nom Et Prénom</th>
@@ -443,7 +443,12 @@
                                                         @endif
                                                     @endforeach
                                                     <td style="color: orange;">
+                                                        @if($GasPipesLitter!=0)
                                                         {{ number_format(((float) $consume / $GasPipesLitter) * 100, 2, '.', '') }}%
+                                                        @else
+                                                        0%
+                                                        @endif
+
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -457,7 +462,7 @@
                                     <table class="table nowrap hover data-table-export">
                                         <thead>
                                             <tr>
-                                                <th>Numero</th>
+                                                <th>Numéro</th>
                                                 <th>ID</th>
 
                                                 <th>Unité</th>
@@ -497,7 +502,12 @@
                                                         @endforeach
                                                     @endforeach
                                                     <td style="color: orange;">
+                                                        @if($GasPipesLitter != 0)
                                                         {{ number_format(((float) $c / $GasPipesLitter) * 100), 2, '.', '' }}%
+                                                        @else
+0%
+                                                        @endif
+
                                                     </td>
 
                                                 </tr>

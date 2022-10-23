@@ -29,6 +29,7 @@
                             <div class="card-header">
                                 <h5 class="title">{{ __('Créer un personnel ') }}</h5>
                             </div>
+
                             <div class="card-body">
                                 <div class="row">
                                     <label class="col-md-3 col-form-label">{{ __('Type Personnel') }}</label>
@@ -47,6 +48,7 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
                                 <div id="conducteur_fieldDiv">
 
@@ -150,32 +152,22 @@
                                         </div>
 
 
+
+
                                         <div class="card-body">
                                             <div class="row">
                                                 <label
-                                                    class="col-md-3 col-form-label">{{ __('Diplôme pour les conducteurs d\'engins') }}</label>
-                                                <div class="col-md-9">
+                                                    class="col-md-3 col-form-label">{{ __(' Diplôme pour les conducteurs d\'engins') }}</label>
+                                                <div class="col-md-9" for="conducteur_field">
                                                     <div class="form-group">
-                                                        <select name="diploma1"
-                                                            value="{{ old('diploma1'), $staff->diploma }}"class="form-control"
-                                                            id="staff_type">
-                                                            <option value="Pas de diplôme">
-                                                                Pas de diplôme</option> <option value="CAP conducteur d'engins de travaux publics et carrières">
-                                                                CAP conducteur d'engins de travaux publics et carrières</option>
-                                                                <option value="TP conducteur d'engins de travaux publics ">
-                                                                TP conducteur d'engins de travaux publics </option>
-                                                                <option value="TP conducteur de pelle hydraulique et de chargeuse pelleteuse">
-                                                                TP conducteur de pelle hydraulique et de chargeuse pelleteuse</option>
-                                                                <option value="TP conducteur de bouteur et de chargeuse">
-                                                                TP conducteur de bouteur et de chargeuse</option>
-
-                                                        </select>
+                                                        <input type="number" id="conducteur_field" name="diploma"
+                                                            class="form-control" placeholder="Diplôme"
+                                                            value="{{ $staff->diploma }}">
                                                     </div>
+
                                                 </div>
                                             </div>
                                         </div>
-
-
 
                                     </div>
                                 </div>
@@ -192,7 +184,7 @@
                                             <label class="col-md-3 col-form-label">{{ __('  Diplôme') }}</label>
                                             <div class="col-md-9" for="Mstaff_field">
                                                 <div class="form-group">
-                                                    <input type="text" id="Mstaff_field" name="diploma2"
+                                                    <input type="text" id="Mstaff_field" name="diploma"
                                                         class="form-control" placeholder="Diplôme"
                                                         value="{{ $staff->diploma }}">
                                                 </div>
@@ -236,7 +228,7 @@
                                             <div class="col-md-9" for="staff_field">
                                                 <div class="form-group">
                                                     <input type="text" id="Mstaff_field" name="function2"
-                                                        class="form-control" placeholder="Diplôme"
+                                                        class="form-control" placeholder="Fonction"
                                                         value="{{ $staff->function }}">
                                                 </div>
 
@@ -342,19 +334,18 @@
                                                 <select name="sex"
                                                     value="{{ old('sex'), $staff->sex }}"class="form-control"
                                                     id="sex">
-                                                    <option value="female">Female</option>
-                                                    <option value="male">Male</option>
+                                                    <option value="Femelle">Femelle</option>
+                                                    <option value="Mâle">Mâle</option>
 
                                                 </select>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div></div>
 
 
                                     <div class="card-body">
                                         <div class="row">
-                                            <label
-                                                class="col-md-3 col-form-label">{{ __(' Date de naissance ') }}</label>
+                                            <label class="col-md-3 col-form-label">{{ __(' Date de naissance ') }}</label>
                                             <div class="col-md-9">
                                                 <div class="form-group">
                                                     <input type="date" id="date_of_birth" name="date_of_birth"
@@ -454,7 +445,6 @@
 
 
 
-
                                 <div class="card-body">
                                     <div class="row">
                                         <label class="col-md-3 col-form-label">{{ __('Affectation') }}</label>
@@ -507,7 +497,7 @@
                                     <div class="row">
                                         <div class="col-md-12 text-center">
                                             <button type="submit"
-                                                class="btn btn-success btn-round">{{ __('Ajouter') }}</button>
+                                                class="btn  btn-round" style="background:#EE643A;color:#ffffff;">{{ __('Ajouter') }}</button>
                                         </div>
                                     </div>
                                 </div>
@@ -521,11 +511,19 @@
         @include('layouts.footerForIndexx')
 
     </body>
+    <style>
+        Body
+        {
+            font-weight: bold;
+            color: #000000;
+        }
+
+        </style>
     <script>
         $("#staff_type").change(function() {
             if ($(this).val() == "Conducteur") {
                 $('#conducteur_fieldDiv').show();
-                $('#conducteur_field').attr('required','');
+                $('#conducteur_field').attr('required', '');
                 $('#conducteur_field').attr('data-error', 'This field is required.');
             } else {
                 $('#conducteur_fieldDiv').hide();
@@ -534,15 +532,13 @@
             }
         });
         $("#staff_type").trigger("change");
+    </script>
 
-
-        </script>
-
-        <script>
+    <script>
         $("#staff_type").change(function() {
-            if ($(this).val() == "Personnel du centre de maintenance" ) {
+            if ($(this).val() == "Personnel du centre de maintenance") {
                 $('#Mstaff_fieldDiv').show();
-                $('#Mstaff_field').attr('required','');
+                $('#Mstaff_field').attr('required', '');
                 $('#Mstaff_field').attr('data-error', 'This field is required.');
             } else {
                 $('#Mstaff_fieldDiv').hide();
@@ -552,25 +548,24 @@
 
         });
         $("#staff_type").trigger("change");
+    </script>
 
+    <script>
+        $("#staff_type").change(function() {
+            if ($(this).val() == "Personnel du parc") {
+                $('#staff_fieldDiv').show();
+                $('#staff_field').attr('required', '');
+                $('#staff_field').attr('data-error', 'This field is required.');
+            } else {
+                $('#staff_fieldDiv').hide();
+                $('#staff_field').removeAttr('required');
+                $('#staff_field').removeAttr('data-error');
+            }
 
-          </script>
+        });
+        $("#staff_type").trigger("change");
+    </script>
 
-        <script>
-            $("#staff_type").change(function() {
-                if ($(this).val() == "Personnel du parc" ) {
-                    $('#staff_fieldDiv').show();
-                    $('#staff_field').attr('required','');
-                    $('#staff_field').attr('data-error', 'This field is required.');
-                } else {
-                    $('#staff_fieldDiv').hide();
-                    $('#staff_field').removeAttr('required');
-                    $('#staff_field').removeAttr('data-error');
-                }
-
-            });
-            $("#staff_type").trigger("change");
-        </script>
     </html>
 @else
     <!DOCTYPE html>

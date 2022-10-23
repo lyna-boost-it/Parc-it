@@ -61,10 +61,10 @@
                                             class="col-md-3 col-form-label">{{ __('  Nom et prénom de l\'absent') }}</label>
                                         <div class="col-md-9" for="conducteur_field_for_absence">
                                             <div class="form-group">
-                                                <select name="staff_id1" placeholder="  Nom et prénom de l\'absent"
+                                                <select name="staff_id1" placeholder="  Nom et prénom de l'absent"
                                                     value=" "class="form-control"
                                                     id="staff_type">
-                                                    <option value="a" > Nom et prénom de l\'absent</option>
+                                                    <option value="a" > Nom et prénom de l'absent</option>
 
 
                                                     @foreach ($drivers as $driver)
@@ -221,7 +221,9 @@
                                 <div class="row">
                                     <div class="col-md-12 text-center">
                                         <button type="submit"
-                                            class="btn btn-info btn-round">{{ __('Ajouter') }}</button>
+                                            class="btn  btn-round"
+                                            style="background:#EE643A;color:#ffffff;"
+                                            >{{ __('Ajouter') }}</button>
                                     </div>
                                 </div>
                             </div>

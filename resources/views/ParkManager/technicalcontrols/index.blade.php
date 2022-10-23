@@ -19,19 +19,11 @@
 					<div class="row">
 						<div class="col-md-6 col-sm-12">
 							<div class="title">
-								<h4>Gestion des contrôles techniques</h4>
+								<h3 style="color:#EE643A; ">Gestion des contrôles techniques</h3>
                      		</div>
 
 						</div>
-                        <a  style="position: absolute;
-                        left: 1235px;
-                        @if (Auth::user()->type == 'Gestionnaire Sup')   color: currentColor;
-  cursor: not-allowed;
-  opacity: 0.5;
-  text-decoration: none;  @endif
-                        " href="{{route('ParkManager.technicalcontrols.create')}}" class="btn btn-sm btn-success">
-                          Créer un contrôles technique
-                        </a>
+
 
 					</div>
 				</div>
@@ -41,7 +33,14 @@
 					<div class="card-box mb-30">
 						<div class="pd-20">
 
-
+                            <a  style="background:#EE643A;color:#ffffff;float: right;
+                            @if (Auth::user()->type == 'Gestionnaire Sup')   color: currentColor;
+      cursor: not-allowed;
+      opacity: 0.5;
+      text-decoration: none;  @endif
+                            " href="{{route('ParkManager.technicalcontrols.create')}}" class="btn btn-sm  ">
+                              Créer un contrôles technique
+                            </a>
 						</div>
 						<div class="pb-20">
 
@@ -57,7 +56,7 @@
 
 
                            <th  >Contrôle technique SirGaz </th>
-                           <th >VEHICULE</th>
+                           <th >Véhicule</th>
                               <th >Etat</th>
                                <th class="datatable-nosort">Action</th>
 
@@ -110,7 +109,7 @@
                                                                 @if (Auth::user()->type == 'Gestionnaire Sup') style="  color: currentColor;
                                                                 cursor: not-allowed;
                                                                 opacity: 0.5;
-                                                                text-decoration: none;" @endif ><i class="dw dw-edit2"></i> Renouvler</a>
+                                                                text-decoration: none;" @endif ><i class="dw dw-edit2"></i> Renouveler</a>
                                       <a class="dropdown-item" href="{{route('ParkManager.technicalcontrols.show',$technicalcontrol->id)}}"
                                                                 ><i class="dw dw-eye"></i> Consulter</a>
                                                                 @if (Auth::user()->type == 'Gestionnaire Sup')   <a class="dropdown-item"  style="  color: currentColor;

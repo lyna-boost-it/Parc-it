@@ -152,7 +152,7 @@
             type: 'column'
         },
         title: {
-            text: 'Nombre d\'equipement selon la tranche d\'age'
+            text: 'Nombre d\'équipement selon la tranche d\'âge'
         },
 
         xAxis: {

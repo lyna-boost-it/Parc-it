@@ -62,7 +62,7 @@
                                                         <h4   style="display: inline;">Fonction: </h4>
                                                         <h5 style="display: inline;">{{ $driver->function }}</h5>
                                                         <br>
-                                                        <h4  style="display: inline; ">Nom et prénom du perssone accompagné: </h4>
+                                                        <h4  style="display: inline; ">Nom et prénom du personne accompagné: </h4>
                                                         <h5 style="display: inline;">{{ $mission->p_name }} {{ $mission->p_last_name }}</h5>
                                                 </div>
                                             </div>
@@ -128,6 +128,7 @@
 
                 </div>
             </div>
+            <br>
             <button class="btn btn-warning btn-round"> <a href="javascript:generatePDF()">Télécharger le PDF</a></button>
         </div>
 

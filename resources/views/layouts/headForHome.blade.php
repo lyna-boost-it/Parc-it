@@ -61,4 +61,13 @@
     <script src="vendors/scripts/process.js"></script>
     <script src="vendors/scripts/layout-settings.js"></script>
 
+
+<!-- js -->
+<script src="{{URL('assets/vendors/scripts/core.js')}}";></script>
+
+
+
+
+
+
 </head>

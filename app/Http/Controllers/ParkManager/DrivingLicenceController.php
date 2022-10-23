@@ -37,16 +37,10 @@ class DrivingLicenceController extends Controller
     public function create()
     {
         $licence = new DrivingLicence();
-      $minibuses=Vehicule::all()->where('vehicle_type','=','minibus');
-        $fourgonnettes=Vehicule::all()->where('vehicle_type','=','mini-fourgonnettes');
-        $pickups=Vehicule::all()->where('vehicle_type','=','pick-up');
-          $vehicule1=' ';
-        $vehicule2=' ';
-        $vehicule3=' ';
+        $vehicules=Vehicule::all();
         return view('ParkManager.licences.create',
         compact('licence'
-        , 'minibuses','fourgonnettes','pickups',
-         'vehicule1','vehicule2','vehicule3'));
+        , 'vehicules' ));
     }
 
     /**
@@ -61,17 +55,7 @@ class DrivingLicenceController extends Controller
         'id', 'start_date','end_date','vehicle_id'
 ));
 
-   if( $request->vehicule1 !=null){
 
-    $licence->vehicle_id= $request->vehicule1;
-    $licence->save();
-            }elseif
-            ( $request->vehicule2 !=null ){
-                $licence->vehicle_id= $request->vehicule2;
-                $licence->save();
-            }else{          $licence->vehicle_id= $request->vehicule3;
-
-            }
 $licence->save();
 $usersA = User::all()->where('type', '=', 'Gestionnaire parc');
 $usersB = User::all()->where('type', '=', 'Utilisateur');

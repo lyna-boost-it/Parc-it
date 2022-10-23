@@ -25,7 +25,7 @@
 
         <br><br><br>
         <div class="card-header">
-            <h3 class="title">{{ __('Renouvler un contrôles techniques  ') }}</h3>
+            <h3 class="title">{{ __('Renouveler un contrôles techniques  ') }}</h3>
         </div>
 
 
@@ -83,7 +83,7 @@
                         <div class="card-footer ">
                             <div class="row">
                                 <div class="col-md-12 text-center">
-                                    <button type="submit" class="btn btn-info btn-round">{{ __('Modifier') }}</button>
+                                    <button type="submit" class="btn   btn-round" style="background:#EE643A;color:#ffffff;">{{ __('Modifier') }}</button>
                                 </div>
                             </div>
                         </div>

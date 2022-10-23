@@ -20,7 +20,7 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="title">
-                                <h4>Gestion des Pontages</h4>
+                                <h3 style="color:#EE643A; ">Gestion des Pontages</h3>
                             </div>
 
                         </div>
@@ -75,25 +75,25 @@
 
                                                         @if ($staff->staff_state == 'absent')
                                                             <span class="fa fa-sticky-note "
-                                                                style="color: #3da8bb; font-size:18px;">
+                                                                style="color: #3da8bb; font-size:16px;">
                                                                 Absent
                                                             </span>
                                                         @endif
                                                         @if ($staff->staff_state == 'en mission')
                                                             <span class="fa fa-sticky-note "
-                                                                style="color: #543dbb; font-size:18px;">
+                                                                style="color: #543dbb; font-size:16px;">
                                                                 en mission
                                                             </span>
                                                         @endif
                                                         @if ($staff->staff_state == 'pas au travail')
                                                             <span class="fa fa-sticky-note "
-                                                                style="color: #bb3d9b; font-size:20px;">
+                                                                style="color: #bb3d9b; font-size:16px;">
                                                                 pas au travail
                                                             </span>
                                                         @endif
                                                         @if ($staff->staff_state == 'au travail')
                                                             <span class="fa fa-sticky-note "
-                                                                style="color: #3dbb8b; font-size:20px;">
+                                                                style="color: #3dbb8b; font-size:16px;">
                                                                 au travail
                                                             </span>
                                                         @endif

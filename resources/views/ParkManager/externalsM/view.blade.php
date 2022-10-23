@@ -44,7 +44,7 @@
                                             <h5  style="display: inline;">{{ $external->contract }} </h5>
                                             <br>
                                             <h4 style="display: inline;" >Nom du fournisseur: </h4>
-                                            <h5 style="display: inline;">{{ $external->supplier }} </h5>
+                                            <h5 style="display: inline;">{{ $guaranti->name_vendor }} </h5>
                                     </div>
                                 </div>
                             </div>
@@ -106,6 +106,7 @@
 
                 </div>
             </div>
+            <br>
             <button class="btn btn-warning btn-round"> <a href="javascript:generatePDF()">Télécharger le PDF</a></button>
         </div>
 

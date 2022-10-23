@@ -18,7 +18,8 @@
 					<div class="row">
 						<div class="col-md-6 col-sm-12">
 							<div class="title">
-								<h4>Liste des Maintenances externes:</h4>
+								<h3 style="color:#EE643A;
+                                 ">Liste des Maintenances externes:</h3>
                      		</div>
 
 						</div>
@@ -38,7 +39,7 @@
                                         <th >ID</th>
                                         <th  > Contrat </th>
                                         <th  >N° de la Demande de Travaux (DT)</th>
-                                        <th  >VEHICULE</th>
+                                        <th  >Matériel</th>
                                       <th class="datatable-nosort">Action</th>
 
 									</tr>
@@ -137,15 +138,7 @@
                                             </div>
 
                                         </div>
-                                        <a  style="position: absolute;
-                                        left: 1245px;
-                                        @if (Auth::user()->type == 'Gestionnaire Sup')   color: currentColor;
-  cursor: not-allowed;
-  opacity: 0.5;
-  text-decoration: none;  @endif
-                                        " href="{{route('ParkManager.dtsM.create')}}" class="btn btn-sm btn-success">
-                                        Créer une demande
-                                        </a>
+
                                     </div>
                                 </div>
 
@@ -153,6 +146,15 @@
 
                                  <div class="card-box mb-30">
 
+ <div class="pd-20">
+    <a  style="background:#EE643A;color:#ffffff;float: right;
+                                    @if (Auth::user()->type == 'Gestionnaire Sup')   color: currentColor;
+cursor: not-allowed;
+opacity: 0.5;
+text-decoration: none;  @endif
+                                    " href="{{route('ParkManager.dtsM.create')}}" class="btn btn-sm ">
+                                    Créer une demande
+                                    </a>
                                     <div class="pb-20">
 
                                         <table class="table nowrap hover data-table-export">
@@ -163,7 +165,7 @@
 
                                                      <th  >Action d'entrée</th>
                                                     <th  >DATE ET HEURE D'ENTREE</th>
-                                                    <th >Materiel</th>
+                                                    <th >Matériel</th>
                                                      <th >Type de maintenance </th>
                                                   <th class="datatable-nosort">Action</th>
 

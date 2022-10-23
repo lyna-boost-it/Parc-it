@@ -74,8 +74,8 @@
                                         <h5  style="display: inline;">{{ $garantie->ref_vendor }}</h5>
                                         <br>
                                         <h4 style="display: inline;" >Infos du Fournisseur: </h4>
-                                        <h5 style="display: inline;"><b> Nom fournisser</b> {{ $garantie->name_vendor }}
-                                            <b>Adresse</b>{{ $garantie->address_vendor }} </h5>
+                                        <h5 style="display: inline;"><b> Nom fournisseur:</b> {{ $garantie->name_vendor }}
+                                            <b>Adresse: </b>{{ $garantie->address_vendor }} </h5>
                                 </div>
                             </div>
                         </div>
@@ -95,6 +95,7 @@
 
                 </div>
             </div>
+            <br>
             <button class="btn btn-warning btn-round"> <a href="javascript:generatePDF()">Télécharger le PDF</a></button>
         </div>
 

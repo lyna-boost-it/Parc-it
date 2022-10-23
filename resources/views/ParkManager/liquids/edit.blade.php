@@ -61,7 +61,7 @@
                         <div class="card-footer ">
                             <div class="row">
                                 <div class="col-md-12 text-center">
-                                    <button type="submit" class="btn btn-info btn-round">{{ __('Ok') }}</button>
+                                    <button type="submit" class="btn   btn-round" style="background:#EE643A;color:#ffffff;">{{ __('Ok') }}</button>
                                 </div>
                             </div>
                         </div>

@@ -59,7 +59,7 @@
 
 <div class="card-body" >
 <div class="row">
-<label class="col-md-3 col-form-label">{{ __(' Date de validité (Debut)') }}</label>
+<label class="col-md-3 col-form-label">{{ __(' Date de validité (Début)') }}</label>
 <div class="col-md-9" >
 <div class="form-group">
     <input type="date"
@@ -109,7 +109,7 @@
                         <div class="card-footer ">
                             <div class="row">
                                 <div class="col-md-12 text-center">
-                                    <button type="submit" class="btn btn-info btn-round">{{ __('Modifier') }}</button>
+                                    <button type="submit" class="btn  btn-round" style="background:#EE643A;color:#ffffff;">{{ __('Modifier') }}</button>
                                 </div>
                             </div>
                         </div>

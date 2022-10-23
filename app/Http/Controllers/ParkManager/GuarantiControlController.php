@@ -37,16 +37,10 @@ class GuarantiControlController extends Controller
     {
 
         $guaranti = new Garanti();
-      $minibuses=Vehicule::all()->where('vehicle_type','=','minibus');
-        $fourgonnettes=Vehicule::all()->where('vehicle_type','=','mini-fourgonnettes');
-        $pickups=Vehicule::all()->where('vehicle_type','=','pick-up');
-          $vehicule1=' ';
-        $vehicule2=' ';
-        $vehicule3=' ';
+        $vehicules=Vehicule::all();
         return view('ParkManager.guarantis.create',
         compact('guaranti'
-        , 'minibuses','fourgonnettes','pickups',
-         'vehicule1','vehicule2','vehicule3'));
+        , 'vehicules' ));
     }
 
     /**
@@ -73,18 +67,7 @@ class GuarantiControlController extends Controller
                'after_sold_service'
     ));
 
-       if( $request->vehicule1 !=null){
 
-        $guaranti->vehicle_id= $request->vehicule1;
-        $guaranti->save();
-                }elseif
-                ( $request->vehicule2 !=null ){
-                    $guaranti->vehicle_id= $request->vehicule2;
-                    $guaranti->save();
-                }else{          $guaranti->vehicle_id= $request->vehicule3;
-
-                }
- $guaranti->save();
 
        return redirect()->route ('ParkManager.guarantis.index')->with('success',"vous avez ajouter un Service après-vente avec succès");
     }

@@ -75,8 +75,9 @@
                                                 <option value="" disabled selected>Choisissez un type de journée
                                                 </option>
                                                 <option value="Journée de travail">Journée de travail</option>
-                                                <option value="Vendredi"> Vendredi</option>
-                                                <option value="Jour férié">Jours férié</option>
+                                                 <option value="Journée de travail">Nuit de travail</option>
+                                                <option value="Vendredi"> Vendredis</option>
+                                                <option value="Jour férié">Jours fériés</option>
 
 
                                             </select>
@@ -135,7 +136,9 @@
                                 <div class="row">
                                     <div class="col-md-12 text-center">
                                         <button type="submit"
-                                            class="btn btn-info btn-round">{{ __('Ajouter') }}</button>
+                                            class="btn btn-round"
+                                            style="background:#EE643A;color:#ffffff;"
+                                            >{{ __('Ajouter') }}</button>
                                     </div>
                                 </div>
                             </div>

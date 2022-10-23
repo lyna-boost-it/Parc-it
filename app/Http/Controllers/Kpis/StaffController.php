@@ -43,7 +43,7 @@ class StaffController extends Controller
         $month=$request->month;
         $year=$request->year;
         $yearStaff=$request->yearStaff;
-        $id=$request->id;
+        $id=$request->staff_id;
 
         $totalAbsences=Absence::all()->count();
         $absence =Absence ::whereYear('created_at',$yearStaff)->whereMonth('created_at',$monthStaff)->count();

@@ -39,16 +39,10 @@ class AccidentController extends Controller
 
         $accident = new Accident();
         $drivers=Staff::all()->where('person_type','=','Conducteur');
-        $minibuses=Vehicule::all()->where('vehicle_type','=','minibus');
-        $fourgonnettes=Vehicule::all()->where('vehicle_type','=','mini-fourgonnettes');
-        $pickups=Vehicule::all()->where('vehicle_type','=','pick-up');
-          $vehicule1=' ';
-        $vehicule2=' ';
-        $vehicule3=' ';
+        $vehicules=Vehicule::all();
         return view('ParkManager.accidents.create',
         compact('accident'
-        ,'drivers','minibuses','fourgonnettes','pickups',
-         'vehicule1','vehicule2','vehicule3'));
+        ,'drivers','vehicules' ));
 
     }
 

@@ -23,13 +23,12 @@ class ConsumedPiecesController extends Controller
      */
     public function index()
     {
-        $dts=Dt::all()->where('type_maintenance','=','Pieces Consommees');
 
         $cps=ConsumedPieces::all();
 
 
         return view('ParkManager.cps.index')
-        ->with('cps',$cps)->with('dts',$dts);
+        ->with('cps',$cps) ;
 
 
     }
@@ -43,11 +42,9 @@ class ConsumedPiecesController extends Controller
     {
 
         $cp = new ConsumedPieces();
-       $staffs=Staff::all()->where('person_type','=','Personnel du parc');
-        $drivers=Staff::all()->where('person_type','=','Conducteur');
+
           return view('ParkManager.cps.create',
-          compact('cp'
-          , 'drivers', 'staffs'));
+          compact('cp' ));
     }
 
     /**
@@ -60,7 +57,7 @@ class ConsumedPiecesController extends Controller
     {
         $cp=ConsumedPieces:: create($request->only(
             'id', 'dt_code' ,'reference','quantity',
-            'price','designation','receip','vehicule_id'   ));
+            'price','designation','receip','vehicule_id','type'   ));
    $cp->full_price=$cp->price*$cp->quantity;
    $cp->save();
 
@@ -109,7 +106,7 @@ class ConsumedPiecesController extends Controller
     { $cp =ConsumedPieces::find($id);
         $cp->update($request->only(
             'id', 'dt_code' ,'reference','quantity',
-            'price','designation','receip','vehicule_id'
+            'price','designation','receip','vehicule_id','type'
            ));
            $cp->full_price=$cp->price*$cp->quantity;
            $cp->save();

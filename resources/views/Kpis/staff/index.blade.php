@@ -217,15 +217,16 @@
 
 
 
-                    <div class="form-group" style=" display: inline-block;">
-                        <select name="person_type" class="form-control" id="staff_type">
-                            <option value="Conducteur">Conducteur</option>
-                            <option value="Personnel du centre de maintenance">Personnel du centre de maintenance
-                            </option>
-                            <option value="Personnel du parc">Personnel du parc</option>
 
-                        </select>
-                    </div>
+                                    <select style="width: 300px" id="staff_id" name="staff_id">
+                                        <option></option>
+                                        @foreach ($staffs as $staff)
+                                        <option value="{{ $staff->id }}">
+                                            {{ $staff->name }} {{ $staff->last_name }}  </option>
+                                    @endforeach
+                                      </select>
+
+
 
                     <div class="form-group" style=" display: inline-block;" id="specificDiv">
 
@@ -261,51 +262,7 @@
                                 class="form-control" placeholder="année">
                         </div>
                     </div>
-                    <div class="form-group" style=" display: inline-block;" id="conducteur_fieldDiv">
-                        <select id="id" type="text"
-                            class="form-control select2 @error('id')
-                            is-invalid @enderror"
-                            name="id" autocomplete="id" autofocus>
-                            <option value="" disabled selected>Personnel</option>
-                            @foreach ($driversList as $staff)
-                                <option value={{ $staff->id }}>{{ $staff->name }} {{ $staff->last_name }}
-                                </option>
-                            @endforeach
 
-
-
-                        </select>
-                    </div>
-                    <div class="form-group" style=" display: inline-block;" id="Mstaff_fieldDiv">
-                        <select id="id" type="text"
-                            class="form-control select2 @error('id')
-                        is-invalid @enderror"
-                            name="id" autocomplete="id" autofocus>
-                            <option value="" disabled selected>Personnel </option>
-                            @foreach ($pParckList as $staff)
-                                <option value={{ $staff->id }}>{{ $staff->name }} {{ $staff->last_name }}
-                                </option>
-                            @endforeach
-
-
-
-                        </select>
-                    </div>
-                    <div class="form-group" style=" display: inline-block;" id="pcDiv">
-                        <select id="id" type="text"
-                            class="form-control select2 @error('id')
-                            is-invalid @enderror"
-                            name="id" autocomplete="id" autofocus>
-                            <option value="" disabled selected>Personnel </option>
-                            @foreach ($pCentreList as $staff)
-                                <option value={{ $staff->id }}>{{ $staff->name }} {{ $staff->last_name }}
-                                </option>
-                            @endforeach
-
-
-
-                        </select>
-                    </div>
 
 
 
@@ -348,7 +305,7 @@
                         <table class="table nowrap hover data-table-export">
                             <thead>
                                 <tr>
-                                    <th>Numero</th>
+                                    <th>Numéro</th>
                                     <th>ID</th>
 
                                     <th> Nom Et Prénom</th>
@@ -385,16 +342,18 @@
                                                  <th>Heures de Nuit</th>
 
                                                         <th> Vendredi</th>
-                                                        <th>Jours Feriés</th>
+                                                        <th>Jours Fériés</th>
                                                         <th>Récupération</th>
 
 
                                                     </tr>
 
                                                     <tr>
-                                                        <td> {{ DB::table('hours')->where('staff_id', '=', $staff->id)->where('type_days', '=', 'Journée de travail')->sum('day_hours') }}
+                                                        <td> {{ DB::table('hours')->where('staff_id', '=', $staff->id)->where('type_days', '=', 'Journée de travail')->sum('day_hours')+
+                                                        DB::table('hours')->where('staff_id', '=', $staff->id)->where('type_days', '=', 'Nuit de travail')->sum('day_hours') }}
                                                         </td>
-                                                        <td> {{ DB::table('hours')->where('staff_id', '=', $staff->id)->where('type_days', '=', 'Journée de travail')->sum('night_hours') }}
+                                                        <td> {{ DB::table('hours')->where('staff_id', '=', $staff->id)->where('type_days', '=', 'Journée de travail')->sum('night_hours')+
+                                                         DB::table('hours')->where('staff_id', '=', $staff->id)->where('type_days', '=', 'Nuit de travail')->sum('night_hours') }}
                                                         </td>
                                                         <td> {{ DB::table('hours')->where('staff_id', '=', $staff->id)->where('type_days', '=', 'Vendredi')->count() }}
                                                         </td>
@@ -402,8 +361,9 @@
                                                         </td>
 
                                                         <td>{{ round(
-                                                            (CheckDayHours(DB::table('hours')->where('staff_id', '=', $staff->id)->where('type_days', '=', 'Journée de travail')->sum('day_hours'))+
-                                                            (DB::table('hours')->where('staff_id', '=', $staff->id)->where('type_days', '=', 'Journée de travail')->sum('night_hours')*2) +
+                                                            (CheckDayHours(DB::table('hours')->where('staff_id', '=', $staff->id)->where('type_days', '=', 'Journée de travail')->sum('day_hours')+DB::table('hours')->where('staff_id', '=', $staff->id)->where('type_days', '=', 'Nuit de travail')->sum('day_hours'))+
+                                                            ((DB::table('hours')->where('staff_id', '=', $staff->id)->where('type_days', '=', 'Journée de travail')->sum('night_hours')+
+                                                            DB::table('hours')->where('staff_id', '=', $staff->id)->where('type_days', '=', 'Nuit de travail')->sum('night_hours'))*2) +
                                                                 (DB::table('hours')->where('staff_id', '=', $staff->id)->where('type_days', '=', 'Vendredi')->count() +
                                                                     DB::table('hours')->where('staff_id', '=', $staff->id)->where('type_days', '=', 'Jour férié')->count())*8) /
                                                                 8,
@@ -583,6 +543,18 @@
         });
     }, 35);
 </script>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<script type="text/javascript">
+
+    $("#staff_id").select2({
+          placeholder: "Sélectionner un personnel",
+          allowClear: true
+      });
+</script>
+
 <script>
     $("#staff_type").change(function() {
         if ($(this).val() == "Conducteur") {

@@ -104,7 +104,7 @@
             <div class="col-md-6 mb-20">
                 <div class="card-box height-100-p pd-20">
                     <h4 class="weight-600 font-20 text-orange">
-                        Consomation totale des Pièces   {{$totalAllPiecesPrice  }}DA.
+                        Consommation totale des Pièces   {{$totalAllPiecesPrice  }}DA.
                     </h4>
                     <div id="myChart" class="chart--container">
 
@@ -121,7 +121,7 @@
                     <h4 class="font-20 weight-500 mb-10 text-capitalize text-orange">Consommation des Pièces </h4>
 
                     <input id="tab5" type="radio" name="tabsd" checked>
-                    <label for="tab5">VEHICULE</label>
+                    <label for="tab5">Véhicule</label>
 
                     <input id="tab6" type="radio" name="tabsd">
                     <label for="tab6"> MATÉRIELS MOTORISÉS</label>
@@ -133,7 +133,7 @@
                         <table class="table nowrap hover data-table-export">
                             <thead>
                                 <tr>
-                                    <th>Numero</th>
+                                    <th>Numéro</th>
                                     <th>ID</th>
 
                                     <th> Num de Séries</th>
@@ -204,7 +204,7 @@
                         <table class="table nowrap hover data-table-export">
                             <thead>
                                 <tr>
-                                    <th>Numero</th>
+                                    <th>Numéro</th>
                                     <th>ID</th>
 
                                     <th>Réf d'achat</th>
@@ -342,7 +342,7 @@
             type: 'column'
         },
         title: {
-            text: 'Consomation des Pièces en DA (Total: '+totalAllPiecesPrice+' DA)'
+            text: 'Consommation des Pièces en DA (Total: '+totalAllPiecesPrice+' DA)'
         },
 
         xAxis: {
@@ -384,7 +384,7 @@
         },
         series: [{
             color: '#87A2FB',
-            name: 'VEHICULE',
+            name: 'Véhicule',
             data: [parseFloat(piecesVArray[1]),
                 parseFloat(piecesVArray[2]),
                 parseFloat(piecesVArray[3]),
@@ -430,7 +430,7 @@
             type: 'column'
         },
         title: {
-            text: 'Consomation des Pièces en P (Total: '+totalAllPieces+' P)'
+            text: 'Consommation des Pièces en P (Total: '+totalAllPieces+' P)'
         },
 
         xAxis: {

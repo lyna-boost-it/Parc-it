@@ -32,7 +32,7 @@
                     <div class="page-header">
                         <div class="row">
                                 <div class="title">
-                                    <h4 style="color:brown">Information de Vihicule:  </h4>
+                                    <h4 style="color:brown">Information de Véhicule:  </h4>
                                 </div>
 
                         </div>
@@ -111,7 +111,7 @@
                                             <div class="panel">
                                                 <div class="panel-body bio-desk">
                                                     <h4  style="display: inline;" >Les informations de la CARTE GRISE:</h4>
-                                                    <h5 style="display: inline;"> <a  href="/files/carteGrise_files/{{ $vehicule->path }}" >
+                                                    <h5 style="display: inline;">  <a  href="https://parcit.edeval.dz/public/files/carteGrise_files/{{ $vehicule->path }}" >
 
 
                                                         <span class="fa fa-eye  " style="color: #7e3dbb"> </span>
@@ -444,7 +444,7 @@
                                         <div class="col-md-6  ">
                                             <div class="panel">
                                                 <div class="panel-body bio-desk">
-                                                        <h4   style="display: inline;">Date debut: </h4>
+                                                        <h4   style="display: inline;">Date début: </h4>
                                                         <h5 style="display: inline;">{{ $licence->start_date }}</h5>
                                                         <br>
                                                         <h4 style="display: inline;" >Date fin: </h4>
@@ -531,6 +531,7 @@
 
                 </div>
             </div>
+            <br>
             <button class="btn btn-warning btn-round"> <a href="javascript:generatePDF()">Télécharger le PDF</a></button>
         </div>
 

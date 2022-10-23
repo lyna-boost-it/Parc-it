@@ -20,20 +20,12 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="title">
-                                <h4>Gestion des consommations de carburant pour véhicule</h4>
+                                <h3 style="color:#EE643A; ">
+                                    Gestion des consommations de carburant pour véhicule</h3>
                             </div>
 
                         </div>
-                        <a style="position: absolute;
-                        left: 1245px;
-                        @if (Auth::user()->type == 'Gestionnaire Sup') color: currentColor;
-                        cursor: not-allowed;
-                        opacity: 0.5;
-                        text-decoration: none; @endif
-                                                "
-                            href="{{ route('ParkManager.gasVehicules.create') }}" class="btn btn-sm btn-success">
-                            Créer une consommation
-                        </a>
+
                     </div>
                 </div>
 
@@ -41,7 +33,15 @@
 
                 <div class="card-box mb-30">
                     <div class="pd-20">
-
+                        <a  style="background:#EE643A;color:#ffffff;float: right;
+                        @if (Auth::user()->type == 'Gestionnaire Sup') color: currentColor;
+                        cursor: not-allowed;
+                        opacity: 0.5;
+                        text-decoration: none; @endif
+                                                "
+                            href="{{ route('ParkManager.gasVehicules.create') }}" class="btn btn-sm ">
+                            Créer une consommation
+                        </a>
 
                     </div>
                     <div class="pb-20">
@@ -54,7 +54,7 @@
                                     <th>Nom et Prénom du conducteur</th>
                                     <th>Agent remplisseur</th>
                                     <th> Coût</th>
-                                    <th>Vehicule</th>
+                                    <th>Véhicule</th>
                                     <th> Litre de Carburant</th>
                                     <th> Prix du litre</th>
                                     <th> KM</th>

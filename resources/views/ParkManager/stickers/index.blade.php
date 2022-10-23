@@ -19,19 +19,11 @@
 
 						<div class="col-md-6 col-sm-12">
 							<div class="title">
-								<h4>Gestion des vignettes</h4>
+								<h3 style="color:#EE643A; ">Gestion des vignettes</h3>
                      		</div>
 
 						</div>
-                        <a  style="position: absolute;
-                        left: 1245px;
-                        @if (Auth::user()->type == 'Gestionnaire Sup')   color: currentColor;
-  cursor: not-allowed;
-  opacity: 0.5;
-  text-decoration: none;  @endif
-                        " href="{{route('ParkManager.stickers.create')}}" class="btn btn-sm btn-success">
-                            Créer une vignettes
-                        </a>
+
 					</div>
 				</div>
 
@@ -40,7 +32,14 @@
 					<div class="card-box mb-30">
 						<div class="pd-20">
 
-
+                            <a  style="background:#EE643A;color:#ffffff;float: right;
+                            @if (Auth::user()->type == 'Gestionnaire Sup')   color: currentColor;
+      cursor: not-allowed;
+      opacity: 0.5;
+      text-decoration: none;  @endif
+                            " href="{{route('ParkManager.stickers.create')}}" class="btn btn-sm  ">
+                                Créer une vignette
+                            </a>
 						</div>
 						<div class="pb-20">
 
@@ -50,7 +49,7 @@
                                         <th >ID</th>
                                         <th >Année (en cours) </th>
                                         <th >Validité</th>
-                                        <th > VEHICULE</th>
+                                        <th > Véhicule</th>
 
                                       <th class="datatable-nosort">Action</th>
 
@@ -89,7 +88,7 @@
                                                                 @if (Auth::user()->type == 'Gestionnaire Sup') style="  color: currentColor;
                                                                 cursor: not-allowed;
                                                                 opacity: 0.5;
-                                                                text-decoration: none;" @endif ><i class="dw dw-edit2"></i> Renouvler</a>
+                                                                text-decoration: none;" @endif ><i class="dw dw-edit2"></i> Renouveler</a>
                                                                <a class="dropdown-item" href="{{route('ParkManager.stickers.show',$sticker->id)}}"
                                                                 ><i class="dw dw-eye"></i> Consulter</a>
                                                                 @if (Auth::user()->type == 'Gestionnaire Sup')   <a class="dropdown-item"  style="  color: currentColor;

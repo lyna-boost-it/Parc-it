@@ -25,7 +25,7 @@
 
 
 
-                            <div class="weight-600 font-30 text-orange"> Consomation du Liquide et Lubrifiant en Mois de
+                            <div class="weight-600 font-30 text-orange"> Consommation du Liquide et Lubrifiant en Mois de
                                 <b>
                                     @switch($month)
                                         @case(1)
@@ -100,7 +100,7 @@
                         <div class="rounded-lg bg-white shadow-lg md:shadow-xl relative overflow-hidden">
                             <div class="px-3 pt-8 pb-10 text-center relative z-10">
                                 <h1 class="text-sm uppercase text-gray-500 leading-tight" style="font-size: 2.5em;">
-                                    Consomation Liquide: </h1>
+                                    Consommation Liquide: </h1>
                                 <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">
                                     {{ $liquidL }} L <br> {{ $liquidDA }}DA</h3>
 
@@ -127,7 +127,7 @@
                         <div class="rounded-lg bg-white shadow-lg md:shadow-xl relative overflow-hidden">
                             <div class="px-3 pt-12 pb-10 text-center relative z-20">
                                 <h1 class="text-sm uppercase text-gray-500 leading-tight" style="font-size: 2.5em;">
-                                    Consomation Lubrifiant:</h1>
+                                    Consommation Lubrifiant:</h1>
                                 <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">
                                     {{ $lubricantL }} L <br> {{ $lubricantDA }} DA</h3>
 

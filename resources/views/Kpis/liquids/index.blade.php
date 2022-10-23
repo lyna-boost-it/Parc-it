@@ -34,7 +34,7 @@
                                 <p class="font-18 max-width-600">
                                     dans cette section, vous trouverez les statistiques relatives aux Liquides et
                                     Lubrifiant
-                                    et à la façon dont ils ont été consommés<b>Le {{ $date }}</b>
+                                    et à la façon dont ils ont été consommés <b>Le {{ $date }}</b>
                                 </p>
                             </div>
                         </div>
@@ -103,9 +103,9 @@
                 <div class="col-md-6 mb-20">
                     <div class="card-box height-100-p pd-20">
                         <h4 class="weight-600 font-20 text-orange">
-                            Consomation de Liquide totale {{ $totalLiquidConsumed }} Littre.
+                            Consomation de Liquide totale {{ $totalLiquidConsumed }} Litre.
                             <br>
-                            Consomation de Lubrifiant totale {{ $totalLubeConsumed }} Littre.
+                            Consomation de Lubrifiant totale {{ $totalLubeConsumed }} Litre.
 
                         </h4>
                         <div id="myChart" class="chart--container">
@@ -128,7 +128,7 @@
 
 
             <main>
-                <h4 class="font-20 weight-500 mb-10 text-capitalize text-orange">Consommation des Vehicule</h4>
+                <h4 class="font-20 weight-500 mb-10 text-capitalize text-orange">Consommation des Véhicule</h4>
 
                 <input id="tab5" type="radio" name="tabsd" checked>
                 <label for="tab5">Liquide</label>
@@ -143,7 +143,7 @@
                     <table class="table nowrap hover data-table-export">
                         <thead>
                             <tr>
-                                <th>Numero</th>
+                                <th>Numéro</th>
                                 <th>ID</th>
 
                                 <th> Numéro de Série</th>
@@ -196,7 +196,7 @@
                     <table class="table nowrap hover data-table-export">
                         <thead>
                             <tr>
-                                <th>Numero</th>
+                                <th>Numéro</th>
                                 <th>ID</th>
 
                                 <th> Numéro de Série</th>
@@ -297,7 +297,7 @@
                 type: 'column'
             },
             title: {
-                text: 'Consomation de Liquide  et Lubrifiant '
+                text: 'Consommation de Liquide  et Lubrifiant '
             },
 
             xAxis: {
@@ -320,7 +320,7 @@
             yAxis: {
                 min: 0,
                 title: {
-                    text: 'Littre (L)'
+                    text: 'Litre (L)'
                 }
             },
             tooltip: {
