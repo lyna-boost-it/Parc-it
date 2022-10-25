@@ -93,17 +93,7 @@
                                                                 text-decoration: none;"  > <i class="dw dw-delete-3"></i>Supprimer</a>
 
                                                               @else
-                                                              <form class="form-delete dropdown-item" method="post" action="{{route('ParkManager.units.destroy',$unit->id)}}">
-                                                                @method('DELETE')
-                                                                @csrf
-                                                                <button  type="submit" style=" background-color: transparent;
-                                                                border-color: transparent;" onclick="return confirm('êtes-vous sûr?')" >
-
-                                                                    <i class="dw dw-delete-3"></i>Supprimer
-
-                                                                </button>
-                                                            </form>
-
+                                                              <a class="dropdown-item"     href="{{route('ParkManager.deleteUnit.show',$unit->id)}}"  > <i class="dw dw-delete-3"></i>Supprimer</a>
                                                               @endif
 
                                                         </div>

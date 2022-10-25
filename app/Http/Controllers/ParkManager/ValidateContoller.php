@@ -38,7 +38,7 @@ class ValidateContoller extends Controller
         if($type=='Vehicule'){     $maintenance = Dt::find($id);
             $driver = Staff::find($maintenance->driver_id);
             $unit = Unit::find($maintenance->unit_id);
-            $vehicule = Vehicule::find($maintenance->vehicule_id);
+            $vehicule = Vehicule::find($maintenance->vehicle_id);
             $staff = Staff::find($maintenance->staff_id);
             return view('ParkManager.validation.viewV', compact('maintenance', 'unit', 'vehicule', 'driver', 'staff','type'));
     }
@@ -73,7 +73,7 @@ class ValidateContoller extends Controller
 
         if ($answer == 'accept') {
             $maintenance->answer = 'Accepter';
-            $notif->details = 'Vorte demande de travaux pour vehicule: ' . $maintenance->vehicule_id . ' est Accepter';
+            $notif->details = 'Vorte demande de travaux pour vehicule: ' . $maintenance->vehicle_id . ' est Accepter';
             $currentUser->notify(new DtVNotification($maintenance, $notif));
             $notif->save();
             $maintenance->save();

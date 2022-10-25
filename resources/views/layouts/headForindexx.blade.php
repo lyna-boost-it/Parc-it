@@ -18,7 +18,9 @@
     <link rel="stylesheet" type="text/css" href="{{ URL('assets/vendors/styles/style.css') }}"; />
 
 
-
+    <script src=
+"https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js">
+        </script>
 
     <link rel="apple-touch-icon" sizes="180x180" href="{{ URL('assets/vendors/images/car.png') }}"; />
     <link rel="icon" type="image/png" sizes="32x32" href="{{ URL('assets/vendors/images/car.png') }}"; />

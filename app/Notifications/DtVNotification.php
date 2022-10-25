@@ -58,7 +58,7 @@ class DtVNotification extends Notification
      */
     public function toArray($notifiable)
     {
-        $vehicule=Vehicule::find($this->dt->vehicule_id);
+        $vehicule=Vehicule::find($this->dt->vehicle_id);
         $p=$vehicule->acquisition_date;
 
         return [

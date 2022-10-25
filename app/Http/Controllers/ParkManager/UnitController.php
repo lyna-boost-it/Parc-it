@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\ParkManager;
 
 use App\Http\Controllers\Controller;
+use App\Material;
 use App\Staff;
 use App\Unit;
 use App\Vehicule;
@@ -81,6 +82,7 @@ class UnitController extends Controller
      */
     public function edit(Unit $unit)
     {
+
         return view("ParkManager.units.edit", compact('unit') );
     }
 
@@ -113,7 +115,7 @@ class UnitController extends Controller
     public function destroy( Unit $unit)
     {   $staffs=Staff::all();
         $vehicules=Vehicule::all();
-       // $materials=MaterialMotors::all();
+        $materials=Material::all();
         foreach( $staffs as $staff){
             if($staff->unit_id==$unit->id){
                 $staff->unit_id=' ';
@@ -126,12 +128,12 @@ class UnitController extends Controller
                 $vehicule->save();
             }
         }
-     /*   foreach( $materials as $material){
+       foreach( $materials as $material){
             if($material->unit_id==$unit->id){
                 $material->unit_id=' ';
                 $material->save();
             }
-        }*/
+        }
         $unit->delete();
         return redirect('/ParkManager/units')->with('success',"vous avez supprimer une unité avec succès");
 

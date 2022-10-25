@@ -46,7 +46,7 @@ class ExternalController extends Controller
     {
 
         $dt = Dt::find($id);
-        $vehicule = Vehicule::find($dt->vehicule_id);
+        $vehicule = Vehicule::find($dt->vehicle_id);
         $external = new External();
         $staffs = Staff::all()->where('person_type', '=', 'Personnel du parc');
         $drivers = Staff::all()->where('person_type', '=', 'Conducteur');
@@ -125,6 +125,7 @@ class ExternalController extends Controller
         $vehicule = Vehicule::find($external->vehicule_id);
         $staffs = Staff::all()->where('person_type', '=', 'Personnel du parc');
         $driver = Staff::find($external->driver_id);
+        $guaranti=Garanti::find($external->supplier_id);
         return view(
             'ParkManager.externals.view',
             compact(
@@ -132,7 +133,8 @@ class ExternalController extends Controller
                 'dt',
                 'driver',
                 'vehicule',
-                'staffs'
+                'staffs',
+                'guaranti'
             )
         );
     }

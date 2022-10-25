@@ -46,7 +46,7 @@ class MaintenanceController extends Controller
      */
     public function createMaintenance($id)
     {   $dt=Dt::find($id);
-        $vehicule=Vehicule::find($dt->vehicule_id);
+        $vehicule=Vehicule::find($dt->vehicle_id);
         $maintenance = new Maintenance();
         $liquid=Liquids:: where('type','=','Liquide')->first();
         $lubrifiant=Liquids:: where('type','=','Lubrifiant')->first();

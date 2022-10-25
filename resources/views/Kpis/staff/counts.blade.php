@@ -23,7 +23,10 @@
 
 
     <div class="main-container">
+        <button id="button" class="btn btn-warning btn-round"><span class="fa fa-print  " style="color: #000000">
+        </span> Imprimer</button>
 
+    <div id="makepdf">
 
         <div class="xs-pd-20-10 pd-ltr-20">
             <div class="card-box pd-20 height-100-p mb-30">
@@ -107,7 +110,7 @@
 
                                 <th> Nom</th> <th>Et Prénom</th>
                                 <th>Heures de Jour</th>
-<th>Heures de Nuit</th>
+                <th>Heures de Nuit</th>
 
                                 <th> Vendredi</th>
                                 <th>Jours Feriés</th>
@@ -162,7 +165,7 @@
 
 
 
-    </div>
+    </div> </div>
 
 
 
@@ -174,7 +177,7 @@
 
 
 
-    @include('layouts.footerforKPIindex')
+    @include('layouts.footerforKPI ')
 </body>
 
 </html>

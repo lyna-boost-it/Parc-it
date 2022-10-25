@@ -142,7 +142,10 @@ class PanneController extends Controller
                     $nbrR = 1;
                 }
                 $hours = number_format((float)$hours / $nbrR, 2, '.', '');
-                $Thours = number_format((float)1 / $hours, 2, '.', '');
+                if($hours !=0){   $Thours = number_format((float)1 / $hours, 2, '.', '');}
+                else{ $Thours=0;}
+
+
                 return view('Kpis.pannes.MTTR', compact('hours', 'MTTRyear', 'MTTRmonth', 'vehicule', 'option_type', 'Thours'));
             }
 
@@ -213,7 +216,10 @@ class PanneController extends Controller
                     $nbrR = 1;
                 }
                 $hours = number_format((float)$hours / $nbrR, 2, '.', '');
-                $Thours = number_format((float)1 / $hours, 2, '.', '');
+
+                if($hours !=0){   $Thours = number_format((float)1 / $hours, 2, '.', '');}
+                else{ $Thours=0;}
+
                 return view('Kpis.pannes.TR', compact('hours', 'yearTR', 'monthTR', 'vehicule', 'option_type', 'Thours'));
             }
             if ($yearMP != '') {
@@ -293,7 +299,10 @@ class PanneController extends Controller
                     $nbrR = 1;
                 }
                 $hours = number_format((float)$hours / $nbrR, 2, '.', '');
-                $Thours = number_format((float)1 / $hours, 2, '.', '');
+                if($hours !=0){   $Thours = number_format((float)1 / $hours, 2, '.', '');}
+                else{ $Thours=0;}
+
+
 
                 return view('Kpis.pannes.TR', compact('hours', 'yearTR', 'monthTR', 'machine', 'option_type', 'Thours'));
             }

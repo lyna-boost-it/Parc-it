@@ -172,7 +172,7 @@ text-decoration: none;  @endif
                                             <tbody>
                                                 @foreach($dts as $dt)
                                                 @foreach ($vehicules as $vehicule )
-                                               @if ($dt->vehicule_id == $vehicule->id )
+                                               @if ($dt->vehicle_id == $vehicule->id )
                                                 <tr>
 
                                                     <td>{{$dt->code_dt}}</td>

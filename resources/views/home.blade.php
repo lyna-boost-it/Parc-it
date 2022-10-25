@@ -33,12 +33,12 @@
             <div class="card-box pd-20 height-100-p mb-30">
                 <div class="row align-items-center">
                     <div class="col-md-2">
-                        <img src="{{ URL('assets/vendors/images/car.jpeg') }}"; alt="" />
+                        <img src="{{ URL('assets/vendors/images/edeval.png') }}"; alt="" />
                     </div>
                     <div class="col-md-8">
                         <h4 class="font-20 weight-500 mb-10 text-capitalize">
-                          
-                            <div class="weight-600 font-30 text-green">{{ auth()->user()->username }}</div>
+
+                            <div class="weight-600 font-30 text-green">EPIC EDEVAL</div>
                         </h4>
                         <p class="font-18 max-width-600">
                             Bienvenue sur le tableau de bord Parc'it
@@ -46,69 +46,78 @@
                     </div>
                 </div>
             </div>
-
-
-
-            <div class="row clearfix progress-box">
-                <div class="col-lg-3 col-md-6 col-sm-12 mb-30">
-                    <div class="card-box pd-30 height-100-p">
-                        <div class="progress-box text-center">
-                            <input type="text" class="knob dial1" value={{ DB::table('vehicules')->count() }}
-                                data-width="120" data-height="120" data-linecap="round" data-thickness="0.12"
-                                data-bgColor="#fff" data-fgColor="#1b00ff" data-angleOffset="180" readonly />
-                            <h5 class="text-blue padding-top-10 h5">{{ DB::table('vehicules')->count() }} Véhicules</h5>
-                            {{-- <span class="d-block"
-                                    >80% Average <i class="fa fa-line-chart text-blue"></i
-                                ></span> --}}
+            <div class="row pb-10">
+                <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                    <div class="card-box height-100-p widget-style3">
+                        <div class="d-flex flex-wrap">
+                            <div class="widget-data">
+                                <div class="weight-700 font-24 text-dark"><h3>{{ DB::table('vehicules')->count() }}</h3></div>
+                                <div class="font-14 text-secondary weight-500">
+                                   <h3>  Véhicules</h3>
+                                </div>
+                            </div>
+                            <div class="widget-icon">
+                                <div class="icon" data-color="#00eccf">
+                                    <i class="icon-copy dw dw-car"></i>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-12 mb-30">
-                    <div class="card-box pd-30 height-100-p">
-                        <div class="progress-box text-center">
-                            <input type="text" class="knob dial2"
-                                value={{ DB::table('staff')->where('person_type', '=', 'Conducteur')->count() }}
-                                data-width="120" data-height="120" data-linecap="round" data-thickness="0.12"
-                                data-bgColor="#fff" data-fgColor="#12492f" data-angleOffset="180" readonly />
-                            <h5 class="text-light-green padding-top-10 h5">
-                                {{ DB::table('staff')->where('person_type', '=', 'Conducteur')->count() }} Conducteurs
-                            </h5>
+                <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                    <div class="card-box height-100-p widget-style3">
+                        <div class="d-flex flex-wrap">
+                            <div class="widget-data">
+                                <div class="weight-700 font-24 text-dark"><h3>{{ DB::table('staff')->where('person_type', '=', 'Conducteur')->count() }}</h3></div>
+                                <div class="font-14 text-secondary weight-500">
+                                    <h3>  Conducteurs</h3>
+                                </div>
+                            </div>
+                            <div class="widget-icon">
+                                <div class="icon" data-color="#ff5b5b">
+                                    <i class="fas fa-user"></i>
 
-                            {{-- <span class="d-block"
-                                    >75% Average <i class="fa text-light-green fa-line-chart"></i
-                                ></span> --}}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-12 mb-30">
-                    <div class="card-box pd-30 height-100-p">
-                        <div class="progress-box text-center">
-                            <input type="text" class="knob dial3" value={{ DB::table('materials')->count() }}
-                                data-width="120" data-height="120" data-linecap="round" data-thickness="0.12"
-                                data-bgColor="#fff" data-fgColor="#f56767" data-angleOffset="180" readonly />
-                            <h5 class="text-light-orange padding-top-10 h5">
-                                {{ DB::table('materials')->count() }} Matériels Motorisés
-                            </h5>
-                            {{-- <span class="d-block"
-                                    >90% Average <i class="fa text-light-orange fa-line-chart"></i
-                                ></span> --}}
+                <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                    <div class="card-box height-100-p widget-style3">
+                        <div class="d-flex flex-wrap">
+                            <div class="widget-data">
+                                <div class="weight-700 font-24 text-dark"><h3> {{ DB::table('materials')->count() }}</h3></div>
+                                <div class="font-14 text-secondary weight-500">
+                                    <h3>  Matériels Motorisés</h3>
+                                </div>
+                            </div>
+                            <div class="widget-icon">
+                                <div class="icon">
+                                    <i class="fas fa-truck-monster"></i>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-12 mb-30">
-                    <div class="card-box pd-30 height-100-p">
-                        <div class="progress-box text-center">
-                            <input type="text" class="knob dial4" value={{ DB::table('staff')->count() }}
-                                data-width="120" data-height="120" data-linecap="round" data-thickness="0.12"
-                                data-bgColor="#fff" data-fgColor="#f9c80e" data-angleOffset="180" readonly />
-                            <h5 class="text-light-purple padding-top-10 h5">
-                                {{ DB::table('staff')->count() }} Personnels
-                            </h5>
-
+                <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                    <div class="card-box height-100-p widget-style3">
+                        <div class="d-flex flex-wrap">
+                            <div class="widget-data">
+                                <div class="weight-700 font-24 text-dark"><h3> {{ DB::table('staff')->count() }}</h3></div>
+                                <div class="font-14 text-secondary weight-500">  <h3>Personnels<h3></div>
+                            </div>
+                            <div class="widget-icon">
+                                <div class="icon" data-color="#09cc06">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+
+
 
 
 
@@ -595,7 +604,7 @@
 												@else
 												 {{ (DB::table('repair__staff')->where('staff_id', '=', $staff->id)->count() /DB::table('repair__staff')->count()) *100 }}%
 												@endif
-                                               
+
                                             </td>
                                         </tr>
                                     @endforeach

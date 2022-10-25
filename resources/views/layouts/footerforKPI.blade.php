@@ -22,12 +22,23 @@
 <script src="{{URL('assets/src/plugins/fullcalendar/fullcalendar.min.js')}}";></script>
 <script src="{{URL('assets/vendors/scripts/calendar-setting.js')}}";></script>
 
+<script>
+    var button = document.getElementById("button");
+    var makepdf = document.getElementById("makepdf");
+
+    button.addEventListener("click", function () {
 
 
-<div class="footer-wrap pd-20 mb-20 card-box ">
-  <p style="font-size: 18px;">  PARKIT &copy; <a href="https://boost-it.co" target="_blank">BOOST-IT</a> 2022
-    | Tous Droits Réservés</p>
 
-</div>
+ window.print();
+        return true;
+    });
+</script>
+
+<div class="footer-wrap pd-20 mb-20 card-box "style="background:#545454 ">
+    <span style="color: white"> PARKIT &copy; <a style="color: white" href="https://boost-it.co" target="_blank">BOOST-IT</a> 2022
+     | Tous Droits Réservés</span>
+
+ </div>
 
 

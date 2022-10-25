@@ -1,4 +1,5 @@
-@if(Auth::user()->type=='Gestionnaire parc' ||Auth::user()->type=='Utilisateur'   )
+@if(Auth::user()->type=='Gestionnaire parc' ||Auth::user()->type=='Utilisateur'||Auth::user()->type=='Demandeur' ||Auth::user()->type=='Gestionnaire Sup'   )
+
 
 <!DOCTYPE html>
 <html>
@@ -18,13 +19,17 @@
 
             </div>
             <div class="col-md-12 text-center">
-                                <form action="{{route('ParkManager.insurances.store',$insurance->id)}}" method="post">
+                                <form action="{{route('ParkManager.insurances.store',$insurance->id)}}" method="post" enctype="multipart/form-data">
 
     @csrf
 
                     <div class="card">
 
-<br><br><br>
+
+                        <div class="card-header">
+                            <h5 class="title">{{ __('Créer une assurance ') }}</h5>
+                        </div>
+                        <br><br><br>
 
                         <div class="card-header">
                             <h3 class="title">{{ __('Créer une assurance ') }}</h3>
@@ -65,9 +70,7 @@
                                 </div>
                             </div>
                         </div>
-
-
-                        <div class="card-body" >
+                    <div class="card-body" >
                             <div class="row">
                                 <label class="col-md-3 col-form-label">{{ __(' Code de l’Agence ') }}</label>
                                 <div class="col-md-9" >
@@ -84,13 +87,6 @@
                                 </div>
                             </div>
                         </div>
-
-
-
-
-
-
-
                         <div class="card-body" >
                             <div class="row">
                                 <label class="col-md-3 col-form-label">{{ __(' Adresse de l’agence  ') }}</label>
@@ -108,9 +104,6 @@
                                 </div>
                             </div>
                         </div>
-
-
-
                         <div class="card-body" >
                             <div class="row">
                                 <label class="col-md-3 col-form-label">{{ __(' Date d’effet ') }}</label>
@@ -128,9 +121,6 @@
                                 </div>
                             </div>
                         </div>
-
-
-
                         <div class="card-body" >
                             <div class="row">
                                 <label class="col-md-3 col-form-label">{{ __(' Date d’expiration ') }}</label>
@@ -148,11 +138,6 @@
                                 </div>
                             </div>
                         </div>
-
-
-
-
-
                         <div class="card-body" >
                             <div class="row">
                                 <label class="col-md-3 col-form-label">{{ __('  Type d’assurance ') }}</label>
@@ -170,11 +155,6 @@
                                 </div>
                             </div>
                         </div>
-
-
-
-
-
                         <div class="card-body">
                             <div class="row">
                                 <label class="col-md-3 col-form-label">{{ __('Véhicule') }}</label>
@@ -195,14 +175,6 @@
                             </div>
                         </div>
 
-
-
-
-
-
-
-
-
                          <div class="card-footer ">
                             <div class="row">
                              <div class="col-md-12 text-center">
@@ -216,18 +188,10 @@
             </div>
         </div>
     </div>
-
     @include('layouts.footerForIndexx')
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-    <script type="text/javascript">
 
-        $("#vehicle_id").select2({
-              placeholder: "Sélectionner un véhicule",
-              allowClear: true
-          });
-  </script>
 </body>
+
 </html>
 @else
 <!DOCTYPE html>

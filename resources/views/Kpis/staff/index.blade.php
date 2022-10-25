@@ -203,15 +203,7 @@
                     <label class="col-md-3 col-form-label" style=" display: block; font-size: 20px;">
                         Consulter statistiques pour:</label>
 
-                    <div class="form-group" style=" display: inline-block;">
-                        <select name="search_type" class="form-control" id="search_type">
-                            <option value="période spécifique">Période spécifique</option>
-                            <option value="Total">Total</option>
 
-
-
-                        </select>
-                    </div>
 
 
 
@@ -228,7 +220,7 @@
 
 
 
-                    <div class="form-group" style=" display: inline-block;" id="specificDiv">
+
 
                         <div class="form-group" style=" display: inline-block;">
                             <select id="monthStaff" type="text"
@@ -261,7 +253,7 @@
                             <input type="number" max="2090" min="2000" name="yearStaff"
                                 class="form-control" placeholder="année">
                         </div>
-                    </div>
+
 
 
 

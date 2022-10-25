@@ -46,7 +46,7 @@ class RepairController extends Controller
     public function createRepairs($id)
     {$repair=new Repair();
         $dt=Dt::find($id);
-        $vehicule=Vehicule::find($dt->vehicule_id);
+        $vehicule=Vehicule::find($dt->vehicle_id);
         $pieces=ConsumedPieces::all()->where('type','=','Véhicule');
         $lubrifiant=Liquids:: where('type','=','Lubrifiant')->first();
 $liquid=Liquids:: where('type','=','Liquide')->first();

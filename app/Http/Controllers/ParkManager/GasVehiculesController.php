@@ -66,17 +66,7 @@ class GasVehiculesController extends Controller
 
     ));
 
-       if( $request->vehicule1 !=null){
 
-        $gasvehicule->vehicle_id= $request->vehicule1;
-        $gasvehicule->save();
-                }elseif
-                ( $request->vehicule2 !=null ){
-                    $gasvehicule->vehicle_id= $request->vehicule2;
-                    $gasvehicule->save();
-                }else{          $gasvehicule->vehicle_id= $request->vehicule3;
-                    $gasvehicule->save();
-                }
 
        return redirect()->route ('ParkManager.gasVehicules.index')->with('success',"vous avez ajouter une consommations de carburant pour vehicule avec succès");
     }

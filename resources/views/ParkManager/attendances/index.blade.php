@@ -70,32 +70,29 @@
                                                 <td>
                                                     <div class="col-xs-4"
                                                         style="padding-right: 5px;
-                                                padding-left: 5px;">
+                                                padding-left: 5px;font-size:25px;">
 
 
                                                         @if ($staff->staff_state == 'absent')
-                                                            <span class="fa fa-sticky-note "
-                                                                style="color: #3da8bb; font-size:16px;">
+                                                            <span class="fa fa-sticky-note " style="color: #3da8bb;  ">
+                                                            </span> <span style="color: #3da8bb;  ">
                                                                 Absent
                                                             </span>
                                                         @endif
                                                         @if ($staff->staff_state == 'en mission')
-                                                            <span class="fa fa-sticky-note "
-                                                                style="color: #543dbb; font-size:16px;">
+                                                            <span class="fa fa-sticky-note " style="color: #543dbb; ">
+                                                            </span> <span style="color: #543dbb; ">
                                                                 en mission
                                                             </span>
                                                         @endif
                                                         @if ($staff->staff_state == 'pas au travail')
-                                                            <span class="fa fa-sticky-note "
-                                                                style="color: #bb3d9b; font-size:16px;">
-                                                                pas au travail
+                                                            <span class="fa fa-sticky-note " style="color: #bb3d9b; ">
+                                                            </span> <span style="color: #bb3d9b; ">pas au travail
                                                             </span>
                                                         @endif
                                                         @if ($staff->staff_state == 'au travail')
-                                                            <span class="fa fa-sticky-note "
-                                                                style="color: #3dbb8b; font-size:16px;">
-                                                                au travail
-                                                            </span>
+                                                            <span class="fa fa-sticky-note " style="color: #3dbb8b;  ">
+                                                            </span> <span style="color: #3dbb8b; "> au travail</span>
                                                         @endif
                                                     </div>
                                                 </td>
@@ -113,16 +110,15 @@
                                                             class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
 
                                                             @if ($staff->staff_state == 'pas au travail' || $staff->staff_state == 'en mission')
-                                                                <a class="dropdown-item"
+                                                                <a class="dropdown-item" style="color: #4cbb3d; font-size:25px;"
                                                                     href="{{ route('ParkManager.attendances.createAttendance', $staff->id) }}"
                                                                     @if (Auth::user()->type == 'Gestionnaire Sup') style="  color: currentColor;
                                                                     cursor: not-allowed;
                                                                     opacity: 0.5;
                                                                     text-decoration: none;" @endif>
-                                                                    <span class="fa fa-check-square  "
-                                                                        style="color: #4cbb3d; font-size:18px;">
-                                                                        marquer la présence
-                                                                    </span></a>
+                                                                    <span class="fa fa-check-square  " >
+
+                                                                    </span> marquer la présence</a>
                                                             @endif
 
 
@@ -130,16 +126,15 @@
                                                             @if ($staff->staff_state == 'au travail')
                                                                 @foreach ($attendences as $attendence)
                                                                     @if ($attendence->staff_id == $staff->id)
-                                                                        <a class="dropdown-item"
+                                                                        <a class="dropdown-item"style="color: #bb3d3d; font-size:25px;"
                                                                             href="{{ route('ParkManager.attendances.editAttendance', $attendence->id) }}"
                                                                             @if (Auth::user()->type == 'Gestionnaire Sup') style="  color: currentColor;
                                                                             cursor: not-allowed;
                                                                             opacity: 0.5;
                                                                             text-decoration: none;" @endif>
-                                                                            <span class="fa fa-sign-out  "
-                                                                                style="color: #bb3d3d; font-size:18px;">
-                                                                                marquer la sortie
-                                                                            </span></a>
+                                                                            <span class="fa fa-sign-out  " >
+
+                                                                            </span>  marquer la sortie</a>
                                                                     @endif
                                                                 @endforeach
                                                             @endif

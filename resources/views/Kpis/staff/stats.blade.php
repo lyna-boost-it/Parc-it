@@ -3,7 +3,7 @@
 
 <!DOCTYPE html>
 <html>
-@include('layouts.headforKPIindex')
+@include('layouts.headforKPIindex ')
 
 
 
@@ -22,7 +22,10 @@
 
 
         <div class="main-container">
+            <button id="button" class="btn btn-warning btn-round"><span class="fa fa-print  " style="color: #000000">
+            </span> Imprimer</button>
 
+        <div id="makepdf">
 
             <div class="xs-pd-20-10 pd-ltr-20">
                 <div class="card-box pd-20 height-100-p mb-30">
@@ -150,7 +153,7 @@
                 </div>
             </div>
 
-        </div>
+        </div></div>
 
 
 
@@ -162,7 +165,7 @@
 
 
 
-        @include('layouts.footerForIndexx')
+        @include('layouts.footerforKPI ')
 
 
     </body>
@@ -195,7 +198,10 @@
 
 
         <div class="main-container">
+            <button id="button" class="btn btn-warning btn-round"><span class="fa fa-print  " style="color: #000000">
+            </span> Imprimer</button>
 
+        <div id="makepdf">
 
             <div class="xs-pd-20-10 pd-ltr-20">
                 <div class="card-box pd-20 height-100-p mb-30">
@@ -266,9 +272,6 @@
                     </div>
                 </div>
             </div>
-
-
-
             <div class="card-box pd-20 height-100-p mb-30">
                 <div class="row align-items-center">
 
@@ -294,10 +297,6 @@
                     </div>
                 </div>
             </div>
-
-
-
-
             <div class="card-box pd-20 height-100-p mb-30">
                 <div class="row align-items-center">
 
@@ -349,7 +348,7 @@
                 </div>
             </div>
 
-        </div>
+        </div></div>
 
 
 
@@ -361,7 +360,7 @@
 
 
 
-        @include('layouts.footerforKPIindex')
+        @include('layouts.footerforKPI ')
 
 
     </body>

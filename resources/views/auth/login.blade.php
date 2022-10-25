@@ -9,7 +9,7 @@
             <div class="container-fluid d-flex justify-content-between align-items-center">
                 <div class="brand-logo">
                     <a href="{{ URL('/') }}">
-                        <img src="{{ URL('assets/vendors/images/parcit.jpeg') }}"; alt="" />
+                        <img src="{{ URL('assets/vendors/images/parcit.jpg') }}"; alt="" />
                     </a>
                 </div>
                 <div class="login-menu">
@@ -20,20 +20,20 @@
         <div class="login-wrap d-flex align-items-center flex-wrap justify-content-center">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-md-6 col-lg-7">
-                        <img src="{{ URL('assets/vendors/images/parc_logo_white.jpeg') }}"; alt="" />
+                    <div class="col-md-4  ">
+                        <img src="{{ URL('assets/vendors/images/parc_logo_white.png') }}"; alt="" />
                     </div>
-                    <div class="col-md-6 col-lg-5">
+                    <div class="col-md-12 ">
                         <div class="login-box bg-white box-shadow border-radius-10">
                             <div class="login-title">
                                 <h2 class="text-center text-orange">Connexion</h2>
                             </div>
                             <form class="form" method="POST" action="{{ route('login.custom') }}">
                                 @csrf
-                                <div class="input-group custom">
+                                <div class="input-group custom" >
                                     <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
                                         placeholder="{{ __('Email') }}" type="email" name="email"
-                                        value="{{ old('email') }}" required autofocus>
+                                        value="{{ old('email') }}" required autofocus style="font-size: 14px">
 
                                     @if ($errors->has('email'))
                                         <span class="invalid-feedback" style="display: block;" role="alert">
@@ -46,7 +46,7 @@
                                 </div>
                                 <div class="input-group custom">
                                     <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
-                                        name="password" placeholder="{{ __('Password') }}" type="password" required>
+                                        name="password" placeholder="{{ __('Password') }}" type="password" required style="font-size: 14px">
 
                                     @if ($errors->has('password'))
                                         <span class="invalid-feedback" style="display: block;" role="alert">
@@ -66,7 +66,7 @@
                                             <input type="checkbox" class="custom-control-input" id="customCheck1"
                                                 value="" {{ old('remember') ? 'checked' : '' }}
                                                 name="remember" />
-                                            <label class="custom-control-label" for="customCheck1">Souviens-toi de
+                                            <label class="custom-control-label" for="customCheck1" style="font-size: 14px">Souviens-toi de
                                                 moi</label>
 
 
@@ -85,7 +85,7 @@
 
 
                                             <button
-                                                type="submit"class="btn btn-primary btn-lg btn-block">{{ __('s\'identifier') }}</button>
+                                            style="font-size: 14px"     type="submit"class="btn btn-primary btn-lg btn-block">{{ __('S\'identifier') }}</button>
 
 
                                         </div>

@@ -343,7 +343,7 @@
                     </div>
                 </div>
 
-                @include('layouts.footerforKPIindex')
+                @include('layouts.footerForIndexx')
 
     </body>
 

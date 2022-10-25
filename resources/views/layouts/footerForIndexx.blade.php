@@ -1,11 +1,11 @@
 
 
 
-<div class="footer-wrap pd-20 mb-20 card-box ">
-  <p style="font-size: 18px;">  PARKIT &copy; <a href="https://boost-it.co" target="_blank">BOOST-IT</a> 2022
-    | Tous Droits Réservés</p>
+<div class="footer-wrap pd-20 mb-20 card-box "style="background:#545454 ">
+    <span style="color: white"> PARKIT &copy; <a style="color: white" href="https://boost-it.co" target="_blank">BOOST-IT</a> 2022
+     | Tous Droits Réservés</span>
 
-</div>
+ </div>
 
 
 
@@ -32,3 +32,27 @@
 <!-- Calander -->
 <script src="{{URL('assets/src/plugins/fullcalendar/fullcalendar.min.js')}}";></script>
 <script src="{{URL('assets/vendors/scripts/calendar-setting.js')}}";></script>
+<script src="{{URL('assets/vendors/scripts/calendar-setting.js')}}";></script>
+<script src="{{URL('assets/vendors/scripts/pdf.js')}}";></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+
+<script>
+    var button = document.getElementById("button");
+    var makepdf = document.getElementById("makepdf");
+
+    button.addEventListener("click", function () {
+
+
+
+ window.print();
+        return true;
+    });
+</script>
+
+<script type="text/javascript">
+
+    $("#vehicle_id").select2({
+          placeholder: "Sélectionner un véhicule",
+          allowClear: true
+      });
+</script>

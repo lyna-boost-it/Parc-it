@@ -38,7 +38,7 @@ class DtController extends Controller
 foreach($vehicules as $vehicule){
 foreach($maintenances as $maintenance)
 {
-    if($vehicule->id==$maintenance->vehicule_id){
+    if($vehicule->id==$maintenance->vehicle_id){
 
 
 $a=date('Y-m-d', strtotime($current_date));
@@ -88,7 +88,7 @@ $maintenance->save();
     {
         $dt=Dt:: create($request->only('unit_id','staff_id' ,'perso_id',1,
         'action','observation','type_maintenance','type_panne','nature_panne','user_id',
-        'enter_time', 'enter_date','driver_id','code_dt' ));
+        'enter_time', 'enter_date','driver_id','code_dt','vehicle_id' ));
         $year = substr($dt->enter_date, 2, 2);
         $month = substr($dt->enter_date, 5, 2);
         if(Str::length($dt->id)==1){  $zero='000'; }
@@ -98,7 +98,7 @@ $maintenance->save();
         $dt->code_dt=$code;
         $dt->save();
 
-                        $vehicule=Vehicule::find($dt->vehicule_id);
+                        $vehicule=Vehicule::find($dt->vehicle_id);
                         if($dt->action!='A programmer mais opérationnel'){
                             $vehicule->previous_state=$vehicule->vehicle_state;
                             $vehicule->vehicle_state='en maintenance';
@@ -112,7 +112,7 @@ $maintenance->save();
 
                        $dt->state='en cours';
                        $dt->save();
-                       $vehicule=Vehicule::find($dt->vehicule_id);
+                       $vehicule=Vehicule::find($dt->vehicle_id);
                        $vehicule->previous_state=$vehicule->vehicle_state;
                        $vehicule->vehicle_state='en maintenance';
                        $vehicule->save();
@@ -121,7 +121,7 @@ $maintenance->save();
                        $usersA = User::all()->where('type', '=', 'Gestionnaire parc');
 
                        $notif = new MoreNotifs();
-                       $notif->details = 'une demandes de travaux pour vehicule: ' . $dt->vehicule_id . ' est créé';
+                       $notif->details = 'une demandes de travaux pour vehicule: ' . $dt->vehicle_id . ' est créé';
                        $notif->save();
                        foreach ($usersA as $user) {
                            $user->notify(new DtVNotification($dt, $notif));
@@ -142,7 +142,8 @@ $maintenance->save();
         $maintenance=Dt::find($id);
         $driver=Staff::find($maintenance->driver_id);
         $unit=Unit::find($maintenance->unit_id);
-        $vehicule=Vehicule::find($maintenance->vehicule_id);
+        $vehicule=Vehicule::find($maintenance->vehicle_id);
+
         $staff=Staff::find($maintenance->staff_id);
         return view('ParkManager.dts.view', compact('maintenance','unit','vehicule','driver','staff'));
 
@@ -176,7 +177,7 @@ $maintenance->save();
 
 
         $dt = Dt::find($id);
-        $dt->update($request->only('unit_id','staff_id' ,'perso_id','vehicule_id',
+        $dt->update($request->only('unit_id','staff_id' ,'perso_id','vehicle_id',
         'action','observation','type_maintenance','type_panne','nature_panne',
        'driver_id','code_dt','enter_time', 'enter_date',
         ));     return redirect()->route ('ParkManager.dts.index')->with('success',"vous avez modifier une demandes de travaux avec succès");
@@ -192,7 +193,7 @@ $maintenance->save();
     public function destroy($id)
     {
         $maintenance=Dt::find($id);
-        $vehicule=Vehicule::find($maintenance->vehicule_id);
+        $vehicule=Vehicule::find($maintenance->vehicle_id);
         $vehicule->vehicle_state=$vehicule->previous_state;
         $vehicule->save();
         $maintenance->delete();

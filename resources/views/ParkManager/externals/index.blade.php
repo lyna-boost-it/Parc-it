@@ -181,7 +181,7 @@ text-decoration: none; @endif
                             <tbody>
                                 @foreach ($dts as $maintenance)
                                     @foreach ($vehicules as $vehicule)
-                                        @if ($maintenance->vehicule_id == $vehicule->id)
+                                        @if ($maintenance->vehicle_id == $vehicule->id)
                                             <tr>
 
                                                 <td>{{ $maintenance->code_dt }}</td>
