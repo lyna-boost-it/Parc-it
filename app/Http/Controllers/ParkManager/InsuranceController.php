@@ -121,7 +121,7 @@ class InsuranceController extends Controller
         'police_number','effective_date','expiration_date','company_name','agency_code',
         'agency_address','insurance_type','vehicle_id'      ));
         AllInsurance_checker();
-                return redirect('/ParkManager/insurances')->with('success',"vous avez modifier une assurance avec succès");
+                return redirect('/ParkManager/insurances')->with('success',"vous avez renouveler une assurance avec succès");
     }
 
     /**

@@ -24,7 +24,8 @@
 
 						</div>
                         <a  style="position: absolute;
-                        left: 1245px;
+                        left: 1184px;background: #ee643a;
+    border-color: #f06431;
                         @if (Auth::user()->type == 'Gestionnaire Sup')   color: currentColor;
   cursor: not-allowed;
   opacity: 0.5;

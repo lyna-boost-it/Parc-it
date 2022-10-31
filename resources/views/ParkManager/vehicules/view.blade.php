@@ -20,12 +20,12 @@
                     <div class="page-header">
                         <div class="row">
 
-                            <h3>Fiche Technique: </h3>
+                            <h3>Fiche Technique du vehicule : </h3>
 
                         </div>
                     </div>
-                    <div class="page-header" style="background-color:#aa4b2e">
-                        <h4 style="color:rgb(255, 255, 255)">Information de Véhicule: </h4>
+                    <div class="page-header" style="background-color:#ffffff">
+                        <h4 style="color:#f06431;">Informations du Véhicule: </h4>
                         <div class="row">
 
 
@@ -127,8 +127,8 @@
                         </div>
                     </div>
 
-                    <div class="page-header" style="background-color:#aa4b2e">
-                        <h4 style="color:rgb(255, 255, 255)">Assurances:</h4>
+                    <div class="page-header" style="background-color:#ffffff">
+                        <h4 style="color:#f06431;">Assurances:</h4>
                         <div class="row">
 
                             @foreach ($inssurances as $inssurance)
@@ -185,8 +185,8 @@
                             @endforeach
                         </div>
                     </div>
-                    <div class="page-header" style="background-color:#aa4b2e">
-                        <h4 style="color:rgb(255, 255, 255)">Déclarations des accidents:</h4>
+                    <div class="page-header" style="background-color:#ffffff">
+                        <h4 style="color:#f06431;">Déclarations des accidents:</h4>
                         <div class="row">
                             @foreach ($accicents as $accident)
                                 &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
@@ -294,8 +294,8 @@
 
                         </div>
                     </div>
-                    <div class="page-header" style="background-color:#aa4b2e">
-                        <h4 style="color:rgb(255, 255, 255)">Vignettes:</h4>
+                    <div class="page-header" style="background-color:#ffffff">
+                        <h4 style="color:#f06431;">Vignettes:</h4>
                         <div class="row">
 
                             @foreach ($stickers as $sticker)
@@ -326,8 +326,8 @@
                             @endforeach
                         </div>
                     </div>
-                    <div class="page-header" style="background-color:#aa4b2e">
-                        <h4 style="color:rgb(255, 255, 255)">Contrôles techniques:</h4>
+                    <div class="page-header" style="background-color:#ffffff">
+                        <h4 style="color:#f06431;">Contrôles techniques:</h4>
                         <div class="row">
 
                             @foreach ($technicalcontrolls as $technicalcontroll)
@@ -394,8 +394,8 @@
                             @endforeach
                         </div>
                     </div>
-                    <div class="page-header" style="background-color:#aa4b2e">
-                        <h4 style="color:rgb(255, 255, 255)">Permis de circulation:</h4>
+                    <div class="page-header" style="background-color:#ffffff">
+                        <h4 style="color:#f06431;">Permis de circulation:</h4>
                         <div class="row">
 
                             @foreach ($licences as $licence)
@@ -426,8 +426,8 @@
                             @endforeach
                         </div>
                     </div>
-                    <div class="page-header" style="background-color:#aa4b2e">
-                        <h4 style="color:rgb(255, 255, 255)">Garantis:</h4>
+                    <div class="page-header" style="background-color:#ffffff">
+                        <h4 style="color:#f06431;">Garantis:</h4>
                         <div class="row">
 
                             @foreach ($garanties as $garantie)

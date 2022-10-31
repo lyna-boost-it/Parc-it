@@ -115,10 +115,10 @@ $garanties=Garanti::all();
         $external = ExternalMaterial::find($id);
         $dt = DtMaterial::find($external->dt_code);
         $material = Material::find($external->mm_id);
-
+        $guaranti=Garanti::find($external->supplier_id);
         return view(
             'ParkManager.externalsM.view',
-            compact('external', 'dt', 'material')
+            compact('external', 'dt', 'material','guaranti')
         );
     }
 

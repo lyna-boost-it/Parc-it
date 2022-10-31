@@ -52,11 +52,11 @@
                                 <tr>
 
                                     <th>ID</th>
-                                    <th>Nom et Prénom du conducteur</th>
-                                    <th>Nom du personne accompagné</th>
+                                    <th>Conducteur</th>
+                                    <th>Personne accompagnée</th>
                                     <th> Date de validité (debut/fin)</th>
                                     <th>Vehicule</th>
-                                    <th>Etat mission</th>
+                                    <th>État</th>
                                     <th class="datatable-nosort">Action</th>
 
                                 </tr>

@@ -1506,9 +1506,9 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>td:first-child:before, tabl
 	position: relative;
 	width: 100%;
 	display: none;
-	background: rgba(236,240,244,.1);
+	background: #1f3141 !important;
 	padding: 4px 6px;
-	border-radius: 0 0 8px 8px;
+	border-radius: 0 0 4px 4px;
 }
 .sidebar-menu .submenu:before{
 	content: "";

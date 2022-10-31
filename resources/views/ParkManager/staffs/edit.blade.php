@@ -123,8 +123,8 @@
                                             <select name="sex"
                                                 value="{{ old('sex'), $staff->sex }}"class="form-control"
                                                 id="sex">
-                                                <option value="Femelle">Femelle</option>
-                                                <option value="Mâle">Mâle</option>
+                                                <option value="Femme">Femme</option>
+                                                <option value="Homme">Homme</option>
 
                                             </select>
                                         </div>

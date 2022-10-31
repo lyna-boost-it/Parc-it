@@ -90,7 +90,7 @@ $date=$date->toDateString();
 $absence->absence_return= $date;
 $absence->save();
 
-        return redirect()->route ('ParkManager.absences.index')->with('success',"vous avez ajouter une absencesssss avec succès");;
+        return redirect()->route ('ParkManager.absences.index')->with('success',"vous avez ajouter une absences avec succès");;
     }
 
     /**

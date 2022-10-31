@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\ParkManager;
 
+use App\ConsumedPieces;
 use App\Dt;
 use App\DtMaterial;
 use App\Http\Controllers\Controller;
@@ -9,6 +10,7 @@ use App\Material;
 use App\Models\User;
 use App\MoreNotifs;
 use App\Notifications\RepairMNotification;
+use App\RepairM_pieces;
 use App\RepairsMaterial;
 use App\RepairsMaterial_Staff;
 use App\Staff;
@@ -47,10 +49,10 @@ class RepairMController extends Controller
         $material=Material::find($dt->mm_id);
         $repair = new RepairsMaterial();
         $staffs=Staff::all()->where('person_type','=','Personnel du centre de maintenance')->where('function','=','Mécanicien spécialisé (matériel motorisé)');
-
+        $pieces = ConsumedPieces::all()->where('type', '=', 'Machine');
 
           return view('ParkManager.repairsM.create',
-          compact('repair','dt' , 'staffs', 'material' ));
+          compact('repair','dt' , 'staffs', 'material','pieces' ));
 
     }
 
@@ -62,6 +64,18 @@ class RepairMController extends Controller
      */
     public function storeRepairs(Request $request)
     {
+        $pieces = $request->input('pieces', []);
+        $quantities = $request->input('quantities', []);
+
+
+      for ($piece=0; $piece < count($pieces); $piece++) {
+           $p=ConsumedPieces::find($pieces[$piece]);
+           $p->quantity= $p->quantity- $quantities[$piece];
+            if($p->quantity<0){
+                return redirect('/ParkManager/repairsM')->with('error', "vous n'avez pas assez de quantité de piece ".$p->reference );
+
+            }
+        }
         $repair=RepairsMaterial:: create($request->only('id', 'dt_code', 'intervention_date', 'repaired_breakdowns', 'end_date','end_time',  'observation', 'mm_id' ));
     $staffs=$request['staff'];
 
@@ -96,6 +110,19 @@ foreach ($usersB as $user) {
 }
 $currentUser->notify(new RepairMNotification($repair, $notif));
 $material->save();
+
+
+for ($piece=0; $piece < count($pieces); $piece++) {
+    $p=ConsumedPieces::find($pieces[$piece]);
+    $p->quantity= $p->quantity- $quantities[$piece];
+  $p->save();
+  $pr=new RepairM_pieces();
+  $pr->piece_id=$p->id;
+  $pr->repair_id=$repair->id;
+  $pr->quantity= $quantities[$piece];
+  $pr->save();
+
+ }
     return redirect ('/ParkManager/repairsM')->with('success',"vous avez ajouter une reparation avec succès");
     }
 
@@ -162,6 +189,13 @@ $material->save();
     $material=Material::find($repair->mm_id);
     $material->material_state=$material->previous_state;
     $material->save();
+    $repair_pieces = RepairM_pieces::all()->where('repair_id', '=', $repair->id);
+    foreach($repair_pieces as $repair_piece){
+        $p=ConsumedPieces::find($repair_piece->piece_id);
+        $p->quantity=$p->quantity+$repair_piece->quantity;
+        $p->save();
+        $repair_piece->delete();
+    }
     $repair_staffs=RepairsMaterial_Staff::all()->where('repairmaterial_id','=',$repair->id);
     foreach($repair_staffs as $repair_staff){
         $repair_staff->delete();

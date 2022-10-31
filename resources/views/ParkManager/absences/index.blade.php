@@ -59,7 +59,7 @@ Créer une absence
                                     <th>Affectation</th>
                                     <th>Date</th>
                                     <th>Durée d'absence</th>
-                                    <th>Etat maintenant</th>
+                                    <th>Etat actuelle</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>

@@ -62,8 +62,8 @@ class AccidentController extends Controller
        'path'
 
 
-
     ));
+
     $request->validate([
         'path' => 'required|mimes:pdf,xlx,csv,xlsx|max:2048',
     ]);
@@ -75,17 +75,6 @@ class AccidentController extends Controller
 
     $accident->path=$fileName;
     $accident->save();
-     if( $request->vehicule1 !=null){
-
-        $accident->vehicle_id= $request->vehicule1;
-        $accident->save();
-                }elseif
-                ( $request->vehicule2 !=null ){
-                    $accident->vehicle_id= $request->vehicule2;
-                    $accident->save();
-                }else{          $accident->vehicle_id= $request->vehicule3;
-
-               $accident->save();  }
 
 
        return redirect()->route ('ParkManager.accidents.index')->with('success',"vous avez ajouter un accident avec succès");

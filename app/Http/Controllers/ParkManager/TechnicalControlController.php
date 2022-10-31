@@ -127,7 +127,7 @@ class TechnicalControlController extends Controller
             'vehicle_id'));
 
             AllControll_Checker( );
-                return redirect('/ParkManager/technicalcontrols')->with('success',"vous avez modifier un contrôles technique avec succès");
+                return redirect('/ParkManager/technicalcontrols')->with('success',"vous avez renouveler un contrôles technique avec succès");
     }
 
     /**

@@ -1,8 +1,8 @@
 
 
 
-<div class="footer-wrap pd-20 mb-20 card-box "style="background:#545454 ">
-    <span style="color: white"> PARKIT &copy; <a style="color: white" href="https://boost-it.co" target="_blank">BOOST-IT</a> 2022
+<div class="footer-wrap pd-20 mb-20 card-box "style="background:#ecf0f4 ">
+      <span style="color: #243b506e; font-size:14px;"> PARC'IT &copy; Developed by Boost it 2022
      | Tous Droits Réservés</span>
 
  </div>

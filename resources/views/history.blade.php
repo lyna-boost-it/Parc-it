@@ -29,13 +29,7 @@
                             </div>
 
                         </div>
-                        <a style="position: absolute;
-                        left: 1235px;
-
-                        "
-                            href="{{ route('ParkManager.vehicules.create') }}" class="btn btn-sm btn-success">
-                            Créer un véhicules
-                        </a>
+                    
 
                     </div>
                 </div>

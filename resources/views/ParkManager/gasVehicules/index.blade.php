@@ -18,22 +18,16 @@
                 <div class="page-header">
                     @include('inc.flash')
                     <div class="row">
-                        <div class="col-md-6 col-sm-12">
+                        <div class="col-md-7 col-sm-12">
                             <div class="title">
-                                <h3 style="color:#EE643A; ">
-                                    Gestion des consommations de carburant pour véhicule</h3>
+                                <h4 style="color:#EE643A; ">
+                                    Gestion des consommations carburants des véhicules</h4>
                             </div>
 
                         </div>
+						                        <div class="col-md-5 col-sm-12">
 
-                    </div>
-                </div>
-
-
-
-                <div class="card-box mb-30">
-                    <div class="pd-20">
-                        <a  style="background:#EE643A;color:#ffffff;float: right;
+						  <a  style="background:#EE643A;color:#ffffff;float: right;
                         @if (Auth::user()->type == 'Gestionnaire Sup') color: currentColor;
                         cursor: not-allowed;
                         opacity: 0.5;
@@ -42,6 +36,15 @@
                             href="{{ route('ParkManager.gasVehicules.create') }}" class="btn btn-sm ">
                             Créer une consommation
                         </a>
+						</div>
+                    </div>
+                </div>
+
+
+
+                <div class="card-box mb-30">
+                    <div class="pd-20">
+                       
 
                     </div>
                     <div class="pb-20">
@@ -51,9 +54,9 @@
                                 <tr>
 
                                     <th>ID</th>
-                                    <th>Nom et Prénom du conducteur</th>
+                                    <th>Conducteur</th>
                                     <th>Agent remplisseur</th>
-                                    <th> Coût</th>
+                                    <th> Coût DA</th>
                                     <th>Véhicule</th>
                                     <th> Litre de Carburant</th>
                                     <th> Prix du litre</th>

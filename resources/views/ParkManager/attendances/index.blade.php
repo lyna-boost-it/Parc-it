@@ -20,7 +20,7 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="title">
-                                <h3 style="color:#EE643A; ">Gestion des Pontages</h3>
+                                <h3 style="color:#EE643A; ">Gestion des Pointages</h3>
                             </div>
 
                         </div>
@@ -45,7 +45,7 @@
                                     <th>Matricule</th>
                                     <th>Type du personnel</th>
                                     <th>Affectation</th>
-                                    <th>Etat</th>
+                                    <th>État</th>
                                     <th class="datatable-nosort">Action</th>
 
 
@@ -70,7 +70,7 @@
                                                 <td>
                                                     <div class="col-xs-4"
                                                         style="padding-right: 5px;
-                                                padding-left: 5px;font-size:25px;">
+                                                padding-left: 5px;font-size:18px;">
 
 
                                                         @if ($staff->staff_state == 'absent')
@@ -86,13 +86,16 @@
                                                             </span>
                                                         @endif
                                                         @if ($staff->staff_state == 'pas au travail')
-                                                            <span class="fa fa-sticky-note " style="color: #bb3d9b; ">
-                                                            </span> <span style="color: #bb3d9b; ">pas au travail
+                                                            <span class="fa fa-sticky-note " style=" font-size:14px;    color: #c73939;
+    font-weight: 600;">
+                                                            </span> <span style="font-size:14px; color: #c73939;    font-weight: 600; ">Pas-présent
                                                             </span>
                                                         @endif
                                                         @if ($staff->staff_state == 'au travail')
-                                                            <span class="fa fa-sticky-note " style="color: #3dbb8b;  ">
-                                                            </span> <span style="color: #3dbb8b; "> au travail</span>
+                                                            <span class="fa fa-sticky-note " style="color: #148a5d;
+    font-weight: 600;font-size:14px;   ">
+                                                            </span> <span style="color: #148a5d;
+    font-weight: 600;font-size:14px; "> Au travail</span>
                                                         @endif
                                                     </div>
                                                 </td>
@@ -110,7 +113,7 @@
                                                             class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
 
                                                             @if ($staff->staff_state == 'pas au travail' || $staff->staff_state == 'en mission')
-                                                                <a class="dropdown-item" style="color: #4cbb3d; font-size:25px;"
+                                                                <a class="dropdown-item" style="color: #4cbb3d; font-size:18px;"
                                                                     href="{{ route('ParkManager.attendances.createAttendance', $staff->id) }}"
                                                                     @if (Auth::user()->type == 'Gestionnaire Sup') style="  color: currentColor;
                                                                     cursor: not-allowed;
@@ -118,7 +121,7 @@
                                                                     text-decoration: none;" @endif>
                                                                     <span class="fa fa-check-square  " >
 
-                                                                    </span> marquer la présence</a>
+                                                                    </span> Marquer la présence</a>
                                                             @endif
 
 
@@ -126,7 +129,7 @@
                                                             @if ($staff->staff_state == 'au travail')
                                                                 @foreach ($attendences as $attendence)
                                                                     @if ($attendence->staff_id == $staff->id)
-                                                                        <a class="dropdown-item"style="color: #bb3d3d; font-size:25px;"
+                                                                        <a class="dropdown-item"style="color: #bb3d3d; font-size:18px;"
                                                                             href="{{ route('ParkManager.attendances.editAttendance', $attendence->id) }}"
                                                                             @if (Auth::user()->type == 'Gestionnaire Sup') style="  color: currentColor;
                                                                             cursor: not-allowed;

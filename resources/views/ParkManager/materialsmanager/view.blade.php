@@ -20,12 +20,12 @@
                     <div class="page-header">
                         <div class="row">
 
-                            <h3>Fiche Technique: </h3>
+                            <h3>Fiche Technique du matériel motorisé : </h3>
 
                         </div>
                     </div>
-                    <div class="page-header" style="background-color:#aa4b2e">
-                        <h4 style="color:rgb(255, 255, 255)">Information de Machine: </h4>
+                    <div class="page-header" style="background-color:#ffffff">
+                        <h4 style="color:#f06431;">Informations du Matériel : </h4>
                         <div class="row">
 
 
