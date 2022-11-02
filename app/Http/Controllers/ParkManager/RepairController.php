@@ -190,6 +190,8 @@ class RepairController extends Controller
         $staffs = Staff::all()->where('person_type', '=', 'Personnel du parc');
         $driver = Staff::find($repair->driver_id);
         $repair_staffs = Repair_Staff::all()->where('repair_id', '=', $repair->id);
+        $rps=Repair_pieces::all()->where('repair_id', '=', $repair->id);
+        $pieces=ConsumedPieces::all()->where('type', '=', 'Véhicule');
         return view(
             'ParkManager.repairs.view',
             compact(
@@ -198,7 +200,7 @@ class RepairController extends Controller
                 'driver',
                 'repair_staffs',
                 'vehicule',
-                'staffs'
+                'staffs','rps','pieces'
             )
         );
     }

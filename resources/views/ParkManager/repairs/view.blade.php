@@ -116,6 +116,25 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-6  ">
+                            <div class="panel">
+                                <div class="panel-body bio-desk">
+                                    <h4   style="display: inline;">Pièces consommées:<br> </h4>
+                                    @foreach ($rps as $rp)
+                                     @foreach ($pieces as $piece)
+                                    @if ($rp->piece_id==$piece->id)
+                                    <h4  >Reference:{{ $piece->reference }} </h4>
+                                    <h5 >Quantite: {{ $rp->quantity }} </h5>
+                                    <br>
+
+                                    @endif
+
+                                    @endforeach
+                                    @endforeach
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
 

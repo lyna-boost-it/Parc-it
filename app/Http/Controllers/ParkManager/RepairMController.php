@@ -138,9 +138,11 @@ for ($piece=0; $piece < count($pieces); $piece++) {
         $dt=DtMaterial::find($repair->dt_code);
         $material=Material::find($repair->mm_id);
         $staffs=Staff::all() ;
+        $rps=RepairM_pieces::all()->where('repair_id', '=', $repair->id);
+        $pieces=ConsumedPieces::all()->where('type', '=', 'Machine');
         $repair_staffs=RepairsMaterial_Staff::all()->where('repairmaterial_id','=',$repair->id);
         return view('ParkManager.repairsM.view',
-        compact('repair','dt', 'repair_staffs', 'material','staffs'));
+        compact('repair','dt', 'repair_staffs', 'material','staffs','rps','pieces'));
     }
 
     /**

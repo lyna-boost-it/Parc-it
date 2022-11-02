@@ -285,7 +285,7 @@
                                                     <td>
                                                         <input type="number" name="quantities[]"
                                                             class="form-control"
-                                                            placeholder="Max {{ $product->quantity }}" />
+                                                          />
                                                     </td>
                                                 </tr>
                                                 <tr id="product1"></tr>
