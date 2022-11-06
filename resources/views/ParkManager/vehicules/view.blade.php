@@ -12,504 +12,650 @@
             @include('layouts.navbar')
 
 
-            <div   id="makepdf">
+            <div id="makepdf">
 
-            <div class="xs-pd-20-10 pd-ltr-20"  >
+                <div class="xs-pd-20-10 pd-ltr-20">
 
-                <div id="test">
-                    <div class="page-header">
-                        <div class="row">
+                    <div id="test">
+                        <div class="page-header">
+                            <div class="row">
 
-                            <h3>Fiche Technique du vehicule : </h3>
+                                <h3>Fiche Technique du vehicule : </h3>
 
+                            </div>
                         </div>
-                    </div>
-                    <div class="page-header" style="background-color:#ffffff">
-                        <h4 style="color:#f06431;">Informations du Véhicule: </h4>
-                        <div class="row">
+                        <div class="page-header" style="background-color:#ffffff">
+                            <h4 style="color:#f06431;">Informations du Véhicule: </h4>
+                            <div class="row">
 
 
 
-                            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-                            <table style=" width: 90%;border-collapse: collapse;">
-                                <tr>
-                                    <th>
-                                        <h4 style="display: inline;color:rgb(165, 42, 69)">ID: </h4>
-                                        <h5 style="display: inline;">{{ $vehicule->code }}</h5>
-                                    </th>
+                                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                                <table style=" width: 90%;border-collapse: collapse;">
+                                    <tr>
+                                        <th>
+                                            <h4 style="display: inline;color:rgb(165, 42, 69)">ID: </h4>
+                                            <h5 style="display: inline;">{{ $vehicule->code }}</h5>
+                                        </th>
 
 
-                                    <th>
-                                        <h4 style="display: inline;color:#000000"> Numéro de Série: </h4>
-                                        <h5 style="display: inline;color:#000000">{{ $vehicule->serial_numbers }}</h5>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th>
+                                        <th>
+                                            <h4 style="display: inline;color:#000000"> Numéro de Série: </h4>
+                                            <h5 style="display: inline;color:#000000">{{ $vehicule->serial_numbers }}
+                                            </h5>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <h4>Marque: </h4>
+                                            <h5 style="display: inline;">{{ $vehicule->mark }}</h5>
+                                        </th>
 
 
-                                        <h4 style="display: inline;color:#000000">Année Mise en Service: </h4>
-                                        <h5 style="display: inline;color:#000000">{{ $vehicule->year_commissioned }}
-                                        </h5>
-                                    </th>
-                                    <th>
+                                        <th>
+                                            <h4 style="display: inline;color:#000000"> Marticule: </h4>
+                                            <h5 style="display: inline;color:#000000">{{ $vehicule->marticule }}
+                                            </h5>
+                                        </th>
+                                    </tr>
 
-                                        <h4 style="display: inline;color:#000000 ">Type du Carburant: </h4>
-                                        <h5 style="display: inline;color:#000000">{{ $vehicule->type_of_fuel }}</h5>
-                                    </th>
-                                </tr>
-
-                                <tr>
-                                    <th>
-                                        <br>
-                                        <h4 style="display: inline;color:#000000">Capacité réservoir: </h4>
-                                        <h5 style="display: inline;color:#000000">{{ $vehicule->tank_capacity }}</h5>
-                                    </th>
-
-                                    <th>
-
-                                        <h4 style="display: inline;color:#000000">LTR / 100Km:</h4>
-                                        <h5 style="display: inline;color:#000000">{{ $vehicule->litter_by_100km }}</h5>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th>
-                                        <h4 style="display: inline;color:#000000">Type de véhicule: </h4>
-                                        <h5 style="display: inline;color:#000000">{{ $vehicule->vehicle_type }}</h5>
-                                    </th>
-                                    <th>
-                                        <h4 style="display: inline;color:#000000">Dimensions pneus:</h4>
-                                        <h5 style="display: inline;color:#000000">{{ $vehicule->tire_size }}</h5>
-                                    </th>
-                                </tr>
-
-                                <tr>
-                                    <th>
-                                        <h4 style="display: inline;color:#000000">Pressions Av: </h4>
-                                        <h5 style="display: inline;color:#000000"> {{ $vehicule->pressure_forward }}
-                                        </h5>
-                                    </th>
-                                    <th>
-                                        <h4 style="display: inline;color:#000000">Pressions Ar: </h4>
-                                        <h5 style="display: inline;color:#000000">{{ $vehicule->pressure_back }}</h5>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th>
-                                        <h4 style="display: inline;color:#000000">Les informations de la CARTE GRISE:
-                                        </h4>
-                                        <h5 style="display: inline;color:#000000"> <a
-                                                href="https://parcit.edeval.dz/public/files/carteGrise_files/{{ $vehicule->path }}">
+                                    <tr>
+                                        <th>
 
 
-                                                <span class="fa fa-eye  " style="color: #7e3dbb"> </span>
+                                            <h4 style="display: inline;color:#000000">Année Mise en Service: </h4>
+                                            <h5 style="display: inline;color:#000000">{{ $vehicule->year_commissioned }}
+                                            </h5>
+                                        </th>
+                                        <th>
 
-                                            </a></h5>
-                                    </th>
-                                    <th>
-                                        <h4 style="display: inline;color:#000000">Date d'acquisition:</h4>
-                                        <h5 style="display: inline;color:#000000">{{ $vehicule->acquisition_date }}
-                                        </h5>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th>
-                                        <h4 style="display: inline;color:#000000">Etat GPS: </h4>
-                                        <h5 style="display: inline;color:#000000">{{ $vehicule->registration }}</h5>
-                                    </th>
-                                    <th>
-                                        <h4 style="display: inline;color:#000000">Affectation: </h4>
-                                        <h5 style="display: inline;color:#000000">{{ $unit->name }}</h5>
-                                    </th>
-                                </tr>
-                            </table>
+                                            <h4 style="display: inline;color:#000000 ">Type du Carburant: </h4>
+                                            <h5 style="display: inline;color:#000000">{{ $vehicule->type_of_fuel }}</h5>
+                                        </th>
+                                    </tr>
+
+                                    <tr>
+                                        <th>
+                                            <br>
+                                            <h4 style="display: inline;color:#000000">Capacité réservoir: </h4>
+                                            <h5 style="display: inline;color:#000000">{{ $vehicule->tank_capacity }}
+                                            </h5>
+                                        </th>
+
+                                        <th>
+
+                                            <h4 style="display: inline;color:#000000">LTR / 100Km:</h4>
+                                            <h5 style="display: inline;color:#000000">{{ $vehicule->litter_by_100km }}
+                                            </h5>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <h4 style="display: inline;color:#000000">Type de véhicule: </h4>
+                                            <h5 style="display: inline;color:#000000">{{ $vehicule->vehicle_type }}</h5>
+                                        </th>
+                                        <th>
+                                            <h4 style="display: inline;color:#000000">Dimensions pneus:</h4>
+                                            <h5 style="display: inline;color:#000000">{{ $vehicule->tire_size }}</h5>
+                                        </th>
+                                    </tr>
+
+                                    <tr>
+                                        <th>
+                                            <h4 style="display: inline;color:#000000">Pressions Av: </h4>
+                                            <h5 style="display: inline;color:#000000"> {{ $vehicule->pressure_forward }}
+                                            </h5>
+                                        </th>
+                                        <th>
+                                            <h4 style="display: inline;color:#000000">Pressions Ar: </h4>
+                                            <h5 style="display: inline;color:#000000">{{ $vehicule->pressure_back }}
+                                            </h5>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <h4 style="display: inline;color:#000000">Les informations de la CARTE
+                                                GRISE:
+                                            </h4>
+                                            <h5 style="display: inline;color:#000000"> <a
+                                                    href="https://parcit.edeval.dz/public/files/carteGrise_files/{{ $vehicule->path }}">
+
+
+                                                    <span class="fa fa-eye  " style="color: #7e3dbb"> </span>
+
+                                                </a></h5>
+                                        </th>
+                                        <th>
+                                            <h4 style="display: inline;color:#000000">Date d'acquisition:</h4>
+                                            <h5 style="display: inline;color:#000000">{{ $vehicule->acquisition_date }}
+                                            </h5>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <h4 style="display: inline;color:#000000">Etat GPS: </h4>
+                                            <h5 style="display: inline;color:#000000">{{ $vehicule->registration }}
+                                            </h5>
+                                        </th>
+                                        <th>
+                                            <h4 style="display: inline;color:#000000">Affectation: </h4>
+                                            <h5 style="display: inline;color:#000000">{{ $unit->name }}</h5>
+                                        </th>
+                                    </tr>
+                                </table>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="page-header" style="background-color:#ffffff">
-                        <h4 style="color:#f06431;">Assurances:</h4>
-                        <div class="row">
+                        <div class="page-header" style="background-color:#ffffff">
 
+                            <h4 style="color:#f06431;">Assurances:</h4>
+
+                            @php
+                                $i = 0;
+                            @endphp
                             @foreach ($inssurances as $inssurance)
-                                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-                                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-                                <table style=" width: 90%;border-collapse: collapse;">
-                                    <tr>
-                                        <th>
-                                            <h4 style="display: inline;color:rgb(42, 165, 124)">ID: </h4>
-                                            <h5 style="display: inline;color:#000000">{{ $inssurance->id }}</h5>
-                                        </th>
-                                        <th>
-                                            <h4 style="display: inline;color:#000000"> Numéro de police d'Assurance:
-                                            </h4>
-                                            <h5 style="display: inline;color:#000000">{{ $inssurance->police_number }}
-                                            </h5>
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            <h4 style="display: inline;color:#000000">Date d'effet: </h4>
-                                            <h5 style="display: inline;color:#000000">{{ $inssurance->effective_date }}
-                                            </h5>
-                                        </th>
-                                        <th>
-                                            <h4 style="display: inline;color:#000000 ">Nom de la compagnie: </h4>
-                                            <h5 style="display: inline;color:#000000">{{ $inssurance->company_name }}
-                                            </h5>
-                                        </th>
-                                    </tr>
+                                @php
+                                    $i = $i + 1;
+                                @endphp
+                                <div class="sidenav">
 
-                                    <tr>
-                                        <th>
-                                            <h4 style="display: inline;color:#000000">Type d'assurance: </h4>
-                                            <h5 style="display: inline;color:#000000">{{ $inssurance->agency_code }}
-                                            </h5>
-                                        </th>
+                                    <button class="dropdown-btn"> Assurances {{ $i }} : début le
+                                        {{ $inssurance->effective_date }}</b>
+                                        <i class="fa fa-caret-down"></i>
+                                    </button>
+                                    <div class="dropdown-container">
+                                        <table style=" width: 90%;border-collapse: collapse;">
+                                            <tr>
+                                                <th>
+                                                    <h4 style="display: inline;color:rgb(42, 165, 124)">ID: </h4>
+                                                    <h5 style="display: inline;color:#000000">{{ $inssurance->id }}
+                                                    </h5>
+                                                </th>
+                                                <th>
+                                                    <h4 style="display: inline;color:#000000"> Numéro de police
+                                                        d'Assurance:
+                                                    </h4>
+                                                    <h5 style="display: inline;color:#000000">
+                                                        {{ $inssurance->police_number }}
+                                                    </h5>
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th>
+                                                    <h4 style="display: inline;color:#000000">Date d'effet: </h4>
+                                                    <h5 style="display: inline;color:#000000">
+                                                    </h5>
+                                                </th>
+                                                <th>
+                                                    <h4 style="display: inline;color:#000000 ">Nom de la compagnie:
+                                                    </h4>
+                                                    <h5 style="display: inline;color:#000000">
+                                                        {{ $inssurance->company_name }}
+                                                    </h5>
+                                                </th>
+                                            </tr>
 
-                                        <th>
-                                            <h4 style="display: inline;color:#000000">Adresse de l'agence:</h4>
-                                            <h5 style="display: inline;color:#000000">{{ $inssurance->insurance_type }}
-                                            </h5>
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            <h4 style="display: inline;color:#000000">Code de l'Agence: </h4>
-                                            <h5 style="display: inline;color:#000000">{{ $inssurance->agency_code }}
-                                            </h5>
-                                        </th>
+                                            <tr>
+                                                <th>
+                                                    <h4 style="display: inline;color:#000000">Type d'assurance:
+                                                    </h4>
+                                                    <h5 style="display: inline;color:#000000">
+                                                        {{ $inssurance->agency_code }}
+                                                    </h5>
+                                                </th>
+
+                                                <th>
+                                                    <h4 style="display: inline;color:#000000">Adresse de l'agence:
+                                                    </h4>
+                                                    <h5 style="display: inline;color:#000000">
+                                                        {{ $inssurance->insurance_type }}
+                                                    </h5>
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th>
+                                                    <h4 style="display: inline;color:#000000">Code de l'Agence:
+                                                    </h4>
+                                                    <h5 style="display: inline;color:#000000">
+                                                        {{ $inssurance->agency_code }}
+                                                    </h5>
+                                                </th>
 
 
-                                </table>
+                                        </table>
+                                    </div>
+
+                                </div>
                             @endforeach
+
                         </div>
-                    </div>
-                    <div class="page-header" style="background-color:#ffffff">
-                        <h4 style="color:#f06431;">Déclarations des accidents:</h4>
-                        <div class="row">
+
+
+                        <div class="page-header" style="background-color:#ffffff">
+                            <h4 style="color:#f06431;">Déclarations des accidents:</h4>
+
+
+                            @php
+                                $i = 0;
+                            @endphp
+
+
                             @foreach ($accicents as $accident)
-                                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-                                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-                                <table style=" width: 90%;border-collapse: collapse;">
-                                    <tr>
-                                        <th>
-                                            <h4 style="display: inline;color:rgb(42, 165, 124)">ID: </h4>
-                                            <h5 style="display: inline;color:#000000">{{ $accident->id }}</h5>
-                                        </th>
-                                        <th>
-                                            <h4 style="display: inline;color:#000000"> Type d'accident: </h4>
-                                            <h5 style="display: inline;color:#000000">{{ $accident->accident_type }}
-                                            </h5>
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            <h4 style="display: inline;color:#000000">Conséquences : </h4>
-                                            <h5 style="display: inline;color:#000000">{{ $accident->result }}</h5>
-                                        </th>
-                                        <th>
-                                            <h4 style="display: inline;color:#000000 ">Date de déclaration : </h4>
-                                            <h5 style="display: inline;color:#000000">{{ $accident->declaration_date }}
-                                            </h5>
-                                        </th>
-                                    </tr>
+                                @php
+                                    $i = $i + 1;
+                                @endphp
+                                <div class="sidenav">
 
-                                    <tr>
-                                        <th>
-                                            <h4 style="display: inline;color:#000000">Conducteur adversaire: </h4>
-                                            <h5 style="display: inline;color:#000000">
-                                                {{ $accident->opponent_driver_name }}
-                                                {{ $accident->opponent_driver_last_name }}</h5>
-                                        </th>
+                                    <button class="dropdown-btn">Accident {{ $i }}: déclaré le {{ $accident->declaration_date }}
+                                        <i class="fa fa-caret-down"></i>
+                                    </button>
+                                    <div class="dropdown-container">
+                                        <table style=" width: 90%;border-collapse: collapse;">
+                                            <tr>
+                                                <th>
+                                                    <h4 style="display: inline;color:rgb(42, 165, 124)">ID: </h4>
+                                                    <h5 style="display: inline;color:#000000">{{ $accident->id }}</h5>
+                                                </th>
+                                                <th>
+                                                    <h4 style="display: inline;color:#000000"> Type d'accident: </h4>
+                                                    <h5 style="display: inline;color:#000000">
+                                                        {{ $accident->accident_type }}
+                                                    </h5>
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th>
+                                                    <h4 style="display: inline;color:#000000">Conséquences : </h4>
+                                                    <h5 style="display: inline;color:#000000">{{ $accident->result }}
+                                                    </h5>
+                                                </th>
 
-                                        <th>
-                                            <h4 style="display: inline;color:#000000">Conducteur EDEVAL:</h4>
-                                            <h5 style="display: inline;color:#000000">
-                                                @foreach ($drivers as $driver)
-                                                    @if ($driver->id == $accident->driver_id)
-                                                        {{ $driver->name }} {{ $driver->last_name }}
-                                                    @endif
-                                                @endforeach
-                                            </h5>
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            <h4 style="display: inline;color:#000000">Assurance du B: </h4>
-                                            <h5 style="display: inline;color:#000000">
-                                                {{ $accident->opponent_insurance }}</h5>
-                                        </th>
-                                        <th>
-                                            <h4 style="display: inline;color:#000000 ">Documents de l'adversaire: </h4>
-                                            <h5 style="display: inline;color:#000000">
+                                            </tr>
 
-                                                <span class="fa fa-eye  " style="color: #3d5fbb"><a
-                                                        href="/files/accidents_files/{{ $accident->path }}">
-                                                </span>
+                                            <tr>
+                                                <th>
+                                                    <h4 style="display: inline;color:#000000">Conducteur adversaire:
+                                                    </h4>
+                                                    <h5 style="display: inline;color:#000000">
+                                                        {{ $accident->opponent_driver_name }}
+                                                        {{ $accident->opponent_driver_last_name }}</h5>
+                                                </th>
 
-                                                </a>
-                                            </h5>
-                                        </th>
-                                    </tr>
+                                                <th>
+                                                    <h4 style="display: inline;color:#000000">Conducteur EDEVAL:</h4>
+                                                    <h5 style="display: inline;color:#000000">
+                                                        @foreach ($drivers as $driver)
+                                                            @if ($driver->id == $accident->driver_id)
+                                                                {{ $driver->name }} {{ $driver->last_name }}
+                                                            @endif
+                                                        @endforeach
+                                                    </h5>
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th>
+                                                    <h4 style="display: inline;color:#000000">Assurance du B: </h4>
+                                                    <h5 style="display: inline;color:#000000">
+                                                        {{ $accident->opponent_insurance }}</h5>
+                                                </th>
+                                                <th>
+                                                    <h4 style="display: inline;color:#000000 ">Documents de
+                                                        l'adversaire:
+                                                    </h4>
+                                                    <h5 style="display: inline;color:#000000">
 
-                                    <tr>
-                                        <th>
-                                            <h4 style="display: inline;color:#000000">N° de l'assurance de l'adversaire:
-                                            </h4>
-                                            <h5 style="display: inline;color:#000000">
-                                                {{ $accident->opponent_number_insurance }}</h5>
-                                        </th>
-                                        <th>
-                                            <h4 style="display: inline;color:#000000">Adresse de l'agence de l'assurance
-                                                adversaire:
-                                            </h4>
-                                            <h5 style="display: inline;color:#000000">
-                                                {{ $accident->opponent_insurance_address }}</h5>
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            <h4 style="display: inline;color:#000000">Date de l'expertise: </h4>
-                                            <h5 style="display: inline;color:#000000">{{ $accident->expertise_date }}
-                                            </h5>
-                                        </th>
-                                        <th>
-                                            <h4 style="display: inline;color:#000000 ">État d'avancement du dossier:
-                                            </h4>
-                                            <h5 style="display: inline;color:#000000">{{ $accident->state }}</h5>
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            <h4 style="display: inline;color:#000000">Causes d'accident: </h4>
-                                            <h5 style="display: inline;color:#000000">{{ $accident->cause }}</h5>
-                                        </th>
-                                        <th>
+                                                        <span class="fa fa-eye  " style="color: #3d5fbb"><a
+                                                            href="https://parcit.edeval.dz/public/files/accidents_files/{{ $accident->path }}">
 
-                                        </th>
-                                    </tr>
-                                </table>
+                                                        </span>
+
+                                                        </a>
+                                                    </h5>
+                                                </th>
+                                            </tr>
+
+                                            <tr>
+                                                <th>
+                                                    <h4 style="display: inline;color:#000000">N° de l'assurance de
+                                                        l'adversaire:
+                                                    </h4>
+                                                    <h5 style="display: inline;color:#000000">
+                                                        {{ $accident->opponent_number_insurance }}</h5>
+                                                </th>
+                                                <th>
+                                                    <h4 style="display: inline;color:#000000">Adresse de l'agence de
+                                                        l'assurance
+                                                        adversaire:
+                                                    </h4>
+                                                    <h5 style="display: inline;color:#000000">
+                                                        {{ $accident->opponent_insurance_address }}</h5>
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th>
+                                                    <h4 style="display: inline;color:#000000">Date de l'expertise: </h4>
+                                                    <h5 style="display: inline;color:#000000">
+                                                        {{ $accident->expertise_date }}
+                                                    </h5>
+                                                </th>
+                                                <th>
+                                                    <h4 style="display: inline;color:#000000 ">État d'avancement du
+                                                        dossier:
+                                                    </h4>
+                                                    <h5 style="display: inline;color:#000000">{{ $accident->state }}
+                                                    </h5>
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th>
+                                                    <h4 style="display: inline;color:#000000">Causes d'accident: </h4>
+                                                    <h5 style="display: inline;color:#000000">{{ $accident->cause }}
+                                                    </h5>
+                                                </th>
+                                                <th>
+
+                                                </th>
+                                            </tr>
+                                        </table>
+                                    </div>
+
+                                </div>
                             @endforeach
 
+
                         </div>
-                    </div>
-                    <div class="page-header" style="background-color:#ffffff">
-                        <h4 style="color:#f06431;">Vignettes:</h4>
-                        <div class="row">
+                        <div class="page-header" style="background-color:#ffffff">
+                            <h4 style="color:#f06431;">Vignettes:</h4>
+
+                            @php
+                                $i = 0;
+                            @endphp
+
 
                             @foreach ($stickers as $sticker)
-                                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-                                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-                                <table style=" width: 90%;border-collapse: collapse;">
-                                    <tr>
-                                        <th>
-                                            <h4 style="display: inline;color:rgb(42, 165, 124)">ID: </h4>
-                                            <h5 style="display: inline;;color:#000000">{{ $sticker->id }}</h5>
-                                        </th>
-                                        <th>
-                                            <h4 style="display: inline;;color:#000000"> Année (en cours): </h4>
-                                            <h5 style="display: inline;;color:#000000">{{ $sticker->year }}</h5>
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            <h4 style="display: inline;color:#000000">Validité: </h4>
-                                            <h5 style="display: inline;;color:#000000">{{ $sticker->validity }}</h5>
+                                <div class="sidenav">
 
-                                        </th>
+                                    @php
+                                        $i = $i + 1;
+                                    @endphp
+                                    <p class="dropdown-btn">Vignettes {{ $i }}: Année {{ $sticker->year }} {{ $sticker->validity }}.
 
-                                    </tr>
+                                    </p>
 
 
-                                </table>
+                                </div>
                             @endforeach
+
                         </div>
-                    </div>
-                    <div class="page-header" style="background-color:#ffffff">
-                        <h4 style="color:#f06431;">Contrôles techniques:</h4>
-                        <div class="row">
+                        <div class="page-header" style="background-color:#ffffff">
+                            <h4 style="color:#f06431;">Contrôles techniques:</h4>
+                                    @php
+                                        $i = 0;
+                                    @endphp
+                                @foreach ($technicalcontrolls as $technicalcontroll)
 
-                            @foreach ($technicalcontrolls as $technicalcontroll)
-                                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-                                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-                                <table style=" width: 90%;border-collapse: collapse;">
-                                    <tr>
-                                        <th>
-                                            <h4 style="display: inline;color:rgb(42, 165, 124)">ID: </h4>
-                                            <h5 style="display: inline;color:#000000">{{ $technicalcontroll->id }}
-                                            </h5>
-                                        </th>
-                                        <th>
-                                            <h4 style="display: inline;color:#000000"> Date d'effet: </h4>
-                                            <h5 style="display: inline;color:#000000">
-                                                {{ $technicalcontroll->effective_date }}
-                                            </h5>
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            <h4 style="display: inline;color:#000000">Date limite: </h4>
-                                            <h5 style="display: inline;color:#000000">
-                                                {{ $technicalcontroll->expiration_date }}
-                                            </h5>
+                                <div class="sidenav">
 
-                                        </th>
-                                        <th>
-                                            <h4 style="display: inline;color:#000000">Réserve: </h4>
-                                            <h5 style="display: inline;color:#000000">
-                                                {{ $technicalcontroll->reserve }}</h5>
-                                        </th>
-                                    </tr>
+                                    @php
+                                        $i = $i + 1;
+                                    @endphp
+                                    <button class="dropdown-btn">Contrôles techniques {{ $i }}: de {{ $technicalcontroll->effective_date }} à {{ $technicalcontroll->expiration_date }}.
+                                        <i class="fa fa-caret-down"></i>
+                                    </button>
+                                    <div class="dropdown-container">
+                                        <table style=" width: 90%;border-collapse: collapse;">
+                                            <tr>
+                                                <th>
+                                                    <h4 style="display: inline;color:rgb(42, 165, 124)">ID: </h4>
+                                                    <h5 style="display: inline;color:#000000">{{ $technicalcontroll->id }}
+                                                    </h5>
+                                                </th>
 
-                                    <tr>
-                                        <th>
-                                            <h4 style="display: inline;color:#000000 ">Numéro du contrôle Technique:
-                                            </h4>
-                                            <h5 style="display: inline;color:#000000">
-                                                {{ $technicalcontroll->technical_control_number }}</h5>
-                                        </th>
-                                        <th>
-                                            <h4 style="display: inline;color:#000000">L'organisme émetteur: </h4>
-                                            <h5 style="display: inline;color:#000000">
-                                                {{ $technicalcontroll->transmitter }}
-                                            </h5>
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            <h4 style="display: inline;color:#000000">Observation: </h4>
-                                            <h5 style="display: inline;color:#000000">
-                                                {{ $technicalcontroll->observation }}
-                                            </h5>
-                                        </th>
-                                        <th>
-                                            <h4 style="display: inline;color:#000000">Contrôle technique SirGaz: </h4>
-                                            <h5 style="display: inline;color:#000000">{{ $technicalcontroll->SirGaz }}
-                                            </h5>
+                                            </tr>
+                                            <tr>
 
-                                        </th>
-                                    </tr>
-                                </table>
-                            @endforeach
+                                                <th>
+                                                    <h4 style="display: inline;color:#000000">Réserve: </h4>
+                                                    <h5 style="display: inline;color:#000000">
+                                                        {{ $technicalcontroll->reserve }}</h5>
+                                                </th>
+                                            </tr>
+
+                                            <tr>
+                                                <th>
+                                                    <h4 style="display: inline;color:#000000 ">Numéro du contrôle
+                                                        Technique:
+                                                    </h4>
+                                                    <h5 style="display: inline;color:#000000">
+                                                        {{ $technicalcontroll->technical_control_number }}</h5>
+                                                </th>
+                                                <th>
+                                                    <h4 style="display: inline;color:#000000">L'organisme émetteur: </h4>
+                                                    <h5 style="display: inline;color:#000000">
+                                                        {{ $technicalcontroll->transmitter }}
+                                                    </h5>
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th>
+                                                    <h4 style="display: inline;color:#000000">Observation: </h4>
+                                                    <h5 style="display: inline;color:#000000">
+                                                        {{ $technicalcontroll->observation }}
+                                                    </h5>
+                                                </th>
+                                                <th>
+                                                    <h4 style="display: inline;color:#000000">Contrôle technique SirGaz:
+                                                    </h4>
+                                                    <h5 style="display: inline;color:#000000">
+                                                        {{ $technicalcontroll->SirGaz }}
+                                                    </h5>
+
+                                                </th>
+                                            </tr>
+                                        </table>
+                                    </div>
+
+                                </div>
+
+                                @endforeach
+
                         </div>
-                    </div>
-                    <div class="page-header" style="background-color:#ffffff">
-                        <h4 style="color:#f06431;">Permis de circulation:</h4>
-                        <div class="row">
+                        <div class="page-header" style="background-color:#ffffff">
+                            <h4 style="color:#f06431;">Permis de circulation: </h4>
 
-                            @foreach ($licences as $licence)
-                                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-                                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-                                <table style=" width: 90%;border-collapse: collapse;">
-                                    <tr>
-                                        <th>
-                                            <h4 style="display: inline;color:rgb(42, 165, 124)">ID: </h4>
-                                            <h5 style="display: inline;color:#000000">{{ $licence->id }}</h5>
-                                        </th>
+   @php
+                                                            $i = 0;
+                                                        @endphp
+                                @foreach ($licences as $licence)
+                                <div class="sidenav">
 
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            <h4 style="display: inline;color:#000000">Date début: </h4>
-                                            <h5 style="display: inline;color:#000000">{{ $licence->start_date }}</h5>
-                                        </th>
-                                        <th>
-                                            <h4 style="display: inline;color:#000000">Date fin: </h4>
-                                            <h5 style="display: inline;color:#000000">{{ $licence->end_date }}</h5>
+                                      @php
+                                                                $i = $i + 1;
+                                                            @endphp
+                                  <p class="dropdown-btn">Permis de circulation {{ $i }}: de {{ $licence->start_date }} à {{ $licence->end_date }}.
 
-                                        </th>
-                                    </tr>
+                                  </p>
 
 
-                                </table>
-                            @endforeach
+                                </div>
+
+                                @endforeach
+
                         </div>
-                    </div>
-                    <div class="page-header" style="background-color:#ffffff">
-                        <h4 style="color:#f06431;">Garantis:</h4>
-                        <div class="row">
+                        <div class="page-header" style="background-color:#ffffff">
+                            <h4 style="color:#f06431;">Garantis:</h4>
 
-                            @foreach ($garanties as $garantie)
-                                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-                                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-                                <table style=" width: 90%;border-collapse: collapse;">
-                                    <tr>
-                                        <th>
-                                            <h4 style="display: inline;color:rgb(42, 165, 124)">ID: </h4>
-                                            <h5 style="display: inline;color:#000000">{{ $garantie->id }}</h5>
-                                        </th>
-                                        <th>
+ @php
+                                                            $i = 0;
+                                                        @endphp
+                                @foreach ($garanties as $garantie)
+                                <div class="sidenav">
 
-                                            <h4 style="display: inline;color:#000000">Réf de la garantie: </h4>
-                                            <h5 style="display: inline;color:#000000">{{ $garantie->ref_garanti }}
-                                            </h5>
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            <h4 style="display: inline;color:#000000">Durée de la Garantie:
-                                            </h4>
-                                            <h5 style="display: inline;color:#000000">
-                                                @if ($garantie->year != '')
-                                                    {{ $garantie->year }} <b>Année</b>
-                                                @else
-                                                    {{ $garantie->km }} <b>KM</b>
-                                                @endif
-                                            </h5>
-                                        </th>
-                                        <th>
-                                            <h4 style="display: inline;color:#000000">Type de garantie: </h4>
-                                            <h5 style="display: inline;color:#000000">{{ $garantie->garanti_type }}
-                                            </h5>
+                                      @php
+                                                                $i = $i + 1;
+                                                            @endphp
+                                  <button class="dropdown-btn">Garantis {{ $i }}:
+                                    <i class="fa fa-caret-down"></i>
+                                  </button>
+                                  <div class="dropdown-container">
 
-                                        </th>
-                                    </tr>
+                                    <table style=" width: 90%;border-collapse: collapse;">
+                                        <tr>
+                                            <th>
+                                                <h4 style="display: inline;color:rgb(42, 165, 124)">ID: </h4>
+                                                <h5 style="display: inline;color:#000000">{{ $garantie->id }}</h5>
+                                            </th>
+                                            <th>
 
-                                    <tr>
-                                        <th>
-                                            <h4 style="display: inline;color:#000000 ">Réf du fournisseur:: </h4>
-                                            <h5 style="display: inline;color:#000000">{{ $garantie->ref_vendor }}</h5>
-                                        </th>
+                                                <h4 style="display: inline;color:#000000">Réf de la garantie: </h4>
+                                                <h5 style="display: inline;color:#000000">{{ $garantie->ref_garanti }}
+                                                </h5>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                <h4 style="display: inline;color:#000000">Durée de la Garantie:
+                                                </h4>
+                                                <h5 style="display: inline;color:#000000">
+                                                    @if ($garantie->year != '')
+                                                        {{ $garantie->year }} <b>Année</b>
+                                                    @else
+                                                        {{ $garantie->km }} <b>KM</b>
+                                                    @endif
+                                                </h5>
+                                            </th>
+                                            <th>
+                                                <h4 style="display: inline;color:#000000">Type de garantie: </h4>
+                                                <h5 style="display: inline;color:#000000">
+                                                    {{ $garantie->garanti_type }}
+                                                </h5>
 
-                                        <th>
-                                            <h4 style="display: inline;color:#000000">Infos du Fournisseur: </h4>
-                                            <h5 style="display: inline;color:#000000"><b> Nom fournisser</b>
-                                                {{ $garantie->name_vendor }} </h5>
+                                            </th>
+                                        </tr>
 
+                                        <tr>
+                                            <th>
+                                                <h4 style="display: inline;color:#000000 ">Réf du fournisseur:: </h4>
+                                                <h5 style="display: inline;color:#000000">{{ $garantie->ref_vendor }}
+                                                </h5>
+                                            </th>
 
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            <h4 style="display: inline;color:#000000">Adresse </h4>
-                                            <h5 style="display: inline;color:#000000">
-                                                {{ $garantie->address_vendor }} </h5>
-
-                                        </th>
-
-                                        <th>
-                                            <h4 style="display: inline;color:#000000">Service Après-Vente: </h4>
-                                            <h5 style="display: inline;color:#000000">
-                                                {{ $garantie->after_sold_service }} </h5>
-
-                                        </th>
-
-                                    </tr>
+                                            <th>
+                                                <h4 style="display: inline;color:#000000">Infos du Fournisseur: </h4>
+                                                <h5 style="display: inline;color:#000000"><b> Nom fournisser</b>
+                                                    {{ $garantie->name_vendor }} </h5>
 
 
-                                </table>
-                            @endforeach
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                <h4 style="display: inline;color:#000000">Adresse </h4>
+                                                <h5 style="display: inline;color:#000000">
+                                                    {{ $garantie->address_vendor }} </h5>
+
+                                            </th>
+
+                                            <th>
+                                                <h4 style="display: inline;color:#000000">Service Après-Vente: </h4>
+                                                <h5 style="display: inline;color:#000000">
+                                                    {{ $garantie->after_sold_service }} </h5>
+
+                                            </th>
+
+                                        </tr>
+
+
+                                    </table>
+                                  </div>
+
+                                </div>
+
+                                @endforeach
+
                         </div>
                     </div>
                 </div>
-            </div> </div>
-            <br> <button id="button" class="btn btn-warning btn-round"><span class="fa fa-print  " style="color: #000000"> </span> Imprimer</button>
+            </div>
+            <br> <button id="button" class="btn btn-warning btn-round"><span class="fa fa-print  "
+                    style="color: #000000"> </span> Imprimer</button>
+
+
+            <style>
+                body {
+                    font-family: "Lato", sans-serif;
+                }
 
 
 
+                /* Style the sidenav links and the dropdown button */
+                .sidenav a,
+                .dropdown-btn {
+                    padding: 6px 8px 6px 16px;
+                    text-decoration: none;
+                    font-size: 20px;
+                    color: #818181;
+                    display: block;
+                    border: none;
+                    background: none;
+                    width: 100%;
+                    text-align: left;
+                    cursor: pointer;
+                    outline: none;
+                }
 
 
+
+                /* Main content */
+                .main {
+                    margin-left: 200px;
+                    /* Same as the width of the sidenav */
+                    font-size: 20px;
+                    /* Increased text to enable scrolling */
+                    padding: 0px 10px;
+                }
+
+
+
+                /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+                .dropdown-container {
+                    display: none;
+
+                    padding-left: 8px;
+                }
+
+
+
+                /* Some media queries for responsiveness */
+                @media screen and (max-height: 450px) {
+                    .sidenav {
+                        padding-top: 15px;
+                    }
+
+                    .sidenav a {
+                        font-size: 18px;
+                    }
+                }
+            </style>
+
+            <script>
+                /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+                var dropdown = document.getElementsByClassName("dropdown-btn");
+                var i;
+
+                for (i = 0; i < dropdown.length; i++) {
+                    dropdown[i].addEventListener("click", function() {
+                        this.classList.toggle("active");
+                        var dropdownContent = this.nextElementSibling;
+                        if (dropdownContent.style.display === "block") {
+                            dropdownContent.style.display = "none";
+                        } else {
+                            dropdownContent.style.display = "block";
+                        }
+                    });
+                }
+            </script>
 
             @include('layouts.footerForIndexx')
     </div>

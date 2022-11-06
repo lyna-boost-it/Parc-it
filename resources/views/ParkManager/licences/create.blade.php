@@ -89,7 +89,7 @@
                                             <option></option>
                                             @foreach ($vehicules as $vehicule)
                                             <option value="{{ $vehicule->id }}">
-                                                {{ $vehicule->code }} </option>
+                                                {{ $vehicule->vehicle_type }} ;{{ $vehicule->mark }} ;{{ $vehicule->marticule }}</option>
                                         @endforeach
                                           </select>
 
@@ -101,6 +101,21 @@
 
 
 
+                        <div class="card-body">
+                            <div class="row">
+                                <label class="col-md-3 col-form-label">{{ __('Institution') }}</label>
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                        <select name="institution"
+                                            value="{{ old('institution'), $licence->institution }}"class="form-control"
+                                            id="institution">
+                                            <option value=" "> </option>
+                                            <option value="DTWA">DTWA </option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div></div>
 
                          <div class="card-footer ">
                             <div class="row">

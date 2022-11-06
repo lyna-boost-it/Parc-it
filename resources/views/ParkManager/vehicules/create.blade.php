@@ -31,9 +31,39 @@
                         </div>
 
 
+                        <div class="card-body" >
+                            <div class="row">
+                                <label class="col-md-3 col-form-label">{{ __('Marque de véhicule') }}</label>
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                        <input type="text" name="mark" class="form-control"
+                                        placeholder="Marque de véhicule" value="{{ $vehicule->mark }}" required>
+                                    </div>
+                                    @if ($errors->has('mark'))
+                                        <span class="invalid-feedback" style="display: block;" role="alert">
+                                            <strong>{{ $errors->first('mark') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
 
-
-
+                        <div class="card-body" >
+                            <div class="row">
+                                <label class="col-md-3 col-form-label">{{ __('Matricule') }}</label>
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                        <input type="text" name="marticule" class="form-control"
+                                        placeholder="Marticule" value="{{ $vehicule->marticule }}" required>
+                                    </div>
+                                    @if ($errors->has('marticule'))
+                                        <span class="invalid-feedback" style="display: block;" role="alert">
+                                            <strong>{{ $errors->first('marticule') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
 
 
                 <div class="card-body" >

@@ -188,29 +188,27 @@
 
 
 
+
+
+
+
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __('Motif d’Absence ') }}</label>
+                                    <label class="col-md-3 col-form-label">{{ __('Motif d’Absence') }}</label>
                                     <div class="col-md-9">
                                         <div class="form-group">
-                                            <input type="text" id="explanation" name="explanation"
-                                                class="form-control" placeholder="Motif d’Absence"
-                                                value="{{ $absence->explanation }}" required>
-                                        </div>
-                                        @if ($errors->has('explanation'))
-                                            <span class="invalid-feedback" style="display: block;" role="alert">
-                                                <strong>{{ $errors->first('explanation') }}</strong>
-                                            </span>
-                                        @endif
+                                            <select  name="explanation"
+                                             value="{{ old('explanation'),$absence->explanation }}"class="form-control"
+                                                id="explanation">
+                                                <option value="Absences autorisée">Absences autorisée</option>
+                                                  <option value="Absence non-autorisée">Absence non-autorisée</option>
+                                                <option value="Absence maladie">Absence maladie</option>
+
+                                            </select>     </div>
                                     </div>
                                 </div>
+
                             </div>
-
-
-
-
-
-
 
 
 

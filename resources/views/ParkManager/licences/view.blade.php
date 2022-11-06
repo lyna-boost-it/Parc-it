@@ -24,7 +24,7 @@
 
                             </div>
                         </div>
-                        <div class="page-header" style="background-color:#aa4b2e">
+                        <div class="page-header">
 
                             <div class="row">
 
@@ -35,26 +35,35 @@
                                 <table style=" width: 90%;border-collapse: collapse;">
                                     <tr>
                                         <th>
-                                            <h4  style="display: inline;color:rgb(42, 165, 124)">ID: </h4>
-                                        <h5  style="display: inline;color:#000000">{{ $licence->id }}</h5>
+                                            <h4 style="display: inline;color:rgb(42, 165, 124)">ID: </h4>
+                                            <h5 style="display: inline;color:#000000">{{ $licence->id }}</h5>
                                         </th>
 
 
                                         <th>
-                                            <h4 style="display: inline;color:#000000" >Etat: </h4>
+                                            <h4 style="display: inline;color:#000000">Etat: </h4>
                                             <h5 style="display: inline;color:#000000">{{ $licence->state }}</h5>
                                     </tr>
                                     <tr>
                                         <th>
-                                            <h4   style="display: inline;color:#000000">Date début: </h4>
+                                            <h4 style="display: inline;color:#000000">Date début: </h4>
                                             <h5 style="display: inline;color:#000000">{{ $licence->start_date }}</h5>
                                         </th>
                                         <th>
-                                            <h4 style="display: inline;color:#000000" >Date fin: </h4>
+                                            <h4 style="display: inline;color:#000000">Date fin: </h4>
                                             <h5 style="display: inline;color:#000000">{{ $licence->end_date }}</h5>
                                         </th>
                                     </tr>
-
+                                    <th>
+                                        <h4 style="display: inline;color:#000000">Institution: </h4>
+                                        <h5 style="display: inline;color:#000000">
+                                            @if ($licence->institution =='DTWA')
+                                            DTWA
+                                            @else
+                                                Rien
+                                            @endif
+                                        </h5>
+                                    </th>
 
                                 </table>
                             </div>

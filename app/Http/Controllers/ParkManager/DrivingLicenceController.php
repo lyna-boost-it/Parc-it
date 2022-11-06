@@ -52,7 +52,7 @@ class DrivingLicenceController extends Controller
     public function store(Request $request)
     {
         $licence=DrivingLicence:: create($request->only(
-        'id', 'start_date','end_date','vehicle_id'
+        'id', 'start_date','end_date','vehicle_id','institution'
 ));
 
 
@@ -112,7 +112,7 @@ AllLisence_Checker( );
     {
         $licence=DrivingLicence::find($id);
         $licence->update($request->only(
-            'id', 'start_date','end_date','vehicle_id'));
+            'id', 'start_date','end_date','vehicle_id','institution'));
 
             AllLisence_Checker( );
                 return redirect('/ParkManager/licences')->with('success',"vous avez renouveler un permis de circulation avec succès");

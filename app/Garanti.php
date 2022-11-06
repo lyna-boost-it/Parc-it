@@ -18,7 +18,7 @@ class Garanti extends Model
         'name_vendor',
         'address_vendor',
         'vehicle_id',
-       'after_sold_service',
+       'after_sold_service' ,'start_date','end_date'
     ];
     protected static $logAttributes = [
         'id',
@@ -31,6 +31,6 @@ class Garanti extends Model
         'name_vendor',
         'address_vendor',
         'vehicle_id',
-       'after_sold_service',
+       'after_sold_service' ,'start_date','end_date'
     ];
 }

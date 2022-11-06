@@ -19,7 +19,7 @@
 
             </div>
             <div class="col-md-12 text-center">
-                                <form action="{{route('ParkManager.insurances.store',$insurance->id)}}" method="post" enctype="multipart/form-data">
+                                <form action="{{route('ParkManager.insurances.store',$insurance->id)}}" method="post" enctype="multipart/form-data" name="demoForm">
 
     @csrf
 
@@ -31,9 +31,7 @@
                         </div>
                         <br><br><br>
 
-                        <div class="card-header">
-                            <h3 class="title">{{ __('Créer une assurance ') }}</h3>
-                        </div>
+
 
                         <div class="card-body" >
                             <div class="row">
@@ -162,19 +160,22 @@
                                     <div class="form-group">
 
 
-                                        <select style="width: 300px" id="vehicle_id" name="vehicle_id">
+                                        <select style="width: 300px" id="vehicle_id"name="demoSelect" onchange="showData()" >
                                             <option></option>
                                             @foreach ($vehicules as $vehicule)
-                                            <option value="{{ $vehicule->id }}">
-                                                {{ $vehicule->code }} </option>
+
+                                            <option  value="{{ $vehicule->id }}">
+
+                                                {{ $vehicule->vehicle_type }} ;{{ $vehicule->mark }} ;{{ $vehicule->marticule }}</option>
+
                                         @endforeach
                                           </select>
 
-                                    </div>
                                 </div>
                             </div>
                         </div>
 
+</div>
                          <div class="card-footer ">
                             <div class="row">
                              <div class="col-md-12 text-center">
@@ -188,6 +189,29 @@
             </div>
         </div>
     </div>
+
+
+
+    @foreach ($vehicules as $vehicule)
+    <script>
+
+        $("#vehicle_id").change(function() {
+            if ($(this).val() == id ) {
+                $('#vehicule_div').show();
+                $('#v').attr('required','');
+                $('#v').attr('data-error', 'This field is required.');
+            } else {
+                $('#vehicule_div').hide();
+                $('#v').removeAttr('required');
+                $('#v').removeAttr('data-error');
+            }
+        });
+        $("#vehicle_id").trigger("change");
+
+
+          </script>
+ @endforeach
+
     @include('layouts.footerForIndexx')
 
 </body>

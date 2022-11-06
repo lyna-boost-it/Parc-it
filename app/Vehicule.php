@@ -18,7 +18,8 @@ class Vehicule extends Model
          'acquisition_date',
    'unit_id',
        'vehicle_type',
-       'vehicle_state'
+       'vehicle_state','mark',
+       'marticule'
     ];
     protected static $logAttributes = [
         'code',
@@ -29,5 +30,6 @@ class Vehicule extends Model
  'acquisition_date',
 'unit_id',
 'vehicle_type',
-'vehicle_state' ];
+'vehicle_state' ,'mark',
+'marticule'];
 }

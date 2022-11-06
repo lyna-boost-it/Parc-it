@@ -24,7 +24,7 @@
 
                             </div>
                         </div>
-                        <div class="page-header" style="background-color:#aa4b2e">
+                       <div class="page-header" >
 
                             <div class="row">
 
@@ -43,6 +43,22 @@
                                         <th>
                                             <h4 style="display: inline;color: #000000" >Réf de la garantie: </h4>
                                             <h5 style="display: inline;color: #000000">{{ $garantie->ref_garanti }}</h5>
+                                    </tr>
+
+
+
+
+                                    <tr>
+                                        <th>
+
+                                            <h4   style="display: inline;color: #000000"> Date de début: </h4>
+                                            <h5 style="display: inline;color: #000000">{{ $garantie->start_date }}</h5>
+
+                                        </th><th>
+                                            <h4   style="display: inline;color: #000000">Date de fin: </h4>
+                                            <h5 style="display: inline;color: #000000">{{ $garantie->end_date }}  </h5>
+
+                                        </th>
                                     </tr>
                                     <tr>
                                         <th>
@@ -84,7 +100,6 @@
 
                                         </th>
                                     </tr>
-
 
                                 </table>
                             </div>

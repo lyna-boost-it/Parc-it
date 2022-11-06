@@ -33,7 +33,7 @@
 
                             </div>
                         </div>
-                        <div class="page-header" style="background-color:#aa4b2e">
+                       <div class="page-header" >
 
                             <div class="row">
 

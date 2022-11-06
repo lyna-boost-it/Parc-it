@@ -49,6 +49,23 @@
                             </div>
                         </div>
 
+                        <div class="card-body" >
+                            <div class="row">
+                                <label class="col-md-3 col-form-label">{{ __(' Numero d\'accident') }}</label>
+                                <div class="col-md-9" >
+                                    <div class="form-group">
+                                        <input type="number"  name="number" class="form-control"
+                                        placeholder="Numero d\'accident"
+                                        value="{{ $accident->number }}" required>
+                                    </div>
+                                    @if ($errors->has('number'))
+                                        <span class="invalid-feedback" style="display: block;" role="alert">
+                                            <strong>{{ $errors->first('number') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="card-body" >
                             <div class="row">
@@ -181,7 +198,7 @@
                                             <option></option>
                                             @foreach ($vehicules as $vehicule)
                                             <option value="{{ $vehicule->id }}">
-                                                {{ $vehicule->code }} </option>
+                                                {{ $vehicule->vehicle_type }} ;{{ $vehicule->mark }} ;{{ $vehicule->marticule }} </option>
                                         @endforeach
                                           </select>
 
@@ -210,7 +227,16 @@
 
 
 
+                        <div class="card-body" >
+                            <div class="row">
+                                <label class="col-md-3 col-form-label">{{ __('Photos d\'accident en format pdf') }}</label>
 
+
+                                        <input type="file" id="docpicker" name="picture"
+                                        accept=".doc,.xml,.pdf">
+
+                            </div>
+                        </div>
 
 
 
@@ -300,9 +326,11 @@
                     <select  name="state"
                      value="{{ old('state'),$accident->state }}"class="form-control"
                         id="state">
-                        <option value="En cours">En cours</option>
-                          <option value="En attente">En attente</option>
-                        <option value="Fair">Fait</option>
+                        <option value="REMBOURSÉ">REMBOURSÉ</option>
+                          <option value="NON-REMBOURSÉ">NON-REMBOURSÉ</option>
+                        <option value="BLOQUÉ">BLOQUÉ</option>
+        <option value="EN COURS">EN COURS</option>
+        <option value="CLOTURÉ">CLOTURÉ</option>
 
                     </select>     </div>
             </div>

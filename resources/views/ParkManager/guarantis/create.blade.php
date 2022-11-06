@@ -35,6 +35,59 @@
 
 
 
+                        <div class="card-body">
+                            <div class="row">
+                                <label class="col-md-3 col-form-label">{{ __('Type de la Garantie') }}</label>
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                        <select  name="garanti_type" class="form-control"
+                                            id="guaranti_type"  >
+                                            <option value="GARANTIE">GARANTIE  </option>
+                                            <option value="SERVICE APRÈS-VENTE">SERVICE APRÈS-VENTE</option>
+                                            <option value="GARANTIE ET SERVICE APRÈS-VENTE">GARANTIE ET SERVICE APRÈS-VENTE</option>
+
+                                        </select>     </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="date_dervice">
+
+
+
+                            <div class="card-body" >
+                                <div class="row">
+                                    <label class="col-md-3 col-form-label">{{ __('Date de début') }}</label>
+                                    <div class="col-md-9" >
+                                        <div class="form-group" for="service_">
+                                            <input type="date"    name="start_date"  id="service_" class="form-control"
+                                            placeholder="start_date"
+                                            value="{{ $guaranti->start_date }}">
+                                        </div>
+                                      </div>
+                                </div>
+                            </div>
+
+                            <div class="card-body" >
+                                <div class="row">
+                                    <label class="col-md-3 col-form-label">{{ __('Date de fin') }}</label>
+                                    <div class="col-md-9" >
+                                        <div class="form-group" for="service_">
+                                            <input type="date"    name="end_date"  id="service_" class="form-control"
+                                            placeholder="end_date"
+                                            value="{{ $guaranti->end_date }}">
+                                        </div>
+                                      </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+
+
+
                         <div class="card-body" >
                             <div class="row">
                                 <label class="col-md-3 col-form-label">{{ __(' Réf. de la garantie ') }}</label>
@@ -118,23 +171,7 @@
 
 
 
-                        <div class="card-body" >
-                            <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('Type de garantie ') }}</label>
-                                <div class="col-md-9" >
-                                    <div class="form-group">
-                                        <input type="text" name="garanti_type" class="form-control"
-                                        placeholder=" Type de garantie "
-                                        value="{{ $guaranti->garanti_type }}" required>
-                                    </div>
-                                    @if ($errors->has('garanti_type'))
-                                        <span class="invalid-feedback" style="display: block;" role="alert">
-                                            <strong>{{ $errors->first('garanti_type') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
+
 
 
 
@@ -227,7 +264,7 @@
                                             <option></option>
                                             @foreach ($vehicules as $vehicule)
                                             <option value="{{ $vehicule->id }}">
-                                                {{ $vehicule->code }} </option>
+                                                {{ $vehicule->vehicle_type }} ;{{ $vehicule->mark }} ;{{ $vehicule->marticule }} </option>
                                         @endforeach
                                           </select>
 
@@ -277,7 +314,7 @@
         </div>
     </div>
     @include('layouts.footerForIndexx')
-  
+
 </body>
 <script>
     $("#destination_type").change(function() {
@@ -309,6 +346,29 @@
         }
     });
     $("#destination_type").trigger("change");
+
+
+      </script>
+
+
+
+
+
+<script>
+    $("#guaranti_type").change(function() {
+        if ($(this).val() == "GARANTIE"  ) {
+            $('#date_dervice').hide();
+            $('#service_').removeAttr('required');
+            $('#service_').removeAttr('data-error');
+
+        } else {
+
+            $('#date_dervice').show();
+            $('#service_').attr('required','');
+            $('#service_').attr('data-error', 'This field is required.');
+        }
+    });
+    $("#guaranti_type").trigger("change");
 
 
       </script>

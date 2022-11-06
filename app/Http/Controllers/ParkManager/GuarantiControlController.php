@@ -64,7 +64,7 @@ class GuarantiControlController extends Controller
                 'name_vendor',
                 'address_vendor',
                 'vehicle_id',
-               'after_sold_service'
+               'after_sold_service' ,'start_date','end_date'
     ));
 
 
@@ -120,7 +120,7 @@ class GuarantiControlController extends Controller
             'name_vendor',
             'address_vendor',
             'vehicle_id',
-           'after_sold_service'));
+           'after_sold_service' ,'start_date','end_date'));
 
 
                 return redirect('/ParkManager/guarantis')->with('success',"vous avez modifier un Service après-vente avec succès");

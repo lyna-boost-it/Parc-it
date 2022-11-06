@@ -52,7 +52,8 @@
                                 <tr>
 
                                     <th>ID</th>
-                                    <th>Code</th>
+                                    <th>Marticule</th>
+                                    <th>Marque</th>
                                     <th>Numéro de Série</th>
                                     <th>Type du Carburant</th>
                                     <th>Date d’acquisition</th>
@@ -71,7 +72,8 @@
                                         @if ($unit->id == $vehicule->unit_id)
                                             <tr>
                                                 <td>{{ $vehicule->id }}</td>
-                                                <td>{{ $vehicule->code }}</td>
+                                                <td>{{ $vehicule->marticule }}</td>
+                                                <td>{{ $vehicule->mark }}</td>
                                                 <td>
                                                     {{ $vehicule->serial_numbers }}
                                                 </td>

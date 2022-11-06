@@ -40,27 +40,29 @@
                     <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="nc-icon nc-bell-55">
-                        @if ( auth()->user()->unreadNotifications->count() )
-                        <span style="color: red; " >
-                             {{ auth()->user()->unreadNotifications->count() }}
-                           </span>
-
-                        @endif
-</i>
+                            @if (auth()->user()->unreadNotifications->count())
+                                <span style="color: red; ">
+                                    {{ auth()->user()->unreadNotifications->count() }}
+                                </span>
+                            @endif
+                        </i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                        <div class="dropdown-item" >
-                        <a href="{{route('markAllRead')}}">Tout marquer comme lu</a>
-                    </div>
+                        <div class="dropdown-item">
+                            <a href="{{ route('markAllRead') }}">Tout marquer comme lu</a>
+                        </div>
                         @foreach (Auth::user()->notifications as $notification)
-<div class="dropdown-item" >
-                        @if($notification->type=='App\Notifications\LicenceNotif')
-                        @if($notification->read_at!=null) ✅
-                        @else  <span class="fa fa-circle" style="color: black; "> </span>
-                        @endif
-                        <a href="{{route('markAsRead')}}">     {{$notification->data['details']}} : {{$notification->data['type']}}</a>
-                        @endif
-</div>
+                            <div class="dropdown-item">
+                                @if ($notification->type == 'App\Notifications\LicenceNotif')
+                                    @if ($notification->read_at != null)
+                                        ✅
+                                    @else
+                                        <span class="fa fa-circle" style="color: black; "> </span>
+                                    @endif
+                                    <a href="{{ route('markAsRead') }}"> {{ $notification->data['details'] }} :
+                                        {{ $notification->data['type'] }}</a>
+                                @endif
+                            </div>
                         @endforeach
                     </div>
                 </li>
@@ -73,11 +75,13 @@
                         </p>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink2">
-                        <form class="dropdown-item" action="{{ route('logout') }}" id="formLogOut" method="POST" style="display: none;">
+                        <form class="dropdown-item" action="{{ route('logout') }}" id="formLogOut" method="POST"
+                            style="display: none;">
                             @csrf
                         </form>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" onclick="document.getElementById('formLogOut').submit();">{{ __('Log out') }}</a>
+                            <a class="dropdown-item"
+                                onclick="document.getElementById('formLogOut').submit();">{{ __('Log out') }}</a>
                             <a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('My profile') }}</a>
                         </div>
                     </div>

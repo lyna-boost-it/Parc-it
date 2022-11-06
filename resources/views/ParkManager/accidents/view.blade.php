@@ -24,7 +24,7 @@
 
                             </div>
                         </div>
-                        <div class="page-header" style="background-color:#aa4b2e">
+                       <div class="page-header" >
 
                             <div class="row">
 
@@ -44,6 +44,16 @@
                                             <h4 style="display: inline;color:#000000" > Type d'accident: </h4>
                                         <h5 style="display: inline;color:#000000">{{ $accident->accident_type }}</h5>
                                     </tr>
+                                    <tr>
+                                        <th>
+                                            <h4  style="display: inline; color:#000000">Numéro d'accident: </h4>
+                                            <h5  style="display: inline;color:#000000">{{ $accident->number }}</h5>
+                                        </th>
+
+
+
+
+
                                     <tr>
                                         <th>
                                             <h4   style="display: inline;color:#000000">Conséquences : </h4>

@@ -206,6 +206,7 @@
                                                         <option value="Vulgarisateur">Vulgarisateur</option>
                                                         <option value="Mécanicien spécialisé">Mécanicien spécialisé
                                                             (matériel motorisé)
+                                                        </option>   <option value="Autre">Autre
                                                         </option>
 
 

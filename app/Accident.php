@@ -15,7 +15,9 @@ protected $fillable = [
     'opponent_insurance','opponent_number_insurance',
     'opponent_insurance_address','state','declaration_date','expertise_date'
    ,'driver_id','vehicle_id',
-   'path'
+   'path',
+   'picture',
+   'number'
     ];
 
     protected static $logAttributes = [
@@ -23,6 +25,8 @@ protected $fillable = [
         'opponent_insurance','opponent_number_insurance',
         'opponent_insurance_address','state','declaration_date','expertise_date'
        ,'driver_id','vehicle_id',
-       'path'
+       'path',
+       'picture',
+       'number'
         ];
 }

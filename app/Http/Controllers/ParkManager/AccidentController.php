@@ -59,7 +59,9 @@ class AccidentController extends Controller
         'opponent_insurance','opponent_number_insurance',
         'opponent_insurance_address','state','declaration_date','expertise_date'
        ,'driver_id','vehicle_id' ,
-       'path'
+       'path',
+       'picture',
+       'number'
 
 
     ));
@@ -74,6 +76,18 @@ class AccidentController extends Controller
     $request->path->move(public_path().'/files/accidents_files', $fileName);
 
     $accident->path=$fileName;
+
+
+    $request->validate([
+        'picture' => 'required|mimes:pdf,xlx,csv,xlsx|max:2048',
+    ]);
+
+    $fileName = time().'.'.$request->picture->extension();
+
+
+    $request->picture->move(public_path().'/files/accidents_pictures', $fileName);
+
+    $accident->picture=$fileName;
     $accident->save();
 
 
@@ -124,7 +138,9 @@ class AccidentController extends Controller
         'opponent_insurance','opponent_number_insurance',
         'opponent_insurance_address','state','declaration_date','expertise_date'
        ,'driver_id','vehicle_id',
-       'path'));
+       'path',
+       'picture',
+       'number'));
 
 
                 return redirect('/ParkManager/accidents')->with('success',"vous avez modifier un accident avec succès");

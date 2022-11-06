@@ -58,10 +58,11 @@ class VehiculeController extends Controller
         'code','serial_numbers', 'year_commissioned',
          'type_of_fuel','tank_capacity',
          'litter_by_100km','tire_size','pressure_forward'
-         ,'pressure_back','battery_type','path','registration','acquisition_date',
+         ,'pressure_back','battery_type','mark','path','registration','acquisition_date',
    'unit_id',
        'vehicle_type',
-       'vehicle_state'));
+       'vehicle_state',
+       'marticule'));
 
 
 $request->validate([
@@ -125,10 +126,11 @@ $vehicule->save();
         'code','serial_numbers', 'year_commissioned',
          'type_of_fuel','tank_capacity',
          'litter_by_100km','tire_size','pressure_forward'
-         ,'pressure_back','battery_type','grey_card','registration','acquisition_date',
+         ,'pressure_back','battery_type','grey_card','mark','registration','acquisition_date',
    'unit_id',
        'vehicle_type',
-       'vehicle_state'));
+       'vehicle_state',
+       'marticule'));
             return redirect('/ParkManager/vehicules')->with('success', "vous avez modifier un vehicule avec succès");
 
     }
