@@ -157,19 +157,30 @@
                             <div class="row">
                                 <label class="col-md-3 col-form-label">{{ __('Véhicule') }}</label>
                                 <div class="col-md-9">
-                                    <div class="form-group">
+                                    <div   style="width: 50%;
+                                    float: left;
+                                    padding: 20px;
+                                     ">
 
 
-                                        <select style="width: 300px" id="vehicle_id"name="demoSelect" onchange="showData()" >
+                                        <select style="width: 300px"  id="selectField"  class="vh"  name="vehicle_id" >
                                             <option></option>
                                             @foreach ($vehicules as $vehicule)
+                                                <option   value="{{ $vehicule->id }}">
+                                                   {{ $vehicule->marticule }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                        @foreach ($vehicules as $vehicule)
 
-                                            <option  value="{{ $vehicule->id }}">
+                                        <div style="width: 50%;
+                                        float: left;
+                                        padding: 20px;
+                                        " id="{{ $vehicule->id }}" class="content" >
+                                           <h1>Type: {{ $vehicule->vehicle_type }}, Marque: {{ $vehicule->mark }}</h1>
 
-                                                {{ $vehicule->vehicle_type }} ;{{ $vehicule->mark }} ;{{ $vehicule->marticule }}</option>
-
+                                        </div>
                                         @endforeach
-                                          </select>
 
                                 </div>
                             </div>

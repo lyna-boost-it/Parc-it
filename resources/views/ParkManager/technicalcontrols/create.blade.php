@@ -160,25 +160,38 @@
 
 
 
-                        <div class="card-body" >
+                        <div class="card-body">
                             <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('Observation') }}</label>
-                                <div class="col-md-9" >
-                                    <div class="form-group">
-                                        <input type="text" name="observation" class="form-control"
-                                        placeholder=" Observation"
-                                        value="{{ $technicalcontrol->observation }}" required>
+                                <label class="col-md-3 col-form-label">{{ __('Véhicule') }}</label>
+                                <div class="col-md-9">
+                                    <div   style="width: 50%;
+                                    float: left;
+                                    padding: 20px;
+                                     ">
+
+
+                                        <select style="width: 300px"  id="selectField"  class="vh"  name="vehicle_id" >
+                                            <option></option>
+                                            @foreach ($vehicules as $vehicule)
+                                                <option   value="{{ $vehicule->id }}">
+                                                   {{ $vehicule->marticule }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
-                                    @if ($errors->has('observation'))
-                                        <span class="invalid-feedback" style="display: block;" role="alert">
-                                            <strong>{{ $errors->first('observation') }}</strong>
-                                        </span>
-                                    @endif
+                                        @foreach ($vehicules as $vehicule)
+
+                                        <div style="width: 50%;
+                                        float: left;
+                                        padding: 20px;
+                                        " id="{{ $vehicule->id }}" class="content" >
+                                           <h1>Type: {{ $vehicule->vehicle_type }}, Marque: {{ $vehicule->mark }}</h1>
+
+                                        </div>
+                                        @endforeach
+
                                 </div>
                             </div>
                         </div>
-
-
 
 
 

@@ -2,7 +2,7 @@
 
 
 <div class="footer-wrap pd-20 mb-20 card-box "style="background:#ecf0f4 ">
-      <span style="color: #243b506e; font-size:14px;"> PARC'IT &copy; 2022 Developed by Boost it 
+      <span style="color: #243b506e; font-size:14px;"> PARC'IT &copy; 2022 Developed by Boost it
      | Tous Droits Réservés</span>
 
  </div>
@@ -55,4 +55,27 @@
           placeholder: "Sélectionner un véhicule",
           allowClear: true
       });
+
 </script>
+<script type="text/javascript">
+
+    $(".vh").select2({
+          placeholder: "Sélectionner un véhicule",
+          allowClear: true
+      });
+
+</script>
+
+
+
+
+<script>
+    $(function() {
+       $('.content').hide();
+       $('#selectField').change(function() {
+          $('.content').hide();
+          $('#' + $(this).val()).show();
+       });
+    });
+      </script>
+
