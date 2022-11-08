@@ -6,6 +6,7 @@
 @include('layouts.headforKPIindex')
 
 
+
 <body>
 
     @include('layouts.header-bar')
@@ -456,7 +457,6 @@
     <input type="hidden" value="{{ $pCentre }} " id="pCentre">
 
     @include('layouts.footerforKPIindex')
-
 
 </body>
 

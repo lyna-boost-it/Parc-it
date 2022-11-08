@@ -87,7 +87,7 @@ class UnitDeleteController extends Controller
             }
         }
         $unit->delete();
-        return redirect('/ParkManager/units')->with('success',"vous avez supprimer une unité avec succès");
+        return redirect('/ParkManager/units')->with('success',"vous avez supprimé une unité avec succès");
 
     }
 
@@ -124,7 +124,7 @@ class UnitDeleteController extends Controller
             }
         }
         $unit->delete();
-        return redirect('/ParkManager/units')->with('success',"vous avez remplacer et supprimer une unité avec succès");
+        return redirect('/ParkManager/units')->with('success',"vous avez remplacé et supprimé une unité avec succès");
     }
 
     /**

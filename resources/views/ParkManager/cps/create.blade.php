@@ -84,18 +84,33 @@
                                 <label class="col-md-3 col-form-label">{{ __('Désignation') }}</label>
                                 <div class="col-md-9" >
                                     <div class="form-group">
-                                        <input type="text"
-                                        name="designation"
-                                        class="form-control"
+                                        <select style="width: 300px"  id="selectField"  class="vh"  name="vehicle_id" >
+                                            <option value=""></option>
+                                            <option value="PNEUMATIQUES">PNEUMATIQUES</option>
+                                            <option value="BATTERIE ">BATTERIE </option>
+                                            <option value="CAMION YUEJIN">CAMION YUEJIN</option>
+                                            <option value="CAMION  JMC">CAMION  JMC</option>
+                                            <option value="CAMION DAEWOO">CAMION DAEWOO</option>
+                                            <option value="CAMION SONACOM (K120)">CAMION SONACOM (K120)</option>
+                                            <option value="CAMION SONACOM (B260)">CAMION SONACOM (B260)</option>
+                                            <option value="CAMION SONACOM (C260)">CAMION SONACOM (C260)</option>
+                                            <option value="HINO">HINO</option>
+                                            <option value="HYUNDAI ">HYUNDAI </option>
+                                            <option value="DELTA  (TOYOTA)">DELTA  (TOYOTA)</option>
+                                            <option value="MITSUBISHI ">MITSUBISHI </option>
+                                            <option value="FOTON ">FOTON </option>
+                                            <option value="SHACMAN ">SHACMAN </option>
+                                            <option value="HYUNDAI ACCENT">HYUNDAI ACCENT</option>
+                                            <option value="PEUGEOT PARTNER">PEUGEOT PARTNER</option>
+                                            <option value="JMC">JMC</option>
+                                            <option value="FIAT ">FIAT </option>
+                                            <option value="GREAT WALL">GREAT WALL</option>
+                                            <option value="RENAULT MASTER">RENAULT MASTER</option>
+                                            <option value="PEUGEOT BOXER">PEUGEOT BOXER</option>
+                                            <option value="HYUNDAI H1">HYUNDAI H1</option>
+                                            <option value="Corolla ">Corolla </option>
 
-                                        placeholder="Désignation"
-                                        value="{{ $cp->designation }}" required>
-                                    </div>
-                                    @if ($errors->has('designation'))
-                                        <span class="invalid-feedback" style="display: block;" role="alert">
-                                            <strong>{{ $errors->first('designation') }}</strong>
-                                        </span>
-                                    @endif
+                                            </select>
                                 </div>
                             </div>
                         </div>

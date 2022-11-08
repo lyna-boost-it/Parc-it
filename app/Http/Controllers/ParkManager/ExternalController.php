@@ -109,7 +109,7 @@ class ExternalController extends Controller
             $user->notify(new ExternamVNotification($external, $notif));
         }
         $currentUser->notify(new ExternamVNotification($external, $notif));
-        return redirect('/ParkManager/externals')->with('success', "vous avez ajouter une Maintenances externes avec succès");
+        return redirect('/ParkManager/externals')->with('success', "vous avez ajouté une Maintenances externes avec succès");
     }
 
     /**
@@ -186,7 +186,7 @@ class ExternalController extends Controller
             'end_date',
             'price',
         ));
-        return redirect('/ParkManager/externals')->with('success', "vous avez modifier une Maintenances externes avec succès");
+        return redirect('/ParkManager/externals')->with('success', "vous avez modifié une Maintenances externes avec succès");
     }
 
     /**
@@ -206,6 +206,6 @@ class ExternalController extends Controller
         $vehicule->save();
 
         $external->delete();
-        return redirect('/ParkManager/externals')->with('success', "vous avez supprimer une Maintenances externes avec succès");
+        return redirect('/ParkManager/externals')->with('success', "vous avez supprimé une Maintenances externes avec succès");
     }
 }

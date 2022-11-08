@@ -68,7 +68,7 @@ class GasVehiculesController extends Controller
 
 
 
-       return redirect()->route ('ParkManager.gasVehicules.index')->with('success',"vous avez ajouter une consommations de carburant pour vehicule avec succès");
+       return redirect()->route ('ParkManager.gasVehicules.index')->with('success',"vous avez ajouteré une consommations de carburant pour vehicule avec succès");
     }
 
     /**
@@ -118,7 +118,7 @@ class GasVehiculesController extends Controller
 
         'driver_id','staff_id','date','km','type','ticket','price','litter','litter_price','vehicle_id'));
 
-                return redirect('/ParkManager/gasVehicules')->with('success',"vous avez modifier une consommations de carburant pour vehicule avec succès");
+                return redirect('/ParkManager/gasVehicules')->with('success',"vous avez modifié une consommations de carburant pour vehicule avec succès");
     }
 
     /**
@@ -132,6 +132,6 @@ class GasVehiculesController extends Controller
         $gasvehicule=GasVehicules::find($id);
 
         $gasvehicule->delete();
-        return redirect('/ParkManager/gasVehicules')->with('success',"vous avez supprimer une consommations de carburant pour vehicule avec succès");
+        return redirect('/ParkManager/gasVehicules')->with('success',"vous avez supprimé une consommations de carburant pour vehicule avec succès");
     }
 }

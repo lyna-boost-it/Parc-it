@@ -53,7 +53,7 @@ class MaterialManagerController extends Controller
     {
         $material=Material:: create($request->only( ' id', 'code', 'ref', 'type_of_machine', 'mark', 'model', 'acquisition_date', 'affectation_date', 'unit_id', 'material_state',
     ));
-       return redirect('ParkManager/materialsmanager')->with('success',"vous avez ajouter un matériels motorisé avec succès");
+       return redirect('ParkManager/materialsmanager')->with('success',"vous avez ajouté un matériels motorisé avec succès");
     }
 
     /**
@@ -94,7 +94,7 @@ class MaterialManagerController extends Controller
     {$material =  Material::find($id);
         $material->update($request->only(' id', 'code', 'ref', 'type_of_machine', 'mark', 'model', 'acquisition_date', 'affectation_date', 'unit_id', 'material_state',
     ));
-            return redirect('/ParkManager/materialsmanager')->with('success',"vous avez modifier un matériels motorisé avec succès") ;
+            return redirect('/ParkManager/materialsmanager')->with('success',"vous avez modifié un matériels motorisé avec succès") ;
 
     }
 
@@ -107,7 +107,7 @@ class MaterialManagerController extends Controller
     public function destroy($id)
     {$material =  Material::find($id);
         $material->delete();
-        return redirect('/ParkManager/materialsmanager')->with('success',"vous avez supprimer un matériels motorisé avec succès");
+        return redirect('/ParkManager/materialsmanager')->with('success',"vous avez supprimé un matériels motorisé avec succès");
 
     }
 }

@@ -64,7 +64,7 @@ class PiecesMController extends Controller
 
 
 
-    return redirect ('/ParkManager/piecesMaterial')->with('success',"vous avez ajouter une pièces consommée avec succès");
+    return redirect ('/ParkManager/piecesMaterial')->with('success',"vous avez ajouté une pièces consommée avec succès");
     }
 
     /**
@@ -108,7 +108,7 @@ class PiecesMController extends Controller
         $cp->update($request->only( 'id', 'dt_code' ,'ref','quantity','price','designation','receip','mm_id'));
         $cp->full_price=$cp->price*$cp->quantity;
         $cp->save();
-        return redirect ('/ParkManager/piecesMaterial')->with('success',"vous avez modifier une pièces consommée avec succès");
+        return redirect ('/ParkManager/piecesMaterial')->with('success',"vous avez modifié une pièces consommée avec succès");
     }
 
     /**
@@ -122,7 +122,7 @@ class PiecesMController extends Controller
         $cp=PieceMaterial::find($id);
 
         $cp->delete();
-        return redirect('/ParkManager/piecesMaterial')->with('success',"vous avez supprimer une pièces consommée avec succès");
+        return redirect('/ParkManager/piecesMaterial')->with('success',"vous avez supprimé une pièces consommée avec succès");
     }
     }
 

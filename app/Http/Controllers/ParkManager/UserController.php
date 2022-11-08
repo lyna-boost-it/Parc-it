@@ -50,7 +50,7 @@ class UserController extends Controller
     {
         $user = new User();
 
-        return view('ParkManager.users.create', compact('user'))->with('success',"vous avez ajouter un utilisateur avec succès");
+        return view('ParkManager.users.create', compact('user')) ;
     }
 
     /**
@@ -69,7 +69,7 @@ class UserController extends Controller
             $user->password=$password;
             $user->save();
 
-        return redirect()->route ('ParkManager.users.index')->with('success',"vous avez ajouter un utilisateur avec succès");
+        return redirect()->route ('ParkManager.users.index')->with('success',"vous avez ajouté un utilisateur avec succès");
     }
 
     /**
@@ -105,7 +105,7 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $user->update($request->only('username','email','type'));
-        return redirect('/ParkManager/users')->with('success', "Le compte a ete modifier ")->with('success',"vous avez modifier un utilisateur avec succès");
+        return redirect('/ParkManager/users')->with('success',"vous avez modifié un utilisateur avec succès");
     }
 
     /**
@@ -117,7 +117,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect('/ParkManager/users')->with('success',"vous avez supprimer un utilisateur avec succès");
+        return redirect('/ParkManager/users')->with('success',"vous avez supprimé un utilisateur avec succès");
 
     }
 }

@@ -91,7 +91,7 @@ class AccidentController extends Controller
     $accident->save();
 
 
-       return redirect()->route ('ParkManager.accidents.index')->with('success',"vous avez ajouter un accident avec succès");
+       return redirect()->route ('ParkManager.accidents.index')->with('success',"vous avez ajouté un accident avec succès");
     }
 
     /**
@@ -143,7 +143,7 @@ class AccidentController extends Controller
        'number'));
 
 
-                return redirect('/ParkManager/accidents')->with('success',"vous avez modifier un accident avec succès");
+                return redirect('/ParkManager/accidents')->with('success',"vous avez modifié un accident avec succès");
 
     }
 
@@ -158,6 +158,6 @@ class AccidentController extends Controller
           $accident=Accident::find($id);
 
         $accident->delete();
-        return redirect('/ParkManager/accidents')->with('success',"vous avez supprimer un accident avec succès");
+        return redirect('/ParkManager/accidents')->with('success',"vous avez supprimé un accident avec succès");
     }
 }

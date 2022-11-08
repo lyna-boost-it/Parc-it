@@ -107,7 +107,7 @@ foreach ($usersB as $user) {
     $user->notify(new MaintenaceNotification($maintenance, $notif));
 }
 $currentUser->notify(new MaintenaceNotification($maintenance, $notif));
-    return redirect ('/ParkManager/maintenances')->with('success',"vous avez ajouter un Entretien avec succès");
+    return redirect ('/ParkManager/maintenances')->with('success',"vous avez ajouté un Entretien avec succès");
     }
 
     /**
@@ -161,7 +161,7 @@ $currentUser->notify(new MaintenaceNotification($maintenance, $notif));
         $maintenance->update($request->only(
             'id', 'dt_code','designation','vehicle_id','km','liquid','lubricant','driver_id'
         ));
-    return redirect ('/ParkManager/maintenances')->with('success',"vous avez modifier un Entretien avec succès");
+    return redirect ('/ParkManager/maintenances')->with('success',"vous avez modifié un Entretien avec succès");
     }
 
     /**
@@ -191,6 +191,6 @@ $currentUser->notify(new MaintenaceNotification($maintenance, $notif));
     $lubrifiant->quantity=$lubrifiant->quantity+$maintenance->lubricant;
     $lubrifiant->save();
         $maintenance->delete();
-        return redirect('/ParkManager/maintenances')->with('success',"vous avez supprimer un Entretien avec succès");
+        return redirect('/ParkManager/maintenances')->with('success',"vous avez supprimé un Entretien avec succès");
     }
 }

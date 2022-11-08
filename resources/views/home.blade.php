@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-@include('layouts.headForHome')
+@include('layouts.headforKPIindex')
 
 <body>
     {{-- <div class="pre-loader">
@@ -695,7 +695,7 @@
 
 
 
-        @include('layouts.footerForHome')
+        @include('layouts.footerForKPIindex')
 
 
 </body>

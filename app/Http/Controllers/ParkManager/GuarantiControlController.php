@@ -69,7 +69,7 @@ class GuarantiControlController extends Controller
 
 
 
-       return redirect()->route ('ParkManager.guarantis.index')->with('success',"vous avez ajouter un Service après-vente avec succès");
+       return redirect()->route ('ParkManager.guarantis.index')->with('success',"vous avez ajouté un Service après-vente avec succès");
     }
 
     /**
@@ -123,7 +123,7 @@ class GuarantiControlController extends Controller
            'after_sold_service' ,'start_date','end_date'));
 
 
-                return redirect('/ParkManager/guarantis')->with('success',"vous avez modifier un Service après-vente avec succès");
+                return redirect('/ParkManager/guarantis')->with('success',"vous avez modifié un Service après-vente avec succès");
     }
 
     /**
@@ -138,6 +138,6 @@ class GuarantiControlController extends Controller
 
         $guaranti->delete();
         return redirect('/ParkManager/guarantis')
-        ->with('success',"vous avez supprimer un Service après-vente avec succès");
+        ->with('success',"vous avez supprimé un Service après-vente avec succès");
     }
 }

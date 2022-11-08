@@ -71,7 +71,7 @@ $notif = new MoreNotifs();
         }
 
 AllLisence_Checker( );
-   return redirect()->route ('ParkManager.licences.index')->with('success',"vous avez ajouter un permis de circulation avec succès");
+   return redirect()->route ('ParkManager.licences.index')->with('success',"vous avez ajouté un permis de circulation avec succès");
     }
 
     /**
@@ -115,7 +115,7 @@ AllLisence_Checker( );
             'id', 'start_date','end_date','vehicle_id','institution'));
 
             AllLisence_Checker( );
-                return redirect('/ParkManager/licences')->with('success',"vous avez renouveler un permis de circulation avec succès");
+                return redirect('/ParkManager/licences')->with('success',"vous avez renouvelé un permis de circulation avec succès");
     }
 
     /**
@@ -129,6 +129,6 @@ AllLisence_Checker( );
         $licence=DrivingLicence::find($id);
 
         $licence->delete();
-        return redirect('/ParkManager/licences')->with('success',"vous avez supprimer un permis de circulation avec succès");
+        return redirect('/ParkManager/licences')->with('success',"vous avez supprimé un permis de circulation avec succès");
     }
 }

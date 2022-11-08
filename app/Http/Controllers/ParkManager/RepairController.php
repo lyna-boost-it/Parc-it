@@ -168,7 +168,7 @@ class RepairController extends Controller
           $pr->save();
 
          }
-        return redirect('/ParkManager/repairs')->with('success', "vous avez ajouter une Reparation avec succès");
+        return redirect('/ParkManager/repairs')->with('success', "vous avez ajouté une Reparation avec succès");
 
 
 
@@ -254,7 +254,7 @@ class RepairController extends Controller
             'observation',
             'vehicule_id',
         ));
-        return redirect('/ParkManager/repairs')->with('success', "vous avez modifier une Reparation avec succès");
+        return redirect('/ParkManager/repairs')->with('success', "vous avez modifié une Reparation avec succès");
     }
 
     /**
@@ -291,6 +291,6 @@ class RepairController extends Controller
         $lubrifiant->quantity = $lubrifiant->quantity + $repair->lubricant;
         $lubrifiant->save();
         $repair->delete();
-        return redirect('/ParkManager/repairs')->with('success', "vous avez supprimer une Reparation avec succès");
+        return redirect('/ParkManager/repairs')->with('success', "vous avez supprimé une Reparation avec succès");
     }
 }

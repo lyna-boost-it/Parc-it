@@ -127,7 +127,7 @@ $maintenance->save();
                            $user->notify(new DtVNotification($dt, $notif));
                        }
 
-        return redirect()->route ('ParkManager.dts.index')->with('success',"vous avez ajouter une demandes de travaux avec succès");
+        return redirect()->route ('ParkManager.dts.index')->with('success',"vous avez ajouté une demandes de travaux avec succès");
 
     }
 
@@ -180,7 +180,7 @@ $maintenance->save();
         $dt->update($request->only('unit_id','staff_id' ,'perso_id','vehicle_id',
         'action','observation','type_maintenance','type_panne','nature_panne',
        'driver_id','code_dt','enter_time', 'enter_date',
-        ));     return redirect()->route ('ParkManager.dts.index')->with('success',"vous avez modifier une demandes de travaux avec succès");
+        ));     return redirect()->route ('ParkManager.dts.index')->with('success',"vous avez modifié une demandes de travaux avec succès");
 
     }
 
@@ -198,7 +198,7 @@ $maintenance->save();
         $vehicule->save();
         $maintenance->delete();
         return redirect()->route ('ParkManager.dts.index')
-        ->with('success',"vous avez supprimer une demandes de travaux avec succès");
+        ->with('success',"vous avez supprimé une demandes de travaux avec succès");
 
     }
 }

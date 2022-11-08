@@ -72,7 +72,7 @@ $attendences=Attendance::all()->where('left_at_time','=',null);
         $hour->save();
         $staff->staff_state = "au travail";
         $staff->save();
-        return redirect()->route('ParkManager.attendances.index')->with('success',"vous avez marquer la présence avec succès");
+        return redirect()->route('ParkManager.attendances.index')->with('success',"vous avez marqué la présence avec succès");
     }
 
     /**
@@ -147,7 +147,7 @@ $attendences=Attendance::all()->where('left_at_time','=',null);
         CalculateHours($attendance->arrived_at_time,$attendance->left_at_time,$hour);
         $staff->staff_state = "pas au travail";
         $staff->save();
-        return redirect('/ParkManager/attendances')->with('success',"vous avez marquer la sortie avec succès");;
+        return redirect('/ParkManager/attendances')->with('success',"vous avez marqué la sortie avec succès");;
     }
 
     /**

@@ -77,7 +77,7 @@ class InsuranceController extends Controller
             $user->notify(new InsuranceNotification($insurance, $notif));
         }
         AllInsurance_checker();
-        return redirect()->route ('ParkManager.insurances.index')->with('success',"vous avez ajouter une assurance avec succès");
+        return redirect()->route ('ParkManager.insurances.index')->with('success',"vous avez ajouté une assurance avec succès");
     }
 
     /**
@@ -121,7 +121,7 @@ class InsuranceController extends Controller
         'police_number','effective_date','expiration_date','company_name','agency_code',
         'agency_address','insurance_type','vehicle_id'      ));
         AllInsurance_checker();
-                return redirect('/ParkManager/insurances')->with('success',"vous avez renouveler une assurance avec succès");
+                return redirect('/ParkManager/insurances')->with('success',"vous avez renouvelé une assurance avec succès");
     }
 
     /**
@@ -135,6 +135,6 @@ class InsuranceController extends Controller
         $insurance=Insurance::find($id);
 
         $insurance->delete();
-        return redirect('/ParkManager/insurances')->with('success',"vous avez supprimer une assurance avec succès");
+        return redirect('/ParkManager/insurances')->with('success',"vous avez supprimé une assurance avec succès");
     }
 }

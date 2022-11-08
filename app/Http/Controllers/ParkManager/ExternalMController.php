@@ -101,7 +101,7 @@ $garanties=Garanti::all();
             $user->notify(new ExternamMNotification($external, $notif));
         }
         $currentUser->notify(new ExternamMNotification($external, $notif));
-        return redirect('/ParkManager/externalsM')->with('success', "vous avez ajouter une Maintenances externe avec succès");
+        return redirect('/ParkManager/externalsM')->with('success', "vous avez ajouté une Maintenances externe avec succès");
     }
 
     /**
@@ -162,7 +162,7 @@ $garanties=Garanti::all();
             'end_date',
             'price',
         ));
-        return redirect('/ParkManager/externalsM')->with('success', "vous avez modifier une Maintenances externe avec succès");
+        return redirect('/ParkManager/externalsM')->with('success', "vous avez modifié une Maintenances externe avec succès");
     }
 
     /**
@@ -182,6 +182,6 @@ $garanties=Garanti::all();
         $material->save();
 
         $external->delete();
-        return redirect('/ParkManager/externalsM')->with('success', "vous avez supprimer une Maintenances externe avec succès");
+        return redirect('/ParkManager/externalsM')->with('success', "vous avez supprimé une Maintenances externe avec succès");
     }
 }

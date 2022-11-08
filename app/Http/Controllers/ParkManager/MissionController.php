@@ -74,7 +74,7 @@ class MissionController extends Controller
         'territory',
         'mission_state'));
 
-        return redirect()->route ('ParkManager.missions.index');
+        return redirect()->route ('ParkManager.missions.index')->with('success',"vous avez ajouté une mission motorisé avec succès");
     }
 
     /**
@@ -133,7 +133,7 @@ class MissionController extends Controller
         'from',
         'territory',
         'mission_state'));
-        return redirect('/ParkManager/missions');
+        return redirect('/ParkManager/missions')->with('success',"vous avez ajouté une mission modifié avec succès");
     }
 
     /**
@@ -149,6 +149,6 @@ class MissionController extends Controller
         $vehicule->vehicle_state=$vehicule->previous_state;
         $vehicule->save();
         $mission->delete();
-        return redirect('/ParkManager/missions');
+        return redirect('/ParkManager/missions')->with('success',"vous avez ajouté une mission supprimé avec succès");
     }
 }

@@ -76,7 +76,7 @@ class TechnicalControlController extends Controller
             $user->notify(new ControllNotification($technicalcontrol, $notif));
         }
     AllControll_Checker( );
-       return redirect()->route ('ParkManager.technicalcontrols.index')->with('success',"vous avez ajouter un contrôles technique avec succès");
+       return redirect()->route ('ParkManager.technicalcontrols.index')->with('success',"vous avez ajouté un contrôles technique avec succès");
     }
 
     /**
@@ -127,7 +127,7 @@ class TechnicalControlController extends Controller
             'vehicle_id'));
 
             AllControll_Checker( );
-                return redirect('/ParkManager/technicalcontrols')->with('success',"vous avez renouveler un contrôles technique avec succès");
+                return redirect('/ParkManager/technicalcontrols')->with('success',"vous avez renouvelé un contrôles technique avec succès");
     }
 
     /**
@@ -140,6 +140,6 @@ class TechnicalControlController extends Controller
     {  $technicalcontrol=TechnicalControl::find($id);
 
         $technicalcontrol->delete();
-        return redirect('/ParkManager/technicalcontrols')->with('success',"vous avez supprimer un contrôles technique avec succès");
+        return redirect('/ParkManager/technicalcontrols')->with('success',"vous avez supprimé un contrôles technique avec succès");
     }
 }

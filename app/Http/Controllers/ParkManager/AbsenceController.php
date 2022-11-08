@@ -90,7 +90,7 @@ $date=$date->toDateString();
 $absence->absence_return= $date;
 $absence->save();
 
-        return redirect()->route ('ParkManager.absences.index')->with('success',"vous avez ajouter une absences avec succès");;
+        return redirect()->route ('ParkManager.absences.index')->with('success',"vous avez ajouté une absences avec succès");;
     }
 
     /**
@@ -131,7 +131,7 @@ $absence->save();
         $absence->update($request->only('absence_date' ,'duration','explanation'));
 
 
-                return redirect('/ParkManager/absences')->with('success',"vous avez modifier une absence avec succès");;
+                return redirect('/ParkManager/absences')->with('success',"vous avez modifié une absence avec succès");;
     }
 
     /**
@@ -144,7 +144,7 @@ $absence->save();
     {
         $absence=Absence::find($id);
         $absence->delete();
-        return redirect('/ParkManager/absences')->with('success',"vous avez supprimer une absence avec succès");;
+        return redirect('/ParkManager/absences')->with('success',"vous avez supprimé une absence avec succès");;
 
     }
 }
