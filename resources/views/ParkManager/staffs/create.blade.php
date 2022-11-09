@@ -335,8 +335,9 @@
                                                 <select name="sex"
                                                     value="{{ old('sex'), $staff->sex }}"class="form-control"
                                                     id="sex">
-                                                    <option value="Femme ">Femme</option>
                                                     <option value="Homme">Homme </option>
+                                                    <option value="Femme ">Femme</option>
+
 
                                                 </select>
                                             </div>

@@ -54,8 +54,8 @@
                                     <th>ID</th>
                                     <th> Numéro du CT</th>
                                     <th>Véhicule</th>
-
-                                    <th> Marque</th>
+                                    <th>Type V</th>
+                                    <th>Marque</th>
                                     <th>Date d'effet </th>
                                     <th>Date limite </th>
                                     <th>Réserve</th>
@@ -69,10 +69,11 @@
                                         @if ($technicalcontrol->vehicle_id == $vehicule->id)
                                             <tr>
                                                 <td>{{ $technicalcontrol->id }}</td>
-                                                <td>{{ $technicalcontrol->technical_control_number }}</td>
                                                 <td>{{ $vehicule->marticule }}</td>
-
+                                                <td>{{ $vehicule->vehicle_type }}</td>
                                                 <td> {{ $vehicule->mark }}</td>
+                                                <td>{{ $technicalcontrol->technical_control_number }}</td>
+
 
                                                 <td>
                                                     {{ Carbon\Carbon::parse($technicalcontrol->effective_date)->format('d-m-Y') }}</td>

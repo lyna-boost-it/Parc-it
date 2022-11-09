@@ -207,11 +207,11 @@
 
                         <div class="card-body" >
                             <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('Nom et prénom du fournisseur ') }}</label>
+                                <label class="col-md-3 col-form-label">{{ __('Nom du fournisseur ') }}</label>
                                 <div class="col-md-9" >
                                     <div class="form-group">
                                         <input type="text" name="name_vendor" class="form-control"
-                                        placeholder=" Nom et prénom du fournisseur "
+                                        placeholder=" Nom du fournisseur "
                                         value="{{ $guaranti->name_vendor }}" required>
                                     </div>
                                     @if ($errors->has('name_vendor'))

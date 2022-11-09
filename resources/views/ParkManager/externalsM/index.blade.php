@@ -56,6 +56,7 @@
                                <tr>
 
                                 <td>{{$external->id}}</td>
+
                 <td>{{$external->contract}}</td>
                 <td>{{$dt->code_dt}}</td>
 

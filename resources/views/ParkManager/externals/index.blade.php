@@ -40,9 +40,12 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
+                                    <th>Véhicule</th>
+                                    <th>Type V</th>
+                                    <th>Marque</th>
                                     <th> Contrat </th>
                                     <th>N° de la Demande de Travaux (DT)</th>
-                                    <th>Véhicule</th>
+
                                     <th class="datatable-nosort">Action</th>
 
                                 </tr>
@@ -57,10 +60,12 @@
                                         @foreach ($vehicules as $vehicule)
                                             @if ($external->vehicule_id == $vehicule->id && $external->dt_code == $dt->id)
                                                 <td>{{ $external->id }}</td>
+                                                <td>{{ $vehicule->marticule }}</td>
+                                                <td>{{ $vehicule->vehicle_type }}</td>
+                                                <td> {{ $vehicule->mark }}</td>
                                                 <td>{{ $external->contract }}</td>
                                                 <td>{{ $dt->code_dt }}</td>
 
-                                                <td>{{ $vehicule->acquisition_date }}</td>
                                                 <td>
                                                     <div class="dropdown">
                                                         <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"

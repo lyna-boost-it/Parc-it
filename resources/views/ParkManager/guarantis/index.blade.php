@@ -50,10 +50,14 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
+                                    <th>Véhicule</th>
+                                    <th>Type V</th>
+                                    <th>Marque</th>
+
+                                    <th>Nom de la garantie</th>
                                     <th>Réf de la garantie</th>
                                     <th>Durée de la Garantie</th>
                                     <th> Type de garantie</th>
-                                    <th>VEHICULE</th>
                                     <th class="datatable-nosort">Action</th>
 
                                 </tr>
@@ -68,7 +72,10 @@
                                         @if ($guaranti->vehicle_id == $vehicule->id)
                                             <tr>
                                                 <td>{{ $guaranti->id }}</td>
-
+                                                <td>{{ $vehicule->marticule }}</td>
+                                                <td>{{ $vehicule->vehicle_type }}</td>
+                                                <td> {{ $vehicule->mark }}</td>
+                                                <td>{{ $guaranti->name_vendor }}</td>
                                                 <td>{{ $guaranti->ref_garanti }}</td>
 
                                                 <td>
@@ -82,7 +89,6 @@
 
                                                 <td>{{ $guaranti->garanti_type }}</td>
 
-                                                <td>{{ $vehicule->acquisition_date }}</td>
 
                                                 <td>
                                                     <div class="dropdown">
@@ -106,27 +112,28 @@
                                                             <a class="dropdown-item"
                                                                 href="{{ route('ParkManager.guarantis.show', $guaranti->id) }}"><i
                                                                     class="dw dw-edit2"></i> Consulter</a>
-                                                                    @if (Auth::user()->type == 'Gestionnaire Sup')   <a class="dropdown-item"  style="  color: currentColor;
+                                                            @if (Auth::user()->type == 'Gestionnaire Sup')
+                                                                <a class="dropdown-item"
+                                                                    style="  color: currentColor;
                                                                     cursor: not-allowed;
                                                                     opacity: 0.5;
-                                                                    text-decoration: none;"  > <i class="dw dw-delete-3"></i>Supprimer</a>
-
-                                                                  @else
-                                                                  <form class="form-delete dropdown-item" method="post"
-                                                                  action="{{ route('ParkManager.guarantis.destroy', $guaranti->id) }}">
-                                                                  @method('DELETE')
-                                                                  @csrf
-                                                                  <button type="submit"
-                                                                      style=" background-color: transparent;
+                                                                    text-decoration: none;">
+                                                                    <i class="dw dw-delete-3"></i>Supprimer</a>
+                                                            @else
+                                                                <form class="form-delete dropdown-item" method="post"
+                                                                    action="{{ route('ParkManager.guarantis.destroy', $guaranti->id) }}">
+                                                                    @method('DELETE')
+                                                                    @csrf
+                                                                    <button type="submit"
+                                                                        style=" background-color: transparent;
                                                                   border-color: transparent;"
-                                                                      onclick="return confirm('êtes-vous sûr?')">
+                                                                        onclick="return confirm('êtes-vous sûr?')">
 
-                                                                      <i class="dw dw-delete-3"></i>Supprimer
+                                                                        <i class="dw dw-delete-3"></i>Supprimer
 
-                                                                  </button>
-                                                              </form>
-
-                                                                  @endif
+                                                                    </button>
+                                                                </form>
+                                                            @endif
 
                                                         </div>
                                                     </div>

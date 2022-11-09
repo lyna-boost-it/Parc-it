@@ -54,12 +54,15 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
+                                    <th>Véhicule</th>
+                                    <th>Type V</th>
+                                    <th>Marque</th>
                                     <th>TYPE DE PANNE</th>
-                                    <th>Nature de Panne</th>
+                                    <th>Type de Maintenance</th>
                                     <th>Action d'entrée</th>
                                     <th>DATE ET HEURE D'ENTREE</th>
                                     <th>Validité</th>
-                                    <th>Véhicule</th>
+
 
                                     <th class="datatable-nosort">Action</th>
 
@@ -76,12 +79,14 @@
                                             <tr>
 
                                                 <td>{{ $maintenance->code_dt }}</td>
+                                                <td>{{ $vehicule->marticule }}</td>
+                                                <td>{{ $vehicule->vehicle_type }}</td>
+                                                <td> {{ $vehicule->mark }}</td>
                                                 <td>{{ $maintenance->type_panne }}</td>
-                                                <td>{{ $maintenance->nature_panne }}</td>
+                                                <td>{{ $maintenance->type_maintenance }}</td>
                                                 <td>{{ $maintenance->action }}</td>
                                                 <td>{{ $maintenance->enter_date }} {{ $maintenance->enter_time }}
                                                 <td>{{ $maintenance->answer }}</td>
-                                                 <td>{{ $vehicule->code }}</td>
 
 
                                                 <td>

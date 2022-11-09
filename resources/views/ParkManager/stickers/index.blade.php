@@ -47,9 +47,11 @@
 								<thead>
 									<tr>
                                         <th >ID</th>
+                                        <th>Véhicule</th>
+                                        <th>Type V</th>
+                                        <th>Marque</th>
                                         <th >Année (en cours) </th>
                                         <th >Validité</th>
-                                        <th > Véhicule</th>
 
                                       <th class="datatable-nosort">Action</th>
 
@@ -67,9 +69,11 @@
                                     @if ($sticker->vehicle_id==$vehicule->id)
                                     <tr>
                                         <td>{{$sticker->id}}</td>
+                                        <td>{{ $vehicule->marticule }}</td>
+                                        <td>{{ $vehicule->vehicle_type }}</td>
+                                        <td> {{ $vehicule->mark }}</td>
                                         <td> {{$sticker->year}} </td>
                                         <td> {{$sticker->validity}} </td>
-                                     <td>{{$vehicule->acquisition_date}}</td>
 
                                                 <td>
                                                     <div class="dropdown">

@@ -52,10 +52,13 @@
                                 <tr>
 
                                     <th>ID</th>
+                                    <th>Véhicule</th>
+                                    <th>Type V</th>
+                                    <th>Marque</th>
                                     <th>Conducteur</th>
                                     <th>Personne accompagnée</th>
                                     <th> Date de validité (debut/fin)</th>
-                                    <th>Vehicule</th>
+
                                     <th>État</th>
                                     <th class="datatable-nosort">Action</th>
 
@@ -72,10 +75,12 @@
                                             @if ($mission->driver_id == $driver->id && $mission->vehicle_id == $vehicule->id)
                                                 <tr>
                                                     <td>{{ $mission->id }}</td>
+                                                    <td>{{ $vehicule->marticule }}</td>
+                                                    <td>{{ $vehicule->vehicle_type }}</td>
+                                                    <td> {{ $vehicule->mark }}</td>
                                                     <td>{{ $driver->name }} {{ $driver->last_name }} </td>
                                                     <td>{{ $mission->p_name }} {{ $mission->p_last_name }}</td>
                                                     <td>{{ $mission->start_date }}/{{ $mission->end_date }}</td>
-                                                    <td>{{ $vehicule->acquisition_date }}</td>
                                                     <td>{{ $mission->mission_state }}</td>
 
 

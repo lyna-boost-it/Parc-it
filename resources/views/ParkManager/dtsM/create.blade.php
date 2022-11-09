@@ -276,9 +276,6 @@
                                             {{ old('type_maintenance', $dt->type_maintenance) ===
                                             'Maintenance Externe' ? 'selected' : '' }}
                                             >Maintenance Externe</option>
-                                         <option value="Pieces Consommees"
-                                         {{ old('type_maintenance', $dt->type_maintenance) === '
-                                         Pieces Consommees' ? 'selected' : '' }} >Pieces Consommees</option>
 
                                         </select>
                                 </div>

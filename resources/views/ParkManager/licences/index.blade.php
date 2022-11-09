@@ -45,10 +45,13 @@
 								<thead>
 									<tr>
                                         <th >ID</th>
+                                        <th>Véhicule</th>
+                                        <th>Type V</th>
+                                        <th>Marque</th>
                                         <th  >Date de début</th>
                                         <th  >Date de fin</th>
                                         <th  > Etat</th>
-                         <th  > Véhicule</th>
+
 
                                       <th class="datatable-nosort">Action</th>
 
@@ -67,6 +70,9 @@
                                     @if ($licence->vehicle_id==$vehicule->id)
                                     <tr>
                                         <td>{{$licence->id}}</td>
+                                        <td>{{ $vehicule->marticule }}</td>
+                                        <td>{{ $vehicule->vehicle_type }}</td>
+                                        <td> {{ $vehicule->mark }}</td>
                                         <td> {{$licence->start_date}} </td>
                                         <td> {{$licence->end_date}} </td>
                                      <td> @if($licence->state=='expiré')
@@ -74,7 +80,7 @@
                                         @else
                                         <p style="color: #29ce3f">{{$licence->state}} </p>
                                     @endif</td>
-                       <td>{{$vehicule->acquisition_date}}</td>
+
                                                 <td>
                                                     <div class="dropdown">
                                                         <a

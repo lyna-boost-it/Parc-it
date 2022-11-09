@@ -44,7 +44,7 @@
 
                 <div class="card-box mb-30">
                     <div class="pd-20">
-                       
+
 
                     </div>
                     <div class="pb-20">
@@ -54,6 +54,9 @@
                                 <tr>
 
                                     <th>ID</th>
+                                    <th>Véhicule</th>
+                                    <th>Type V</th>
+                                    <th>Marque</th>
                                     <th>Conducteur</th>
                                     <th>Agent remplisseur</th>
                                     <th> Coût DA</th>
@@ -78,10 +81,13 @@
                                                     $gasvehicule->staff_id == $staff->id)
                                                     <tr>
                                                         <td>{{ $gasvehicule->id }}</td>
+                                                        <td>{{ $vehicule->marticule }}</td>
+                                                <td>{{ $vehicule->vehicle_type }}</td>
+                                                <td> {{ $vehicule->mark }}</td>
                                                         <td> {{ $driver->name }} {{ $driver->last_name }} </td>
                                                         <td> {{ $staff->name }} {{ $staff->last_name }} </td>
                                                         <td>{{ $gasvehicule->price }}</td>
-                                                        <td>{{ $vehicule->acquisition_date }}</td>
+
                                                         <td>{{ $gasvehicule->litter }}</td>
                                                         <td>{{ $gasvehicule->litter_price }}</td>
                                                         <td>{{ $gasvehicule->km }}</td>

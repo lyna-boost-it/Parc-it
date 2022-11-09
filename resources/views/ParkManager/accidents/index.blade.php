@@ -51,13 +51,14 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-
+                                    <th>Véhicule</th>
+                                    <th>Type V</th>
+                                    <th>Marque</th>
                                     <th>Nom et Prénom du conducteur</th>
                                     <th>Type d'accident</th>
 
-                                    <th>Véhicule</th>
-                                    <th> Type V</th>
-                                    <th> Marque</th>
+
+
                                     <th class="datatable-nosort">Action</th>
 
                                 </tr>
@@ -73,12 +74,13 @@
                                             @if ($accident->driver_id == $driver->id && $accident->vehicle_id == $vehicule->id)
                                                 <tr>
                                                     <td>{{ $accident->id }}</td>
+                                                    <td>{{ $vehicule->marticule }}</td>
+                                                    <td>{{ $vehicule->vehicle_type }}</td>
+                                                    <td> {{ $vehicule->mark }}</td>
                                                     <td> {{ $driver->name }} {{ $driver->last_name }} </td>
                                                     <td>{{ $accident->accident_type }}</td>
 
-                                                    <td>{{ $vehicule->marticule }}</td>
-                                                <td>{{ $vehicule->vehicle_type }}</td>
-                                                <td> {{ $vehicule->mark }}</td>
+
 
                                                     <td>
                                                         <div class="dropdown">

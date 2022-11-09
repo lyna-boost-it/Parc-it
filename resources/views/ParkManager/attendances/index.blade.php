@@ -42,9 +42,10 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Nom Et Prénom</th>
-                                    <th>Matricule</th>
+                                    <th>Matricule P</th>
                                     <th>Type du personnel</th>
                                     <th>Affectation</th>
+                                     <th>Fonction</th>
                                     <th>État</th>
                                     <th class="datatable-nosort">Action</th>
 
@@ -66,6 +67,7 @@
                                                 <td>{{ $staff->serial_numbers }}</td>
                                                 <td>{{ $staff->person_type }}</td>
                                                 <td>{{ $unit->name }}</td>
+                                                <td>{{ $staff->function }}</td>
 
                                                 <td>
                                                     <div class="col-xs-4"
@@ -88,7 +90,7 @@
                                                         @if ($staff->staff_state == 'pas au travail')
                                                             <span class="fa fa-sticky-note " style=" font-size:14px;    color: #c73939;
     font-weight: 600;">
-                                                            </span> <span style="font-size:14px; color: #c73939;    font-weight: 600; ">Pas-présent
+                                                            </span> <span style="font-size:14px; color: #c73939;    font-weight: 600; "><b>Pas-présent</b>
                                                             </span>
                                                         @endif
                                                         @if ($staff->staff_state == 'au travail')

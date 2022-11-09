@@ -34,7 +34,7 @@
 
                 <div class="card-box mb-30">
                     <div class="pd-20">
-                        <a  style="background:#EE643A;color:#ffffff;float: right;
+                        <a style="background:#EE643A;color:#ffffff;float: right;
 
 
                     @if (Auth::user()->type == 'Gestionnaire Sup') color: currentColor;
@@ -42,101 +42,102 @@ cursor: not-allowed;
 opacity: 0.5;
 text-decoration: none; @endif
                     "
-                        href="{{ route('ParkManager.cps.create') }}" class="btn btn-sm  ">
-                        Créer une pièce
-                    </a>
-                    <div class="pb-20">
+                            href="{{ route('ParkManager.cps.create') }}" class="btn btn-sm  ">
+                            Créer une pièce
+                        </a>
+                        <div class="pb-20">
 
-                        <table class="table nowrap hover data-table-export">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th> Réf </th>
-        <th> Type </th>
-
-                                    <th class="datatable-nosort">Action</th>
-
-                                </tr>
-                            </thead>
-
-
-
-
-                            <tbody>
-
-                                @foreach ($cps as $cp)
+                            <table class="table nowrap hover data-table-export">
+                                <thead>
                                     <tr>
+                                        <th>ID</th>
+                                        <th> Réf </th>
+                                        <th> Type </th>
 
-                                        <td>{{ $cp->id }}</td>
-                                        <td>{{ $cp->reference }}</td>
-                  <td>{{ $cp->type }}</td>
+                                        <th class="datatable-nosort">Action</th>
 
-                                        <td>
-                                            <div class="dropdown">
-                                                <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
-                                                    href="#" role="button" data-toggle="dropdown">
-                                                    <i class="dw dw-more"></i>
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-
-                                                    <a class="dropdown-item"
-                                                        href="{{ route('ParkManager.cps.edit', $cp->id) }}"
-                                                        @if (Auth::user()->type == 'Gestionnaire Sup') style="  color: currentColor;
-                                                                cursor: not-allowed;
-                                                                opacity: 0.5;
-                                                                text-decoration: none;" @endif><i
-                                                            class="dw dw-edit2"></i> Modifier</a>
-                                                    <a class="dropdown-item"
-                                                        href="{{ route('ParkManager.cps.show', $cp->id) }}"><i
-                                                            class="dw dw-eye"></i> Consulter</a>
+                                    </tr>
+                                </thead>
 
 
-                                                    @if (Auth::user()->type == 'Gestionnaire Sup')
-                                                        <a class="dropdown-item" href="#"
+
+
+                                <tbody>
+
+                                    @foreach ($cps as $cp)
+                                        <tr>
+
+                                            <td>{{ $cp->id }}</td>
+                                            <td>{{ $cp->reference }}</td>
+                                            <td>{{ $cp->type }}</td>
+
+                                            <td>
+                                                <div class="dropdown">
+                                                    <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+                                                        href="#" role="button" data-toggle="dropdown">
+                                                        <i class="dw dw-more"></i>
+                                                    </a>
+                                                    <div
+                                                        class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('ParkManager.cps.edit', $cp->id) }}"
                                                             @if (Auth::user()->type == 'Gestionnaire Sup') style="  color: currentColor;
                                                                 cursor: not-allowed;
                                                                 opacity: 0.5;
+                                                                text-decoration: none;" @endif><i
+                                                                class="dw dw-edit2"></i> Modifier</a>
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('ParkManager.cps.show', $cp->id) }}"><i
+                                                                class="dw dw-eye"></i> Consulter</a>
+
+
+                                                        @if (Auth::user()->type == 'Gestionnaire Sup')
+                                                            <a class="dropdown-item" href="#"
+                                                                @if (Auth::user()->type == 'Gestionnaire Sup') style="  color: currentColor;
+                                                                cursor: not-allowed;
+                                                                opacity: 0.5;
                                                                 text-decoration: none;" @endif>
-                                                            <i class="dw dw-delete-3"></i> Supprimer</a>
-                                                    @else
-                                                        <form class="form-delete dropdown-item" method="post"
-                                                            action="{{ route('ParkManager.cps.destroy', $cp->id) }}">
-                                                            @method('DELETE')
-                                                            @csrf
-                                                            <button type="submit"
-                                                                style=" background-color: transparent;
+                                                                <i class="dw dw-delete-3"></i> Supprimer</a>
+                                                        @else
+                                                            <form class="form-delete dropdown-item" method="post"
+                                                                action="{{ route('ParkManager.cps.destroy', $cp->id) }}">
+                                                                @method('DELETE')
+                                                                @csrf
+                                                                <button type="submit"
+                                                                    style=" background-color: transparent;
                                                                     border-color: transparent;"
-                                                                onclick="return confirm('êtes-vous sûr?')">
+                                                                    onclick="return confirm('êtes-vous sûr?')">
 
-                                                                <i class="dw dw-delete-3"></i>Supprimer
+                                                                    <i class="dw dw-delete-3"></i>Supprimer
 
-                                                            </button>
-                                                        </form>
-                                                    @endif
+                                                                </button>
+                                                            </form>
+                                                        @endif
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </td>
+                                            </td>
 
 
 
 
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                            </td>
+                                        </tr>
+                                    @endforeach
 
-                            </tbody>
-                        </table>
-
-
+                                </tbody>
+                            </table>
 
 
+
+
+
+                        </div>
 
                     </div>
-
                 </div>
-            </div>
 
-            @include('layouts.footerForIndexx')
+                @include('layouts.footerForIndexx')
 
     </body>
 

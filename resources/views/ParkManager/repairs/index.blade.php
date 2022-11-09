@@ -36,10 +36,13 @@
 								<thead>
 									<tr>
                                         <th >ID</th>
+                                        <th>Véhicule</th>
+                                        <th>Type V</th>
+                                        <th>Marque</th>
                                         <th >Date d’intervention</th>
                                         <th >N° de la demande de travaux (DT)</th>
                                        <th  >DATE ET HEURE DE SORTIE</th>
-                                       <th  >Véhicule</th>
+
                                       <th class="datatable-nosort">Action</th>
 
 									</tr>
@@ -55,11 +58,14 @@
                                     <tr>
 
                                         <td>{{$repair->id}}</td>
+                                        <td>{{ $vehicule->marticule }}</td>
+                                        <td>{{ $vehicule->vehicle_type }}</td>
+                                        <td> {{ $vehicule->mark }}</td>
                                         <td>{{$repair->intervention_date}}</td>
                                         <td>{{$repair->dt_code}}</td>
                                         <td>{{$repair->end_date}} {{$repair->end_time}}</td>
 
-                                            <td>{{$vehicule->acquisition_date}}</td>
+
                                                 <td>
                                                     <div class="dropdown">
                                                         <a

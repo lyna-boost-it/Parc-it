@@ -36,9 +36,12 @@
 								<thead>
 									<tr>
                                         <th >ID</th>
+                                        <th>Véhicule</th>
+                                        <th>Type V</th>
+                                        <th>Marque</th>
                                         <th  > Désignation </th>
                                         <th  >N° de la Demande de Travaux (DT)</th>
-                                        <th  >Véhicule</th>
+
                                       <th class="datatable-nosort">Action</th>
 
 									</tr>
@@ -54,10 +57,13 @@
                                @if ($maintenance->vehicule_id == $vehicule->id && $maintenance->dt_code==$dt->id )
                                                                 <tr>
                                                                 <td>{{$maintenance->id}}</td>
+                                                                <td>{{ $vehicule->marticule }}</td>
+                                                                <td>{{ $vehicule->vehicle_type }}</td>
+                                                                <td> {{ $vehicule->mark }}</td>
                                                                 <td>{{$maintenance->designation}}</td>
                                                                 <td>{{$dt->code_dt}}</td>
 
-                                                                <td>{{$vehicule->acquisition_date}}</td>
+
                                         <td>
                                                     <div class="dropdown">
                                                         <a

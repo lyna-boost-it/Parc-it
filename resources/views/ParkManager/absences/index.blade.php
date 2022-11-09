@@ -54,9 +54,11 @@ Créer une absence
 
                                     <th>ID</th>
                                     <th>Nom Et Prénom</th>
-                                    <th>Matricule</th>
+                                    <th>Matricule P</th>
                                     <th>Type du personnel</th>
+
                                     <th>Affectation</th>
+                                    <th>Fonction</th>
                                     <th>Date</th>
                                     <th>Durée d'absence</th>
                                     <th>Etat actuelle</th>
@@ -80,7 +82,9 @@ Créer une absence
                                                     <td>{{ $staff->serial_numbers }}</td>
                                                     <td>{{ $staff->person_type }}</td>
                                                     <td>{{ $unit->name }}</td>
+                                                    <td>{{ $staff->function }}</td>
                                                     <td>{{ $absence->absence_date }}</td>
+
                                                     <td>{{ $absence->duration }}</td>
                                                     <td>{{ $staff->staff_state }}</td>
 
