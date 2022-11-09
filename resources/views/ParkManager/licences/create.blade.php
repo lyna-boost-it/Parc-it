@@ -89,8 +89,9 @@
                                             <select name="institution"
                                                 value="{{ old('institution'), $licence->institution }}"class="form-control"
                                                 id="institution">
-                                                <option value=" "> </option>
                                                 <option value="DTWA">DTWA </option>
+                                                <option value="Autre">Autre</option>
+                                                
 
                                             </select>
                                         </div>

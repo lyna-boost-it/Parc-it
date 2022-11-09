@@ -58,6 +58,7 @@
 
                                     <th>matériel motorisé</th>
                                     <th>Type de maintenance </th>
+                                     <th>Validité</th>
                                     <th class="datatable-nosort">Action</th>
 
                                 </tr>
@@ -70,7 +71,11 @@
                                 @foreach ($maintenances as $maintenance)
                                     @foreach ($materials as $material)
                                         @if ($maintenance->mm_id == $material->id)
-                                            <tr>
+                                            <tr  style="background-color:  @if ($maintenance->answer == 'Accepter') #a2ecb5 @endif
+                                                @if ($maintenance->answer == 'en attente')
+                                               #f7be90 @endif
+
+                                                @if ($maintenance->answer == 'Refuser') #f58383   @endif  ">
 
                                                 <td>{{ $maintenance->code_dt }}</td>
                                                 <td>{{ $maintenance->type_panne }}</td>
@@ -78,6 +83,7 @@
                                                 <td>{{ $maintenance->action }}</td>
                                                 <td>{{ $material->code }}</td>
                                                 <td>{{ $maintenance->type_maintenance }}</td>
+ <td>{{ $maintenance->answer }}</td>
 
                                                 <td>
                                                     <div class="dropdown">

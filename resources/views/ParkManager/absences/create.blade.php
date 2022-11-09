@@ -31,113 +31,121 @@
                         </div>
                         <div class="card-body">
 
-
-
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __('Type Personnel') }}</label>
+                                    <label class="col-md-3 col-form-label">{{ __('Motif d’Absence') }}</label>
                                     <div class="col-md-9">
                                         <div class="form-group">
-                                            <select name="person_type" class="form-control" id="staff_type_for_absence">
-                                                <option value="Conducteur">Conducteur</option>
-                                                <option value="Personnel du centre de maintenance">Personnel du centre
-                                                    de maintenance</option>
-                                                <option value="Personnel du parc">Personnel du parc</option>
+                                            <select  name="explanation" id="staff_type_for_absence"
+                                             value="{{ old('explanation'),$absence->explanation }}"class="form-control"
+                                                id="explanation">
+                                                <option value="Absence autorisée">Absence autorisée</option>
+                                                  <option value="Absence non-autorisée">Absence non-autorisée</option>
+                                                <option value="Absence maladie">Absence maladie</option>
+
+                                            </select>     </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <div id="alltDiv">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <label class="col-md-3 col-form-label">{{ __('Personnel ') }}</label>
+                                        <div class="col-md-9">
+                                            <div   style="width: 50%;
+                                            float: left;
+                                            padding: 20px;
+                                             ">
+
+
+                                                <select style="width: 300px"     class="all_id"  name="staff_id1" >
+                                                    <option></option>
+
+                                                    @foreach ($staffs_all as $staff_all)
+
+                                                        <option    value="{{ $staff_all->id }}">
+                                                           {{ $staff_all->name }} {{ $staff_all->last_name }}</option>
+
+                                                    @endforeach
+
+                                                </select>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div> </div>
+
+
+
+
+
+                            <div id="allDiv">
+                            <div class="card-body">
+                                <div class="row">
+                                    <label class="col-md-3 col-form-label">{{ __('Personnel') }}</label>
+                                    <div class="col-md-9">
+                                        <div   style="width: 50%;
+                                        float: left;
+                                        padding: 20px;
+                                         ">
+
+
+                                            <select style="width: 300px"     class="all_id"  name="staff_id2" >
+                                                <option></option>
+
+                                                @foreach ($staffs_all as $staff_all)
+
+                                                    <option    value="{{ $staff_all->id }}">
+                                                       {{ $staff_all->name }} {{ $staff_all->last_name }}</option>
+
+                                                @endforeach
 
                                             </select>
                                         </div>
+
+
                                     </div>
                                 </div>
-                            </div>
+                            </div> </div>
+
+                            <div id="presentDiv">
+                            <div class="card-body">
+                                <div class="row">
+                                    <label class="col-md-3 col-form-label">{{ __('Personnel ') }}</label>
+                                    <div class="col-md-9">
+                                        <div   style="width: 50%;
+                                        float: left;
+                                        padding: 20px;
+                                         ">
 
 
+                                            <select style="width: 300px"  id="selectField"  class="present_id"  name="staff_id3" >
+                                                <option></option>
+                                                 >
 
-                            <div id="conducteur_fieldDiv_for_absence">
+                                                @foreach ($staffs as $staff_all)
 
+                                                <option   value="{{ $staff_all->id }}">
+                                                   {{ $staff_all->name }} {{ $staff_all->last_name }}</option>
 
-                                <div class="card-body">
-                                    <div class="row">
-                                        <label
-                                            class="col-md-3 col-form-label">{{ __('  Nom et prénom de l\'absent') }}</label>
-                                        <div class="col-md-9" for="conducteur_field_for_absence">
-                                            <div class="form-group">
-                                                <select name="staff_id1" placeholder="  Nom et prénom de l'absent"
-                                                    value=" "class="form-control"
-                                                    id="staff_type">
-                                                    <option value="a" > Nom et prénom de l'absent</option>
-
-
-                                                    @foreach ($drivers as $driver)
-                                                        <option value="{{ $driver->id }}"
-                                                             >
-                                                             {{ $driver->name }} {{ $driver->last_name }}</option>
-                                                    @endforeach
-
-                                                </select>
+                                            @endforeach
                                             </div>
-
+                                            </select>
                                         </div>
+
+
                                     </div>
                                 </div>
-                            </div>
-
-
-
-                            <div id="Mstaff_fieldDiv_for_absence">
-
-
-                                <div class="card-body">
-                                    <div class="row">
-                                        <label
-                                            class="col-md-3 col-form-label">{{ __('  Nom et prénom de l\'absent') }}</label>
-                                        <div class="col-md-9" for="Mstaff_field_for_absence">
-                                            <div class="form-group">
-                                                <select name="staff_id2" placeholder="  Nom et prénom de l\'absent"
-                                                    value=" "class="form-control"
-                                                    id="staff_type">
-                                                    <option value="b" > Nom et prénom de l\'absent</option>
-                                                    @foreach ($pcms as $pcm)
-                                                        <option value="{{ $pcm->id }}"
-                                                          >
-                                                            {{ $pcm->name }} {{ $pcm->last_name }}</option>
-                                                    @endforeach
-
-                                                </select>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            </div>  </div>
 
 
 
 
-                            <div id="Msctaff_fieldDiv_for_absence">
 
-
-                                <div class="card-body">
-                                    <div class="row">
-                                        <label
-                                            class="col-md-3 col-form-label">{{ __('  Nom et prénom de l\'absent') }}</label>
-                                        <div class="col-md-9" for="Mstaff_field_for_absence">
-                                            <div class="form-group">
-                                                <select name="staff_id3" placeholder="  Nom et prénom de l\'absent"
-                                                    value=" "class="form-control" >
-                                                    <option value="c" > Nom et prénom de l\'absent</option>
-                                                    @foreach ($pcs as $pc)
-                                                        <option value="{{ $pc->id }}"
-                                                          >
-                                                            {{ $pc->name }} {{ $pc->last_name }}</option>
-                                                    @endforeach
-
-                                                </select>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
 
 
@@ -192,23 +200,7 @@
 
 
 
-                            <div class="card-body">
-                                <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __('Motif d’Absence') }}</label>
-                                    <div class="col-md-9">
-                                        <div class="form-group">
-                                            <select  name="explanation"
-                                             value="{{ old('explanation'),$absence->explanation }}"class="form-control"
-                                                id="explanation">
-                                                <option value="Absences autorisée">Absences autorisée</option>
-                                                  <option value="Absence non-autorisée">Absence non-autorisée</option>
-                                                <option value="Absence maladie">Absence maladie</option>
 
-                                            </select>     </div>
-                                    </div>
-                                </div>
-
-                            </div>
 
 
 
@@ -236,54 +228,73 @@
 
     <script>
         $("#staff_type_for_absence").change(function() {
-            if ($(this).val() == "Conducteur") {
-                $('#conducteur_fieldDiv_for_absence').show();
-                $('#conducteur_field_for_absence').attr('required','');
-                $('#conducteur_field_for_absence').attr('data-error', 'This field is required.');
+            if ($(this).val() == "Absence autorisée") {
+                $('#alltDiv').show();
+                $('#allt').attr('required','');
+                $('#allt').attr('data-error', 'This field is required.');
             } else {
-                $('#conducteur_fieldDiv_for_absence').hide();
-                $('#conducteur_field_for_absence').removeAttr('required');
-                $('#conducteur_field_for_absence').removeAttr('data-error');
+                $('#alltDiv').hide();
+                $('#allt').removeAttr('required');
+                $('#allt').removeAttr('data-error');
             }
         });
         $("#staff_type_for_absence").trigger("change");
 
 
-          </script>
+    </script>
 
-        <script>
+
+
+    <script>
         $("#staff_type_for_absence").change(function() {
-            if ($(this).val() == "Personnel du centre de maintenance" ) {
-                $('#Mstaff_fieldDiv_for_absence').show();
-                $('#Mstaff_field_for_absence').attr('required','');
-                $('#Mstaff_field_for_absence').attr('data-error', 'This field is required.');
+            if ($(this).val() == "Absence maladie") {
+                $('#allDiv').show();
+                $('#all').attr('required','');
+                $('#all').attr('data-error', 'This field is required.');
             } else {
-                $('#Mstaff_fieldDiv_for_absence').hide();
-                $('#Mstaff_field_for_absence').removeAttr('required');
-                $('#Mstaff_field_for_absence').removeAttr('data-error');
+                $('#allDiv').hide();
+                $('#all').removeAttr('required');
+                $('#all').removeAttr('data-error');
             }
         });
         $("#staff_type_for_absence").trigger("change");
 
 
-        </script>
+    </script>
 
-        <script>
+
+
+
+    <script>
         $("#staff_type_for_absence").change(function() {
-            if ($(this).val() == "Personnel du parc" ) {
-                $('#Msctaff_fieldDiv_for_absence').show();
-                $('#Msctaff_field_for_absence').attr('required','');
-                $('#Msctaff_field_for_absence').attr('data-error', 'This field is required.');
+            if ($(this).val() == "Absence non-autorisée") {
+                $('#presentDiv').show();
+                $('#present').attr('required','');
+                $('#present').attr('data-error', 'This field is required.');
             } else {
-                $('#Msctaff_fieldDiv_for_absence').hide();
-                $('#Msctaff_field_for_absence').removeAttr('required');
-                $('#Msctaff_field_for_absence').removeAttr('data-error');
+                $('#presentDiv').hide();
+                $('#present').removeAttr('required');
+                $('#present').removeAttr('data-error');
             }
         });
         $("#staff_type_for_absence").trigger("change");
 
 
-          </script>
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     @include('layouts.footerForIndexx')
 
 </body>

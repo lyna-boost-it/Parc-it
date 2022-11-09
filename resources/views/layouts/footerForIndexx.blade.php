@@ -79,3 +79,19 @@
     });
       </script>
 
+<script type="text/javascript">
+
+    $(".all_id").select2({
+          placeholder: "Sélectionner un personnel",
+          allowClear: true
+      });
+
+</script>
+<script type="text/javascript">
+
+    $(".present_id").select2({
+          placeholder: "Sélectionner un personnel",
+          allowClear: true
+      });
+
+</script>

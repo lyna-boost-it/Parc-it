@@ -76,7 +76,12 @@
                                 @foreach ($maintenances as $maintenance)
                                     @foreach ($vehicules as $vehicule)
                                         @if ($maintenance->vehicle_id == $vehicule->id)
-                                            <tr>
+                                            <tr
+                                                style="background-color:  @if ($maintenance->answer == 'Accepter') #a2ecb5 @endif
+                                                         @if ($maintenance->answer == 'en attente')
+                                                        #f7be90 @endif
+
+                                                         @if ($maintenance->answer == 'Refuser') #f58383   @endif  ">
 
                                                 <td>{{ $maintenance->code_dt }}</td>
                                                 <td>{{ $vehicule->marticule }}</td>
@@ -86,7 +91,7 @@
                                                 <td>{{ $maintenance->type_maintenance }}</td>
                                                 <td>{{ $maintenance->action }}</td>
                                                 <td>{{ $maintenance->enter_date }} {{ $maintenance->enter_time }}
-                                                <td>{{ $maintenance->answer }}</td>
+                                                <td><b>{{ $maintenance->answer }}</b></td>
 
 
                                                 <td>
@@ -118,36 +123,35 @@
                                                                 text-decoration: none;" @endif>
                                                                     <i class="dw dw-delete-3"></i> Supprimer</a>
                                                             @else
-
-                                                            <form class="form-delete dropdown-item" method="post"
-                                                            action="{{ route('ParkManager.dts.destroy', $maintenance->id) }}">
-                                                            @method('DELETE')
-                                                            @csrf
-                                                            <button type="submit"
-                                                                style=" background-color: transparent;
+                                                                <form class="form-delete dropdown-item" method="post"
+                                                                    action="{{ route('ParkManager.dts.destroy', $maintenance->id) }}">
+                                                                    @method('DELETE')
+                                                                    @csrf
+                                                                    <button type="submit"
+                                                                        style=" background-color: transparent;
                                                             border-color: transparent;"
-                                                                onclick="return confirm('êtes-vous sûr?')">
+                                                                        onclick="return confirm('êtes-vous sûr?')">
 
-                                                                <i class="dw dw-delete-3"></i>Supprimer
+                                                                        <i class="dw dw-delete-3"></i>Supprimer
 
-                                                            </button>
-                                                        </form>
-                                                        @if($maintenance->answer=='en attente' && Auth::user()->type != 'Gestionnaire Sup')
-                                                        <form action="{{ route('ParkManager.validation.createV', $maintenance->id) }}"
-                                                            method="get" class="dropdown-item">
-                                                            @csrf
+                                                                    </button>
+                                                                </form>
+                                                                @if ($maintenance->answer == 'en attente' && Auth::user()->type != 'Gestionnaire Sup')
+                                                                    <form
+                                                                        action="{{ route('ParkManager.validation.createV', $maintenance->id) }}"
+                                                                        method="get" class="dropdown-item">
+                                                                        @csrf
 
-                                                        <button type="submit"
-                                                            style=" background-color: transparent;
-                                                        border-color: transparent;"
-                                                             >
-                                                             <input type="hidden" value="Vehicule"
-                                                             id="type" name="type">
-                                                            <i class="dw dw-check"></i>Valider
+                                                                        <button type="submit"
+                                                                            style=" background-color: transparent;
+                                                        border-color: transparent;">
+                                                                            <input type="hidden" value="Vehicule"
+                                                                                id="type" name="type">
+                                                                            <i class="dw dw-check"></i>Valider
 
-                                                        </button>
-                                                    </form>
-                                                        @endif
+                                                                        </button>
+                                                                    </form>
+                                                                @endif
 
 
 

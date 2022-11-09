@@ -41,14 +41,12 @@ class AbsenceController extends Controller
      */
     public function create()
     {
-        $drivers=Staff::all()->where('person_type','=','Conducteur');
-        $pcs=Staff::all()->where('person_type','=','Personnel du parc');
-        $pcms=Staff::all()->where('person_type','=','Personnel du centre de maintenance');
-
+      $staffs_all=Staff::all();
+ $staffs=Staff::all()->where('staff_state','=','pas au travail');
 
         $absence=new Absence();
         return view('ParkManager.absences.create',
-        compact('pcs','pcms','absence','drivers'));
+        compact('staffs_all','staffs','absence' ));
 
     }
 
@@ -60,16 +58,16 @@ class AbsenceController extends Controller
      */
     public function store(Request $request)
     {$staff_id='';
-        if($request->staff_id1 !='a'){
+        if($request->staff_id1 !=''){
             $staff_id=$request->staff_id1;
 
         }
-        if($request->staff_id2 !='b'){
+        if($request->staff_id2 !=''){
             $staff_id=$request->staff_id2;
 
         }
 
-        if($request->staff_id3 !='c'){
+        if($request->staff_id3 !=''){
             $staff_id=$request->staff_id3;
 
         }

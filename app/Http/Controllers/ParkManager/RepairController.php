@@ -53,7 +53,7 @@ class RepairController extends Controller
         $pieces = ConsumedPieces::all()->where('type', '=', 'Véhicule');
         $lubrifiant = Liquids::where('type', '=', 'Lubrifiant')->first();
         $liquid = Liquids::where('type', '=', 'Liquide')->first();
-        $staffs = Staff::all()->where('person_type', '=', 'Personnel du centre de maintenance')->where('function', '!=', 'Mécanicien spécialisé (matériel motorisé)');
+        $staffs = Staff::all()->where('person_type', '=', 'Personnel du centre de maintenance')->where('function', '!=', 'Mécanicien spécialisé (matériel motorisé)')->where('staff_state','=','au travail');
 
         $drivers = Staff::all()->where('person_type', '=', 'Conducteur');
         return view(
@@ -287,9 +287,7 @@ class RepairController extends Controller
 
         $repair_pieces = Repair_pieces::all()->where('repair_id', '=', $repair->id);
         foreach($repair_pieces as $repair_piece){
-            $p=ConsumedPieces::find($repair_piece->piece_id);
-            $p->quantity=$p->quantity+$repair_piece->quantity;
-            $p->save();
+
             $repair_piece->delete();
         }
         $liquid = Liquids::where('type', '=', 'Liquide')->first();

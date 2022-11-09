@@ -48,7 +48,7 @@ class RepairMController extends Controller
         $dt=DtMaterial::find($id);
         $material=Material::find($dt->mm_id);
         $repair = new RepairsMaterial();
-        $staffs=Staff::all()->where('person_type','=','Personnel du centre de maintenance')->where('function','=','Mécanicien spécialisé (matériel motorisé)');
+        $staffs=Staff::all()->where('person_type','=','Personnel du centre de maintenance')->where('function','=','Mécanicien spécialisé (matériel motorisé)')->where('staff_state','=','au travail');
         $pieces = ConsumedPieces::all()->where('type', '=', 'Machine');
 
           return view('ParkManager.repairsM.create',
@@ -64,7 +64,7 @@ class RepairMController extends Controller
      */
     public function storeRepairs(Request $request)
     {
-       
+
         $repair=RepairsMaterial:: create($request->only('id', 'dt_code', 'intervention_date', 'repaired_breakdowns', 'end_date','end_time',  'observation', 'mm_id' ));
     $staffs=$request['staff'];
 
@@ -137,7 +137,7 @@ for ($designation = 0; $designation < count($designations); $designation++) {
         $material=Material::find($repair->mm_id);
         $staffs=Staff::all() ;
         $rps=RepairM_pieces::all()->where('repair_id', '=', $repair->id);
-       
+
         $repair_staffs=RepairsMaterial_Staff::all()->where('repairmaterial_id','=',$repair->id);
         return view('ParkManager.repairsM.view',
         compact('repair','dt', 'repair_staffs', 'material','staffs','rps' ));
@@ -191,9 +191,7 @@ for ($designation = 0; $designation < count($designations); $designation++) {
     $material->save();
     $repair_pieces = RepairM_pieces::all()->where('repair_id', '=', $repair->id);
     foreach($repair_pieces as $repair_piece){
-        $p=ConsumedPieces::find($repair_piece->piece_id);
-        $p->quantity=$p->quantity+$repair_piece->quantity;
-        $p->save();
+
         $repair_piece->delete();
     }
     $repair_staffs=RepairsMaterial_Staff::all()->where('repairmaterial_id','=',$repair->id);
