@@ -34,7 +34,7 @@
 
                 <div class="card-box mb-30">
                     <div class="pd-20">
-                        <a   style="background:#EE643A;color:#ffffff;float: right;
+                        <a style="background:#EE643A;color:#ffffff;float: right;
                         @if (Auth::user()->type == 'Gestionnaire Sup') color: currentColor;
   cursor: not-allowed;
   opacity: 0.5;
@@ -51,10 +51,13 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-
+                                    <th>Nom de la compagnie</th>
+                                    <th> Véhicule</th>
+                                    <th> Type V</th>
+                                    <th> Marque</th>
                                     <th>Type d'assurance</th>
                                     <th>Etat</th>
-                                    <th> Véhicule</th>
+
                                     <th class="datatable-nosort">Action</th>
 
 
@@ -72,16 +75,19 @@
                                         @if ($insurance->vehicle_id == $vehicule->id)
                                             <tr>
                                                 <td>{{ $insurance->id }}</td>
-
+                                                   <td>{{ $insurance->company_name }}</td>
+                                                <td>{{ $vehicule->marticule }}</td>
+                                                <td>{{ $vehicule->vehicle_type }}</td>
+                                                <td> {{ $vehicule->mark }}</td>
                                                 <td> {{ $insurance->insurance_type }} </td>
                                                 <td>
                                                     @if ($insurance->state == 'expiré')
-                                                        <p style="color: #ce3029">{{ $insurance->state }} </p>
+                                                        <p style="color: #ce3029"><b>{{ $insurance->state }} </b></p>
                                                     @else
-                                                        <p style="color: #29ce3f">{{ $insurance->state }} </p>
+                                                        <p style="color: #05971a"><b>{{ $insurance->state }} </b></p>
                                                     @endif
                                                 </td>
-                                                <td>{{ $vehicule->acquisition_date }}</td>
+
                                                 <td>
                                                     <div class="dropdown">
                                                         <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"

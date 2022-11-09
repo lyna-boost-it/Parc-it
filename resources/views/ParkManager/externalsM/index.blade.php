@@ -134,7 +134,7 @@
                                     <div class="row">
                                         <div class="col-md-6 col-sm-12">
                                             <div class="title">
-                                                <h4>Liste des demandes de travaux (DT) :</h4>
+                                                <h4>Liste des demandes de travaux (DT): Maintenances externes</h4>
                                             </div>
 
                                         </div>

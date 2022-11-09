@@ -9,8 +9,8 @@ class Repair_pieces extends Model
 {
     use LogsActivity;
     protected $fillable = [
-    'id', 'repair_id' ,'piece_id'];
+    'id', 'repair_id' ,'quantity','reference','receip','reference','price','designation','full_price'];
 
     protected static $logAttributes = [
-         'repair_id' ,'piece_id'];
+        'id', 'repair_id' ,'quantity','reference','receip','reference','price','designation','full_price'];
 }

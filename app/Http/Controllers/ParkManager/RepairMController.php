@@ -64,18 +64,7 @@ class RepairMController extends Controller
      */
     public function storeRepairs(Request $request)
     {
-        $pieces = $request->input('pieces', []);
-        $quantities = $request->input('quantities', []);
-
-
-      for ($piece=0; $piece < count($pieces); $piece++) {
-           $p=ConsumedPieces::find($pieces[$piece]);
-           $p->quantity= $p->quantity- $quantities[$piece];
-            if($p->quantity<0){
-                return redirect('/ParkManager/repairsM')->with('error', "vous n'avez pas assez de quantité de piece ".$p->reference );
-
-            }
-        }
+       
         $repair=RepairsMaterial:: create($request->only('id', 'dt_code', 'intervention_date', 'repaired_breakdowns', 'end_date','end_time',  'observation', 'mm_id' ));
     $staffs=$request['staff'];
 
@@ -112,17 +101,26 @@ $currentUser->notify(new RepairMNotification($repair, $notif));
 $material->save();
 
 
-for ($piece=0; $piece < count($pieces); $piece++) {
-    $p=ConsumedPieces::find($pieces[$piece]);
-    $p->quantity= $p->quantity- $quantities[$piece];
-  $p->save();
-  $pr=new RepairM_pieces();
-  $pr->piece_id=$p->id;
-  $pr->repair_id=$repair->id;
-  $pr->quantity= $quantities[$piece];
-  $pr->save();
+$prices = $request->input('prices', []);
+$quantities = $request->input('quantities', []);
+$references = $request->input('references', []);
+$designations = $request->input('designations', []);
+$receips = $request->input('receip', []);
 
- }
+for ($designation = 0; $designation < count($designations); $designation++) {
+    if ($designations[$designation] != '') {
+        $dt_piece = new RepairM_pieces();
+        $dt_piece->repair_id =$repair->id;
+        $dt_piece->reference = $references[$designation];
+        $dt_piece->designation = $designations[$designation];
+        $dt_piece->price =$prices[$designation];
+        $dt_piece->quantity = $quantities[$designation];
+        $dt_piece->receip = $receips[$designation];
+
+        $dt_piece->full_price =$dt_piece->price*$dt_piece->quantity;
+        $dt_piece->save();
+    }
+}
     return redirect ('/ParkManager/repairsM')->with('success',"vous avez ajouté une reparation avec succès");
     }
 
@@ -139,10 +137,10 @@ for ($piece=0; $piece < count($pieces); $piece++) {
         $material=Material::find($repair->mm_id);
         $staffs=Staff::all() ;
         $rps=RepairM_pieces::all()->where('repair_id', '=', $repair->id);
-        $pieces=ConsumedPieces::all()->where('type', '=', 'Machine');
+       
         $repair_staffs=RepairsMaterial_Staff::all()->where('repairmaterial_id','=',$repair->id);
         return view('ParkManager.repairsM.view',
-        compact('repair','dt', 'repair_staffs', 'material','staffs','rps','pieces'));
+        compact('repair','dt', 'repair_staffs', 'material','staffs','rps' ));
     }
 
     /**

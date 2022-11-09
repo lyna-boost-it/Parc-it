@@ -107,14 +107,23 @@ class RepairController extends Controller
         ));
 
 
-        $products = $request->input('pieces', []);
+        $prices = $request->input('prices', []);
         $quantities = $request->input('quantities', []);
-        for ($product = 0; $product < count($products); $product++) {
-            if ($products[$product] != '') {
-                $dt_piece = new DT_Piece();
-                $dt_piece->piece_id = $products[$product];
-                $dt_piece->quantity = $quantities[$product];
-                $dt_piece->dt_id = $request->dt_code;
+        $references = $request->input('references', []);
+        $designations = $request->input('designations', []);
+        $receips = $request->input('receip', []);
+
+        for ($designation = 0; $designation < count($designations); $designation++) {
+            if ($designations[$designation] != '') {
+                $dt_piece = new Repair_pieces();
+                $dt_piece->repair_id =$repair->id;
+                $dt_piece->reference = $references[$designation];
+                $dt_piece->designation = $designations[$designation];
+                $dt_piece->price =$prices[$designation];
+                $dt_piece->quantity = $quantities[$designation];
+                $dt_piece->receip = $receips[$designation];
+
+                $dt_piece->full_price =$dt_piece->price*$dt_piece->quantity;
                 $dt_piece->save();
             }
         }
@@ -191,7 +200,6 @@ class RepairController extends Controller
         $driver = Staff::find($repair->driver_id);
         $repair_staffs = Repair_Staff::all()->where('repair_id', '=', $repair->id);
         $rps=Repair_pieces::all()->where('repair_id', '=', $repair->id);
-        $pieces=ConsumedPieces::all()->where('type', '=', 'Véhicule');
         return view(
             'ParkManager.repairs.view',
             compact(
@@ -200,7 +208,7 @@ class RepairController extends Controller
                 'driver',
                 'repair_staffs',
                 'vehicule',
-                'staffs','rps','pieces'
+                'staffs','rps'
             )
         );
     }

@@ -54,10 +54,10 @@
 
                                     <th>Nom et Prénom du conducteur</th>
                                     <th>Type d'accident</th>
-                                    <th> Date de déclaration</th>
-                                    <th>Date de l'expertise</th>
-                                    <th>Véhicule</th>
 
+                                    <th>Véhicule</th>
+                                    <th> Type V</th>
+                                    <th> Marque</th>
                                     <th class="datatable-nosort">Action</th>
 
                                 </tr>
@@ -75,9 +75,11 @@
                                                     <td>{{ $accident->id }}</td>
                                                     <td> {{ $driver->name }} {{ $driver->last_name }} </td>
                                                     <td>{{ $accident->accident_type }}</td>
-                                                    <td>{{ $accident->declaration_date }}</td>
-                                                    <td>{{ $accident->expertise_date }}</td>
-                                                    <td>{{ $vehicule->acquisition_date }}</td>
+
+                                                    <td>{{ $vehicule->marticule }}</td>
+                                                <td>{{ $vehicule->vehicle_type }}</td>
+                                                <td> {{ $vehicule->mark }}</td>
+
                                                     <td>
                                                         <div class="dropdown">
                                                             <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
