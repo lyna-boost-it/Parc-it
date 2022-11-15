@@ -108,6 +108,9 @@ Route::namespace('ParkManager')->prefix('ParkManager')->name('ParkManager.')->gr
     Route::resource('/deleteUnit', 'UnitDeleteController');
     Route::resource('/vehicules', 'VehiculeController');
 
+    Route::resource('/designations', 'DesignationController');
+    Route::resource('/Gazprice', 'GazPriceController');
+
 
 
 

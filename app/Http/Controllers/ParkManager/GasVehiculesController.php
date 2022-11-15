@@ -5,6 +5,7 @@ namespace App\Http\Controllers\ParkManager;
 use App\Attendance;
 use App\Http\Controllers\Controller;
 use App\GasVehicules;
+use App\GazPrice;
 use App\Shift_Staff;
 use App\Staff;
 use App\Unit;
@@ -45,10 +46,10 @@ class GasVehiculesController extends Controller
         $drivers=Staff::all()->where('person_type','=','Conducteur');
         $vehicules=Vehicule::all();
         $staffs=Staff::all()->where("person_type",'=','Personnel du parc');
-
+$gases=GazPrice::all();
         return view('ParkManager.gasVehicules.create',
         compact('gasvehicule'
-        ,'drivers','vehicules' ,'staffs' ));
+        ,'drivers','vehicules' ,'staffs' ,'gases'));
     }
 
     /**

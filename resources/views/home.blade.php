@@ -530,7 +530,9 @@
                                     <tr>
                                         <th>Numéro</th>
                                         <th>ID</th>
-                                        <th> Véhicule</th>
+                                        <th>Véhicule</th>
+                                    <th>Type V</th>
+                                    <th>Marque</th>
                                         <th> Pourcentage</th>
                                     </tr>
                                 </thead>
@@ -545,8 +547,9 @@
                                         <tr>
                                             <td> {{ $i }}</td>
                                             <td>{{ $vehicule->id }}</td>
-                                            <td>{{ $vehicule->acquisition_date }}</td>
-
+                                            <td>{{ $vehicule->marticule }}</td>
+                                                <td>{{ $vehicule->vehicle_type }}</td>
+                                                <td> {{ $vehicule->mark }}</td>
                                             <td style="color: orange;">
                                                 @if (DB::table('repairs')->count() != 0)
                                                     {{ (DB::table('repairs')->where('vehicule_id', '=', $vehicule->id)->count() /DB::table('repairs')->count()) *100 }}

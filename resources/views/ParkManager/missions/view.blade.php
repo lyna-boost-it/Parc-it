@@ -60,7 +60,7 @@
                                         </th>
                                         <th>
 
-                                            <h4  style="display: inline;color:#000000 ">Nom et prénom du personne accompagné: </h4>
+                                            <h4  style="display: inline;color:#000000 ">Nom et prénom du personne accompagnée: </h4>
                                             <h5 style="display: inline;color:#000000">{{ $mission->p_name }} {{ $mission->p_last_name }}</h5>
                                         </th>
                                     </tr>

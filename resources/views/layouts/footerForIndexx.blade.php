@@ -95,3 +95,22 @@
       });
 
 </script>
+
+
+<script type="text/javascript">
+
+    $(".vhm").select2({
+          placeholder: "Sélectionner un type du Carburant",
+          allowClear: true
+      });
+
+</script>
+<script>
+    $(function() {
+       $('.content').hide();
+       $('#selectFieldd').change(function() {
+          $('.content').hide();
+          $('#' + $(this).val()).show();
+       });
+    });
+      </script>

@@ -20,7 +20,7 @@
                         <div class="page-header">
                             <div class="row">
 
-                                <h3>Information Contrôles techniques:  </h3>
+                                <h3>Information Contrôle techniques:  </h3>
 
                             </div>
                         </div>
@@ -35,46 +35,52 @@
                                 <table style=" width: 90%;border-collapse: collapse;">
                                     <tr>
                                         <th>
+                                            <h4 style="display: inline;color:#000000" >Type Contrôle technique: </h4>
+                                            <h5 style="display: inline;color:#000000">{{ $technicalcontroll->type }}</h5>
+                                        </th>
+                                        <th>
                                             <h4  style="display: inline;color:rgb(42, 165, 124)">ID: </h4>
                                             <h5  style="display: inline;color:#000000">{{ $technicalcontroll->id }}</h5>
                                         </th>
 
 
+
+                                    </tr>
+                                    <tr>
                                         <th>
                                             <h4 style="display: inline;color:#000000" > Date d'effet: </h4>
                                             <h5 style="display: inline;color:#000000">{{ $technicalcontroll->effective_date }}</h5>
-                                    </tr>
-                                    <tr>
+                                        </th>
                                         <th>
                                             <h4   style="display: inline;color:#000000">Date limite: </h4>
                                             <h5 style="display: inline;color:#000000">{{ $technicalcontroll->expiration_date }}</h5>
                                         </th>
+
+                                    </tr>
+
+                                    <tr>
                                         <th>
                                             <h4 style="display: inline;color:#000000" >Réserve: </h4>
                                             <h5 style="display: inline;color:#000000">{{ $technicalcontroll->reserve }}</h5>
                                         </th>
-                                    </tr>
-
-                                    <tr>
                                         <th>
                                             <br>
                                             <h4  style="display: inline;color:#000000 ">Numéro du contrôle Technique: </h4>
                                             <h5  style="display: inline;color:#000000">{{ $technicalcontroll->technical_control_number }}</h5>
 
+
+                                    </tr>
+                                    <tr>
                                         <th>
                                             <h4 style="display: inline;color:#000000" >L'organisme émetteur: </h4>
                                             <h5 style="display: inline;color:#000000">{{ $technicalcontroll->transmitter }}</h5>
-                                    </tr>
-                                    <tr>
+                                        </th>
                                         <th>
                                             <h4   style="display: inline;color:#000000">Observation: </h4>
                                             <h5 style="display: inline;color:#000000">{{ $technicalcontroll->observation }}</h5>
                                             <br>
                                         </th>
-                                        <th>
-                                            <h4 style="display: inline;color:#000000" >Contrôle technique SirGaz: </h4>
-                                            <h5 style="display: inline;color:#000000">{{ $technicalcontroll->SirGaz }}</h5>
-                                        </th>
+
 
                                         </th>
                                     </tr>

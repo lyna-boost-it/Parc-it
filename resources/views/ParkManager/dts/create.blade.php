@@ -115,96 +115,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body" >
-                            <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('  Nom et prénom du Réception ') }}</label>
-                                <div class="col-md-9" for="conducteur_field_for_absence">
-                                    <div class="form-group">
-                                        <select  name="staff_id"   placeholder="  Nom et prénom de l\'absent"
-                                        value="{{ old('staff_id'),$dt->staff_id }}"class="form-control"
-                                            id="staff_id">
-                                            @foreach ($staffs as $staff)
 
-                                            <option value="{{ $staff->id }}"
-                                            {{ old('staff_id', $dt->staff_id)
-                                             === 'staff_id' ? 'selected' : '' }}>
-                                             {{ $staff->name }} {{ $staff->last_name }}</option>
-                                            @endforeach
-
-                                        </select></div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('Action d\'entrée') }}</label>
-                                <div class="col-md-9">
-                                    <div class="form-group">
-                                        <select  name="action" class="form-control"
-                                            id="action">
-                                            <option value="" disabled selected>Action d'entrée</option>
-                                            <option value="En maintenance" {{ old('action', $dt->action) === 'En maintenance' ? 'selected' : '' }}  required>En maintenance</option>
-                                            <option value="En panne (à l'arrêt)" {{ old('action', $dt->action) === 'en panne (à l\'arrêt)' ? 'selected' : '' }} required >en panne (à l'arrêt)</option>
-                                            <option value=" A programmer mais opérationnel" {{ old('action', $dt->action) === 'A programmer mais opérationnel' ? 'selected' : '' }}  required>A programmer mais opérationnel</option>
-                                         <option value="A programmer mais en panne" {{ old('action', $dt->action) === 'A programmer mais en panne' ? 'selected' : '' }}  required>A programmer mais en panne</option>
-
-
-                                        </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body" >
-                            <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('Date d\'entrée ') }}</label>
-                                <div class="col-md-9" >
-                                    <div class="form-group">
-                                        <input type="date"  name="enter_date" class="form-control"
-                                        placeholder="Date d\'entre"
-                                        value="{{ $dt->enter_date }}" required>
-                                    </div>
-                                    @if ($errors->has('enter_date'))
-                                        <span class="invalid-feedback" style="display: block;" role="alert">
-                                            <strong>{{ $errors->first('enter_date') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body" >
-                            <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('Heure d\'entrée ') }}</label>
-                                <div class="col-md-9" >
-                                    <div class="form-group">
-                                        <input type="time"  name="enter_time" class="form-control"
-                                        placeholder="Heure d\'entre"
-                                        value="{{ $dt->enter_time }}" required>
-                                    </div>
-                                    @if ($errors->has('enter_time'))
-                                        <span class="invalid-feedback" style="display: block;" role="alert">
-                                            <strong>{{ $errors->first('enter_time') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body" >
-                            <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('Observation') }}</label>
-                                <div class="col-md-9" >
-                                    <div class="form-group">
-                                        <input type="text"  name="observation" class="form-control"
-                                        placeholder="Observation"
-                                        value="{{  $dt->observation }}" required>
-                                    </div>
-                                    @if ($errors->has('observation'))
-                                        <span class="invalid-feedback" style="display: block;" role="alert">
-                                            <strong>{{ $errors->first('observation') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
                         <div class="card-body">
                             <div class="row">
                                 <label class="col-md-3 col-form-label">{{ __('Véhicule') }}</label>
@@ -238,27 +149,7 @@
                             </div>
                         </div>
 
-                        <div class="card-body">
-                            <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('Type de Maintenance') }}</label>
-                                <div class="col-md-9">
-                                    <div class="form-group">
-                                        <select  name="type_maintenance" class="form-control"
-                                            id="type_maintenance">
-                                            <option value="" disabled selected>Choisissez un de Maintenance</option>
-                                            <option value="Réparation" {{ old('type_maintenance', $dt->type_maintenance)
-                                            === 'Réparation' ? 'selected' : '' }} >Réparation</option>
-                                            <option value="Entretien" {{ old('type_maintenance', $dt->type_maintenance)
-                                            === 'Entretien' ? 'selected' : '' }} >Entretien</option>
-                                            <option value="Maintenance Externe"
-                                            {{ old('type_maintenance', $dt->type_maintenance) ===
-                                            'Maintenance Externe' ? 'selected' : '' }}
-                                            >Maintenance Externe</option>
 
-                                        </select>
-                                </div>
-                            </div>
-                        </div>
                         <div class="card-footer ">
                             <div class="row">
                              <div class="col-md-12 text-center">

@@ -26,10 +26,33 @@
 
 
                         <div class="card-header">
-                            <h3 class="title">{{ __('Créer un  contrôles technique  ') }}</h3>
+                            <h3 class="title">{{ __('Créer un  contrôle technique  ') }}</h3>
                         </div>
 
+                        <div class="card-body" >
+                            <div class="row">
+                                <label class="col-md-3 col-form-label">{{ __('Type du Contrôle technique   ') }}</label>
+                                <div class="col-md-9" >
+                                    <div class="form-group">
+                                        <select id="type" type="text"
+                                        class="form-control select2 @error('type') is-invalid @enderror"
+                                        name="type" required autocomplete="type" autofocus>
+                                        <option value="" disabled selected>Type du Contrôle technique</option>
+                                        <option value="Normal"
+                                            {{ old('type', $technicalcontrol->type) === 'Normal' ? 'selected' : '' }}>
+                                            Normal</option>
+                                        <option value="SirGaz"
+                                            {{ old('type', $technicalcontrol->type) === 'SirGaz' ? 'selected' : '' }}>
+                                            SirGaz</option>
 
+
+
+                                    </select>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
 
 
 
@@ -207,23 +230,6 @@
 
 
 
-                        <div class="card-body" >
-                            <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('Contrôle technique SirGaz ') }}</label>
-                                <div class="col-md-9" >
-                                    <div class="form-group">
-                                        <input type="text" name="SirGaz" class="form-control"
-                                        placeholder=" Contrôle technique SirGaz "
-                                        value="{{ $technicalcontrol->SirGaz }}" required>
-                                    </div>
-                                    @if ($errors->has('SirGaz'))
-                                        <span class="invalid-feedback" style="display: block;" role="alert">
-                                            <strong>{{ $errors->first('SirGaz') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
 
 
 
@@ -232,25 +238,8 @@
 
 
 
-                        <div class="card-body">
-                            <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('Véhicule') }}</label>
-                                <div class="col-md-9">
-                                    <div class="form-group">
 
 
-                                        <select style="width: 300px" id="vehicle_id" name="vehicle_id">
-                                            <option></option>
-                                            @foreach ($vehicules as $vehicule)
-                                            <option value="{{ $vehicule->id }}">
-                                                {{ $vehicule->vehicle_type }} ;{{ $vehicule->mark }} ;{{ $vehicule->marticule }}</option>
-                                        @endforeach
-                                          </select>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
 
 

@@ -95,10 +95,7 @@
 
                         <div class="col-md-6 mb-20">
                             <div class="card-box height-100-p pd-20">
-
-                                <div id="myChart" class="chart--container">
-
-                                </div>
+                                <div id="piechart"></div>
                             </div>
 
 
@@ -181,7 +178,35 @@
             <input type="hidden" value="{{ $enpanne }} " id="enpanne">
             <input type="hidden" value="{{ $enmaintenance }} " id="enmaintenance">
 
-            <script>
+            <script type="text/javascript">
+             var operationel = parseInt($("#operationel").val());
+                var enpanne = parseInt($("#enpanne").val());
+                var enmaintenance = parseInt($("#enmaintenance").val());
+                // Load google charts
+                google.charts.load('current', {'packages':['corechart']});
+                google.charts.setOnLoadCallback(drawChart);
+
+                // Draw the chart and set the chart values
+                function drawChart() {
+                  var data = google.visualization.arrayToDataTable([
+                  ['Task', 'Hours per Day'],
+                  ['Opérationnel',operationel],
+                  ['En panne',enpanne],
+                  ['En maintenance', enmaintenance],
+
+                ]);
+
+                  // Optional; add a title and set the width and height of the chart
+                  var options = {'title':'L\'état Des Engins Et Matériels Agricoles ', 'width':800, 'height':800};
+
+                  // Display the chart inside the <div> element with id="piechart"
+                  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+                  chart.draw(data, options);
+                }
+                </script>
+
+
+             <script>
                 var operationel = parseInt($("#operationel").val());
                 var enpanne = parseInt($("#enpanne").val());
                 var enmaintenance = parseInt($("#enmaintenance").val());

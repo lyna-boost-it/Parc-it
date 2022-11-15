@@ -193,7 +193,7 @@
                                 <div class="card-body">
                                     <table class="table" id="Pieces_table">
                                         <thead>
-                                            <tr>
+                                            <tr><th>Code</th>
                                                 <th>Désignation</th>
                                                 <th>Réf</th>
                                                 <th>Qte</th>
@@ -202,33 +202,20 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <td>
+                                                <input type="text" name="codes[]"
+                                                    class="form-control"
+                                                  />
+                                            </td>
                                             <tr id="product0">
                                                 <td>
                                                     <select name="designations[]" class="form-control">
                                                         <option value="">Choisissez une Désignation</option>
-                                                        <option value="PNEUMATIQUES">PNEUMATIQUES</option>
-                                                        <option value="BATTERIE ">BATTERIE </option>
-                                                        <option value="CAMION YUEJIN">CAMION YUEJIN</option>
-                                                        <option value="CAMION  JMC">CAMION  JMC</option>
-                                                        <option value="CAMION DAEWOO">CAMION DAEWOO</option>
-                                                        <option value="CAMION SONACOM (K120)">CAMION SONACOM (K120)</option>
-                                                        <option value="CAMION SONACOM (B260)">CAMION SONACOM (B260)</option>
-                                                        <option value="CAMION SONACOM (C260)">CAMION SONACOM (C260)</option>
-                                                        <option value="HINO">HINO</option>
-                                                        <option value="HYUNDAI ">HYUNDAI </option>
-                                                        <option value="DELTA  (TOYOTA)">DELTA  (TOYOTA)</option>
-                                                        <option value="MITSUBISHI ">MITSUBISHI </option>
-                                                        <option value="FOTON ">FOTON </option>
-                                                        <option value="SHACMAN ">SHACMAN </option>
-                                                        <option value="HYUNDAI ACCENT">HYUNDAI ACCENT</option>
-                                                        <option value="PEUGEOT PARTNER">PEUGEOT PARTNER</option>
-                                                        <option value="JMC">JMC</option>
-                                                        <option value="FIAT ">FIAT </option>
-                                                        <option value="GREAT WALL">GREAT WALL</option>
-                                                        <option value="RENAULT MASTER">RENAULT MASTER</option>
-                                                        <option value="PEUGEOT BOXER">PEUGEOT BOXER</option>
-                                                        <option value="HYUNDAI H1">HYUNDAI H1</option>
-                                                        <option value="Corolla ">Corolla </option>
+                                                    @foreach ($designations as $designation )
+                                                    <option value="{{ $designation->id }}">{{ $designation->name }}</option>
+
+                                                    @endforeach
+
                                                     </select>
                                                 </td>
                                                 <td>

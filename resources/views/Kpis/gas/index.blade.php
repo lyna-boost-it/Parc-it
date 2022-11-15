@@ -160,148 +160,136 @@
 
 
 
+                    <div id="piechart"></div>
 
-                <div class="row">
 
+<br><br>
+                <div class="card-box height-100-p pd-20">
+                    <main>
+                        <h4 class="font-20 weight-500 mb-10 text-capitalize text-orange">Consommation carburant
+                            pour Véhicule</h4>
 
-                    <div class="col-md-6 mb-20">
-                        <div class="card-box height-100-p pd-20">
-                            <h4 class="weight-600 font-20 text-orange">
-                                Consomation de Carburant totale {{ $totalGas }} Littre.
+                        <input id="tab5" type="radio" name="tabsd" checked>
+                        <label for="tab5">Personne</label>
 
-                            </h4>
-                            <div id="myChart" class="chart--container">
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-20">
-                        <div class="card-box height-100-p pd-20">
-                            <main>
-                                <h4 class="font-20 weight-500 mb-10 text-capitalize text-orange">Consommation carburant
-                                    pour Véhicule</h4>
-
-                                <input id="tab5" type="radio" name="tabsd" checked>
-                                <label for="tab5">Personne</label>
-
-                                <input id="tab6" type="radio" name="tabsd">
-                                <label for="tab6">Unité</label>
+                        <input id="tab6" type="radio" name="tabsd">
+                        <label for="tab6">Unité</label>
 
 
 
 
-                                <section id="content5">
-                                    <table class="table nowrap hover data-table-export">
-                                        <thead>
-                                            <tr>
-                                                <th>Numéro</th>
-                                                <th>ID</th>
+                        <section id="content5">
+                            <table class="table nowrap hover data-table-export">
+                                <thead>
+                                    <tr>
+                                        <th>Numéro</th>
+                                        <th>ID</th>
 
-                                                <th> Nom Et Prénom</th>
-                                                <th>Pourcentage</th>
+                                        <th> Nom Et Prénom</th>
+                                        <th>Pourcentage</th>
 
 
-                                            </tr>
-                                        </thead>
+                                    </tr>
+                                </thead>
 
+                                @php
+                                    $i = 0;
+
+                                @endphp
+
+
+                                <tbody>
+
+                                    @foreach ($staffs as $staff)
                                         @php
-                                            $i = 0;
-
+                                            $i = $i + 1;
                                         @endphp
-
-
-                                        <tbody>
-
-                                            @foreach ($staffs as $staff)
-                                                @php
-                                                    $i = $i + 1;
-                                                @endphp
-                                                @php
-                                                    $consume = 0;
-                                                @endphp
-                                                <tr>
-                                                    <td> {{ $i }}</td>
-                                                    <td>{{ $staff->id }}</td>
-
-                                                    <td>{{ $staff->name }} {{ $staff->last_name }}</td>
-                                                    @foreach ($gasVehicules as $gasVehicule)
-                                                        @if ($gasVehicule->driver_id == $staff->id)
-                                                            @php
-                                                                $consume = $consume + $gasVehicule->litter;
-                                                            @endphp
-                                                        @endif
-                                                    @endforeach
-                                                    <td style="color: orange;">
-                                                        {{ number_format(((float) $consume / $totalGas) * 100, 2, '.', '') }}%
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-
-
-                                        </tbody>
-                                    </table>
-                                </section>
-
-                                <section id="content6">
-                                    <table class="table nowrap hover data-table-export">
-                                        <thead>
-                                            <tr>
-                                                <th>Numéro</th>
-                                                <th>ID</th>
-
-                                                <th>Unité</th>
-                                                <th>Pourcentage</th>
-
-
-                                            </tr>
-                                        </thead>
-
                                         @php
-                                            $i = 0;
-
+                                            $consume = 0;
                                         @endphp
+                                        <tr>
+                                            <td> {{ $i }}</td>
+                                            <td>{{ $staff->id }}</td>
 
-
-                                        <tbody>
-
-                                            @foreach ($units as $unit)
-                                                @php
-                                                    $i = $i + 1;
-                                                @endphp
-                                                @php
-                                                    $c = 0;
-                                                @endphp
-                                                <tr>
-                                                    <td> {{ $i }}</td>
-                                                    <td>{{ $unit->id }}</td>
-
-                                                    <td>{{ $unit->name }}</td>
-                                                    @foreach ($vehicules as $vehicule)
-                                                        @foreach ($gasVehicules as $gasVehicule)
-                                                            @if ($gasVehicule->vehicle_id == $vehicule->id && $unit->id == $vehicule->unit_id)
-                                                                @php
-                                                                    $c = $c + $gasVehicule->litter;
-                                                                @endphp
-                                                            @endif
-                                                        @endforeach
-                                                    @endforeach
-                                                    <td style="color: orange;"> {{ ($c / $totalGas) * 100 }}%</td>
-
-                                                </tr>
+                                            <td>{{ $staff->name }} {{ $staff->last_name }}</td>
+                                            @foreach ($gasVehicules as $gasVehicule)
+                                                @if ($gasVehicule->driver_id == $staff->id)
+                                                    @php
+                                                        $consume = $consume + $gasVehicule->litter;
+                                                    @endphp
+                                                @endif
                                             @endforeach
+                                            <td style="color: orange;">
+                                                {{ number_format(((float) $consume / $totalGas) * 100, 2, '.', '') }}%
+                                            </td>
+                                        </tr>
+                                    @endforeach
 
 
-                                        </tbody>
-                                    </table>
-                                </section>
+                                </tbody>
+                            </table>
+                        </section>
+
+                        <section id="content6">
+                            <table class="table nowrap hover data-table-export">
+                                <thead>
+                                    <tr>
+                                        <th>Numéro</th>
+                                        <th>ID</th>
+
+                                        <th>Unité</th>
+                                        <th>Pourcentage</th>
+
+
+                                    </tr>
+                                </thead>
+
+                                @php
+                                    $i = 0;
+
+                                @endphp
+
+
+                                <tbody>
+
+                                    @foreach ($units as $unit)
+                                        @php
+                                            $i = $i + 1;
+                                        @endphp
+                                        @php
+                                            $c = 0;
+                                        @endphp
+                                        <tr>
+                                            <td> {{ $i }}</td>
+                                            <td>{{ $unit->id }}</td>
+
+                                            <td>{{ $unit->name }}</td>
+                                            @foreach ($vehicules as $vehicule)
+                                                @foreach ($gasVehicules as $gasVehicule)
+                                                    @if ($gasVehicule->vehicle_id == $vehicule->id && $unit->id == $vehicule->unit_id)
+                                                        @php
+                                                            $c = $c + $gasVehicule->litter;
+                                                        @endphp
+                                                    @endif
+                                                @endforeach
+                                            @endforeach
+                                            <td style="color: orange;"> {{ ($c / $totalGas) * 100 }}%</td>
+
+                                        </tr>
+                                    @endforeach
+
+
+                                </tbody>
+                            </table>
+                        </section>
 
 
 
-                            </main>
-                        </div>
-                    </div>
+                    </main>
                 </div>
 
+
+                <br><br>
 
                 <div class="row">
 
@@ -335,7 +323,7 @@
 
                 <div class="card-box pd-20 height-100-p mb-30">
                     <div class="row align-items-center">
-                        <div class="weight-600 font-30 text-grey">       Consommation de Carburant pour matériels motorisés
+                        <div class="weight-600 font-30 text-grey"> Consommation de Carburant pour matériels motorisés
 
                         </div>
 
@@ -443,10 +431,10 @@
                                                         @endif
                                                     @endforeach
                                                     <td style="color: orange;">
-                                                        @if($GasPipesLitter!=0)
-                                                        {{ number_format(((float) $consume / $GasPipesLitter) * 100, 2, '.', '') }}%
+                                                        @if ($GasPipesLitter != 0)
+                                                            {{ number_format(((float) $consume / $GasPipesLitter) * 100, 2, '.', '') }}%
                                                         @else
-                                                        0%
+                                                            0%
                                                         @endif
 
                                                     </td>
@@ -502,10 +490,10 @@
                                                         @endforeach
                                                     @endforeach
                                                     <td style="color: orange;">
-                                                        @if($GasPipesLitter != 0)
-                                                        {{ number_format(((float) $c / $GasPipesLitter) * 100), 2, '.', '' }}%
+                                                        @if ($GasPipesLitter != 0)
+                                                            {{ number_format(((float) $c / $GasPipesLitter) * 100), 2, '.', '' }}%
                                                         @else
-0%
+                                                            0%
                                                         @endif
 
                                                     </td>
@@ -712,7 +700,32 @@
             });
         }, 35);
     </script>
+<script type="text/javascript">
+ var essenceP = parseInt($("#essenceP").val());
+        var gazoleP = parseInt($("#gazoleP").val());
+        var gplP = parseInt($("#gplP").val());
+    // Load google charts
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
 
+    // Draw the chart and set the chart values
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+      ['Consommation de Carburant', 'PAr Littre'],
+      ['Essence',essenceP],
+      ['Gazole', gazoleP],
+      ['GPL', gplP],
+
+    ]);
+
+      // Optional; add a title and set the width and height of the chart
+      var options = {'title':'consommation de Carburant ', 'width':1800, 'height':500};
+
+      // Display the chart inside the <div> element with id="piechart"
+      var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+      chart.draw(data, options);
+    }
+    </script>
 
 
 
@@ -807,6 +820,7 @@
             }
         }
     </style>
+
 @else
     <!DOCTYPE html>
     <html lang="en">

@@ -42,7 +42,7 @@
                         "
                             href="{{ route('ParkManager.accidents.create') }}" class="btn btn-sm  "
                             @if (Auth::user()->type == 'Gestionnaire Sup') disabled @endif>
-                            Créer un accident
+                            Nouvelle déclaration
                         </a>
                     </div>
                     <div class="pb-20">
@@ -77,7 +77,7 @@
                                                     <td>{{ $vehicule->marticule }}</td>
                                                     <td>{{ $vehicule->vehicle_type }}</td>
                                                     <td> {{ $vehicule->mark }}</td>
-                                                    <td> {{ $driver->name }} {{ $driver->last_name }} </td>
+                                                    <td> {{ $driver->name }}  </td>
                                                     <td>{{ $accident->accident_type }}</td>
 
 

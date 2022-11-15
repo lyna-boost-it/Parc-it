@@ -106,7 +106,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <label
-                                        class="col-md-3 col-form-label">{{ __(' Nom du personne accompagné') }}</label>
+                                        class="col-md-3 col-form-label">{{ __(' Nom du personne accompagnée') }}</label>
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <input type="text" name="p_name" class="form-control"
@@ -126,7 +126,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <label
-                                        class="col-md-3 col-form-label">{{ __(' Prénom du personne accompagné') }}</label>
+                                        class="col-md-3 col-form-label">{{ __(' Prénom du personne accompagnée') }}</label>
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <input type="text" name="p_last_name" class="form-control"
@@ -221,11 +221,11 @@
 
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __(' Motivation') }}</label>
+                                    <label class="col-md-3 col-form-label">{{ __(' Motif') }}</label>
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <input type="text" name="reason" class="form-control"
-                                                placeholder="Motivation" value="{{ $mission->reason }}" required>
+                                                placeholder="Motif" value="{{ $mission->reason }}" required>
                                         </div>
                                         @if ($errors->has('reason'))
                                             <span class="invalid-feedback" style="display: block;" role="alert">

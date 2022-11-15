@@ -19,9 +19,11 @@ class Vehicule extends Model
    'unit_id',
        'vehicle_type',
        'vehicle_state','mark',
-       'marticule'
+       'marticule','genre', 'type', 'crosserie','power','places'
+    ,'weight','charge','precedent','moving_year'
     ];
     protected static $logAttributes = [
+        'id',
         'code',
         'serial_numbers', 'year_commissioned',
  'type_of_fuel','tank_capacity',
@@ -30,6 +32,7 @@ class Vehicule extends Model
  'acquisition_date',
 'unit_id',
 'vehicle_type',
-'vehicle_state' ,'mark',
-'marticule'];
+'vehicle_state','mark',
+'marticule','genre', 'type', 'crosserie','power','places'
+,'weight','charge','precedent','moving_year'];
 }

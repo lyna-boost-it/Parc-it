@@ -144,38 +144,21 @@
     </div>
 
 
+
+
+
     <div class="card-body" >
         <div class="row">
-            <label class="col-md-3 col-form-label">{{ __(' Litre de Carburant') }}</label>
+            <label class="col-md-3 col-form-label">{{ __('Litre') }}</label>
             <div class="col-md-9" >
                 <div class="form-group">
                     <input type="number" step="0.1"  name="litter" class="form-control"
-                    placeholder="Litre de Carburant"
+                    placeholder=" Prix du litre (DA)"
                     value="{{ $gaspipe->litter }}" required>
                 </div>
                 @if ($errors->has('litter'))
                     <span class="invalid-feedback" style="display: block;" role="alert">
                         <strong>{{ $errors->first('litter') }}</strong>
-                    </span>
-                @endif
-            </div>
-        </div>
-    </div>
-
-
-
-    <div class="card-body" >
-        <div class="row">
-            <label class="col-md-3 col-form-label">{{ __('  Prix du litre') }}</label>
-            <div class="col-md-9" >
-                <div class="form-group">
-                    <input type="number" step="0.1"  name="litter_price" class="form-control"
-                    placeholder=" Prix du litre (DA)"
-                    value="{{ $gaspipe->litter_price }}" required>
-                </div>
-                @if ($errors->has('litter_price'))
-                    <span class="invalid-feedback" style="display: block;" role="alert">
-                        <strong>{{ $errors->first('litter_price') }}</strong>
                     </span>
                 @endif
             </div>

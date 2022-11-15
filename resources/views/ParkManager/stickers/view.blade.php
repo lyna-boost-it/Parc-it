@@ -58,7 +58,8 @@
                     </div>
 
                 </div>
-            </div> </div>
+            </div> 
+        </div>
             <br> <button id="button" class="btn btn-warning btn-round"><span class="fa fa-print  " style="color: #000000"> </span> Imprimer</button>
 
 

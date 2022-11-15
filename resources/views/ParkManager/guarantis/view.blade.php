@@ -80,7 +80,7 @@
                                     <tr>
                                         <th>
 
-                                            <h4  style="display: inline;color: #000000 ">Réf du fournisseur:: </h4>
+                                            <h4  style="display: inline;color: #000000 ">Réf du fournisseur: </h4>
                                             <h5  style="display: inline;color: #000000">{{ $garantie->ref_vendor }}</h5>
 
                                         <th>

@@ -22,7 +22,7 @@
 
                     <div class="card">
                                             <div class="card-header">
-                                                <h3 class="title">{{ __('Modifier un accident ') }}</h3>
+                                                <h3 class="title">{{ __('Modifier une DT ') }}</h3>
                                             </div>
                         <div class="card-body">
                             <div class="row">
@@ -110,6 +110,7 @@
                                 </div>
                             </div>
                         </div>
+                       
                         <div class="card-body" >
                             <div class="row">
                                 <label class="col-md-3 col-form-label">{{ __('Observation') }}</label>
@@ -156,7 +157,7 @@
                              <div class="col-md-12 text-center">
                                     <button type="submit" class="btn   btn-round"
                                     style="background:#EE643A;color:#ffffff;"
-                                    >{{ __('Ajouter') }}</button>
+                                    >{{ __('Modifier') }}</button>
                                 </div>
                             </div>
                         </div>

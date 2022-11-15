@@ -15,10 +15,28 @@ class CreateVehiculesTable extends Migration
     {
         Schema::create('vehicules', function (Blueprint $table) {
             $table->id();
-            $table->string('code')->unique();
+            //Carte grise
+            $table->string('genre');
             $table->string('serial_numbers',)->unique();
-            $table->string('year_commissioned');
+            $table->string('mark');
+
+            $table->string('type');
             $table->string('type_of_fuel');
+            $table->string('crosserie');
+            $table->string('power');
+           $table->string('places');
+           $table->string('weight');
+          $table->string('charge');
+          $table->string('marticule');
+          $table->string('precedent');
+          $table->string('moving_year');
+
+
+            //end
+            $table->string('code')->unique();
+
+            $table->string('year_commissioned');
+
             $table->string('tank_capacity');
             $table->string('litter_by_100km');
             $table->string('tire_size');

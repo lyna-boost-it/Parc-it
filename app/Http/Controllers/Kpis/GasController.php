@@ -10,6 +10,7 @@ use App\Staff;
 use App\Unit;
 use App\Vehicule;
 use Carbon\Carbon;
+use Faker\Core\Number;
 use Illuminate\Http\Request;
 class GasController extends Controller
 {
@@ -47,9 +48,11 @@ $gazolekm=$gazolekm+$gasVehicule->km; $totalkm=$totalkm+$gasVehicule->km;
 }
 
 if($totalGas==0){$totalGas=1;}
-$gplP=$gpl/$totalGas*100;
-$gazoleP=$gazole/$totalGas*100;
-$essenceP=$essence/$totalGas*100;
+$gplP=number_format($gpl/$totalGas*100, 2, ',', ' ');
+$gazoleP=number_format($gazole/$totalGas*100, 2, ',', ' ');
+$essenceP=number_format($essence/$totalGas*100, 2, ',', ' ');
+
+
 if($totalkm==0){$totalkm=1;}
 $gplPkm=$gplkm/$totalkm*100;
 $gazolePkm=$gazolekm/$totalkm*100;
@@ -84,7 +87,7 @@ for($i=1;$i<=12;$i++){
 }
 $date=Carbon::now();
 
-        return view('Kpis.gas.index',compact('date','gplP','essenceP','gazoleP','totalGas',
+        return view('Kpis.gas.index',compact('date','gplP','essenceP','gazoleP','totalGas','gpl',
         'gplPkm','essencePkm','gazolePkm','totalkm','staffs','gasVehicules','units','vehicules'
     ,'gplArray','essenceArray','gazoleArray','totalArray' ,'gplDAArray','essenceDAArray','gazoleDAArray','totalDAArray'
     ,'GasPipesPrice','GasPipesLitter','MaterialDAArray','MaterialGasArray'));

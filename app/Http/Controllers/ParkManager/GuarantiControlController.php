@@ -7,6 +7,7 @@ use App\Garanti;
 use App\Http\Controllers\Controller;
 use App\Staff;
 use App\Vehicule;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 class GuarantiControlController extends Controller
 { public function __construct()
@@ -63,10 +64,13 @@ class GuarantiControlController extends Controller
                 'ref_vendor',
                 'name_vendor',
                 'address_vendor',
-                'vehicle_id',
-               'after_sold_service' ,'start_date','end_date'
+                'vehicle_id','start_date','end_date'
     ));
-
+    $date = Carbon::createFromFormat('Y-m-d', $guaranti->start_date);
+    $date->addYears($request->duration);
+    $date = $date->toDateString();
+    $guaranti->end_date = $date;
+    $guaranti->save();
 
 
        return redirect()->route ('ParkManager.guarantis.index')->with('success',"vous avez ajouté un Service après-vente avec succès");
@@ -119,8 +123,7 @@ class GuarantiControlController extends Controller
             'ref_vendor',
             'name_vendor',
             'address_vendor',
-            'vehicle_id',
-           'after_sold_service' ,'start_date','end_date'));
+            'vehicle_id','start_date','end_date'));
 
 
                 return redirect('/ParkManager/guarantis')->with('success',"vous avez modifié un Service après-vente avec succès");

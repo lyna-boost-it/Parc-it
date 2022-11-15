@@ -24,112 +24,177 @@
 
                             </div>
                         </div>
-                       <div class="page-header" >
+                        <div class="page-header">
 
                             <div class="row">
 
 
 
-                                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-                                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-                                <table style=" width: 90%;border-collapse: collapse;">
-                                    <tr>
-                                        <th>
-                                            <h4  style="display: inline; color:#000000">ID: </h4>
-                                            <h5  style="display: inline;color:#000000">{{ $accident->id }}</h5>
-                                        </th>
+                                <fieldset>
+                                    <legend>Information du conducteur EDEVAL:</legend>
+                                    <table style=" width: 90%;border-collapse: collapse;">
+                                        <tr>
+                                            <th>
+                                                <h4 style="display: inline;color:#000000">Conducteur EDEVAL:</h4>
+                                                <h5 style="display: inline;color:#000000">
+                                                    @foreach ($drivers as $driver)
+                                                        @if ($driver->id == $accident->driver_id)
+                                                            {{ $driver->name }} {{ $driver->last_name }}
+                                                        @endif
+                                                    @endforeach
+                                                </h5>
+                                            </th>
+                                            <th>
+                                                <h4 style="display: inline; color:#000000">Véhicule: </h4>
+                                                <h5 style="display: inline;color:#000000">{{ $accident->marticule }}
+
+                                                        Type: {{ $vehicule->vehicle_type }}, Marque:
+                                                        {{ $vehicule->mark }}
+                                                </h5>
+                                            </th>
+                                        </tr>
+
+                                    </table><br>
+                                </fieldset>
+
+                                <fieldset>
+                                    <legend>Information du conducteur adversaire:</legend>
+                                    <table style=" width: 90%;border-collapse: collapse;">
+                                        <tr>
+                                            <th>
+                                                <br>
+                                                <h4 style="display: inline;color:#000000">Conducteur adversaire: </h4>
+                                                <h5 style="display: inline;color:#000000">
+                                                    {{ $accident->opponent_driver_name }}
+                                                    {{ $accident->opponent_driver_last_name }}</h5>
+                                            </th>
+                                            <th>
+                                                <h4 style="display: inline;color:#000000">Assurance du B: </h4>
+                                                <h5 style="display: inline;color:#000000">
+                                                    {{ $accident->opponent_insurance }}</h5>
+                                            </th>
+                                        </tr>
+
+                                        <tr>
+                                            <th>
+                                                <h4 style="display: inline;color:#000000">Adresse de l'agence de
+                                                    l'assurance
+                                                    adversaire: </h4>
+                                                <h5 style="display: inline;color:#000000">
+                                                    {{ $accident->opponent_insurance_address }}</h5>
+                                            </th>
 
 
-                                        <th>
-                                            <h4 style="display: inline;color:#000000" > Type d'accident: </h4>
-                                        <h5 style="display: inline;color:#000000">{{ $accident->accident_type }}</h5>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            <h4  style="display: inline; color:#000000">Numéro d'accident: </h4>
-                                            <h5  style="display: inline;color:#000000">{{ $accident->number }}</h5>
-                                        </th>
+                                            <th>
+                                                <h4 style="display: inline;color:#000000">N° de l'assurance de
+                                                    l'adversaire:
+                                                </h4>
+                                                <h5 style="display: inline;color:#000000">
+                                                    {{ $accident->opponent_number_insurance }}</h5>
+                                            </th>
+                                        </tr>
+                                        <tr>
+
+                                            <th>
+                                                <h4 style="display: inline;color:#000000 ">Documents de l'adversaire:
+                                                </h4>
 
 
 
+                                                <h5 style="display: inline;"> <a
+                                                        href="https://parcit.edeval.dz/public/files/accidents_files/{{ $accident->path }}">
 
 
-                                    <tr>
-                                        <th>
-                                            <h4   style="display: inline;color:#000000">Conséquences : </h4>
-                                            <h5 style="display: inline;color:#000000">{{ $accident->result }}</h5>
-                                        </th>
-                                        <th>
-                                            <h4  style="display: inline;color:#000000 ">Date de déclaration : </h4>
-                                            <h5 style="display: inline;color:#000000">{{ $accident->declaration_date }}</h5>
-                                        </th>
-                                    </tr>
+                                                        <span class="fa fa-eye  " style="color: #7e3dbb"> </span>
 
-                                    <tr>
-                                        <th>
-                                            <br>
-                                            <h4  style="display: inline;color:#000000" >Conducteur adversaire: </h4>
-                                            <h5 style="display: inline;color:#000000">{{$accident->opponent_driver_name }} {{$accident->opponent_driver_last_name }}</h5>
+                                                    </a></h5>
+                                            </th>
 
-                                        <th>
-                                            <h4  style="display: inline;color:#000000" >Conducteur EDEVAL:</h4>
-                                            <h5 style="display: inline;color:#000000"> @foreach ($drivers as $driver )
-                                                @if($driver->id== $accident->driver_id)
-                                                {{$driver->name }} {{$driver->last_name }}
-                                                @endif
-                                                @endforeach</h5>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            <h4  style="display: inline;color:#000000" >Assurance du B: </h4>
-                                            <h5 style="display: inline;color:#000000">{{$accident->opponent_insurance }}</h5>
-                                        </th>
+                                        </tr>
+                                    </table><br>
+                                </fieldset>
 
-                                        <th>
-                                            <h4  style="display: inline;color:#000000 ">Documents de l'adversaire: </h4>
+                                <fieldset>
+                                    <legend>Information d'accident:</legend>
+                                    <table style=" width: 90%;border-collapse: collapse;">
+                                        <tr>
+                                            <th>
+                                                <h4 style="display: inline; color:#000000">ID: </h4>
+                                                <h5 style="display: inline;color:#000000">{{ $accident->id }}</h5>
+                                            </th>
 
 
+                                            <th>
+                                                <h4 style="display: inline;color:#000000"> Type d'accident: </h4>
+                                                <h5 style="display: inline;color:#000000">
+                                                    {{ $accident->accident_type }}
+                                                </h5>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                <h4 style="display: inline; color:#000000">Numéro d'accident: </h4>
+                                                <h5 style="display: inline;color:#000000">{{ $accident->number }}
+                                                </h5>
+                                            </th>
+                                            <th>
+                                                <h4 style="display: inline;color:#000000">Conséquences : </h4>
+                                                <h5 style="display: inline;color:#000000">{{ $accident->result }}</h5>
+                                            </th>
+                                        </tr>
+                                        <tr>
 
-                                            <h5 style="display: inline;">  <a  href="https://parcit.edeval.dz/public/files/accidents_files/{{ $accident->path }}" >
+                                            <th>
+                                                <h4 style="display: inline;color:#000000 ">Date de déclaration : </h4>
+                                                <h5 style="display: inline;color:#000000">
+                                                    {{ $accident->declaration_date }}
+                                                </h5>
+                                            </th>
+                                            <th>
+                                                <h4 style="display: inline;color:#000000">Date de l'expertise: </h4>
+                                                <h5 style="display: inline;color:#000000">
+                                                    {{ $accident->expertise_date }}
+                                                </h5>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                <h4 style="display: inline;color:#000000 ">État d'avancement du dossier:
+                                                </h4>
+                                                <h5 style="display: inline;color:#000000">{{ $accident->state }}</h5>
+                                            </th>
+                                            <th>
+                                                <h4 style="display: inline;color:#000000">Causes d'accident: </h4>
+                                                <h5 style="display: inline;color:#000000">{{ $accident->cause }}</h5>
+
+                                            </th>
 
 
-                                                <span class="fa fa-eye  " style="color: #7e3dbb"> </span>
 
-                                            </a></h5>
-                                        </th>
-                                    </tr>
-
-                                    <tr>
-                                        <th>
-                                            <h4  style="display: inline;color:#000000">N° de l'assurance de l'adversaire: </h4>
-                                            <h5  style="display: inline;color:#000000">{{$accident->opponent_number_insurance }}</h5>
-                                        </th>
-
-                                        <th>
-                                            <h4 style="display: inline;color:#000000" >Adresse de l'agence de l'assurance adversaire: </h4>
-                                            <h5 style="display: inline;color:#000000">{{$accident->opponent_insurance_address }}</h5>
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            <h4   style="display: inline;color:#000000">Date de l'expertise: </h4>
-                                            <h5 style="display: inline;color:#000000">{{$accident->expertise_date }}</h5>
-                                        </th>
-
-                                        <th>
-                                            <h4  style="display: inline;color:#000000 ">État d'avancement du dossier: </h4>
-                                            <h5 style="display: inline;color:#000000">{{$accident->state }}</h5>
-                                        </th>
-                                    </tr><tr>
-                                        <th>
-                                            <h4  style="display: inline;color:#000000">Causes d'accident: </h4>
-                                            <h5  style="display: inline;color:#000000">{{$accident->cause }}</h5>
-
-                                        </th>
+                                        </tr>
+                                        <tr>
 
 
-                                    </tr>
-                                </table>
+                                            <th>
+                                                <h4 style="display: inline;color:#000000 ">Documents de l'adversaire:
+                                                </h4>
+
+
+
+                                                <h5 style="display: inline;"> <a
+                                                        href="https://parcit.edeval.dz/public/files/accidenst_pictures/{{ $accident->picture }}">
+
+
+                                                        <span class="fa fa-eye  " style="color: #7e3dbb"> </span>
+
+                                                    </a></h5>
+                                            </th>
+
+                                        </tr>
+                                    </table>
+                                </fieldset>
+
+
                             </div>
                         </div>
 

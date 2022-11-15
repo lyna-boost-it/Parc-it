@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\ParkManager;
 
-use App\Absence ;
+use App\Absence;
 use App\Driver;
 
 use App\Http\Controllers\Controller;
@@ -14,7 +14,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
 
 class AbsenceController extends Controller
-{ public function __construct()
+{
+    public function __construct()
     {
         $this->middleware('auth');
     }
@@ -25,13 +26,12 @@ class AbsenceController extends Controller
      */
     public function index()
     {
-        $units=Unit::all();
-        $staffs=Staff::all();
-        $absences=Absence::all();
+        $units = Unit::all();
+        $staffs = Staff::all();
+        $absences = Absence::all();
         Absence_cheker();
-        return view('ParkManager.absences.index')->with('units',$units)->
-        with('staffs',$staffs)
-        ->with('absences',$absences);
+        return view('ParkManager.absences.index')->with('units', $units)->with('staffs', $staffs)
+            ->with('absences', $absences);
     }
 
     /**
@@ -41,13 +41,14 @@ class AbsenceController extends Controller
      */
     public function create()
     {
-      $staffs_all=Staff::all();
- $staffs=Staff::all()->where('staff_state','=','pas au travail');
+        $staffs_all = Staff::all();
+        $staffs = Staff::all()->where('staff_state', '=', 'pas au travail');
 
-        $absence=new Absence();
-        return view('ParkManager.absences.create',
-        compact('staffs_all','staffs','absence' ));
-
+        $absence = new Absence();
+        return view(
+            'ParkManager.absences.create',
+            compact('staffs_all', 'staffs', 'absence')
+        );
     }
 
     /**
@@ -57,38 +58,36 @@ class AbsenceController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {$staff_id='';
-        if($request->staff_id1 !=''){
-            $staff_id=$request->staff_id1;
-
+    {
+        $staff_id = '';
+        if ($request->staff_id1 != '') {
+            $staff_id = $request->staff_id1;
         }
-        if($request->staff_id2 !=''){
-            $staff_id=$request->staff_id2;
-
+        if ($request->staff_id2 != '') {
+            $staff_id = $request->staff_id2;
         }
 
-        if($request->staff_id3 !=''){
-            $staff_id=$request->staff_id3;
-
+        if ($request->staff_id3 != '') {
+            $staff_id = $request->staff_id3;
         }
 
 
-        $absence=Absence:: create($request->only('id','absence_date' ,'duration','explanation'));
-        $absence->staff_id=$staff_id;
+        $absence = Absence::create($request->only('id', 'absence_date', 'duration', 'explanation'));
+        $absence->staff_id = $staff_id;
         $absence->save();
-        $staff=Staff::find($absence->staff_id);
-        $staff->staff_state="absent";
+        $staff = Staff::find($absence->staff_id);
+        $staff->staff_state = "absent";
 
         $staff->save();
 
 
         $date = Carbon::createFromFormat('Y-m-d', $absence->absence_date);
-$date->addDays($absence->duration);
-$date=$date->toDateString();
-$absence->absence_return= $date;
-$absence->save();
+        $date->addDays($absence->duration);
+        $date = $date->toDateString();
+        $absence->absence_return = $date;
+        $absence->save();
 
-        return redirect()->route ('ParkManager.absences.index')->with('success',"vous avez ajouté une absences avec succès");;
+        return redirect()->route('ParkManager.absences.index')->with('success', "vous avez ajouté une absences avec succès");;
     }
 
     /**
@@ -110,10 +109,10 @@ $absence->save();
      */
     public function edit($id)
     {
-        $absence=Absence ::find($id);
- $staff=Staff ::find($absence->staff_id);
+        $absence = Absence::find($id);
+        $staff = Staff::find($absence->staff_id);
 
-        return view("ParkManager.absences.edit", compact('absence','staff') );
+        return view("ParkManager.absences.edit", compact('absence', 'staff'));
     }
 
     /**
@@ -125,11 +124,11 @@ $absence->save();
      */
     public function update(Request $request, $id)
     {
-        $absence=Absence::find($id);
-        $absence->update($request->only('absence_date' ,'duration','explanation'));
+        $absence = Absence::find($id);
+        $absence->update($request->only('absence_date', 'duration', 'explanation'));
 
 
-                return redirect('/ParkManager/absences')->with('success',"vous avez modifié une absence avec succès");;
+        return redirect('/ParkManager/absences')->with('success', "vous avez modifié une absence avec succès");;
     }
 
     /**
@@ -140,9 +139,8 @@ $absence->save();
      */
     public function destroy($id)
     {
-        $absence=Absence::find($id);
+        $absence = Absence::find($id);
         $absence->delete();
-        return redirect('/ParkManager/absences')->with('success',"vous avez supprimé une absence avec succès");;
-
+        return redirect('/ParkManager/absences')->with('success', "vous avez supprimé une absence avec succès");;
     }
 }

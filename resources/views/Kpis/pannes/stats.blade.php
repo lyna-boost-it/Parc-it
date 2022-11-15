@@ -91,19 +91,7 @@
                         </div>
                         <div class="row">
 
-
-                            <div class="col-md-6 mb-20">
-                                <div class="card-box height-100-p pd-20">
-
-                                    <div id="myChart" class="chart--container">
-
-                                    </div>
-                                </div>
-
-
-
-
-                            </div>
+                            <div id="piechart"></div>
                             <div class="col-md-6 mb-20">
                                 <div class="card-box height-100-p pd-20">
                                     <div class="rounded-lg shadow-sm mb-12">
@@ -181,81 +169,36 @@
             <input type="hidden" value="{{ $moyene }} " id="moyene">
             <input type="hidden" value="{{ $legere }} " id="legere">
 
-            <script>
+            <script type="text/javascript">
                 var lourde = parseInt($("#lourde").val());
                 var moyene = parseInt($("#moyene").val());
                 var legere = parseInt($("#legere").val());
+                // Load google charts
+                google.charts.load('current', {'packages':['corechart']});
+                google.charts.setOnLoadCallback(drawChart);
+
+                // Draw the chart and set the chart values
+                function drawChart() {
+                  var data = google.visualization.arrayToDataTable([
+                  ['Task', 'Hours per Day'],
+                  ['Lourde',lourde],
+                  ['Moyenne', moyene],
+                  ['Légère',legere],
+
+                ]);
+
+                  // Optional; add a title and set the width and height of the chart
+                  var options = {'title':'My Average Day', 'width':900, 'height':650};
+
+                  // Display the chart inside the <div> element with id="piechart"
+                  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+                  chart.draw(data, options);
+                }
+                </script>
 
 
-                ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"];
-                let chartConfig = {
-                    type: 'ring',
-                    legend: {
-                        align: 'center',
-                        borderWidth: '0px',
-                        item: {
-                            cursor: 'pointer',
-                            fontSize: '15px',
-                            offsetX: '-5px',
-                        },
-                        layout: 'vertical',
-                        marker: {
-                            type: 'circle',
-                            cursor: 'pointer',
-                            size: '10px',
-                        },
-                        toggleAction: 'remove', // remove plot so it re-calculates percentage
-                        verticalAlign: 'middle',
-                    },
-                    plot: {
-                        tooltip: {
-                            visible: false,
-                        },
-                        detached: false, // turn off click on slices
-                        slice: 150, // set hole size in middle of chart
-                    },
-                    series: [{
-                            text: 'Lourde',
-                            values: [lourde],
-                            backgroundColor: '#553939',
-                        },
-                        {
-                            text: 'Moyenne',
-                            values: [moyene],
-                            backgroundColor: '#FA9494',
-                        },
-                        {
-                            text: 'Légère',
-                            values: [legere],
-                            backgroundColor: '#A5F1E9',
-                        },
 
-                    ],
-                };
 
-                zingchart.render({
-                    id: 'myChart',
-                    data: chartConfig,
-                    height: '100%',
-                    width: '100%',
-                });
-
-                /*
-                 * Every 35 milliseconds we will update the chart
-                 * angle by 1.5 degress so it simulates rotatition
-                 * animation!
-                 */
-                let angle = 0;
-                setInterval(function() {
-                    angle = angle + 1.5;
-                    zingchart.exec('myChart', 'modify', {
-                        object: 'plot',
-                        data: {
-                            refAngle: angle % 360,
-                        },
-                    });
-                }, 35);
-            </script>
 
 
             @include('layouts.footerforKPI')

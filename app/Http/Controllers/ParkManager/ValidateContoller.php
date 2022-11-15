@@ -35,12 +35,15 @@ class ValidateContoller extends Controller
     public function createV(Request $request, $id)
     {
         $type = $request->type;
+         $valide = $request->valide;
+         $staffs=Staff::all()->where('person_type','=','Personnel du parc')->where('staff_state','=','au travail');
+
         if($type=='Vehicule'){     $maintenance = Dt::find($id);
             $driver = Staff::find($maintenance->driver_id);
             $unit = Unit::find($maintenance->unit_id);
             $vehicule = Vehicule::find($maintenance->vehicle_id);
             $staff = Staff::find($maintenance->staff_id);
-            return view('ParkManager.validation.viewV', compact('maintenance', 'unit', 'vehicule', 'driver', 'staff','type'));
+            return view('ParkManager.validation.viewV', compact('maintenance', 'unit', 'vehicule', 'driver', 'staff','type','valide','staffs'));
     }
 
 
@@ -66,13 +69,18 @@ class ValidateContoller extends Controller
     {
         $type=$request->type;
         if($request->type=='Vehicule'){
+
         $maintenance = Dt::find($id);
         $answer = $request->answer;
         $currentUser = User::find($maintenance->user_id);
         $notif = new MoreNotifs();
 
-        if ($answer == 'accept') {
-            $maintenance->answer = 'Accepter';
+        if ($answer == 'Acceptée') {
+
+            $maintenance->update($request->only('unit_id','staff_id' ,'perso_id','vehicle_id',
+        'action','observation','type_maintenance','type_panne','nature_panne',
+       'driver_id','code_dt','enter_time', 'enter_date','answer'
+        ));
             $notif->details = 'Vorte demande de travaux pour vehicule: ' . $maintenance->vehicle_id . ' est Accepter';
             $currentUser->notify(new DtVNotification($maintenance, $notif));
             $notif->save();
@@ -81,8 +89,11 @@ class ValidateContoller extends Controller
 
 
         }
-        if ($answer == 'refuse') {
-            $maintenance->answer = 'Refuser';
+        if ($answer == 'Refusée') {
+            $maintenance->update($request->only('unit_id','staff_id' ,'perso_id','vehicle_id',
+        'action','observation','type_maintenance','type_panne','nature_panne',
+       'driver_id','code_dt','enter_time', 'enter_date','answer'
+        ));
             $notif->details = 'Vorte demande de travaux pour vehicule: ' . $maintenance->vehicule_id . ' est Refuser';
             $currentUser->notify(new DtVNotification($maintenance, $notif));
             $notif->save();

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\ParkManager;
 
 use App\ConsumedPieces;
+use App\Designation;
 use App\Dt;
 use App\DT_Piece;
 use App\Http\Controllers\Controller;
@@ -47,13 +48,14 @@ class RepairController extends Controller
      */
     public function createRepairs($id)
     {
+        $designations=Designation::all();
         $repair = new Repair();
         $dt = Dt::find($id);
         $vehicule = Vehicule::find($dt->vehicle_id);
         $pieces = ConsumedPieces::all()->where('type', '=', 'Véhicule');
         $lubrifiant = Liquids::where('type', '=', 'Lubrifiant')->first();
         $liquid = Liquids::where('type', '=', 'Liquide')->first();
-        $staffs = Staff::all()->where('person_type', '=', 'Personnel du centre de maintenance')->where('function', '!=', 'Mécanicien spécialisé (matériel motorisé)')->where('staff_state','=','au travail');
+        $staffs = Staff::all()->where('person_type', '=', 'Personnel du centre de maintenance')->where('function', '!=', 'Mécanicien spécialisé (matériel motorisé)')->where('staff_state', '=', 'au travail');
 
         $drivers = Staff::all()->where('person_type', '=', 'Conducteur');
         return view(
@@ -66,7 +68,7 @@ class RepairController extends Controller
                 'vehicule',
                 'lubrifiant',
                 'liquid',
-                'pieces'
+                'pieces','designations'
             )
         );
     }
@@ -83,12 +85,11 @@ class RepairController extends Controller
         $quantities = $request->input('quantities', []);
 
 
-      for ($piece=0; $piece < count($pieces); $piece++) {
-           $p=ConsumedPieces::find($pieces[$piece]);
-           $p->quantity= $p->quantity- $quantities[$piece];
-            if($p->quantity<0){
-                return redirect('/ParkManager/repairs')->with('error', "vous n'avez pas assez de quantité de piece ".$p->reference );
-
+        for ($piece = 0; $piece < count($pieces); $piece++) {
+            $p = ConsumedPieces::find($pieces[$piece]);
+            $p->quantity = $p->quantity - $quantities[$piece];
+            if ($p->quantity < 0) {
+                return redirect('/ParkManager/repairs')->with('error', "vous n'avez pas assez de quantité de piece " . $p->reference);
             }
         }
         $repair = Repair::create($request->only(
@@ -112,18 +113,20 @@ class RepairController extends Controller
         $references = $request->input('references', []);
         $designations = $request->input('designations', []);
         $receips = $request->input('receip', []);
+        $codes = $request->input('codes', []);
 
         for ($designation = 0; $designation < count($designations); $designation++) {
             if ($designations[$designation] != '') {
                 $dt_piece = new Repair_pieces();
-                $dt_piece->repair_id =$repair->id;
+                $dt_piece->repair_id = $repair->id;
                 $dt_piece->reference = $references[$designation];
                 $dt_piece->designation = $designations[$designation];
-                $dt_piece->price =$prices[$designation];
+                $dt_piece->price = $prices[$designation];
                 $dt_piece->quantity = $quantities[$designation];
                 $dt_piece->receip = $receips[$designation];
+                $dt_piece->code = $codes[$designation];
 
-                $dt_piece->full_price =$dt_piece->price*$dt_piece->quantity;
+                $dt_piece->full_price = $dt_piece->price * $dt_piece->quantity;
                 $dt_piece->save();
             }
         }
@@ -166,23 +169,17 @@ class RepairController extends Controller
             $user->notify(new RepairVNotification($repair, $notif));
         }
         $currentUser->notify(new RepairVNotification($repair, $notif));
-        for ($piece=0; $piece < count($pieces); $piece++) {
-            $p=ConsumedPieces::find($pieces[$piece]);
-            $p->quantity= $p->quantity- $quantities[$piece];
-          $p->save();
-          $pr=new Repair_pieces();
-          $pr->piece_id=$p->id;
-          $pr->repair_id=$repair->id;
-          $pr->quantity= $quantities[$piece];
-          $pr->save();
-
-         }
+        for ($piece = 0; $piece < count($pieces); $piece++) {
+            $p = ConsumedPieces::find($pieces[$piece]);
+            $p->quantity = $p->quantity - $quantities[$piece];
+            $p->save();
+            $pr = new Repair_pieces();
+            $pr->piece_id = $p->id;
+            $pr->repair_id = $repair->id;
+            $pr->quantity = $quantities[$piece];
+            $pr->save();
+        }
         return redirect('/ParkManager/repairs')->with('success', "vous avez ajouté une Reparation avec succès");
-
-
-
-
-
     }
 
     /**
@@ -192,14 +189,14 @@ class RepairController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function showRepairs($id)
-    {
+    {  $designations=Designation::all();
         $repair = Repair::find($id);
         $dt = Dt::find($repair->dt_code);
         $vehicule = Vehicule::find($repair->vehicule_id);
         $staffs = Staff::all()->where('person_type', '=', 'Personnel du parc');
         $driver = Staff::find($repair->driver_id);
         $repair_staffs = Repair_Staff::all()->where('repair_id', '=', $repair->id);
-        $rps=Repair_pieces::all()->where('repair_id', '=', $repair->id);
+        $rps = Repair_pieces::all()->where('repair_id', '=', $repair->id);
         return view(
             'ParkManager.repairs.view',
             compact(
@@ -208,7 +205,8 @@ class RepairController extends Controller
                 'driver',
                 'repair_staffs',
                 'vehicule',
-                'staffs','rps'
+                'staffs',
+                'rps','designations'
             )
         );
     }
@@ -286,7 +284,7 @@ class RepairController extends Controller
         }
 
         $repair_pieces = Repair_pieces::all()->where('repair_id', '=', $repair->id);
-        foreach($repair_pieces as $repair_piece){
+        foreach ($repair_pieces as $repair_piece) {
 
             $repair_piece->delete();
         }

@@ -62,7 +62,7 @@ class TechnicalControlController extends Controller
             'reserve',
             'transmitter',
             'observation',
-            'SirGaz',
+            'type',
             'vehicle_id' ));
 
     $technicalcontrol->save();
@@ -123,7 +123,7 @@ class TechnicalControlController extends Controller
             'reserve',
             'transmitter',
             'observation',
-            'SirGaz',
+            'type',
             'vehicle_id'));
 
             AllControll_Checker( );

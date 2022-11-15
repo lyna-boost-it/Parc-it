@@ -126,37 +126,41 @@
                                     <h4>Pièces consommées:<br> </h4>
                                     <div>
                                         @foreach ($rps as $rp)
-                                            <div class="sidenav">
+                                         @foreach ($designations as $designation)
+                                        @if($rp->designation==$designation->id)
+                                        <div class="sidenav">
 
-                                                <button class="dropdown-btn">Désignation:{{ $rp->designation }}</b>
-                                                    <i class="fa fa-caret-down"></i>
-                                                </button>
-                                                <div class="dropdown-container">
-                                                    <table style=" width: 90%;border-collapse: collapse;">
-                                                        <tr>
-                                                            <th>
-                                                                <h4>Reference:{{ $rp->reference }} </h4>
-
-
-                                                            </th>
-                                                            <th>
-                                                                <h4> Quantite: {{ $rp->quantity }} </h4>
-                                                            </th>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>
-                                                                <h4>prix: {{ $rp->price }}</h4>
-                                                            </th>
-                                                            <th>
-                                                                <h4>Prix total: {{ $rp->full_price }} </h4>
-                                                            </th>
-                                                        </tr>
-                                                    </table>
+                                            <button class="dropdown-btn">Désignation:{{ $designation->name }}</b>
+                                                <i class="fa fa-caret-down"></i>
+                                            </button>
+                                            <div class="dropdown-container">
+                                                <table style=" width: 90%;border-collapse: collapse;">
+                                                    <tr>
+                                                        <th>
+                                                            <h4>Reference:{{ $rp->reference }} </h4>
 
 
+                                                        </th>
+                                                        <th>
+                                                            <h4> Quantite: {{ $rp->quantity }} </h4>
+                                                        </th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>
+                                                            <h4>prix: {{ $rp->price }}</h4>
+                                                        </th>
+                                                        <th>
+                                                            <h4>Prix total: {{ $rp->full_price }} </h4>
+                                                        </th>
+                                                    </tr>
+                                                </table>
 
-                                                </div>
+
+
                                             </div>
+                                        </div>
+                                        @endif  @endforeach
+
                                         @endforeach
                                     </div>
                                 </div>

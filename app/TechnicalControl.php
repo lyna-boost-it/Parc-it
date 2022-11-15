@@ -14,7 +14,7 @@ class TechnicalControl extends Model
         'reserve',
         'transmitter',
         'observation',
-        'SirGaz',
+        'type',
         'vehicle_id'
         ];
         protected static $logAttributes = [
@@ -24,6 +24,6 @@ class TechnicalControl extends Model
             'reserve',
             'transmitter',
             'observation',
-            'SirGaz',
+            'type',
             'vehicle_id'];
 }

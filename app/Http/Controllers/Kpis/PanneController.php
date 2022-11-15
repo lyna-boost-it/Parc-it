@@ -70,14 +70,16 @@ class PanneController extends Controller
             $lourde = Dt::whereYear('created_at', $year)->whereMonth('created_at', $month)->where('type_panne', '=', 'Lourde')->count();
             $moyene = Dt::whereYear('created_at', $year)->whereMonth('created_at', $month)->where('type_panne', '=', 'Moyenne')->count();
             $legere = Dt::whereYear('created_at', $year)->whereMonth('created_at', $month)->where('type_panne', '=', 'Légère')->count();
-
-            return view('Kpis.pannes.stats', compact('pannes', 'lourde', 'moyene', 'legere', 'month', 'year', 'monthDT', 'yearDT'));
+             return view('Kpis.pannes.stats', compact('pannes', 'lourde', 'moyene', 'legere', 'month', 'year', 'monthDT', 'yearDT'));
         }
 
         if ($monthDT != '' && $yearDT != '') {
 
             $dts = Dt::whereYear('created_at', $yearDT)->whereMonth('created_at', $monthDT)->count();
             $monthDts = Dt::whereYear('created_at', $yearDT)->whereMonth('created_at', $monthDT)->where('state', '=', 'fait')->count();
+            if($dts==0){
+                $dts=1;}
+
             $taux = number_format((float)$monthDts / $dts * 100, 2, '.', '');
 
             return view('Kpis.pannes.stats', compact('monthDts', 'dts', 'taux', 'monthDT', 'yearDT', 'month', 'year'));

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\ParkManager;
 
 use App\ConsumedPieces;
+use App\Designation;
 use App\Dt;
 use App\DtMaterial;
 use App\Http\Controllers\Controller;
@@ -50,9 +51,9 @@ class RepairMController extends Controller
         $repair = new RepairsMaterial();
         $staffs=Staff::all()->where('person_type','=','Personnel du centre de maintenance')->where('function','=','Mécanicien spécialisé (matériel motorisé)')->where('staff_state','=','au travail');
         $pieces = ConsumedPieces::all()->where('type', '=', 'Machine');
-
+        $designations=Designation::all();
           return view('ParkManager.repairsM.create',
-          compact('repair','dt' , 'staffs', 'material','pieces' ));
+          compact('repair','dt' , 'staffs', 'material','pieces','designations' ));
 
     }
 
@@ -131,7 +132,7 @@ for ($designation = 0; $designation < count($designations); $designation++) {
      * @return \Illuminate\Http\Response
      */
     public function showRepairs($id)
-    {
+    {  $designations=Designation::all();
         $repair =RepairsMaterial::find($id);
         $dt=DtMaterial::find($repair->dt_code);
         $material=Material::find($repair->mm_id);
@@ -140,7 +141,7 @@ for ($designation = 0; $designation < count($designations); $designation++) {
 
         $repair_staffs=RepairsMaterial_Staff::all()->where('repairmaterial_id','=',$repair->id);
         return view('ParkManager.repairsM.view',
-        compact('repair','dt', 'repair_staffs', 'material','staffs','rps' ));
+        compact('repair','dt', 'repair_staffs', 'material','staffs','rps','designations' ));
     }
 
     /**

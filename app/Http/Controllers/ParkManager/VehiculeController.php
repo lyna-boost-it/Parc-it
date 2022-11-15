@@ -6,6 +6,7 @@ namespace App\Http\Controllers\ParkManager;
 use App\Accident;
 use App\DrivingLicence;
 use App\Garanti;
+use App\GasVehicules;
 use App\Http\Controllers\Controller;
 use App\Insurance;
 use App\Staff;
@@ -54,15 +55,18 @@ class VehiculeController extends Controller
      */
     public function store(Request $request)
     {
-        $vehicule=Vehicule:: create($request->only('id',
-        'code','serial_numbers', 'year_commissioned',
-         'type_of_fuel','tank_capacity',
-         'litter_by_100km','tire_size','pressure_forward'
-         ,'pressure_back','battery_type','mark','path','registration','acquisition_date',
-   'unit_id',
-       'vehicle_type',
-       'vehicle_state',
-       'marticule'));
+        $vehicule=Vehicule:: create($request->only(            'id',
+        'code',
+        'serial_numbers', 'year_commissioned',
+ 'type_of_fuel','tank_capacity',
+ 'litter_by_100km','tire_size','pressure_forward'
+ ,'pressure_back','battery_type','path','registration',
+ 'acquisition_date',
+'unit_id',
+'vehicle_type',
+'vehicle_state','mark',
+'marticule','genre', 'type', 'crosserie','power','places'
+,'weight','charge','precedent','moving_year'));
 
 
 $request->validate([
@@ -97,8 +101,10 @@ $vehicule->save();
         $garanties=Garanti::all()->where('vehicle_id','=',$id);
         $drivers=Staff::all()->where('person_type','=','Conducteur');
         $unit=Unit::find($vehicule->unit_id);
+        $gases=GasVehicules::all();
+        $staffs=Staff::all();
         return view('ParkManager.vehicules.view', compact('vehicule','inssurances','accicents'
-        ,'stickers','technicalcontrolls','licences','garanties','unit','drivers') );
+        ,'stickers','technicalcontrolls','licences','garanties','unit','drivers','gases','staffs') );
     }
 
     /**
@@ -122,15 +128,18 @@ $vehicule->save();
      */
     public function update(Request $request, Vehicule $vehicule)
     {
-        $vehicule->update($request->only('id',
-        'code','serial_numbers', 'year_commissioned',
-         'type_of_fuel','tank_capacity',
-         'litter_by_100km','tire_size','pressure_forward'
-         ,'pressure_back','battery_type','grey_card','mark','registration','acquisition_date',
-   'unit_id',
-       'vehicle_type',
-       'vehicle_state',
-       'marticule'));
+        $vehicule->update($request->only(            'id',
+        'code',
+        'serial_numbers', 'year_commissioned',
+ 'type_of_fuel','tank_capacity',
+ 'litter_by_100km','tire_size','pressure_forward'
+ ,'pressure_back','battery_type','path','registration',
+ 'acquisition_date',
+'unit_id',
+'vehicle_type',
+'vehicle_state','mark',
+'marticule','genre', 'type', 'crosserie','power','places'
+,'weight','charge','precedent','moving_year'));
             return redirect('/ParkManager/vehicules')->with('success', "vous avez modifié un vehicule avec succès");
 
     }

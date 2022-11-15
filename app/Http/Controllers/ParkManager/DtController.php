@@ -29,7 +29,8 @@ class DtController extends Controller
     public function index()
     {
 
-        $maintenances=Dt::all();
+    $maintenances=Dt::all()->where('state','!=','fait');
+        $maintenances_done=Dt::all()->where('state','=','fait');
         $drivers=Staff::all()->where('person_type','=','Conducteur');
         $units=Unit::all();
         $vehicules=Vehicule::all();
@@ -53,7 +54,7 @@ $maintenance->save();
 }
 
 }}}
-        return view('ParkManager.dts.index', compact(  'current_date','maintenances','units','vehicules','drivers','staffs'));
+        return view('ParkManager.dts.index', compact(  'current_date','maintenances','units','vehicules','drivers','staffs','maintenances_done'));
 
 
     }

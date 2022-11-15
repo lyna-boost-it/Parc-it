@@ -3951,3 +3951,29 @@ body.IE .login-wrap .container,  body.IE .register-page-wrap .container  {
     display:  none;
 }
 }
+th h5 {
+    font-weight: 700 !important;;
+color: #243b50 !important;
+font-size: 20px !important;
+
+
+}
+
+
+h5 {
+margin-left: 2px!important;
+
+}
+
+
+th h4 {
+    font-weight: 500 !important;;
+}
+
+
+.col-form-label {
+font-weight: 600;
+color: #243b50;
+font-size: 14px;
+    text-align: right;
+}

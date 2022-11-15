@@ -2,7 +2,7 @@
     Auth::user()->type == 'Utilisateur' ||
     Auth::user()->type == 'Demandeur' ||
     Auth::user()->type == 'Gestionnaire Sup')
-    @if ($type == 'Vehicule')
+    @if ($type == 'Vehicule' && $valide == 'accepted')
         <!DOCTYPE html>
         <html>
         @include('layouts.headForindexx')
@@ -14,16 +14,100 @@
 
 
 
+
+
             <div class="main-container">
                 <div class="xs-pd-20-10 pd-ltr-20">
 
                     <div id="test">
+
                         <div class="page-header">
                             <div class="row">
-                                <div class="title">
-                                    <h4>Information demande de travaux (DT): </h4>
+
+                                <h3>Information demande de travaux (DT):</h3>
+
+                            </div>
+                        </div>
+                        <div class="page-header">
+
+                            <div class="row">
+
+
+
+                                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                                <div style=" display: inline-block;">
+                                    <div class="col-md-10  ">
+                                        <div class="panel">
+                                            <div class="panel-body bio-chart">
+                                                <h4 style="display: inline; ">N° de la demande de travaux (DT) : </h4>
+                                                <h5 style="display: inline;">{{ $maintenance->code_dt }}</h5>
+                                                <br>
+                                                <h4 style="display: inline;">Date et Heure: </h4>
+                                                <h5 style="display: inline;">{{ $maintenance->created_at }}</h5>
+                                                <br><br><br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-10  ">
+                                        <div class="panel">
+                                            <div class="panel-body bio-desk">
+                                                <h4 style="display: inline;">TYPE DE PANNE: </h4>
+                                                <h5 style="display: inline;">{{ $maintenance->type_panne }}</h5>
+                                                <br>
+                                                <h4 style="display: inline;">Nature de Panne: </h4>
+                                                <h5 style="display: inline;">{{ $maintenance->nature_panne }}</h5>
+                                                <br><br><br>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
 
+
+                                <div style=" display: inline-block;">
+                                    <div class="col-md-10 ">
+                                        <div class="panel">
+                                            <div class="panel-body bio-chart">
+                                                <h4 style="display: inline; ">Conducteur: </h4>
+                                                <h5 style="display: inline;">{{ $driver->name }}
+                                                    {{ $driver->last_name }}</h5>
+                                                <br>
+                                                <h4 style="display: inline;">Affectation (unité) : </h4>
+                                                <h5 style="display: inline;">{{ $unit->name }}</h5>
+                                                <br><br><br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-10  ">
+                                        <div class="panel">
+                                            <div class="panel-body bio-desk">
+                                                <h4 style="display: inline;">Année mise en service: </h4>
+                                                <h5 style="display: inline;">{{ $vehicule->year_commissioned }}</h5>
+                                                <br>
+                                                <h4 style="display: inline;">Véhicule:{{ $vehicule->marticule }} </h4>
+                                                <h5 style="display: inline;">Type: {{ $vehicule->vehicle_type }},
+                                                    Marque:
+                                                    {{ $vehicule->mark }}</h5>
+                                                <br><br><br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-10  ">
+                                    <div class="panel">
+                                        <div class="panel-body bio-chart">
+                                            <h4 style="display: inline; "> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                                                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;Type de maintenance: </h4>
+                                            <h5 style="display: inline;">{{ $maintenance->type_maintenance }}</h5>
+                                            <h4 style="display: inline; ">Etat de la demande: </h4>
+                                            <h5 style="display: inline;">{{ $maintenance->answer }}</h5>
+                                            <br><br><br>
+
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -37,139 +121,166 @@
 
 
 
-                        <div style=" display: inline-block;">
-                            <div class="col-md-10  ">
-                                <div class="panel">
-                                    <div class="panel-body bio-chart">
-                                        <h4 style="display: inline; ">N° de la demande de travaux (DT) : </h4>
-                                        <h5 style="display: inline;">{{ $maintenance->code_dt }}</h5>
-                                        <br>
-                                        <h4 style="display: inline;">Date et Heure: </h4>
-                                        <h5 style="display: inline;">{{ $maintenance->created_at }}</h5>
-                                        <br><br><br>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-10  ">
-                                <div class="panel">
-                                    <div class="panel-body bio-desk">
-                                        <h4 style="display: inline;">TYPE DE PANNE: </h4>
-                                        <h5 style="display: inline;">{{ $maintenance->type_panne }}</h5>
-                                        <br>
-                                        <h4 style="display: inline;">Nature de Panne: </h4>
-                                        <h5 style="display: inline;">{{ $maintenance->nature_panne }}</h5>
-                                        <br><br><br>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
 
 
-                        <div style=" display: inline-block;">
-                            <div class="col-md-10 ">
-                                <div class="panel">
-                                    <div class="panel-body bio-chart">
-                                        <h4 style="display: inline; ">Conducteur: </h4>
-                                        <h5 style="display: inline;">{{ $driver->name }} {{ $driver->last_name }}</h5>
-                                        <br>
-                                        <h4 style="display: inline;">Affectation (unité) : </h4>
-                                        <h5 style="display: inline;">{{ $unit->name }}</h5>
-                                        <br><br><br>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-10  ">
-                                <div class="panel">
-                                    <div class="panel-body bio-desk">
-                                        <h4 style="display: inline;">Réception (Pers) : </h4>
-                                        <h5 style="display: inline;">{{ $staff->name }} {{ $staff->last_name }}</h5>
-                                        <br>
-                                        <h4 style="display: inline;">Action d'entrée (État): </h4>
-                                        <h5 style="display: inline;">{{ $maintenance->action }}</h5>
-                                        <br><br><br>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div style=" display: inline-block;">
-                            <div class="col-md-10  ">
-                                <div class="panel">
-                                    <div class="panel-body bio-chart">
-                                        <h4 style="display: inline; ">DATE ET HEURE D’ENTREE(État): </h4>
-                                        <h5 style="display: inline;">{{ $maintenance->enter_date }}
-                                            {{ $maintenance->enter_time }}</h5>
-                                        <br>
-                                        <h4 style="display: inline;">Type de véhicule: </h4>
-                                        <h5 style="display: inline;">{{ $vehicule->vehicle_type }}</h5>
-                                        <br><br><br>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-10  ">
-                                <div class="panel">
-                                    <div class="panel-body bio-desk">
-                                        <h4 style="display: inline;">Année mise en service: </h4>
-                                        <h5 style="display: inline;">{{ $vehicule->year_commissioned }}</h5>
-                                        <br>
-                                        <h4 style="display: inline;">Observation: </h4>
-                                        <h5 style="display: inline;">{{ $maintenance->observation }}</h5>
-                                        <br><br><br>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-10  ">
-                            <div class="panel">
-                                <div class="panel-body bio-chart">
-                                    <h4 style="display: inline; ">Type de maintenance: </h4>
-                                    <h5 style="display: inline;">{{ $maintenance->type_maintenance }}</h5>
-                                    <h4 style="display: inline; ">Etat de la demande: </h4>
-                                    <h5 style="display: inline;">{{ $maintenance->answer }}</h5>
-                                    <br><br><br>
+                    <div class="page-header">
 
-                                </div>
-                            </div>
-                        </div>
-                        <div style=" display: inline-block;">
 
                             <form action="{{ route('ParkManager.validation.storeV', $maintenance->id) }}"
                                 method="post">
 
-                                @csrf
-                                <input type="hidden" value="accept" id="answer" name="answer">
-                                <input type="hidden" value="Vehicule" id="type" name="type">
+                                @csrf <input type="hidden" value="Vehicule" id="type" name="type">
 
-                                <div class="row">
-                                    <div class="col-md-12 text-center">
-                                        <button type="submit"
-                                            class="btn btn-success btn-round">{{ __('Accepter') }}</button>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="title">{{ __('Informations complémentaires à accepter: ') }}</h3>
                                     </div>
                                 </div>
 
-                            </form>
-                        </div>
-                        <div style=" display: inline-block;">
-                            <form action="{{ route('ParkManager.validation.storeV', $maintenance->id) }}"
-                                method="post" enctype="multipart/form-data">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <label
+                                            class="col-md-3 col-form-label">{{ __('  Nom et prénom du Réception ') }}</label>
+                                        <div class="col-md-9" for="conducteur_field_for_absence">
+                                            <div class="form-group">
+                                                <select name="staff_id" placeholder="  Nom et prénom de l\'absent"
+                                                    value="{{ old('staff_id'), $maintenance->staff_id }}"class="form-control"
+                                                    id="staff_id">
+                                                    @foreach ($staffs as $staff)
+                                                        <option value="{{ $staff->id }}"
+                                                            {{ old('staff_id', $maintenance->staff_id) === 'staff_id' ? 'selected' : '' }}>
+                                                            {{ $staff->name }} {{ $staff->last_name }}</option>
+                                                    @endforeach
 
+                                                </select>
+                                            </div>
 
-                                @csrf
-                                <input type="hidden" value="refuse" id="answer" name="answer">
-
-                                <div class="row">
-                                    <div class="col-md-12 text-center">
-                                        <button type="submit"
-                                            class="btn btn-danger btn-round">{{ __('Refuser') }}</button>
+                                        </div>
                                     </div>
                                 </div>
-                                <input type="hidden" value="Vehicule" id="type" name="type">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <label class="col-md-3 col-form-label">{{ __('Action d\'entrée') }}</label>
+                                        <div class="col-md-9">
+                                            <div class="form-group">
+                                                <select name="action" class="form-control" id="action">
+                                                    <option value="" disabled selected>Action d'entrée</option>
+                                                    <option value="En maintenance"
+                                                        {{ old('action', $maintenance->action) === 'En maintenance' ? 'selected' : '' }}
+                                                        required>En maintenance</option>
+                                                    <option value="En panne (à l'arrêt)"
+                                                        {{ old('action', $maintenance->action) === 'en panne (à l\'arrêt)' ? 'selected' : '' }}
+                                                        required>en panne (à l'arrêt)</option>
+                                                    <option value=" A programmer mais opérationnel"
+                                                        {{ old('action', $maintenance->action) === 'A programmer mais opérationnel' ? 'selected' : '' }}
+                                                        required>A programmer mais opérationnel</option>
+                                                    <option value="A programmer mais en panne"
+                                                        {{ old('action', $maintenance->action) === 'A programmer mais en panne' ? 'selected' : '' }}
+                                                        required>A programmer mais en panne</option>
+
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <div class="row">
+                                        <label class="col-md-3 col-form-label">{{ __('Date d\'entrée ') }}</label>
+                                        <div class="col-md-9">
+                                            <div class="form-group">
+                                                <input type="date" name="enter_date" class="form-control"
+                                                    placeholder="Date d\'entre" value="{{ $maintenance->enter_date }}"
+                                                    required>
+                                            </div>
+                                            @if ($errors->has('enter_date'))
+                                                <span class="invalid-feedback" style="display: block;" role="alert">
+                                                    <strong>{{ $errors->first('enter_date') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <label class="col-md-3 col-form-label">{{ __('Heure d\'entrée ') }}</label>
+                                        <div class="col-md-9">
+                                            <div class="form-group">
+                                                <input type="time" name="enter_time" class="form-control"
+                                                    placeholder="Heure d\'entre"
+                                                    value="{{ $maintenance->enter_time }}" required>
+                                            </div>
+                                            @if ($errors->has('enter_time'))
+                                                <span class="invalid-feedback" style="display: block;"
+                                                    role="alert">
+                                                    <strong>{{ $errors->first('enter_time') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="hidden" value="Acceptée" id="answer" name="answer">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <label class="col-md-3 col-form-label">{{ __('Observation') }}</label>
+                                        <div class="col-md-9">
+                                            <div class="form-group">
+                                                <input type="text" name="observation" class="form-control"
+                                                    placeholder="Observation" value="{{ $maintenance->observation }}"
+                                                    required>
+                                            </div>
+                                            @if ($errors->has('observation'))
+                                                <span class="invalid-feedback" style="display: block;"
+                                                    role="alert">
+                                                    <strong>{{ $errors->first('observation') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <label class="col-md-3 col-form-label">{{ __('Type de Maintenance') }}</label>
+                                        <div class="col-md-9">
+                                            <div class="form-group">
+                                                <select name="type_maintenance" class="form-control"
+                                                    id="type_maintenance">
+                                                    <option value="" disabled selected>Choisissez un de
+                                                        Maintenance</option>
+                                                    <option value="Réparation"
+                                                        {{ old('type_maintenance', $maintenance->type_maintenance) === 'Réparation' ? 'selected' : '' }}>
+                                                        Réparation</option>
+                                                    <option value="Entretien"
+                                                        {{ old('type_maintenance', $maintenance->type_maintenance) === 'Entretien' ? 'selected' : '' }}>
+                                                        Entretien</option>
+                                                    <option value="Maintenance Externe"
+                                                        {{ old('type_maintenance', $maintenance->type_maintenance) === 'Maintenance Externe' ? 'selected' : '' }}>
+                                                        Maintenance Externe</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer ">
+                                    <div class="row">
+                                        <div class="col-md-12 text-center">
+                                            <button type="submit" class="btn   btn-round"
+                                                style="background:#EE643A;color:#ffffff;">{{ __('Accepter') }}</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+
                             </form>
-                        </div>
+
                         <button class="btn btn-warning btn-round"> <a href="javascript:generatePDF()">Télécharger le
                                 PDF</a></button>
                     </div>
                 </div>
+            </div>
+            </div>
             </div>
 
 
@@ -187,6 +298,200 @@
         </body>
 
         </html>
+    @endif
+    @if ($type == 'Vehicule' && $valide == 'refused')
+    <!DOCTYPE html>
+    <html>
+    @include('layouts.headForindexx')
+
+    <body>
+
+        @include('layouts.header-bar')
+        @include('layouts.navbar')
+
+
+
+
+
+        <div class="main-container">
+            <div class="xs-pd-20-10 pd-ltr-20">
+
+                <div id="test">
+
+                    <div class="page-header">
+                        <div class="row">
+
+                            <h3>Information demande de travaux (DT):</h3>
+
+                        </div>
+                    </div>
+                    <div class="page-header">
+
+                        <div class="row">
+
+
+
+                            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                            <div style=" display: inline-block;">
+                                <div class="col-md-10  ">
+                                    <div class="panel">
+                                        <div class="panel-body bio-chart">
+                                            <h4 style="display: inline; ">N° de la demande de travaux (DT) : </h4>
+                                            <h5 style="display: inline;">{{ $maintenance->code_dt }}</h5>
+                                            <br>
+                                            <h4 style="display: inline;">Date et Heure: </h4>
+                                            <h5 style="display: inline;">{{ $maintenance->created_at }}</h5>
+                                            <br><br><br>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-10  ">
+                                    <div class="panel">
+                                        <div class="panel-body bio-desk">
+                                            <h4 style="display: inline;">TYPE DE PANNE: </h4>
+                                            <h5 style="display: inline;">{{ $maintenance->type_panne }}</h5>
+                                            <br>
+                                            <h4 style="display: inline;">Nature de Panne: </h4>
+                                            <h5 style="display: inline;">{{ $maintenance->nature_panne }}</h5>
+                                            <br><br><br>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <div style=" display: inline-block;">
+                                <div class="col-md-10 ">
+                                    <div class="panel">
+                                        <div class="panel-body bio-chart">
+                                            <h4 style="display: inline; ">Conducteur: </h4>
+                                            <h5 style="display: inline;">{{ $driver->name }}
+                                                {{ $driver->last_name }}</h5>
+                                            <br>
+                                            <h4 style="display: inline;">Affectation (unité) : </h4>
+                                            <h5 style="display: inline;">{{ $unit->name }}</h5>
+                                            <br><br><br>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-10  ">
+                                    <div class="panel">
+                                        <div class="panel-body bio-desk">
+                                            <h4 style="display: inline;">Année mise en service: </h4>
+                                            <h5 style="display: inline;">{{ $vehicule->year_commissioned }}</h5>
+                                            <br>
+                                            <h4 style="display: inline;">Véhicule:{{ $vehicule->marticule }} </h4>
+                                            <h5 style="display: inline;">Type: {{ $vehicule->vehicle_type }},
+                                                Marque:
+                                                {{ $vehicule->mark }}</h5>
+                                            <br><br><br>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-10  ">
+                                <div class="panel">
+                                    <div class="panel-body bio-chart">
+                                        <h4 style="display: inline; "> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                                            &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;Type de maintenance: </h4>
+                                        <h5 style="display: inline;">{{ $maintenance->type_maintenance }}</h5>
+                                        <h4 style="display: inline; ">Etat de la demande: </h4>
+                                        <h5 style="display: inline;">{{ $maintenance->answer }}</h5>
+                                        <br><br><br>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <div class="page-header">
+
+
+                        <form action="{{ route('ParkManager.validation.storeV', $maintenance->id) }}"
+                            method="post">
+
+                            @csrf <input type="hidden" value="Vehicule" id="type" name="type">
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="title">{{ __('Informations complémentaires à Refuser: ') }}</h3>
+                                </div>
+                            </div>
+
+
+
+                            <input type="hidden" value="Refusée" id="answer" name="answer">
+                            <div class="card-body">
+                                <div class="row">
+                                    <label class="col-md-3 col-form-label">{{ __('Observation') }}</label>
+                                    <div class="col-md-9">
+                                        <div class="form-group">
+                                            <input type="text" name="observation" class="form-control"
+                                                placeholder="Observation" value="{{ $maintenance->observation }}"
+                                                required>
+                                        </div>
+                                        @if ($errors->has('observation'))
+                                            <span class="invalid-feedback" style="display: block;"
+                                                role="alert">
+                                                <strong>{{ $errors->first('observation') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-footer ">
+                                <div class="row">
+                                    <div class="col-md-12 text-center">
+                                        <button type="submit" class="btn   btn-round"
+                                            style="background:#EE643A;color:#ffffff;">{{ __('Refuser') }}</button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </form>
+
+                    <button class="btn btn-warning btn-round"> <a href="javascript:generatePDF()">Télécharger le
+                            PDF</a></button>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+
+
+        </div>
+
+
+        <br><br><br><br>
+
+        @include('layouts.footerForIndexx')
+
+
+
+
+
+    </body>
+
+    </html>
+
     @else
         <!DOCTYPE html>
         <html>
@@ -212,147 +517,273 @@
                             </div>
                         </div>
 
-
-
-
-
-
-
-                        <div style=" display: inline-block;">
-
-                            <div class="col-md-10  ">
-                                <div class="panel">
-                                    <div class="panel-body bio-chart">
-                                        <h4 style="display: inline; ">N° de la demande de travaux (DT) : </h4>
-                                        <h5 style="display: inline;">{{ $maintenance->code_dt }}</h5>
-                                        <h4 style="display: inline;">Date et Heure: </h4>
-                                        <h5 style="display: inline;">{{ $maintenance->created_at }}</h5>
-                                        <br><br><br>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-10  ">
-                                <div class="panel">
-                                    <div class="panel-body bio-desk">
-                                        <h4 style="display: inline;">TYPE DE PANNE: </h4>
-                                        <h5 style="display: inline;">{{ $maintenance->type_panne }}</h5>
-                                        <h4 style="display: inline;">Nature de Panne: </h4>
-                                        <h5 style="display: inline;">{{ $maintenance->nature_panne }}</h5>
-                                        <br><br><br>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                        <div style=" display: inline-block;">
-
-                            <div class="col-md-10  ">
-                                <div class="panel">
-                                    <div class="panel-body bio-chart">
-                                        <h4 style="display: inline; ">Employé: </h4>
-                                        <h5 style="display: inline;">{{ $emp->name }} {{ $emp->last_name }}</h5>
-                                        <h4 style="display: inline;">Affectation (unité) : </h4>
-                                        <h5 style="display: inline;">{{ $unit->name }}</h5>
-                                        <br><br><br>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-10  ">
-                                <div class="panel">
-                                    <div class="panel-body bio-desk">
-                                        <h4 style="display: inline;">Réception (Pers) : </h4>
-                                        <h5 style="display: inline;">{{ $staff->name }} {{ $staff->last_name }}</h5>
-                                        <h4 style="display: inline;">Action d'entrée (État): </h4>
-                                        <h5 style="display: inline;">{{ $maintenance->action }}</h5>
-                                        <br><br><br>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div style=" display: inline-block;">
-                            <div class="col-md-10  ">
-                                <div class="panel">
-                                    <div class="panel-body bio-chart">
-                                        <h4 style="display: inline; ">Type de machine: </h4>
-                                        <h5 style="display: inline;">{{ $material->type_of_machine }}</h5>
-                                        <h4 style="display: inline;">Année mise en service: </h4>
-                                        <h5 style="display: inline;">{{ $material->acquisition_date }}</h5>
-                                        <br><br><br>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-10  ">
-                                <div class="panel">
-                                    <div class="panel-body bio-desk">
-                                        <h4 style="display: inline;">Année mise en service: </h4>
-                                        <h5 style="display: inline;">{{ $material->year_commissioned }}</h5>
-                                        <h4 style="display: inline;">Observation: </h4>
-                                        <h5 style="display: inline;">{{ $maintenance->observation }}</h5>
-                                        <br><br><br>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div style=" display: inline-block;">
-                            <div class="col-md-10  ">
-                                <div class="panel">
-                                    <div class="panel-body bio-chart">
-                                        <h4 style="display: inline; ">Type de maintenance: </h4>
-                                        <h5 style="display: inline;">{{ $maintenance->type_maintenance }}</h5>
-                                        <br><br><br>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-                    <div style=" display: inline-block;">
-                        <form action="{{ route('ParkManager.validation.storeV', $maintenance->id) }}" method="post">
-
-                            @csrf
-                            <input type="hidden" value="accept" id="answer" name="answer">
-                            <input type="hidden" value="Machine" id="type" name="type">
-
+                        <div class="card-body">
                             <div class="row">
-                                <div class="col-md-12 text-center">
-                                    <button type="submit"
-                                        class="btn btn-success btn-round">{{ __('Accepter') }}</button>
+                                <label
+                                    class="col-md-3 col-form-label">{{ __('  Nom et prénom du Réception ') }}</label>
+                                <div class="col-md-9" for="conducteur_field_for_absence">
+                                    <div class="form-group">
+                                        <select name="staff_id" placeholder="  Nom et prénom de l\'absent"
+                                            value="{{ old('staff_id'), $maintenance->staff_id }}"class="form-control"
+                                            id="staff_id">
+                                            @foreach ($staffs as $staff)
+                                                <option value="{{ $staff->id }}"
+                                                    {{ old('staff_id', $maintenance->staff_id) === 'staff_id' ? 'selected' : '' }}>
+                                                    {{ $staff->name }} {{ $staff->last_name }}</option>
+                                            @endforeach
+
+                                        </select>
+                                    </div>
+
                                 </div>
                             </div>
-
-                        </form>
-                    </div>
-                    <div style=" display: inline-block;">
-                        <form action="{{ route('ParkManager.validation.storeV', $maintenance->id) }}" method="post"
-                            enctype="multipart/form-data">
-
-
-                            @csrf
-                            <input type="hidden" value="refuse" id="answer" name="answer">
-
+                        </div>
+                        <div class="card-body">
                             <div class="row">
-                                <div class="col-md-12 text-center">
-                                    <button type="submit"
-                                        class="btn btn-danger btn-round">{{ __('Refuser') }}</button>
+                                <label class="col-md-3 col-form-label">{{ __('Action d\'entrée') }}</label>
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                        <select name="action" class="form-control" id="action">
+                                            <option value="" disabled selected>Action d'entrée</option>
+                                            <option value="En maintenance"
+                                                {{ old('action', $maintenance->action) === 'En maintenance' ? 'selected' : '' }}
+                                                required>En maintenance</option>
+                                            <option value="En panne (à l'arrêt)"
+                                                {{ old('action', $maintenance->action) === 'en panne (à l\'arrêt)' ? 'selected' : '' }}
+                                                required>en panne (à l'arrêt)</option>
+                                            <option value=" A programmer mais opérationnel"
+                                                {{ old('action', $maintenance->action) === 'A programmer mais opérationnel' ? 'selected' : '' }}
+                                                required>A programmer mais opérationnel</option>
+                                            <option value="A programmer mais en panne"
+                                                {{ old('action', $maintenance->action) === 'A programmer mais en panne' ? 'selected' : '' }}
+                                                required>A programmer mais en panne</option>
+
+
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                            <input type="hidden" value="Machine" id="type" name="type">
-                        </form>
+                            <div class="card-body">
+                                <div class="row">
+                                    <label class="col-md-3 col-form-label">{{ __('Date d\'entrée ') }}</label>
+                                    <div class="col-md-9">
+                                        <div class="form-group">
+                                            <input type="date" name="enter_date" class="form-control"
+                                                placeholder="Date d\'entre" value="{{ $maintenance->enter_date }}"
+                                                required>
+                                        </div>
+                                        @if ($errors->has('enter_date'))
+                                            <span class="invalid-feedback" style="display: block;" role="alert">
+                                                <strong>{{ $errors->first('enter_date') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <label class="col-md-3 col-form-label">{{ __('Heure d\'entrée ') }}</label>
+                                    <div class="col-md-9">
+                                        <div class="form-group">
+                                            <input type="time" name="enter_time" class="form-control"
+                                                placeholder="Heure d\'entre" value="{{ $maintenance->enter_time }}"
+                                                required>
+                                        </div>
+                                        @if ($errors->has('enter_time'))
+                                            <span class="invalid-feedback" style="display: block;" role="alert">
+                                                <strong>{{ $errors->first('enter_time') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <label class="col-md-3 col-form-label">{{ __('Observation') }}</label>
+                                    <div class="col-md-9">
+                                        <div class="form-group">
+                                            <input type="text" name="observation" class="form-control"
+                                                placeholder="Observation" value="{{ $maintenance->observation }}"
+                                                required>
+                                        </div>
+                                        @if ($errors->has('observation'))
+                                            <span class="invalid-feedback" style="display: block;" role="alert">
+                                                <strong>{{ $errors->first('observation') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="card-body">
+                                <div class="row">
+                                    <label class="col-md-3 col-form-label">{{ __('Type de Maintenance') }}</label>
+                                    <div class="col-md-9">
+                                        <div class="form-group">
+                                            <select name="type_maintenance" class="form-control"
+                                                id="type_maintenance">
+                                                <option value="" disabled selected>Choisissez un de Maintenance
+                                                </option>
+                                                <option value="Réparation"
+                                                    {{ old('type_maintenance', $maintenance->type_maintenance) === 'Réparation' ? 'selected' : '' }}>
+                                                    Réparation</option>
+                                                <option value="Entretien"
+                                                    {{ old('type_maintenance', $maintenance->type_maintenance) === 'Entretien' ? 'selected' : '' }}>
+                                                    Entretien</option>
+                                                <option value="Maintenance Externe"
+                                                    {{ old('type_maintenance', $maintenance->type_maintenance) === 'Maintenance Externe' ? 'selected' : '' }}>
+                                                    Maintenance Externe</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+                                <div style=" display: inline-block;">
+
+                                    <div class="col-md-10  ">
+                                        <div class="panel">
+                                            <div class="panel-body bio-chart">
+                                                <h4 style="display: inline; ">N° de la demande de travaux (DT) : </h4>
+                                                <h5 style="display: inline;">{{ $maintenance->code_dt }}</h5>
+                                                <h4 style="display: inline;">Date et Heure: </h4>
+                                                <h5 style="display: inline;">{{ $maintenance->created_at }}</h5>
+                                                <br><br><br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-10  ">
+                                        <div class="panel">
+                                            <div class="panel-body bio-desk">
+                                                <h4 style="display: inline;">TYPE DE PANNE: </h4>
+                                                <h5 style="display: inline;">{{ $maintenance->type_panne }}</h5>
+                                                <h4 style="display: inline;">Nature de Panne: </h4>
+                                                <h5 style="display: inline;">{{ $maintenance->nature_panne }}</h5>
+                                                <br><br><br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div style=" display: inline-block;">
+
+                                    <div class="col-md-10  ">
+                                        <div class="panel">
+                                            <div class="panel-body bio-chart">
+                                                <h4 style="display: inline; ">Employé: </h4>
+                                                <h5 style="display: inline;">{{ $emp->name }}
+                                                    {{ $emp->last_name }}</h5>
+                                                <h4 style="display: inline;">Affectation (unité) : </h4>
+                                                <h5 style="display: inline;">{{ $unit->name }}</h5>
+                                                <br><br><br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-10  ">
+                                        <div class="panel">
+                                            <div class="panel-body bio-desk">
+                                                <h4 style="display: inline;">Réception (Pers) : </h4>
+                                                <h5 style="display: inline;">{{ $staff->name }}
+                                                    {{ $staff->last_name }}</h5>
+                                                <h4 style="display: inline;">Action d'entrée (État): </h4>
+                                                <h5 style="display: inline;">{{ $maintenance->action }}</h5>
+                                                <br><br><br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style=" display: inline-block;">
+                                    <div class="col-md-10  ">
+                                        <div class="panel">
+                                            <div class="panel-body bio-chart">
+                                                <h4 style="display: inline; ">Type de machine: </h4>
+                                                <h5 style="display: inline;">{{ $material->type_of_machine }}</h5>
+                                                <h4 style="display: inline;">Année mise en service: </h4>
+                                                <h5 style="display: inline;">{{ $material->acquisition_date }}</h5>
+                                                <br><br><br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-10  ">
+                                        <div class="panel">
+                                            <div class="panel-body bio-desk">
+                                                <h4 style="display: inline;">Année mise en service: </h4>
+                                                <h5 style="display: inline;">{{ $material->year_commissioned }}</h5>
+                                                <h4 style="display: inline;">Observation: </h4>
+                                                <h5 style="display: inline;">{{ $maintenance->observation }}</h5>
+                                                <br><br><br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style=" display: inline-block;">
+                                    <div class="col-md-10  ">
+                                        <div class="panel">
+                                            <div class="panel-body bio-chart">
+                                                <h4 style="display: inline; ">Type de maintenance: </h4>
+                                                <h5 style="display: inline;">{{ $maintenance->type_maintenance }}</h5>
+                                                <br><br><br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div style=" display: inline-block;">
+                                <form action="{{ route('ParkManager.validation.storeV', $maintenance->id) }}"
+                                    method="post">
+
+                                    @csrf
+                                    <input type="hidden" value="accept" id="answer" name="answer">
+                                    <input type="hidden" value="Machine" id="type" name="type">
+
+                                    <div class="row">
+                                        <div class="col-md-12 text-center">
+                                            <button type="submit"
+                                                class="btn btn-success btn-round">{{ __('Accepter') }}</button>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                            <div style=" display: inline-block;">
+                                <form action="{{ route('ParkManager.validation.storeV', $maintenance->id) }}"
+                                    method="post" enctype="multipart/form-data">
+
+
+                                    @csrf
+                                    <input type="hidden" value="refuse" id="answer" name="answer">
+
+                                    <div class="row">
+                                        <div class="col-md-12 text-center">
+                                            <button type="submit"
+                                                class="btn btn-danger btn-round">{{ __('Refuser') }}</button>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" value="Machine" id="type" name="type">
+                                </form>
+                            </div>
+                            <button class="btn btn-warning btn-round"> <a href="javascript:generatePDF()">Télécharger
+                                    le
+                                    PDF</a></button>
+                        </div>
                     </div>
-                    <button class="btn btn-warning btn-round"> <a href="javascript:generatePDF()">Télécharger le
-                            PDF</a></button>
+
                 </div>
-            </div>
-
-            </div>
 
 
-            <br><br><br><br>
+                <br><br><br><br>
 
-            @include('layouts.footerForIndexx')
+                @include('layouts.footerForIndexx')
 
 
 

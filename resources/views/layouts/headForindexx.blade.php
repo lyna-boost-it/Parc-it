@@ -8,15 +8,13 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="{{ URL('assets/vendors/styles/core.css') }}"; />
     <link rel="stylesheet" type="text/css" href="{{ URL('assets/vendors/styles/icon-font.min.css') }}"; />
-    <link rel="stylesheet" type="text/css"
-        href="{{ URL('assets/src/plugins/datatables/css/dataTables.bootstrap4.min.css') }}"; />
-    <link rel="stylesheet" type="text/css"
-        href="{{ URL('assets/src/plugins/datatables/css/responsive.bootstrap4.min.css') }}"; />
 
     <link rel="stylesheet" type="text/css" href="{{ URL('assets/src/plugins/fullcalendar/fullcalendar.css') }}"; />
 
     <link rel="stylesheet" type="text/css" href="{{ URL('assets/vendors/styles/style.css') }}"; />
-
+    <script src=
+    "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+        </script>
 
     <script src=
 "https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js">

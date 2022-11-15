@@ -32,193 +32,230 @@
                                     <h3 class="title">{{ __('Modifier un accident ') }}</h3>
                                 </div>
 
-
-
-
-
-                                <div class="card-body" >
-                                    <div class="row">
-                                        <label class="col-md-3 col-form-label">{{ __(' Date de  déclaration ') }}</label>
-                                        <div class="col-md-9" >
-                                            <div class="form-group">
-                                                <input type="date"  name="declaration_date" class="form-control"
-                                                placeholder=" Date de déclaration "
-                                                value="{{ $accident->declaration_date }}" required>
+                                <fieldset>
+                                    <legend>Information du conducteur adversaire</legend>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <label
+                                                class="col-md-3 col-form-label">{{ __('Nom conducteur adversaire') }}</label>
+                                            <div class="col-md-9">
+                                                <div class="form-group">
+                                                    <input type="text" name="opponent_driver_name" class="form-control"
+                                                        placeholder="Nom conducteur adversaire"
+                                                        value="{{ $accident->opponent_driver_name }}" required>
+                                                </div>
+                                                @if ($errors->has('opponent_driver_name'))
+                                                    <span class="invalid-feedback" style="display: block;" role="alert">
+                                                        <strong>{{ $errors->first('opponent_driver_name') }}</strong>
+                                                    </span>
+                                                @endif
                                             </div>
-                                            @if ($errors->has('declaration_date'))
-                                                <span class="invalid-feedback" style="display: block;" role="alert">
-                                                    <strong>{{ $errors->first('declaration_date') }}</strong>
-                                                </span>
-                                            @endif
                                         </div>
                                     </div>
-                                </div>
 
-
-
-
-
-
-                                <div class="card-body" >
-                                    <div class="row">
-                                        <label class="col-md-3 col-form-label">{{ __('Nom conducteur adversaire') }}</label>
-                                        <div class="col-md-9" >
-                                            <div class="form-group">
-                                                <input type="text"  name="opponent_driver_name" class="form-control"
-                                                placeholder="Nom conducteur adversaire"
-                                                value="{{ $accident->opponent_driver_name }}" required>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <label class="col-md-3 col-form-label">{{ __('Assurance du B') }}</label>
+                                            <div class="col-md-9">
+                                                <div class="form-group">
+                                                    <input type="text" name="opponent_insurance" class="form-control"
+                                                        placeholder="Assurance du B"
+                                                        value="{{ $accident->opponent_insurance }}" required>
+                                                </div>
+                                                @if ($errors->has('opponent_insurance'))
+                                                    <span class="invalid-feedback" style="display: block;" role="alert">
+                                                        <strong>{{ $errors->first('opponent_insurance') }}</strong>
+                                                    </span>
+                                                @endif
                                             </div>
-                                            @if ($errors->has('opponent_driver_name'))
-                                                <span class="invalid-feedback" style="display: block;" role="alert">
-                                                    <strong>{{ $errors->first('opponent_driver_name') }}</strong>
-                                                </span>
-                                            @endif
                                         </div>
                                     </div>
-                                </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <label
+                                                class="col-md-3 col-form-label">{{ __('Information du conducteur adversaire') }}</label>
 
 
-                                <div class="card-body" >
-                                    <div class="row">
-                                        <label class="col-md-3 col-form-label">{{ __('Prénom conducteur adversaire') }}</label>
-                                        <div class="col-md-9" >
-                                            <div class="form-group">
-                                                <input type="text"  name="opponent_driver_last_name" class="form-control"
-                                                placeholder="Prénom conducteur adversaire"
-                                                value="{{ $accident->opponent_driver_last_name }}" required>
-                                            </div>
-                                            @if ($errors->has('opponent_driver_last_name'))
-                                                <span class="invalid-feedback" style="display: block;" role="alert">
-                                                    <strong>{{ $errors->first('opponent_driver_last_name') }}</strong>
-                                                </span>
-                                            @endif
+                                            <input type="file" id="docpicker" name="path" accept=".doc,.xml,.pdf">
+
                                         </div>
                                     </div>
-                                </div>
-
-
-
-
-                                <div class="card-body" >
-                                    <div class="row">
-                                        <label class="col-md-3 col-form-label">{{ __('Assurance du B') }}</label>
-                                        <div class="col-md-9" >
-                                            <div class="form-group">
-                                                <input type="text"  name="opponent_insurance" class="form-control"
-                                                placeholder="Assurance du B"
-                                                value="{{ $accident->opponent_insurance }}" required>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <label
+                                                class="col-md-3 col-form-label">{{ __('N° de l’assurance de l’adversaire ') }}</label>
+                                            <div class="col-md-9">
+                                                <div class="form-group">
+                                                    <input type="number" maxlength="10" minlength="10"
+                                                        name="opponent_number_insurance" class="form-control"
+                                                        placeholder="N° de l’assurance de l’adversaire "
+                                                        value="{{ $accident->opponent_number_insurance }}" required>
+                                                </div>
+                                                @if ($errors->has('opponent_number_insurance'))
+                                                    <span class="invalid-feedback" style="display: block;" role="alert">
+                                                        <strong>{{ $errors->first('opponent_number_insurance') }}</strong>
+                                                    </span>
+                                                @endif
                                             </div>
-                                            @if ($errors->has('opponent_insurance'))
-                                                <span class="invalid-feedback" style="display: block;" role="alert">
-                                                    <strong>{{ $errors->first('opponent_insurance') }}</strong>
-                                                </span>
-                                            @endif
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="card-body" >
-                                    <div class="row">
-                                        <label class="col-md-3 col-form-label">{{ __('N° de l’assurance de l’adversaire ') }}</label>
-                                        <div class="col-md-9" >
-                                            <div class="form-group">
-                                                <input type="number" maxlength="10" minlength="10" name="opponent_number_insurance" class="form-control"
-                                                placeholder="N° de l’assurance de l’adversaire "
-                                                value="{{ $accident->opponent_number_insurance }}" required>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <label
+                                                class="col-md-3 col-form-label">{{ __(' Adresse de l’agence de l’assurance adversaire ') }}</label>
+                                            <div class="col-md-9">
+                                                <div class="form-group">
+                                                    <input type="text" name="opponent_insurance_address"
+                                                        class="form-control"
+                                                        placeholder=" Adresse de l’agence de l’assurance adversaire"
+                                                        value="{{ $accident->opponent_insurance_address }}" required>
+                                                </div>
+                                                @if ($errors->has('opponent_insurance_address'))
+                                                    <span class="invalid-feedback" style="display: block;" role="alert">
+                                                        <strong>{{ $errors->first('opponent_insurance_address') }}</strong>
+                                                    </span>
+                                                @endif
                                             </div>
-                                            @if ($errors->has('opponent_number_insurance'))
-                                                <span class="invalid-feedback" style="display: block;" role="alert">
-                                                    <strong>{{ $errors->first('opponent_number_insurance') }}</strong>
-                                                </span>
-                                            @endif
                                         </div>
                                     </div>
-                                </div>
+                                </fieldset>
+                                <fieldset>
+                                    <legend>Information d'accident'</legend>
 
-                                <div class="card-body" >
-                                    <div class="row">
-                                        <label class="col-md-3 col-form-label">{{ __(' Adresse de l’agence de l’assurance adversaire ') }}</label>
-                                        <div class="col-md-9" >
-                                            <div class="form-group">
-                                                <input type="text" m name="opponent_insurance_address" class="form-control"
-                                                placeholder=" Adresse de l’agence de l’assurance adversaire"
-                                                value="{{ $accident->opponent_insurance_address }}" required>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <label class="col-md-3 col-form-label">{{ __(' Numero d\'accident') }}</label>
+                                            <div class="col-md-9">
+                                                <div class="form-group">
+                                                    <input type="number" name="number" class="form-control"
+                                                        placeholder="Numero d\'accident" value="{{ $accident->number }}"
+                                                        required>
+                                                </div>
+                                                @if ($errors->has('number'))
+                                                    <span class="invalid-feedback" style="display: block;" role="alert">
+                                                        <strong>{{ $errors->first('number') }}</strong>
+                                                    </span>
+                                                @endif
                                             </div>
-                                            @if ($errors->has('opponent_insurance_address'))
-                                                <span class="invalid-feedback" style="display: block;" role="alert">
-                                                    <strong>{{ $errors->first('opponent_insurance_address') }}</strong>
-                                                </span>
-                                            @endif
                                         </div>
                                     </div>
-                                </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <label class="col-md-3 col-form-label">{{ __(' Type d’accident') }}</label>
+                                            <div class="col-md-9">
+                                                <div class="form-group">
+                                                    <input type="text" name="accident_type" class="form-control"
+                                                        placeholder="Type d’accident" value="{{ $accident->accident_type }}"
+                                                        required>
+                                                </div>
+                                                @if ($errors->has('accident_type'))
+                                                    <span class="invalid-feedback" style="display: block;" role="alert">
+                                                        <strong>{{ $errors->first('accident_type') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <label class="col-md-3 col-form-label">{{ __('Conséquences') }}</label>
+                                            <div class="col-md-9">
+                                                <div class="form-group">
+                                                    <input type="text" name="result" class="form-control"
+                                                        placeholder="Conséquences" value="{{ $accident->result }}" required>
+                                                </div>
+                                                @if ($errors->has('result'))
+                                                    <span class="invalid-feedback" style="display: block;" role="alert">
+                                                        <strong>{{ $errors->first('result') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <label class="col-md-3 col-form-label">{{ __(' Date de  déclaration ') }}</label>
+                                            <div class="col-md-9">
+                                                <div class="form-group">
+                                                    <input type="date" name="declaration_date" class="form-control"
+                                                        placeholder=" Date de déclaration "
+                                                        value="{{ $accident->declaration_date }}" required>
+                                                </div>
+                                                @if ($errors->has('declaration_date'))
+                                                    <span class="invalid-feedback" style="display: block;" role="alert">
+                                                        <strong>{{ $errors->first('declaration_date') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <label
+                                                class="col-md-3 col-form-label">{{ __('Photos d\'accident en format pdf') }}</label>
 
 
+                                            <input type="file" id="docpicker" name="picture" accept=".doc,.xml,.pdf">
 
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <label class="col-md-3 col-form-label">{{ __('Date de l’expertise') }}</label>
+                                            <div class="col-md-9">
+                                                <div class="form-group">
+                                                    <input type="date" name="expertise_date" class="form-control"
+                                                        placeholder=" Date de l’expertise"
+                                                        value="{{ $accident->expertise_date }}" required>
+                                                </div>
+                                                @if ($errors->has('expertise_date'))
+                                                    <span class="invalid-feedback" style="display: block;" role="alert">
+                                                        <strong>{{ $errors->first('expertise_date') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <label
+                                                class="col-md-3 col-form-label">{{ __('État d’avancement du dossier') }}</label>
+                                            <div class="col-md-9">
+                                                <div class="form-group">
+                                                    <select name="state"
+                                                        value="{{ old('state'), $accident->state }}"class="form-control"
+                                                        id="state">
+                                                        <option value="REMBOURSÉ">REMBOURSÉ</option>
+                                                        <option value="NON-REMBOURSÉ">NON-REMBOURSÉ</option>
+                                                        <option value="BLOQUÉ">BLOQUÉ</option>
+                                                        <option value="EN COURS">EN COURS</option>
+                                                        <option value="CLOTURÉ">CLOTURÉ</option>
 
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
 
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <label class="col-md-3 col-form-label">{{ __('  Causes d’accident ') }}</label>
+                                            <div class="col-md-9">
+                                                <div class="form-group">
+                                                    <input type="text" m name="cause" class="form-control"
+                                                        placeholder="  Causes d’accident" value="{{ $accident->cause }}"
+                                                        required>
+                                                </div>
+                                                @if ($errors->has('cause'))
+                                                    <span class="invalid-feedback" style="display: block;" role="alert">
+                                                        <strong>{{ $errors->first('cause') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
+                                        </div>
 
-
-
-
-
-            <div class="card-body" >
-                <div class="row">
-                    <label class="col-md-3 col-form-label">{{ __('Date de l’expertise') }}</label>
-                    <div class="col-md-9" >
-                        <div class="form-group">
-                            <input type="date"  name="expertise_date" class="form-control"
-                            placeholder=" Date de l’expertise"
-                            value="{{ $accident->expertise_date }}" required>
-                        </div>
-                        @if ($errors->has('expertise_date'))
-                            <span class="invalid-feedback" style="display: block;" role="alert">
-                                <strong>{{ $errors->first('expertise_date') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-                </div>
-            </div>
-
-            <div class="card-body">
-                <div class="row">
-                    <label class="col-md-3 col-form-label">{{ __('État d’avancement du dossier') }}</label>
-                    <div class="col-md-9">
-                        <div class="form-group">
-                            <select  name="state"
-                             value="{{ old('state'),$accident->state }}"class="form-control"
-                                id="state">
-                                <option value="En cours">En cours</option>
-                                  <option value="En attente">En attente</option>
-                                <option value="Fair">Fait</option>
-
-                            </select>     </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="card-body" >
-                <div class="row">
-                    <label class="col-md-3 col-form-label">{{ __('  Causes d’accident ') }}</label>
-                    <div class="col-md-9" >
-                        <div class="form-group">
-                            <input type="text" m name="cause" class="form-control"
-                            placeholder="  Causes d’accident"
-                            value="{{ $accident->cause }}" required>
-                        </div>
-                        @if ($errors->has('cause'))
-                            <span class="invalid-feedback" style="display: block;" role="alert">
-                                <strong>{{ $errors->first('cause') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-                </div>
-
-            </div>
-
-
-
+                                    </div>
+                                </fieldset>
 
 
                         <div class="card-footer ">

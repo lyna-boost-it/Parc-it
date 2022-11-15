@@ -25,7 +25,7 @@
 
         <br><br><br>
         <div class="card-header">
-            <h3 class="title">{{ __('Renouveler un contrôles techniques  ') }}</h3>
+            <h3 class="title">{{ __('Renouveler un contrôle techniques  ') }}</h3>
         </div>
 
 

@@ -143,21 +143,8 @@
 
 
 
-            <div style="text-align:right; margin:0px auto 0px auto;">
-
-
-                <div class="col-md-6 mb-20">
-                    <div class="card-box height-100-p pd-20">
-
-                        <div id="myChart" class="chart--container">
-
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-
+            <div id="piechart"></div>
+            <br><br>
 
 
 
@@ -165,7 +152,7 @@
     </div>
 
     </div>
-    <div style="position:absolute;right:20px;">
+
         <div class="card-box pd-20 height-100-p mb-30">
             <main>
                 <h4 class="font-20 weight-500 mb-10 text-capitalize text-orange">Statistique </h4>
@@ -715,9 +702,8 @@
 
         </div>
 
-    </div>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
     <input type="hidden" value="{{ $lourde }} " id="lourde">
     <input type="hidden" value="{{ $moyene }} " id="moyene">
     <input type="hidden" value="{{ $legere }} " id="legere">
@@ -725,86 +711,35 @@
 
 
     @include('layouts.footerforKPIindex')
-
-
 </body>
-
 </html>
-<script>
-    var lourde = parseInt($("#lourde").val());
+<script type="text/javascript">
+  var lourde = parseInt($("#lourde").val());
     var moyene = parseInt($("#moyene").val());
     var legere = parseInt($("#legere").val());
+       // Load google charts
+       google.charts.load('current', {'packages':['corechart']});
+       google.charts.setOnLoadCallback(drawChart);
 
+       // Draw the chart and set the chart values
+       function drawChart() {
+         var data = google.visualization.arrayToDataTable([
+         ['Consommation de Carburant', 'PAr Littre'],
+         ['Lourde',lourde],
+         ['Moyenne', moyene],
+         ['Légère', legere],
 
-    ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"];
-    let chartConfig = {
-        type: 'ring',
-        legend: {
-            align: 'center',
-            borderWidth: '0px',
-            item: {
-                cursor: 'pointer',
-                fontSize: '15px',
-                offsetX: '-5px',
-            },
-            layout: 'vertical',
-            marker: {
-                type: 'circle',
-                cursor: 'pointer',
-                size: '10px',
-            },
-            toggleAction: 'remove', // remove plot so it re-calculates percentage
-            verticalAlign: 'middle',
-        },
-        plot: {
-            tooltip: {
-                visible: false,
-            },
-            detached: false, // turn off click on slices
-            slice: 150, // set hole size in middle of chart
-        },
-        series: [{
-                text: 'Lourde',
-                values: [lourde],
-                backgroundColor: '#553939',
-            },
-            {
-                text: 'Moyenne',
-                values: [moyene],
-                backgroundColor: '#FA9494',
-            },
-            {
-                text: 'Légère',
-                values: [legere],
-                backgroundColor: '#A5F1E9',
-            },
+       ]);
 
-        ],
-    };
+         // Optional; add a title and set the width and height of the chart
+         var options = {'title':'consommation de Carburant ', 'width':1800, 'height':500};
 
-    zingchart.render({
-        id: 'myChart',
-        data: chartConfig,
-        height: '100%',
-        width: '100%',
-    });
+         // Display the chart inside the <div> element with id="piechart"
+         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+         chart.draw(data, options);
+       }
+       </script>
 
-    /*
-     * Every 35 milliseconds we will update the chart
-     * angle by 1.5 degress so it simulates rotatition
-     * animation!
-     */
-    let angle = 0;
-    setInterval(function() {
-        angle = angle + 1.5;
-        zingchart.exec('myChart', 'modify', {
-            object: 'plot',
-            data: {
-                refAngle: angle % 360,
-            },
-        });
-    }, 35);
-</script>
 <script>
     var aage = JSON.parse($("#aage").val());
     var bage = JSON.parse($("#bage").val());
@@ -868,10 +803,6 @@
         }]
     });
 </script>
-
-
-
-
 <style type="text/css">
     @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,700");
     @import url("https://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css");

@@ -99,31 +99,21 @@
 
 
 
-            <div style="text-align:right; margin:0px auto 0px auto;">
-                <div class="col-md-6 mb-20">
-                    <div class="card-box height-100-p pd-20">
-                        <h4 class="weight-600 font-20 text-orange">
-                            Consomation de Liquide totale {{ $totalLiquidConsumed }} Litre.
-                            <br>
-                            Consomation de Lubrifiant totale {{ $totalLubeConsumed }} Litre.
 
-                        </h4>
-                        <div id="myChart" class="chart--container">
 
-                        </div>
-                    </div>
-                </div>
-            </div>
+                        <div id="piechart"></div>
 
 
 
 
 
+
+                        <br>
 
 
 
         </div>
-        <div style="position:absolute;right:70px;">
+
                 <div class="card-box pd-20 height-100-p mb-30">
 
 
@@ -145,8 +135,9 @@
                             <tr>
                                 <th>Numéro</th>
                                 <th>ID</th>
-
-                                <th> Numéro de Série</th>
+                                <th>Véhicule</th>
+                                <th>Type V</th>
+                                <th>Marque</th>
                                 <th>Pourcentage</th>
 
 
@@ -172,8 +163,9 @@
                                 <tr>
                                     <td> {{ $i }}</td>
                                     <td>{{ $vehicule->id }}</td>
-
-                                    <td>{{ $vehicule->serial_numbers }} </td>
+                                    <td>{{ $vehicule->marticule }}</td>
+                                    <td>{{ $vehicule->vehicle_type }}</td>
+                                    <td> {{ $vehicule->mark }}</td>
                                     @foreach ($repairs as $repair)
                                         @if ($vehicule->id == $repair->vehicule_id)
                                             @php
@@ -198,8 +190,9 @@
                             <tr>
                                 <th>Numéro</th>
                                 <th>ID</th>
-
-                                <th> Numéro de Série</th>
+                                <th>Véhicule</th>
+                                <th>Type V</th>
+                                <th>Marque</th>
                                 <th>Pourcentage</th>
 
 
@@ -226,7 +219,9 @@
                                     <td> {{ $i }}</td>
                                     <td>{{ $vehicule->id }}</td>
 
-                                    <td>{{ $vehicule->serial_numbers }} </td>
+                                    <td>{{ $vehicule->marticule }}</td>
+                                    <td>{{ $vehicule->vehicle_type }}</td>
+                                    <td> {{ $vehicule->mark }}</td>
                                     @foreach ($repairs as $repair)
                                         @if ($vehicule->id == $repair->vehicule_id)
                                             @php
@@ -247,10 +242,8 @@
 
             </main>
 
-        </div>   </div>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
+        </div>
+        <br>
 
         <div  class="row">
 
@@ -374,76 +367,32 @@
             }]
         });
     </script>
-    <script>
-        var totalLubeConsumed = parseInt($("#totalLubeConsumed").val());
+    <script type="text/javascript">
+       var totalLubeConsumed = parseInt($("#totalLubeConsumed").val());
         var totalLiquidConsumed = parseInt($("#totalLiquidConsumed").val());
+           // Load google charts
+           google.charts.load('current', {'packages':['corechart']});
+           google.charts.setOnLoadCallback(drawChart);
+
+           // Draw the chart and set the chart values
+           function drawChart() {
+             var data = google.visualization.arrayToDataTable([
+             ['Consommation de Carburant', 'PAr Littre'],
+             ['Liquide',totalLubeConsumed],
+             ['Lubrifiant', totalLiquidConsumed],
 
 
-        ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"];
-        let chartConfig = {
-            type: 'ring',
-            legend: {
-                align: 'center',
-                borderWidth: '0px',
-                item: {
-                    cursor: 'pointer',
-                    fontSize: '15px',
-                    offsetX: '-5px',
-                },
-                layout: 'vertical',
-                marker: {
-                    type: 'circle',
-                    cursor: 'pointer',
-                    size: '10px',
-                },
-                toggleAction: 'remove', // remove plot so it re-calculates percentage
-                verticalAlign: 'middle',
-            },
-            plot: {
-                tooltip: {
-                    visible: false,
-                },
-                detached: false, // turn off click on slices
-                slice: 150, // set hole size in middle of chart
-            },
-            series: [{
-                    text: 'Liquide ',
-                    values: [totalLiquidConsumed],
-                    backgroundColor: '#FE7A5D',
-                },
-                {
-                    text: 'Lubrifiant ',
-                    values: [totalLubeConsumed],
-                    backgroundColor: '#69A8F8',
-                },
+           ]);
 
+             // Optional; add a title and set the width and height of the chart
+             var options = {'title':'Consomation de Liquide et Lubrifiant  ','width':1800, 'height':500};
 
-            ],
-        };
+             // Display the chart inside the <div> element with id="piechart"
+             var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+             chart.draw(data, options);
+           }
+           </script>
 
-        zingchart.render({
-            id: 'myChart',
-            data: chartConfig,
-            height: '90%',
-            width: '90%',
-        });
-
-        /*
-         * Every 35 milliseconds we will update the chart
-         * angle by 1.5 degress so it simulates rotatition
-         * animation!
-         */
-        let angle = 0;
-        setInterval(function() {
-            angle = angle + 1.5;
-            zingchart.exec('myChart', 'modify', {
-                object: 'plot',
-                data: {
-                    refAngle: angle % 360,
-                },
-            });
-        }, 35);
-    </script>
 
 
 

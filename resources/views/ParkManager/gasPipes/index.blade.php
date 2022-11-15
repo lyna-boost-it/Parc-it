@@ -35,6 +35,15 @@ text-decoration: none;  @endif
                             " href="{{route('ParkManager.gasPipes.create')}}" class="btn btn-sm ">
                                 Créer une nouvelle consommation
                             </a>
+                            <a  style="background:#1f3141;color:#ffffff;float: right;
+                            @if (Auth::user()->type == 'Gestionnaire Sup') color: currentColor;
+                            cursor: not-allowed;
+                            opacity: 0.5;
+                            text-decoration: none; @endif
+                                                    "
+                                href="{{ route('ParkManager.Gazprice.index') }}" class="btn btn-sm ">
+                                Modifier prix des carburant.
+                            </a>
                      		</div>
 
 						</div>
@@ -45,7 +54,7 @@ text-decoration: none;  @endif
 
 
 					<div class="card-box mb-30">
-					
+
 						<div class="pb-20" style="padding-top:19px;">
 
 							<table class="table nowrap hover data-table-export">

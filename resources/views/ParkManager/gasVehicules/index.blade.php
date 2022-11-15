@@ -36,6 +36,15 @@
                             href="{{ route('ParkManager.gasVehicules.create') }}" class="btn btn-sm ">
                             Créer une consommation
                         </a>
+                        <a  style="background:#1f3141;color:#ffffff;float: right;
+                        @if (Auth::user()->type == 'Gestionnaire Sup') color: currentColor;
+                        cursor: not-allowed;
+                        opacity: 0.5;
+                        text-decoration: none; @endif
+                                                "
+                            href="{{ route('ParkManager.Gazprice.index') }}" class="btn btn-sm ">
+                            Modifier prix des carburant.
+                        </a>
 						</div>
                     </div>
                 </div>
@@ -60,7 +69,6 @@
                                     <th>Conducteur</th>
                                     <th>Agent remplisseur</th>
                                     <th> Coût DA</th>
-                                    <th>Véhicule</th>
                                     <th> Litre de Carburant</th>
                                     <th> Prix du litre</th>
                                     <th> KM</th>
@@ -82,12 +90,11 @@
                                                     <tr>
                                                         <td>{{ $gasvehicule->id }}</td>
                                                         <td>{{ $vehicule->marticule }}</td>
-                                                <td>{{ $vehicule->vehicle_type }}</td>
-                                                <td> {{ $vehicule->mark }}</td>
+                                                        <td>{{ $vehicule->vehicle_type }}</td>
+                                                        <td> {{ $vehicule->mark }}</td>
                                                         <td> {{ $driver->name }} {{ $driver->last_name }} </td>
                                                         <td> {{ $staff->name }} {{ $staff->last_name }} </td>
                                                         <td>{{ $gasvehicule->price }}</td>
-
                                                         <td>{{ $gasvehicule->litter }}</td>
                                                         <td>{{ $gasvehicule->litter_price }}</td>
                                                         <td>{{ $gasvehicule->km }}</td>
