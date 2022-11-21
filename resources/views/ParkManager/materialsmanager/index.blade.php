@@ -71,14 +71,51 @@
 
                                         <td>{{ $material->mark }}</td>
                                         <td>{{ $material->model }}</td>
-                                        @foreach ($units as $unit)
-                                            @if ($unit->id == $material->unit_id)
-                                                <td>{{ $unit->name }}</td>
-                                            @endif
-                                        @endforeach
-                                        @if ($material->unit_id == 'Aucune unité')
-                                            <td>Aucune unité</td>
-                                        @endif
+
+                                                <td>                                           @php
+                                                    $i = 0;
+
+                                                @endphp
+                                                    @foreach($units as $unit)
+                                                    @if($unit->id==$material->unit_id)
+
+                                                    {{$unit->name}}
+                                                    @endif
+
+
+                                                    @if($material->unit_id == 0 && $i==0)
+                                                    @php
+                                                    $i = $i + 1;
+                                                @endphp
+
+                                                    @if (Auth::user()->type == 'Gestionnaire Sup')   <a class="dropdown-item"  style="  color: currentColor;
+                                                    cursor: not-allowed;
+                                                    opacity: 0.5;
+                                                    text-decoration: none;"  > <i class="dw dw-delete-3"></i>Effectuez une unité
+</a>
+
+                                                  @else
+
+                                        <form class="form-delete dropdown-item" method="get" action={{route('ParkManager.GiveUnit.show',$material->id)}}">
+
+                                                @csrf
+                                                <input hidden value="machine" name="type">
+                                                <button   type="submit" style=" background-color: transparent;
+                                                border-color: transparent;"   >
+
+                                                    <i class="dw dw-delete-3"></i>Effectuez une unité
+
+                                                </button>
+                                            </form>
+                                                  @endif
+
+
+
+
+                                                    @endif
+                                                    @endforeach</td>
+
+
                                         <td>
                                             <div class="dropdown">
                                                 <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"

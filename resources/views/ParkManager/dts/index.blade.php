@@ -91,7 +91,18 @@
                                                     <td>{{ $maintenance->type_maintenance }}</td>
                                                     <td>{{ $maintenance->action }}</td>
                                                     <td>{{ $maintenance->enter_date }} {{ $maintenance->enter_time }}
-                                                    <td><b>{{ $maintenance->answer }}</b></td>
+                                                    <td><b>
+                                                            @if ($maintenance->action == ' A programmer mais opérationnel' ||
+                                                                $maintenance->type_maintenance ==
+                                                                    ' A programmer mais en
+                                                            panne' ||
+                                                                $maintenance->action == 'En panne (à l\'arrêt)')
+                                                                En instance
+                                                            @endif
+                                                            @if ($maintenance->action == 'En maintenance')
+                                                                en cours
+                                                            @endif
+                                                        </b></td>
 
 
                                                     <td>
@@ -109,8 +120,11 @@
                                                                                 id="type" name="type">
                                                                             <input type="hidden" value="accepted"
                                                                                 id="valide" name="valide">
-                                                                            <i class="dw dw-check" style="color: green"></i>
 
+                                                                            <span class="hovertext"
+                                                                                data-hover="Accepté">
+                                                                                <i class="dw dw-check"
+                                                                                    style="color: green"></i></span>
                                                                         </button>
                                                                     </form>
                                                                     <form style="display: inline;"
@@ -122,10 +136,14 @@
                                                                             style="display: inline; background-color: transparent; border-color: transparent;">
                                                                             <input type="hidden" value="Vehicule"
                                                                                 id="type" name="type">
-                                                                            <input type="hidden" value="refused"
+                                                                            <input type="hidden" value="archivé"
                                                                                 id="valide" name="valide">
-                                                                            <i class="fas fa-times"style="color: red"></i>
 
+                                                                            <span class="hovertext"
+                                                                                data-hover="Archivé">
+                                                                                <i class="fas fa-archive  "
+                                                                                    style="color: red"></i>
+                                                                            </span>
                                                                         </button>
                                                                     </form>
                                                                 </div>
@@ -171,6 +189,22 @@
 
                                                                         </button>
                                                                     </form>
+
+
+                                                                    <form class="form-delete dropdown-item"
+                                                                    method="get"
+                                                                    action="{{ route('ParkManager.validation.choose1', $maintenance->id) }}">
+
+                                                                    @csrf
+                                                                    <button type="submit"
+                                                                        style=" background-color: transparent;
+                                                                        border-color: transparent;"
+                                                                        >
+
+                                                                        <i class="dw dw-delete-3"></i>Sortie
+
+                                                                    </button>
+                                                                </form>
                                                                 @endif
                                                             </div>
                                                         </div>
@@ -193,7 +227,7 @@
                     </div>
                 </div>
                 <div class="page-header">
-                    @include('inc.flash')
+
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="title">
@@ -234,7 +268,7 @@
                                         <th>Type de Maintenance</th>
                                         <th>Action d'entrée</th>
                                         <th>DATE ET HEURE D'ENTREE</th>
-                                        <th>Validité</th>
+
 
 
                                         <th class="datatable-nosort">Action</th>
@@ -249,8 +283,7 @@
                                     @foreach ($maintenances_done as $maintenance)
                                         @foreach ($vehicules as $vehicule)
                                             @if ($maintenance->vehicle_id == $vehicule->id)
-                                                <tr
-                                                     >
+                                                <tr>
 
                                                     <td>{{ $maintenance->code_dt }}</td>
                                                     <td>{{ $vehicule->marticule }}</td>
@@ -260,7 +293,7 @@
                                                     <td>{{ $maintenance->type_maintenance }}</td>
                                                     <td>{{ $maintenance->action }}</td>
                                                     <td>{{ $maintenance->enter_date }} {{ $maintenance->enter_time }}
-                                                    <td><b>{{ $maintenance->answer }}</b></td>
+
 
 
                                                     <td>
@@ -273,41 +306,12 @@
                                                             <div
                                                                 class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
 
-                                                                <a class="dropdown-item"
-                                                                    href="{{ route('ParkManager.dts.edit', $maintenance->id) }}"
-                                                                    @if (Auth::user()->type == 'Gestionnaire Sup') style="  color: currentColor;
-                                                                            cursor: not-allowed;
-                                                                            opacity: 0.5;
-                                                                            text-decoration: none;" @endif><i
-                                                                        class="dw dw-edit2"></i> Modifier</a>
+
                                                                 <a class="dropdown-item"
                                                                     href="{{ route('ParkManager.dts.show', $maintenance->id) }}"><i
                                                                         class="dw dw-eye"></i> Consulter</a>
 
 
-                                                                @if (Auth::user()->type == 'Gestionnaire Sup')
-                                                                    <a class="dropdown-item" href="#"
-                                                                        @if (Auth::user()->type == 'Gestionnaire Sup') style="  color: currentColor;
-                                                                cursor: not-allowed;
-                                                                opacity: 0.5;
-                                                                text-decoration: none;" @endif>
-                                                                        <i class="dw dw-delete-3"></i> Supprimer</a>
-                                                                @else
-                                                                    <form class="form-delete dropdown-item"
-                                                                        method="post"
-                                                                        action="{{ route('ParkManager.dts.destroy', $maintenance->id) }}">
-                                                                        @method('DELETE')
-                                                                        @csrf
-                                                                        <button type="submit"
-                                                                            style=" background-color: transparent;
-                                                            border-color: transparent;"
-                                                                            onclick="return confirm('êtes-vous sûr?')">
-
-                                                                            <i class="dw dw-delete-3"></i>Supprimer
-
-                                                                        </button>
-                                                                    </form>
-                                                                @endif
                                                             </div>
                                                         </div>
                                                     </td>
@@ -420,6 +424,26 @@
             font-family: 'Raleway';
             font-size: 30px;
             text-transform: uppercase;
+        }
+
+
+
+
+
+
+
+
+
+
+
+        .hovertext {
+            position: relative;
+            border-bottom: 2px dotted black;
+        }
+
+        .hovertext:hover:before {
+            opacity: 3;
+            visibility: visible;
         }
     </style>
 @endif

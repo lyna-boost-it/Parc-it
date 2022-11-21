@@ -70,19 +70,19 @@ class UnitDeleteController extends Controller
         $materials=Material::all();
         foreach( $staffs as $staff){
             if($staff->unit_id==$unit->id){
-                $staff->unit_id='Aucune unité';
+                $staff->unit_id=0;
                 $staff->save();
             }
         }
         foreach( $vehicules as $vehicule){
             if($vehicule->unit_id==$unit->id){
-                $vehicule->unit_id='Aucune unité';
+                $vehicule->unit_id=0;
                 $vehicule->save();
             }
         }
        foreach( $materials as $material){
             if($material->unit_id==$unit->id){
-                $material->unit_id='Aucune unité';
+                $material->unit_id=0;
                 $material->save();
             }
         }

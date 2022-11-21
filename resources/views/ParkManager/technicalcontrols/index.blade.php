@@ -56,6 +56,7 @@
                                     <th>Véhicule</th>
                                     <th>Type V</th>
                                     <th>Marque</th>
+                                     <th>Type CT</th>
                                     <th>Date d'effet </th>
                                     <th>Date limite </th>
                                     <th>Réserve</th>
@@ -73,6 +74,7 @@
                                                 <td>{{ $vehicule->vehicle_type }}</td>
                                                 <td> {{ $vehicule->mark }}</td>
                                                 <td>{{ $technicalcontrol->technical_control_number }}</td>
+  <td>{{ $technicalcontrol->type }}</td>
 
 
                                                 <td>

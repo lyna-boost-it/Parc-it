@@ -48,9 +48,9 @@ $gazolekm=$gazolekm+$gasVehicule->km; $totalkm=$totalkm+$gasVehicule->km;
 }
 
 if($totalGas==0){$totalGas=1;}
-$gplP=number_format($gpl/$totalGas*100, 2, ',', ' ');
-$gazoleP=number_format($gazole/$totalGas*100, 2, ',', ' ');
-$essenceP=number_format($essence/$totalGas*100, 2, ',', ' ');
+$gplP=$gpl/$totalGas*100;
+$gazoleP=$gazole/$totalGas*100;
+$essenceP=$essence/$totalGas*100;
 
 
 if($totalkm==0){$totalkm=1;}

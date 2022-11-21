@@ -27,7 +27,7 @@ class MaintenanceController extends Controller
      */
     public function indexMaintenance()
     {
-        $dts=Dt::all()->where('type_maintenance','=','Entretien')->where('answer','=','Accepter');
+        $dts=Dt::all()->where('type_maintenance','=','Entretien')->where('answer','=','Acceptée');
 
         $maintenances=Maintenance::all();
         $vehicules=Vehicule::all();
@@ -80,8 +80,7 @@ $maintenance_staff->save();
     }
     $dt=Dt::find($maintenance->dt_code);
     $dt->previous_state=$dt->state;
-    $dt->state='fait';
-    $dt->save();
+
 $vehicule=Vehicule::find($maintenance->vehicule_id);
 $vehicule->previous_state=$vehicule->vehicle_state;
 $vehicule->vehicle_state='Libre';
@@ -107,7 +106,40 @@ foreach ($usersB as $user) {
     $user->notify(new MaintenaceNotification($maintenance, $notif));
 }
 $currentUser->notify(new MaintenaceNotification($maintenance, $notif));
-    return redirect ('/ParkManager/maintenances')->with('success',"vous avez ajouté un Entretien avec succès");
+
+
+
+
+
+if($request->action=='more'){
+    if ($dt->state=='en attente'){
+        $dt->state = '2';
+        $dt->save();
+    }else{
+        $dt->state = $dt->state.'2';
+        $dt->save();
+    }
+    return view('ParkManager.validation.choice1', compact('dt' ));
+
+     }
+
+
+
+else{     $dt->previous_state = $dt->state;
+    $dt->state = 'fait';
+    $dt->save();
+
+    return redirect ('/ParkManager/dts')->with('success',"vous avez ajouté un Entretien avec succès");
+
+}
+
+
+
+
+
+
+
+
     }
 
     /**

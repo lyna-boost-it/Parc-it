@@ -68,7 +68,6 @@
 
 
 
-
 <script>
     $(function() {
        $('.content').hide();
@@ -114,3 +113,11 @@
        });
     });
       </script>
+<script type="text/javascript">
+
+    $("#mm_id").select2({
+          placeholder: "Sélectionner une machine",
+          allowClear: true
+      });
+
+</script>

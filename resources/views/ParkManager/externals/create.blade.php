@@ -203,10 +203,26 @@
 
 
 
+                            @if (!str_contains($dt->state, '2') && !str_contains($dt->state, '1') && !str_contains($dt->state, '3'))
                             <div class="card-footer ">
                                 <div class="row">
                                     <div class="col-md-12 text-center">
-                                        <button type="submit"
+
+
+                                        <button type="submit" name="action" value="more"
+                                            class="btn   btn-round"
+                                            style="background:#EE643A;color:#ffffff;">{{ __('Ajouter et créer d\'autres sorties') }}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+
+
+
+                            <div class="card-footer ">
+                                <div class="row">
+                                    <div class="col-md-12 text-center">
+                                        <button type="submit" name="action" value="end"
                                             class="btn   btn-round" style="background:#EE643A;color:#ffffff;">{{ __('Ajouter') }}</button>
                                     </div>
                                 </div>

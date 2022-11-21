@@ -27,7 +27,7 @@ class ExternalController extends Controller
      */
     public function index()
     {
-        $dts = Dt::all()->where('type_maintenance', '=', 'Maintenance Externe')->where('answer','=','Accepter');
+        $dts = Dt::all()->where('type_maintenance', '=', 'Maintenance Externe')->where('answer','=','Acceptée');
 
         $externals = External::all();
         $vehicules = Vehicule::all();
@@ -88,8 +88,7 @@ class ExternalController extends Controller
 
         $dt = Dt::find($external->dt_code);
         $dt->previous_state = $dt->state;
-        $dt->state = 'fait';
-        $dt->save();
+
         $vehicule = Vehicule::find($external->vehicule_id);
         $vehicule->previous_state = $vehicule->vehicle_state;
         $vehicule->vehicle_state = 'Libre';
@@ -109,8 +108,31 @@ class ExternalController extends Controller
             $user->notify(new ExternamVNotification($external, $notif));
         }
         $currentUser->notify(new ExternamVNotification($external, $notif));
-        return redirect('/ParkManager/externals')->with('success', "vous avez ajouté une Maintenances externes avec succès");
-    }
+
+
+        if($request->action=='more'){
+            if ($dt->state=='en attente'){
+                $dt->state = '3';
+                $dt->save();
+            }else{
+                $dt->state = $dt->state.'3';
+                $dt->save();
+            }
+            return view('ParkManager.validation.choice1', compact('dt' ));
+
+             }
+
+
+
+        else{     $dt->previous_state = $dt->state;
+            $dt->state = 'fait';
+            $dt->save();
+            return redirect('/ParkManager/dts')->with('success', "vous avez ajouté une Maintenances externes avec succès");
+
+        }
+
+
+   }
 
     /**
      * Display the specified resource.

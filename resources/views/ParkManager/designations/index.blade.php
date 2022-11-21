@@ -20,21 +20,11 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="title">
-                                <h3 style="color:#EE643A; ">Gestion des Utiisateurs</h3>
+                                <h3 style="color:#EE643A; ">Gestion des pièces consommées </h3>
                             </div>
 
                         </div>
-                        <a style="position: absolute;
-                        left: 1184px;background: #ee643a;
-    border-color: #f06431;
-                        @if (Auth::user()->type == 'Gestionnaire Sup') color: currentColor;
-  cursor: not-allowed;
-  opacity: 0.5;
-  text-decoration: none; @endif
-                        "
-                            href="{{ route('ParkManager.designations.create') }}" class="btn btn-sm btn-success">
-                            Créer un utilisateur
-                        </a>
+
                     </div>
                 </div>
 
@@ -46,12 +36,51 @@
 
                     </div>
                     <div class="pb-20">
+                        <form action="{{ route('ParkManager.designations.store', $a->id) }}" method="post">
 
+                            @csrf
+
+                            <div class="card">
+
+
+
+                                <div class="card-header">
+                                    <h3 class="title">{{ __('Créer une Marque') }}</h3>
+                                </div>
+
+
+                                <input hidden value="marque" name="type">
+
+                                <div class="card-body">
+                                    <div class="row">
+                                        <label class="col-md-3 col-form-label">{{ __('Marque') }}</label>
+                                        <div class="col-md-9">
+                                            <div class="form-group">
+                                                <input type="text" name="name" class="form-control"
+                                                    placeholder="Marque"   required>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+
+                                    </div>
+                                    <div class="card-footer ">
+                                        <div class="row">
+                                            <div class="col-md-12 text-center">
+                                                <button type="submit"
+                                                    class="btn btn-success   btn-round">{{ __('Ajouter') }}</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </form>
                         <table class="table nowrap hover data-table-export">
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Designation</th>
+                                    <th>Marque</th>
 
                                     <th class="datatable-nosort">Action</th>
 
@@ -71,35 +100,23 @@
 
 
                                         <td>
-                                            <div class="dropdown">
-                                                <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
-                                                    href="#" role="button" data-toggle="dropdown">
-                                                    <i class="dw dw-more"></i>
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
 
-                                                    <a class="dropdown-item"
-                                                        href="{{ route('ParkManager.designations.edit', $designation->id) }}"
-                                                        @if (Auth::user()->type == 'Gestionnaire Sup') style="  color: currentColor;
-                                                                cursor: not-allowed;
-                                                                opacity: 0.5;
-                                                                text-decoration: none;" @endif><i
-                                                            class="dw dw-edit2"></i> Modifier</a>
                                                     @if (Auth::user()->type == 'Gestionnaire Sup')
                                                         <a class="dropdown-item"
                                                             style="  color: currentColor;
-  cursor: not-allowed;
-  opacity: 0.5;
-  text-decoration: none;">
+                                                            cursor: not-allowed;
+                                                            opacity: 0.5;
+                                                            text-decoration: none;">
                                                             <i class="dw dw-delete-3"></i>Supprimer</a>
                                                     @else
                                                         <form class="form-delete dropdown-item" method="post"
                                                             action="{{ route('ParkManager.designations.destroy', $designation->id) }}">
                                                             @method('DELETE')
                                                             @csrf
+                                                            <input hidden value="marque" name="type">
                                                             <button type="submit"
                                                                 style=" background-color: transparent;
-    border-color: transparent;"
+                                                                 border-color: transparent;"
                                                                 onclick="return confirm('êtes-vous sûr?')">
 
                                                                 <i class="dw dw-delete-3">Supprimer</i>
@@ -108,8 +125,7 @@
                                                         </form>
                                                     @endif
 
-                                                </div>
-                                            </div>
+
                                         </td>
 
 
@@ -125,7 +141,117 @@
 
                     </div>
                 </div>
+                <div class="card-box mb-30">
+                    <div class="pd-20">
 
+
+                    </div>
+                    <div class="pb-20">
+                        <form action="{{ route('ParkManager.designations.store', $a->id) }}" method="post">
+
+                            @csrf
+
+                            <div class="card">
+
+
+
+                                <div class="card-header">
+                                    <h3 class="title">{{ __('Créer un Type') }}</h3>
+                                </div>
+
+
+                                <input hidden value="t" name="type">
+
+                                <div class="card-body">
+                                    <div class="row">
+                                        <label class="col-md-3 col-form-label">{{ __('Type') }}</label>
+                                        <div class="col-md-9">
+                                            <div class="form-group">
+                                                <input type="text" name="name" class="form-control"
+                                                    placeholder="Marque"   required>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+
+                                    </div>
+                                    <div class="card-footer ">
+                                        <div class="row">
+                                            <div class="col-md-12 text-center">
+                                                <button type="submit"
+                                                    class="btn btn-success   btn-round">{{ __('Ajouter') }}</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </form>
+                        <table class="table nowrap hover data-table-export">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Type</th>
+
+                                    <th class="datatable-nosort">Action</th>
+
+                                </tr>
+                            </thead>
+
+
+
+
+                            <tbody>
+                                @foreach ($types as $designation)
+                                    <tr>
+                                        <td>{{ $designation->id }}</td>
+                                        <td>
+                                            {{ $designation->name }}
+                                        </td>
+
+
+                                        <td>
+
+                                                    @if (Auth::user()->type == 'Gestionnaire Sup')
+                                                        <a class="dropdown-item"
+                                                            style="  color: currentColor;
+                                                            cursor: not-allowed;
+                                                            opacity: 0.5;
+                                                            text-decoration: none;">
+                                                            <i class="dw dw-delete-3"></i>Supprimer</a>
+                                                    @else
+                                                        <form class="form-delete dropdown-item" method="post"
+                                                            action="{{ route('ParkManager.designations.destroy', $designation->id) }}">
+                                                            @method('DELETE')
+                                                            @csrf
+                                                            <input hidden value="t" name="type">
+                                                            <button type="submit"
+                                                                style=" background-color: transparent;
+                                                                 border-color: transparent;"
+                                                                onclick="return confirm('êtes-vous sûr?')">
+
+                                                                <i class="dw dw-delete-3">Supprimer</i>
+
+                                                            </button>
+                                                        </form>
+                                                    @endif
+
+
+                                        </td>
+
+
+
+
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                </div>
                 @include('layouts.footerForIndexx')
 
     </body>

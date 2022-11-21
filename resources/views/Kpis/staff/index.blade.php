@@ -447,9 +447,9 @@
         function drawChart() {
             var data = google.visualization.arrayToDataTable([
                 ['Task', 'Hours per Day'],
-                ['Conducteur', 5],
-                ['Parc', 2.5],
-                ['Centre de maintenance', 2.5],
+                ['Conducteur', drivers],
+                ['Parc', pParck],
+                ['Centre de maintenance', pCentre],
 
             ]);
 

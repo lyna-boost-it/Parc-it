@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\MoreNotifs;
 use App\Notifications\CpVNotification;
+use App\Repair_pieces;
 use App\Staff;
 use App\Vehicule;
 use Illuminate\Http\Request;
@@ -24,7 +25,7 @@ class ConsumedPiecesController extends Controller
     public function index()
     {
 
-        $cps=ConsumedPieces::all();
+        $cps=Repair_pieces::all();
 
 
         return view('ParkManager.cps.index')

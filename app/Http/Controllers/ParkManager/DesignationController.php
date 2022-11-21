@@ -4,8 +4,9 @@ namespace App\Http\Controllers\ParkManager;
 
 use App\Designation;
 use App\Http\Controllers\Controller;
-
+use App\Marque;
 use Illuminate\Http\Request;
+use Symfony\Component\Console\Descriptor\Descriptor;
 
 class DesignationController extends Controller
 { public function __construct()
@@ -19,9 +20,11 @@ class DesignationController extends Controller
      */
     public function index()
     {
-        $designations=Designation::all();
-
-        return view('ParkManager.designations.index')->with('designations',$designations);
+        $designations=Marque::all();
+        $types=Designation::all();
+        $d=new Designation();
+        $a = new Marque();
+        return view('ParkManager.designations.index')->with('a',$a)->with('designations',$designations)->with('d',$d)->with('types',$types);
     }
 
     /**
@@ -31,11 +34,7 @@ class DesignationController extends Controller
      */
     public function create()
     {
-        $designation = new Designation();
-
-        return view('ParkManager.designations.create',
-        compact('designation'));
-
+//
 
     }
 
@@ -47,12 +46,22 @@ class DesignationController extends Controller
      */
     public function store(Request $request)
     {
+if($request->type=='marque'){
 
-        $designation=Designation:: create($request->only('id',
-        'name' ));
+    $designation=Marque:: create($request->only('id',
+    'name' ));
+
+    return redirect()->route ('ParkManager.designations.index')->with('success',"vous avez ajouté une Marque avec succès");
+
+}else{
+    $designation=Designation:: create($request->only('id',
+    'name' ));
+    return redirect()->route ('ParkManager.designations.index')->with('success',"vous avez ajouté un Type avec succès");
+
+}
 
 
-        return redirect()->route ('ParkManager.designations.index')->with('success',"vous avez ajouté une designation avec succès");
+
     }
 
     /**
@@ -99,10 +108,24 @@ $designation=Designation::find($id);
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy( Designation $designation)
+    public function destroy(Request $request,$id)
     {
-        $designation->delete();
-        return redirect('/ParkManager/designations')->with('success',"vous avez supprimé une designations avec succès");
+
+
+        if($request->type=='marque'){
+
+            $designation=Marque::find($id);
+            $designation->delete();
+            return redirect('/ParkManager/designations')->with('success',"vous avez supprimé une Marque avec succès");
+
+
+        }else{
+            $designation=Designation::find($id);
+            $designation->delete();
+            return redirect('/ParkManager/designations')->with('success',"vous avez supprimé un Type avec succès");
+
+        }
+
 
     }
 }

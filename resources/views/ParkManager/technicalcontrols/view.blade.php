@@ -20,7 +20,7 @@
                         <div class="page-header">
                             <div class="row">
 
-                                <h3>Information Contrôle techniques:  </h3>
+                                <h3>Information {{ $technicalcontroll->type }}:  </h3>
 
                             </div>
                         </div>
@@ -34,10 +34,7 @@
                                 &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
                                 <table style=" width: 90%;border-collapse: collapse;">
                                     <tr>
-                                        <th>
-                                            <h4 style="display: inline;color:#000000" >Type Contrôle technique: </h4>
-                                            <h5 style="display: inline;color:#000000">{{ $technicalcontroll->type }}</h5>
-                                        </th>
+
                                         <th>
                                             <h4  style="display: inline;color:rgb(42, 165, 124)">ID: </h4>
                                             <h5  style="display: inline;color:#000000">{{ $technicalcontroll->id }}</h5>

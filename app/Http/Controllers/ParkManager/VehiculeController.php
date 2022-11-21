@@ -9,6 +9,7 @@ use App\Garanti;
 use App\GasVehicules;
 use App\Http\Controllers\Controller;
 use App\Insurance;
+use App\Mission;
 use App\Staff;
 use App\Sticker;
 use App\TechnicalControl;
@@ -101,10 +102,11 @@ $vehicule->save();
         $garanties=Garanti::all()->where('vehicle_id','=',$id);
         $drivers=Staff::all()->where('person_type','=','Conducteur');
         $unit=Unit::find($vehicule->unit_id);
-        $gases=GasVehicules::all();
+        $gases=GasVehicules::all()->where('vehicle_id','=',$id);
         $staffs=Staff::all();
+        $missions=Mission::all()->where('vehicle_id','=',$id);
         return view('ParkManager.vehicules.view', compact('vehicule','inssurances','accicents'
-        ,'stickers','technicalcontrolls','licences','garanties','unit','drivers','gases','staffs') );
+        ,'stickers','technicalcontrolls','licences','garanties','unit','drivers','gases','staffs','missions') );
     }
 
     /**

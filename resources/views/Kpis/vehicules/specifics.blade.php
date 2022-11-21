@@ -30,7 +30,7 @@
 
 
                                 <div class="weight-600 font-30 text-orange">temps moyen de disponibilité de vehicule :
-                                    {{ $vehicule->serial_numbers }}
+                                    {{ $vehicule->marticule }}
 
                                 </div>
                             </h4>
@@ -119,7 +119,7 @@
 
 
                                 <div class="weight-600 font-30 text-orange">Taux d'utilisation du véhicule:
-                                    {{ $vehicule->serial_numbers }}
+                                    {{ $vehicule->marticule }}
                                     par conducteur dans @switch($month)
                                         @case(1)
                                             Janvier

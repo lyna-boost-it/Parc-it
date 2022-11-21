@@ -100,7 +100,32 @@
                             </div>
 
 
+                            <div class="card-body">
+                                <div class="row">
+                                    <label class="col-md-3 col-form-label">{{ __('Type du Carburant') }}</label>
+                                    <div class="col-md-9">
+                                        <div
+                                                style="width: 50%;
+                                                                float: left;
+                                                                padding: 20px;
+                                                                ">
 
+
+                                            <select style="width: 300px" id="selectFieldd" class="vhm"
+                                                name="type">
+                                                <option></option>
+                                                @foreach ($gases as $gase)
+                                                    <option value="{{ $gase->name }}">
+                                                <h1></h1>
+                                                {{ $gase->name }}, {{ $gase->price }} DA</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
 
 
 

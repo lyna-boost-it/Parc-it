@@ -29,103 +29,103 @@
                             <h4 style="color:#f06431;">information de la carte grise du Véhicule: </h4>
 
 
-                                <table style=" width: 90%;border-collapse: collapse;">
-                                    <tr>
-                                        <th>
-                                            <h4 style="display: inline;color:#000000 ">Genre: </h4>
-                                            <h5 style="display: inline;">{{ $vehicule->genre }}</h5>
-                                        </th>
+                            <table style=" width: 90%;border-collapse: collapse;">
+                                <tr>
+                                    <th>
+                                        <h4 style="display: inline;color:#000000 ">Genre: </h4>
+                                        <h5 style="display: inline;">{{ $vehicule->genre }}</h5>
+                                    </th>
 
 
-                                        <th>
-                                            <h4 style="display: inline;color:#000000 ">Marque de véhicule: </h4>
-                                            <h5 style="display: inline;">{{ $vehicule->mark }}</h5>
-                                        </th>
-
-
-
-                                    </tr>
-
-                                    <tr>
-                                        <th>
-                                            <h4 style="display: inline;color:#000000 ">Type de véhicule: </h4>
-                                            <h5 style="display: inline;">{{ $vehicule->type }}</h5>
-                                        </th>
-
-
-                                        <th>
-                                            <h4 style="display: inline; color:#000000">Carrosserie: </h4>
-                                            <h5 style="display: inline;">{{ $vehicule->crosserie }}</h5>
-                                        </th>
+                                    <th>
+                                        <h4 style="display: inline;color:#000000 ">Marque du véhicule: </h4>
+                                        <h5 style="display: inline;">{{ $vehicule->mark }}</h5>
+                                    </th>
 
 
 
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            <h4 style="display: inline;color:#000000 ">Energie de véhicule: </h4>
-                                            <h5 style="display: inline;">{{ $vehicule->type_of_fuel }}</h5>
-                                        </th>
+                                </tr>
+
+                                <tr>
+                                    <th>
+                                        <h4 style="display: inline;color:#000000 ">Type du véhicule: </h4>
+                                        <h5 style="display: inline;">{{ $vehicule->type }}</h5>
+                                    </th>
 
 
-                                        <th>
-                                            <h4 style="display: inline; color:#000000">Puissance de véhicule: </h4>
-                                            <h5 style="display: inline;">{{ $vehicule->power }}</h5>
-                                        </th>
-
-
-
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            <h4 style="display: inline; color:#000000">Places assises: </h4>
-                                            <h5 style="display: inline;">{{ $vehicule->places }}</h5>
-                                        </th>
-
-
-                                        <th>
-                                            <h4 style="display: inline;color:#000000">Poids total en charge: </h4>
-                                            <h5 style="display: inline;">{{ $vehicule->weight }}</h5>
-                                        </th>
+                                    <th>
+                                        <h4 style="display: inline; color:#000000">Carrosserie: </h4>
+                                        <h5 style="display: inline;">{{ $vehicule->crosserie }}</h5>
+                                    </th>
 
 
 
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            <h4 style="display: inline; color:#000000">Charge utile: </h4>
-                                            <h5 style="display: inline;">{{ $vehicule->charge }}</h5>
-                                        </th>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <h4 style="display: inline;color:#000000 ">Energie du véhicule: </h4>
+                                        <h5 style="display: inline;">{{ $vehicule->type_of_fuel }}</h5>
+                                    </th>
 
 
-                                        <th>
-                                            <h4 style="display: inline;color:#000000">N D\'imatriculation: </h4>
-                                            <h5 style="display: inline;">{{ $vehicule->marticule }}</h5>
-                                        </th>
-
-
-
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            <h4 style="display: inline; color:#000000">Precedent numero: </h4>
-                                            <h5 style="display: inline;">{{ $vehicule->precedent }}</h5>
-                                        </th>
-
-
-                                        <th>
-                                            <h4 style="display: inline;color:#000000">Annee de premiere mise en
-                                                circulation: </h4>
-                                            <h5 style="display: inline;">{{ $vehicule->moving_year }}</h5>
-                                        </th>
+                                    <th>
+                                        <h4 style="display: inline; color:#000000">Puissance du véhicule: </h4>
+                                        <h5 style="display: inline;">{{ $vehicule->power }}</h5>
+                                    </th>
 
 
 
-                                    </tr>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <h4 style="display: inline; color:#000000">Places assises: </h4>
+                                        <h5 style="display: inline;">{{ $vehicule->places }}</h5>
+                                    </th>
 
 
-                                </table>
-                            </div>
+                                    <th>
+                                        <h4 style="display: inline;color:#000000">Poids total en charge: </h4>
+                                        <h5 style="display: inline;">{{ $vehicule->weight }}</h5>
+                                    </th>
+
+
+
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <h4 style="display: inline; color:#000000">Charge utile: </h4>
+                                        <h5 style="display: inline;">{{ $vehicule->charge }}</h5>
+                                    </th>
+
+
+                                    <th>
+                                        <h4 style="display: inline;color:#000000">N D\'imatriculation: </h4>
+                                        <h5 style="display: inline;">{{ $vehicule->marticule }}</h5>
+                                    </th>
+
+
+
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <h4 style="display: inline; color:#000000">Precedent numero: </h4>
+                                        <h5 style="display: inline;">{{ $vehicule->precedent }}</h5>
+                                    </th>
+
+
+                                    <th>
+                                        <h4 style="display: inline;color:#000000">Annee de premiere mise en
+                                            circulation: </h4>
+                                        <h5 style="display: inline;">{{ $vehicule->moving_year }}</h5>
+                                    </th>
+
+
+
+                                </tr>
+
+
+                            </table>
+                        </div>
 
                         <div class="page-header" style="background-color:#ffffff">
 
@@ -194,7 +194,7 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        <h4 style="display: inline;color:#000000">Type de véhicule: </h4>
+                                        <h4 style="display: inline;color:#000000">Catégorie du véhicule: </h4>
                                         <h5 style="display: inline;color:#000000">{{ $vehicule->vehicle_type }}
                                         </h5>
                                     </th>
@@ -745,13 +745,14 @@
                                                 </th>
                                                 <th>
 
-                                                    <h4 style="display: inline;color:#000000">Nom et prénom du conducteur:
+                                                    <h4 style="display: inline;color:#000000">Nom et prénom du
+                                                        conducteur:
                                                     </h4>
                                                     @foreach ($drivers as $driver)
-                                                        @if($driver->id==$gase->driver_id)
-                                                        <h5 style="display: inline;color:#000000">
-                                                            {{ $driver->name }} {{ $driver->last_name }}
-                                                        </h5>
+                                                        @if ($driver->id == $gase->driver_id)
+                                                            <h5 style="display: inline;color:#000000">
+                                                                {{ $driver->name }} {{ $driver->last_name }}
+                                                            </h5>
                                                         @endif
                                                     @endforeach
 
@@ -762,10 +763,10 @@
                                                     <h4 style="display: inline;color:#000000"> Agent remplisseur:
                                                     </h4>
                                                     @foreach ($staffs as $driver)
-                                                        @if($driver->id==$gase->staff_id)
-                                                        <h5 style="display: inline;color:#000000">
-                                                            {{ $driver->name }} {{ $driver->last_name }}
-                                                        </h5>
+                                                        @if ($driver->id == $gase->staff_id)
+                                                            <h5 style="display: inline;color:#000000">
+                                                                {{ $driver->name }} {{ $driver->last_name }}
+                                                            </h5>
                                                         @endif
                                                     @endforeach
                                                 </th>
@@ -846,6 +847,154 @@
 
 
 
+
+
+
+
+                        <div class="page-header" style="background-color:#ffffff">
+                            <h4 style="color:#f06431;">Missions:</h4>
+
+                            @php
+                                $i = 0;
+                            @endphp
+                            @foreach ($missions as $mission)
+                                <div class="sidenav">
+
+                                    @php
+                                        $i = $i + 1;
+                                    @endphp
+                                    <button class="dropdown-btn">Mission {{ $i }}:
+                                        <i class="fa fa-caret-down"></i>
+                                    </button>
+                                    <div class="dropdown-container">
+
+                                        <table style=" width: 90%;border-collapse: collapse;">
+                                            <tr>
+                                                <th>
+                                                    <h4 style="display: inline;color:rgb(42, 165, 124)">ID: </h4>
+                                                    <h5 style="display: inline;color:#000000">{{ $mission->id }}
+                                                    </h5>
+                                                </th>
+                                                <th>
+
+                                                    <h3>Information de Mission: </h3>  @if($mission->mission_state=='fait')
+                                                    <h5  style="display: inline; color:green">Fait</h5>
+                                                @endif
+                                                @if($mission->mission_state=='en cours')
+                                                <h5  style="display: inline; color:rgb(201, 204, 45)"> En cours</h5>
+                                                @endif
+
+                                                @if($mission->mission_state=='en attente')
+                                                <h5  style="display: inline; color:rgb(204, 45, 183)"> En Attente</h5>
+                                                @endif
+
+
+                                                </th>
+                                            </tr>
+                                            <tr>
+
+                                                    <th>
+                                                        <h4  style="display: inline;color:#000000"> Numéro d’ordre  (Ordres de Mission): </h4>
+                                                        <h5  style="display: inline;color:#000000">{{ $mission->id }}</h5>
+                                                    </th>
+
+
+                                                    <th>
+                                                        @foreach ($staffs as $staff )
+@if($staff->id== $mission->driver_id)
+<h4 style="display: inline;color:#000000" >Nom et prénom du conducteur: </h4>
+<h5 style="display: inline;color:#000000">{{ $staff->name }} {{ $staff->last_name }}</h5>
+</th>
+
+</tr>
+<tr>
+    <th>
+        <h4   style="display: inline;color:#000000">Fonction: </h4>
+        <h5 style="display: inline;color:#000000">{{ $staff->function }}</h5>
+    </th>
+@endif
+                                                        @endforeach
+
+                                                <th>
+
+                                                    <h4  style="display: inline;color:#000000 ">Nom et prénom du personne accompagnée: </h4>
+                                                    <h5 style="display: inline;color:#000000">{{ $mission->p_name }} {{ $mission->p_last_name }}</h5>
+                                                </th>
+                                            </tr>
+
+                                            <tr>
+                                                <th>
+                                                    <h4  style="display: inline;color:#000000" >Type de véhicule: </h4>
+                                                    <h5 style="display: inline;color:#000000">{{ $vehicule->vehicle_type }}</h5>
+
+                                                <th>
+                                                    <h4  style="display: inline;color:#000000" >Année mise en service:</h4>
+                                                    <h5 style="display: inline;color:#000000">{{ $vehicule->year_commissioned }}</h5>
+                                            </tr>
+                                            <tr>
+                                                <th>
+
+                                                    <h4 style="display: inline;color:#000000" >Date de validité: </h4>
+                                                    <h5 style="display: inline;color:#000000"><b> Entre </b> {{ $mission->start_date }} <b> et entre </b> {{ $mission->end_date }}</h5>
+                                                </th>
+                  <th>
+                    <h4  style="display: inline;color:#000000">Description: </h4>
+                    <h5 style="display: inline;color:#000000">{{ $mission->description }}</h5>
+                  </th>
+
+                                            </tr>
+                                            <tr>
+                                                <th>
+                                                    <h4  style="display: inline;color:#000000" >Destination:</h4>
+                                                    <h5 style="display: inline;color:#000000"> @if ($mission->territory=="")
+                                                        {{ $mission->from}} <b> > </b>{{ $mission->to}}</td>
+                                                        @else
+                                                        {{ $mission->territory }}
+                                                    @endif</h5>
+
+
+                                                </th>
+
+
+                                            </tr>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            @endforeach
+
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     </div>
                 </div>
             </div>
@@ -902,7 +1051,9 @@
                 @media screen and (max-height: 450px) {
                     .sidenav {
                         padding-top: 15px;
-                    }
+
+
+
 
                     .sidenav a {
                         font-size: 18px;

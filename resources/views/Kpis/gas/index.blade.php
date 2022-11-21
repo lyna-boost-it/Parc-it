@@ -158,9 +158,21 @@
                     </div>
                 </div>
 
+                <div class="row">
 
 
-                    <div id="piechart"></div>
+                    <div class="col-md-12 mb-20">
+
+                        <div class="card-box height-100-p pd-20">
+
+                            <div id="piechart"></div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
 
 
 <br><br>
@@ -273,7 +285,8 @@
                                                     @endif
                                                 @endforeach
                                             @endforeach
-                                            <td style="color: orange;"> {{ ($c / $totalGas) * 100 }}%</td>
+
+                                            <td style="color: orange;"> {{  number_format( ($c / $totalGas) * 100, 2, ',', ' ')}}%</td>
 
                                         </tr>
                                     @endforeach
@@ -342,7 +355,7 @@
                                 <div class="rounded-lg bg-white shadow-lg md:shadow-xl relative overflow-hidden">
                                     <div class="px-3 pt-12 pb-10 text-center relative z-20">
                                         <h1 class="text-sm uppercase text-gray-500 leading-tight"
-                                            style="font-size: 2.5em;">Consomation tottale du Carburant pour les
+                                            style="font-size: 2.5em;">Consomation totale du Carburant pour les
                                             matériels motorisés (litre): </h1>
                                         <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">
                                             {{ $GasPipesLitter }} Litre</h3>
@@ -357,7 +370,7 @@
                                 <div class="rounded-lg bg-white shadow-lg md:shadow-xl relative overflow-hidden">
                                     <div class="px-3 pt-8 pb-10 text-center relative z-10">
                                         <h1 class="text-sm uppercase text-gray-500 leading-tight"
-                                            style="font-size: 2.5em;">Consomation tottale du Carburant pour les
+                                            style="font-size: 2.5em;">Consomation totale du Carburant pour les
                                             matériels motorisés (DA): </h1>
                                         <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">
                                             {{ $GasPipesPrice }} DA</h3>
@@ -491,7 +504,9 @@
                                                     @endforeach
                                                     <td style="color: orange;">
                                                         @if ($GasPipesLitter != 0)
-                                                            {{ number_format(((float) $c / $GasPipesLitter) * 100), 2, '.', '' }}%
+
+
+                                                            {{ number_format(( $c / $GasPipesLitter) * 100), 2, '.', '' }}%
                                                         @else
                                                             0%
                                                         @endif
@@ -719,7 +734,7 @@
     ]);
 
       // Optional; add a title and set the width and height of the chart
-      var options = {'title':'consommation de Carburant ', 'width':1800, 'height':500};
+      var options = {'title':'consommation de Carburant ', 'width':900, 'height':600};
 
       // Display the chart inside the <div> element with id="piechart"
       var chart = new google.visualization.PieChart(document.getElementById('piechart'));

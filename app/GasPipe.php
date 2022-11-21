@@ -10,10 +10,10 @@ class GasPipe extends Model
     protected $fillable = [
         'id',
 
-        'driver_id','staff_id','unit_id','ticket','price','litter'
+        'driver_id','staff_id','unit_id','ticket','price','litter','type'
         ];
 
         protected static $logAttributes = [
-            'driver_id','staff_id','unit_id','ticket','price','litter'
+            'driver_id','staff_id','unit_id','ticket','price','litter','type'
        ];
 }

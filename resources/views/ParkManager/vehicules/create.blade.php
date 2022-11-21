@@ -34,7 +34,7 @@
                             </div><br><br>
                             <div class="card-body">
                                 <fieldset>
-                                    <legend>Information de la carse Grise:</legend>
+                                    <legend>Informations de la carte Grise:</legend>
                                     <br><br>
                                     <div class="row">
 
@@ -49,19 +49,19 @@
                                         </div>
 
                                         <div class="col-md-4">
-                                            <label>{{ __('Marque de véhicule') }}</label>
+                                            <label>{{ __('Marque du véhicule') }}</label>
                                             <div class="form-group">
                                                 <input type="text" name="mark" class="form-control"
-                                                    placeholder="Marque de véhicule" value="{{ $vehicule->mark }}"
+                                                    placeholder="Marque du véhicule" value="{{ $vehicule->mark }}"
                                                     required>
                                             </div>
 
                                         </div>
                                         <div class="col-md-4">
-                                            <label>{{ __('Type de véhicule') }}</label>
+                                            <label>{{ __('Type du véhicule') }}</label>
                                             <div class="form-group">
                                                 <input type="text" name="type" class="form-control"
-                                                    placeholder="Type de véhicule" value="{{ $vehicule->type }}"
+                                                    placeholder="Type du véhicule" value="{{ $vehicule->type }}"
                                                     required>
                                             </div>
 
@@ -76,14 +76,14 @@
                                             <label>{{ __('Carrosserie') }}</label>
                                             <div class="form-group">
                                                 <input type="text" name="crosserie" class="form-control"
-                                                    placeholder="Carrosserie de véhicule"
+                                                    placeholder="Carrosserie du véhicule"
                                                     value="{{ $vehicule->crosserie }}" required>
                                             </div>
 
                                         </div>
 
                                         <div class="col-md-4">
-                                            <label>{{ __('Energie de véhicule') }}</label>
+                                            <label>{{ __('Energie du véhicule') }}</label>
                                             <div class="form-group">
                                                 <select id="type_of_fuel" type="text"
                                                     class="form-control select2 @error('type_of_fuel') is-invalid @enderror"
@@ -105,10 +105,10 @@
 
                                         </div>
                                         <div class="col-md-4">
-                                            <label>{{ __('Puissance de véhicule') }}</label>
+                                            <label>{{ __('Puissance du véhicule') }}</label>
                                             <div class="form-group">
                                                 <input type="text" name="power" class="form-control"
-                                                    placeholder="Puissance de véhicule" value="{{ $vehicule->power }}"
+                                                    placeholder="Puissance du véhicule" value="{{ $vehicule->power }}"
                                                     required>
                                             </div>
 
@@ -168,10 +168,10 @@
 
                                         </div>
                                         <div class="col-md-4">
-                                            <label>{{ __('Annee de premiere mise en circulation') }}</label>
+                                            <label>{{ __('Année de premiere mise en circulation') }}</label>
                                             <div class="form-group">
                                                 <input type="date" name="moving_year" class="form-control"
-                                                    placeholder="Annee de premiere mise en circulation"
+                                                    placeholder="Année de premiere mise en circulation"
                                                     value="{{ $vehicule->moving_year }}" required>
                                             </div>
 
@@ -180,7 +180,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <label
-                                                class="col-md-3 col-form-label">{{ __('Information de la carte grise') }}</label>
+                                                class="col-md-3 col-form-label">{{ __('Uplode la carte grise') }}</label>
 
 
                                             <input type="file" id="docpicker" name="path"
@@ -194,7 +194,7 @@
 
                             <div class="card-body">
                                 <fieldset>
-                                    <legend>Information technique du véhicule:</legend>
+                                    <legend>Informations technique du véhicule:</legend>
 
                                     <div class="row">
 
@@ -225,21 +225,14 @@
                                                     class="form-control select2 @error('vehicle_type') is-invalid @enderror"
                                                     name="vehicle_type" required autocomplete="vehicle_type"
                                                     autofocus>
-                                                    <option value="Camion-citerne"
-                                                        {{ old('vehicle_type', $vehicule->vehicle_type) === 'Camion-citerne' ? 'selected' : '' }}>
-                                                        Camion-citerne</option>
-                                                    <option value="Camion benne"
-                                                        {{ old('vehicle_type', $vehicule->vehicle_type) === 'Camion benne' ? 'selected' : '' }}>
-                                                        Camion benne</option>
-                                                    <option value="Autobus"
-                                                        {{ old('vehicle_type', $vehicule->vehicle_type) === 'Autobus' ? 'selected' : '' }}>
-                                                        Autobus </option>
-                                                    <option value="Automobile"
-                                                        {{ old('vehicle_type', $vehicule->vehicle_type) === 'Automobile' ? 'selected' : '' }}>
-                                                        Automobile </option>
-                                                    <option value="Voiture"
-                                                        {{ old('vehicle_type', $vehicule->vehicle_type) === 'Voiture' ? 'selected' : '' }}>
-                                                        Voiture </option>
+                                                    <option value="camion citerne ">camion citerne </option>
+<option value="camion à benne ">camion à benne </option>
+<option value="camion plataux ">camion plataux </option>
+<option value="camion nacelle ">camion nacelle </option>
+<option value="engin ">engin </option>
+<option value="mini engin ">mini engin </option>
+<option value="véhicule touristique ">véhicule touristique </option>
+<option value="véhicule utilitaire ">véhicule utilitaire </option>
                                                 </select>
                                             </div>
 
@@ -316,22 +309,15 @@
                                                     autofocus>
                                                     <option value="" disabled selected>Type de Batterie
                                                     </option>
-                                                    <option value="Batteries à plomb-acide"
-                                                        {{ old('battery_type', $vehicule->battery_type) === 'Batteries à plomb-acide' ? 'selected' : '' }}>
-                                                        Batteries à plomb-acide</option>
-                                                    <option value="Batteries AGM"
-                                                        {{ old('battery_type', $vehicule->battery_type) === 'Batteries AGM' ? 'selected' : '' }}>
-                                                        Batteries AGM</option>
-                                                    <option value="Piles EFB"
-                                                        {{ old('Piles EFB', $vehicule->battery_type) === 'Piles EFB' ? 'selected' : '' }}>
-                                                        Piles EFB</option>
-                                                    <option value="Piles GEL"
-                                                        {{ old('battery_type', $vehicule->battery_type) === 'Piles GEL' ? 'selected' : '' }}>
-                                                        Piles GEL</option>
-                                                    <option value="Piles au lithium-ion"
-                                                        {{ old('battery_type', $vehicule->battery_type) === 'Piles au lithium-ion' ? 'selected' : '' }}>
-                                                        Piles au lithium-ion
-                                                    </option>
+                                                    <option value="12 Volt / 150 Ampère">12 Volt / 150 Ampère</option>
+                                                    <option value="12 Volt / 120 Ampère">12 Volt / 120 Ampère</option>
+                                                    <option value="12 Volt / 110 Ampère">12 Volt / 110 Ampère</option>
+                                                    <option value="12 Volt / 95 Ampère">12 Volt / 95 Ampère</option>
+                                                    <option value="12 Volt / 75 Ampère">12 Volt / 75 Ampère</option>
+                                                    <option value="12 Volt / 60 Ampère">12 Volt / 60 Ampère</option>
+                                                    <option value="12 Volt / 55 Ampère Asiatique">12 Volt / 55 Ampère Asiatique</option>
+                                                    <option value="12 Volt / 45 Ampère Asiatique">12 Volt / 45 Ampère Asiatique</option>
+                                                    <option value="12 Volt / 50 Ampère Asiatique">12 Volt / 50 Ampère Asiatique</option>
 
 
                                                 </select>

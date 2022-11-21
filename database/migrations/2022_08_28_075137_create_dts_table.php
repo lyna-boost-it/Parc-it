@@ -26,6 +26,7 @@ class CreateDtsTable extends Migration
             $table->string('nature_panne');
             $table->string('type_maintenance');
             $table->string('type_panne');
+            $table->string('type');
  $table->string('state')->default('en attente');
 
             $table->time('enter_time');

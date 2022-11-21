@@ -68,8 +68,7 @@
 
                             <tbody>
                                 @foreach ($vehicules as $vehicule)
-                                    @foreach ($units as $unit)
-                                        @if ($unit->id == $vehicule->unit_id)
+
                                             <tr>
                                                 <td>{{ $vehicule->id }}</td>
                                                 <td>{{ $vehicule->marticule }}</td>
@@ -80,7 +79,48 @@
                                                 <td>{{ $vehicule->type_of_fuel }}</td>
                                                 <td>{{ $vehicule->acquisition_date }}</td>
                                                 <td>{{ $vehicule->vehicle_type }}</td>
-                                                <td>{{ $unit->name }}</td>
+                                                <td>                                           @php
+                                                    $i = 0;
+
+                                                @endphp
+                                                    @foreach($units as $unit)
+                                                    @if($unit->id==$vehicule->unit_id)
+
+                                                    {{$unit->name}}
+                                                    @endif
+
+
+                                                    @if($vehicule->unit_id == 0 && $i==0)
+                                                    @php
+                                                    $i = $i + 1;
+                                                @endphp
+
+                                                    @if (Auth::user()->type == 'Gestionnaire Sup')   <a class="dropdown-item"  style="  color: currentColor;
+                                                    cursor: not-allowed;
+                                                    opacity: 0.5;
+                                                    text-decoration: none;"  > <i class="dw dw-delete-3"></i>Effectuez une unité
+</a>
+
+                                                  @else
+
+                                        <form class="form-delete dropdown-item" method="get" action={{route('ParkManager.GiveUnit.show',$vehicule->id)}}">
+
+                                                @csrf
+                                                <input hidden value="vehicle" name="type">
+                                                <button   type="submit" style=" background-color: transparent;
+                                                border-color: transparent;"   >
+
+                                                    <i class="dw dw-delete-3"></i>Effectuez une unité
+
+                                                </button>
+                                            </form>
+                                                  @endif
+
+
+
+
+                                                    @endif
+                                                    @endforeach</td>
 
                                                 <td>
                                                     <div class="dropdown">
@@ -133,8 +173,7 @@
 
                                                 </td>
                                             </tr>
-                                        @endif
-                                    @endforeach
+
                                 @endforeach
 
                             </tbody>

@@ -20,20 +20,21 @@
                         <div class="page-header">
                             <div class="row">
 
-                                <h3>Information de Mission: </h3>  @if($mission->mission_state=='fait')
-                                <h5  style="display: inline; color:green">Fait</h5>
-                            @endif
-                            @if($mission->mission_state=='en cours')
-                            <h5  style="display: inline; color:rgb(201, 204, 45)"> En cours</h5>
-                            @endif
+                                <h3>Information de Mission: </h3>
+                                @if ($mission->mission_state == 'fait')
+                                    <h5 style="display: inline; color:green">Fait</h5>
+                                @endif
+                                @if ($mission->mission_state == 'en cours')
+                                    <h5 style="display: inline; color:rgb(201, 204, 45)"> En cours</h5>
+                                @endif
 
-                            @if($mission->mission_state=='en attente')
-                            <h5  style="display: inline; color:rgb(204, 45, 183)"> En Attente</h5>
-                            @endif
+                                @if ($mission->mission_state == 'en attente')
+                                    <h5 style="display: inline; color:rgb(204, 45, 183)"> En Attente</h5>
+                                @endif
 
                             </div>
                         </div>
-                       <div class="page-header" >
+                        <div class="page-header">
 
                             <div class="row">
 
@@ -44,57 +45,70 @@
                                 <table style=" width: 90%;border-collapse: collapse;">
                                     <tr>
                                         <th>
-                                            <h4  style="display: inline;color:#000000"> Numéro d’ordre  (Ordres de Mission): </h4>
-                                            <h5  style="display: inline;color:#000000">{{ $mission->id }}</h5>
+                                            <h4 style="display: inline;color:#000000"> Numéro d’ordre (Ordres de
+                                                Mission): </h4>
+                                            <h5 style="display: inline;color:#000000">{{ $mission->id }}</h5>
                                         </th>
 
 
                                         <th>
-                                            <h4 style="display: inline;color:#000000" >Nom et prénom du conducteur: </h4>
-                                                        <h5 style="display: inline;color:#000000">{{ $driver->name }} {{ $driver->last_name }}</h5>
+                                            <h4 style="display: inline;color:#000000">Nom et prénom du conducteur: </h4>
+                                            <h5 style="display: inline;color:#000000">{{ $driver->name }}
+                                                {{ $driver->last_name }}</h5>
                                     </tr>
                                     <tr>
                                         <th>
-                                            <h4   style="display: inline;color:#000000">Fonction: </h4>
+                                            <h4 style="display: inline;color:#000000">Fonction: </h4>
                                             <h5 style="display: inline;color:#000000">{{ $driver->function }}</h5>
                                         </th>
                                         <th>
 
-                                            <h4  style="display: inline;color:#000000 ">Nom et prénom du personne accompagnée: </h4>
-                                            <h5 style="display: inline;color:#000000">{{ $mission->p_name }} {{ $mission->p_last_name }}</h5>
+                                            <h4 style="display: inline;color:#000000 ">Nom et prénom du personne
+                                                accompagnée: </h4>
+                                            <h5 style="display: inline;color:#000000">{{ $mission->p_name }}
+                                                {{ $mission->p_last_name }}</h5>
                                         </th>
                                     </tr>
 
                                     <tr>
                                         <th>
-                                            <h4  style="display: inline;color:#000000" >Type de véhicule: </h4>
+                                            <h4 style="display: inline;color:#000000">Type de véhicule: </h4>
                                             <h5 style="display: inline;color:#000000">{{ $vehicule->vehicle_type }}</h5>
 
                                         <th>
-                                            <h4  style="display: inline;color:#000000" >Année mise en service:</h4>
-                                            <h5 style="display: inline;color:#000000">{{ $vehicule->year_commissioned }}</h5>
+                                            <h4 style="display: inline;color:#000000">Année mise en service:</h4>
+                                            <h5 style="display: inline;color:#000000">{{ $vehicule->year_commissioned }}
+                                            </h5>
                                     </tr>
                                     <tr>
                                         <th>
 
-                                            <h4 style="display: inline;color:#000000" >Date de validité: </h4>
-                                            <h5 style="display: inline;color:#000000"><b> Entre </b> {{ $mission->start_date }} <b> et entre </b> {{ $mission->end_date }}</h5>
+                                            <h4 style="display: inline;color:#000000">Date de validité: </h4>
+                                            <h5 style="display: inline;color:#000000"><b> Entre </b>
+                                                {{ $mission->start_date }} <b> et entre </b> {{ $mission->end_date }}
+                                            </h5>
                                         </th>
-          <th>
-            <h4  style="display: inline;color:#000000">Description: </h4>
-            <h5 style="display: inline;color:#000000">{{ $mission->description }}</h5>
-          </th>
+                                        <th>
+                                            <h4 style="display: inline;color:#000000">Description: </h4>
+                                            <h5 style="display: inline;color:#000000">{{ $mission->description }}</h5>
+                                        </th>
 
                                     </tr>
                                     <tr>
                                         <th>
-                                            <h4  style="display: inline;color:#000000" >Destination:</h4>
-                                            <h5 style="display: inline;color:#000000"> @if ($mission->territory=="")
-                                                {{ $mission->from}} <b> > </b>{{ $mission->to}}</td>
+                                            <h4 style="display: inline;color:#000000">Destination:</h4>
+                                            <h5 style="display: inline;color:#000000">
+                                                @if ($mission->territory == '')
+                                                    {{ $mission->from }} <b> > </b>{{ $mission->to }}</td>
                                                 @else
-                                                {{ $mission->territory }}
-                                            @endif</h5>
+                                                    {{ $mission->territory }}
+                                                @endif
+                                            </h5>
 
+                                            <th>
+                                                <h4 style="display: inline;color:#000000">Motif: </h4>
+                                                <h5 style="display: inline;color:#000000">{{ $mission->reason }}</h5>
+                                            </th>
 
                                         </th>
 

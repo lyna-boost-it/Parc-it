@@ -29,7 +29,7 @@
                             <br><br><br>
 
                             <div class="card-header">
-                                <h3 class="title">{{ __('Créer un accident ') }}</h3>
+                                <h3 class="title">{{ __('Déclarer un accident ') }}</h3>
                             </div>
 
 
@@ -63,11 +63,11 @@
                                     <div class="row">
                                         <label class="col-md-3 col-form-label">{{ __('Véhicule') }}</label>
                                         <div class="col-md-9">
-                                            <div
-                                                style="width: 50%;
-                                        float: left;
-                                        padding: 20px;
-                                         ">
+                                                    <div
+                                                        style="width: 50%;
+                                                float: left;
+                                                padding: 20px;
+                                                ">
 
 
                                                 <select style="width: 300px" id="selectField" class="vh"

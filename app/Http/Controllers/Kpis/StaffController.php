@@ -28,7 +28,7 @@ class StaffController extends Controller
     $driversList=Staff::all()->where('person_type','=','Conducteur');
     $pParckList=Staff::all()->where('person_type','=','Personnel du parc');
     $pCentreList=Staff::all()->where('person_type','=','Personnel du centre de maintenance');
-
+//dd($totalstaff,$drivers,$pParck,$pCentre);
         return view('Kpis.staff.index',compact('date','staffs','totalstaff','drivers','pParck','pCentre','driversList','pParckList','pCentreList'));
     }
 

@@ -42,19 +42,26 @@ cursor: not-allowed;
 opacity: 0.5;
 text-decoration: none; @endif
                     "
-                            href="{{ route('ParkManager.cps.create') }}" class="btn btn-sm  ">
-                            Créer une pièce
+                            href="{{ route('ParkManager.designations.index') }}" class="btn btn-sm  ">
+                            Liste des Pièces
                         </a>
+
+
                         <div class="pb-20">
 
                             <table class="table nowrap hover data-table-export">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th> Réf </th>
+                                        <th> MARQUE </th>
                                         <th> Type </th>
+                                        <th> designation </th>
+                                        <th>Code</th>
+                                        <th> Quantité</th>
+                                        <th> Cout unitaire</th>
+                                        <th> N° bon de sortie</th>
+                                        <th> Cout total</th>
 
-                                        <th class="datatable-nosort">Action</th>
 
                                     </tr>
                                 </thead>
@@ -68,60 +75,20 @@ text-decoration: none; @endif
                                         <tr>
 
                                             <td>{{ $cp->id }}</td>
-                                            <td>{{ $cp->reference }}</td>
+                                            <td>{{ $cp->marque }}</td>
                                             <td>{{ $cp->type }}</td>
-
-                                            <td>
-                                                <div class="dropdown">
-                                                    <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
-                                                        href="#" role="button" data-toggle="dropdown">
-                                                        <i class="dw dw-more"></i>
-                                                    </a>
-                                                    <div
-                                                        class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-
-                                                        <a class="dropdown-item"
-                                                            href="{{ route('ParkManager.cps.edit', $cp->id) }}"
-                                                            @if (Auth::user()->type == 'Gestionnaire Sup') style="  color: currentColor;
-                                                                cursor: not-allowed;
-                                                                opacity: 0.5;
-                                                                text-decoration: none;" @endif><i
-                                                                class="dw dw-edit2"></i> Modifier</a>
-                                                        <a class="dropdown-item"
-                                                            href="{{ route('ParkManager.cps.show', $cp->id) }}"><i
-                                                                class="dw dw-eye"></i> Consulter</a>
-
-
-                                                        @if (Auth::user()->type == 'Gestionnaire Sup')
-                                                            <a class="dropdown-item" href="#"
-                                                                @if (Auth::user()->type == 'Gestionnaire Sup') style="  color: currentColor;
-                                                                cursor: not-allowed;
-                                                                opacity: 0.5;
-                                                                text-decoration: none;" @endif>
-                                                                <i class="dw dw-delete-3"></i> Supprimer</a>
-                                                        @else
-                                                            <form class="form-delete dropdown-item" method="post"
-                                                                action="{{ route('ParkManager.cps.destroy', $cp->id) }}">
-                                                                @method('DELETE')
-                                                                @csrf
-                                                                <button type="submit"
-                                                                    style=" background-color: transparent;
-                                                                    border-color: transparent;"
-                                                                    onclick="return confirm('êtes-vous sûr?')">
-
-                                                                    <i class="dw dw-delete-3"></i>Supprimer
-
-                                                                </button>
-                                                            </form>
-                                                        @endif
-                                                    </div>
-                                                </div>
-                                            </td>
+                                            <td>{{ $cp->designation }}</td>
+                                            <td>{{ $cp->code }}</td>
+                                             <td>{{ $cp->quantity }}</td>
+                                            <td>{{ $cp->price }}</td>
+                                            <td>{{ $cp->receip }}</td>
+                                            <td>{{ $cp->full_price }}</td>
 
 
 
 
-                                            </td>
+
+
                                         </tr>
                                     @endforeach
 

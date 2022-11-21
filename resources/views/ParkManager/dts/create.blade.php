@@ -115,7 +115,31 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <label class="col-md-3 col-form-label">{{ __('Type') }}</label>
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                        <select name="type" class="form-control"
+                                            id="type">
+                                            <option value="" disabled selected>Choisissez type </option>
+                                            <option value="Véhicule"
+                                                {{ old('type', $dt->type) === 'Véhicule' ? 'selected' : '' }}>
+                                                Véhicule</option>
+                                            <option value="Matériel Motorisés"
+                                                {{ old('type', $dt->type)  === 'Matériel Motorisés' ? 'selected' : '' }}>
+                                                Matériel Motorisés</option>
 
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+<div id="conducteur_fieldDiv">
                         <div class="card-body">
                             <div class="row">
                                 <label class="col-md-3 col-form-label">{{ __('Véhicule') }}</label>
@@ -148,7 +172,69 @@
                                 </div>
                             </div>
                         </div>
+</div>
 
+<div id="Mstaff_fieldDiv">
+                        <div class="card-body" >
+                            <div class="row">
+                                <label class="col-md-3 col-form-label">{{ __(' MATÉRIELS MOTORISÉS') }}</label>
+                                <div class="col-md-9" for="Territoire">
+                                    <div class="form-group">
+                                        <div   style="width: 50%;
+                                        float: left;
+                                        padding: 20px;
+                                         ">
+
+                                        <select  name="mm_id" style="width: 300px"  placeholder="  MATÉRIELS MOTORISÉS "id="mm_id"
+                                      class="form-control" class="mm"
+                                           >
+                                           <option></option>
+                                            @foreach ($materials as $material)
+
+                                            <option value="{{ $material->id }}"
+                                           >
+                                             {{ $material->code }} </option>
+                                            @endforeach
+
+                                        </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+</div>
+
+
+
+
+
+
+
+                                <div class="card-body">
+                                    <div class="row">
+                                        <label class="col-md-3 col-form-label">{{ __('Type de Maintenance') }}</label>
+                                        <div class="col-md-9">
+                                            <div class="form-group">
+                                                <select name="type_maintenance" class="form-control"
+                                                    id="type_maintenance">
+                                                    <option value="" disabled selected>Choisissez un de
+                                                        Maintenance</option>
+                                                    <option value="Réparation"
+                                                        {{ old('type_maintenance', $dt->type_maintenance) === 'Réparation' ? 'selected' : '' }}>
+                                                        Réparation</option>
+                                                    <option value="Entretien"
+                                                        {{ old('type_maintenance', $dt->type_maintenance) === 'Entretien' ? 'selected' : '' }}>
+                                                        Entretien</option>
+                                                    <option value="Réparation et Entretien"
+                                                        {{ old('type_maintenance', $dt->type_maintenance) === 'Réparation et Entretien' ? 'selected' : '' }}>
+                                                        Réparation et Entretien</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
                         <div class="card-footer ">
                             <div class="row">
@@ -165,6 +251,43 @@
             </div>
         </div>
     </div>
+
+
+
+
+
+    <script>
+        $("#type").change(function() {
+            if ($(this).val() == "Véhicule") {
+                $('#conducteur_fieldDiv').show();
+                $('#conducteur_field').attr('required', '');
+                $('#conducteur_field').attr('data-error', 'This field is required.');
+            } else {
+                $('#conducteur_fieldDiv').hide();
+                $('#conducteur_field').removeAttr('required');
+                $('#conducteur_field').removeAttr('data-error');
+            }
+        });
+        $("#type").trigger("change");
+    </script>
+
+    <script>
+        $("#type").change(function() {
+            if ($(this).val() == "Matériel Motorisés") {
+                $('#Mstaff_fieldDiv').show();
+                $('#Mstaff_field').attr('required', '');
+                $('#Mstaff_field').attr('data-error', 'This field is required.');
+            } else {
+                $('#Mstaff_fieldDiv').hide();
+                $('#Mstaff_field').removeAttr('required');
+                $('#Mstaff_field').removeAttr('data-error');
+            }
+
+        });
+        $("#type").trigger("change");
+    </script>
+
+
     @include('layouts.footerForIndexx')
 
 </body>

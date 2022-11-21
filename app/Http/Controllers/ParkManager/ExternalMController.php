@@ -30,7 +30,7 @@ class ExternalMController extends Controller
      */
     public function index()
     {
-        $dts = DtMaterial::all()->where('type_maintenance', '=', 'Maintenance Externe')->where('answer','=','Accepter');
+        $dts = DtMaterial::all()->where('type_maintenance', '=', 'Maintenance Externe')->where('answer','=','Acceptée');
 
         $externals = ExternalMaterial::all();
         $materials = Material::all();

@@ -13,7 +13,8 @@
             <ul id="accordion-menu">
                 <li>
                     <a href="{{ route('home') }}"
-                        class="dropdown-toggle no-arrow {{ Request::is('home') ? 'active' : '' }}" style="font-size: 14px">
+                        class="dropdown-toggle no-arrow {{ Request::is('home') ? 'active' : '' }}"
+                        style="font-size: 14px">
                         <span class="micon fa fa-dashboard"></span><span class="mtext"><b>Tableau de bord</b></span>
                     </a>
                 </li>
@@ -28,57 +29,55 @@
                         </a>
                         <ul class="submenu">
 
-                                <li>
+                            <li>
 
 
-                                    <a class="  {{ Request::is('ParkManager/staffs') ? 'active' : '' }}"
-                                        style="right: 50px;font-size: 14px"
-                                        href="{{ route('ParkManager.staffs.index') }}">
+                                <a class="  {{ Request::is('ParkManager/staffs') ? 'active' : '' }}"
+                                    style="right: 50px;font-size: 14px" href="{{ route('ParkManager.staffs.index') }}">
 
-                                        Gest. du Personnel </a>
-                                </li>
-
-
-
-
-
-
-
-                                    <li>
-
-                                        <a class="  {{ Request::is('ParkManager/units') ? 'active' : '' }}"
-                                            style="right: 50px;" href="{{ route('ParkManager.units.index') }}">
-
-
-                                            Gest. des Unités </a>
-                                    </li>
-
-
-
-                                    <li>
-
-                                        <a class="  {{ Request::is('ParkManager/vehicules') ? 'active' : '' }}"
-                                            style="right: 50px;" href="{{ route('ParkManager.vehicules.index') }}">
-                                            Gest. des Véhicules</a>
-                                    </li>
-
-
-
-
-
-                                    <li>
-
-                                        <a class="  {{ Request::is('ParkManager/materialsmanager') ? 'active' : '' }}"
-                                            style="right: 50px;"
-                                            href="{{ route('ParkManager.materialsmanager.index') }}">
-
-
-                                            Gest. Matériels motorisés</a>
-                                    </li>
-
-                                </ul>
+                                    Gest. du Personnel </a>
                             </li>
-                        @endif
+
+
+
+
+
+
+
+                            <li>
+
+                                <a class="  {{ Request::is('ParkManager/units') ? 'active' : '' }}" style="right: 50px;"
+                                    href="{{ route('ParkManager.units.index') }}">
+
+
+                                    Gest. des Unités </a>
+                            </li>
+
+
+
+                            <li>
+
+                                <a class="  {{ Request::is('ParkManager/vehicules') ? 'active' : '' }}"
+                                    style="right: 50px;" href="{{ route('ParkManager.vehicules.index') }}">
+                                    Gest. des Véhicules</a>
+                            </li>
+
+
+
+
+
+                            <li>
+
+                                <a class="  {{ Request::is('ParkManager/materialsmanager') ? 'active' : '' }}"
+                                    style="right: 50px;" href="{{ route('ParkManager.materialsmanager.index') }}">
+
+
+                                    Gest. Matériels motorisés</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                @endif
                 @if (Auth::user()->type == 'Gestionnaire parc' ||
                     Auth::user()->type == 'Utilisateur' ||
                     Auth::user()->type == 'Gestionnaire Sup')
@@ -145,88 +144,75 @@
                     </a>
                     <ul class="submenu">
                         <li class="dropdown">
-                            <a href="javascript:;" class="dropdown-toggle"style="font-size: 14px">
-                                <b>Maintenance des Vehicules</b>
-                            </a>
-                            <ul class="submenu">
+                            <li>
 
-                                    <li>
-
-                                        <a class="  {{ Request::is('ParkManager/dts') ? 'active' : '' }}"
-                                            style="right: 50px;" style="right: 60px;"
-                                            href="{{ route('ParkManager.dts.index') }}">
+                                <a class="  {{ Request::is('ParkManager/dts') ? 'active' : '' }}"
+                                    style="right: 50px;" style="right: 60px;"
+                                    href="{{ route('ParkManager.dts.index') }}">
 
 
-                                            Demandes de travaux (DT)</a>
-                                    </li>
+                                    Demandes de travaux (DT)</a>
+                            </li>
+                            @if (Auth::user()->type == 'Gestionnaire parc' ||
+                            Auth::user()->type == 'Utilisateur' ||
+                            Auth::user()->type == 'Gestionnaire Sup')
+                            <li>
+                                <a class="  {{ Request::is('ParkManager/repairs') ? 'active' : '' }}"
+                                    style="right: 50px;" href="{{ route('ParkManager.repairs.index') }}">
 
 
-                                @if (Auth::user()->type == 'Gestionnaire parc' ||
-                                    Auth::user()->type == 'Utilisateur' ||
-                                    Auth::user()->type == 'Gestionnaire Sup')
-                                    <li>
-                                        <a class="  {{ Request::is('ParkManager/repairs') ? 'active' : '' }}"
-                                            style="right: 50px;" href="{{ route('ParkManager.repairs.index') }}">
+                                    Gérer les Réparations</a>
+                            </li>
+                            <li>
+                                <a class="  {{ Request::is('ParkManager/maintenances') ? 'active' : '' }}"
+                                    style="right: 50px;"
+                                    href="{{ route('ParkManager.maintenances.indexMaintenance') }}">
 
 
-                                            Gérer les Réparations</a>
-                                    </li>
-                                    <li>
-                                        <a class="  {{ Request::is('ParkManager/maintenances') ? 'active' : '' }}"
-                                            style="right: 50px;"
-                                            href="{{ route('ParkManager.maintenances.indexMaintenance') }}">
+                                    Gérer les Entretiens</a>
+
+                            </li>
+                            <li>
+                                <a class="  {{ Request::is('ParkManager/externals') ? 'active' : '' }}"
+                                    style="right: 50px;" href="{{ route('ParkManager.externals.index') }}">
 
 
-                                            Gérer les Entretiens</a>
+                                    Maintenance externe</a>
+                            </li>
+                        @endif
 
-                                    </li>
-                                    <li>
-                                        <a class="  {{ Request::is('ParkManager/externals') ? 'active' : '' }}"
-                                            style="right: 50px;" href="{{ route('ParkManager.externals.index') }}">
+                        <li>
+                            <a class="  {{ Request::is('ParkManager/dtsM') ? 'active' : '' }}"
+                                style="right: 50px;" href="{{ route('ParkManager.dtsM.index') }}">
 
 
-                                            Maintenance externe</a>
-                                    </li>
-                                @endif
+                                Demandes de travaux
+                                (DT)</a>
+                        </li>
+
+                        @if (Auth::user()->type == 'Gestionnaire parc' ||
+                        Auth::user()->type == 'Utilisateur' ||
+                        Auth::user()->type == 'Gestionnaire Sup')
+                        <li>
+                            <a class="  {{ Request::is('ParkManager/repairsM') ? 'active' : '' }}"
+                                style="right: 50px;" href="{{ route('ParkManager.repairsM.index') }}">
+
+
+                                Gérer les Réparations</a>
+                        </li>
+                        <li>
+                            <a class="  {{ Request::is('ParkManager/externalsM') ? 'active' : '' }}"
+                                style="right: 50px;" href="{{ route('ParkManager.externalsM.index') }}">
+
+                                Maintenances externes</a>
+                        </li>
+                    @endif
 
                             </ul>
                         </li>
 
 
-                        <li class="dropdown">
-                            <a href="javascript:;" class="dropdown-toggle"style="font-size: 14px">
-                                <b> Maint. Matériels Motorisés </b>
-                            </a>
-                            <ul class="submenu">
 
-                                    <li>
-                                        <a class="  {{ Request::is('ParkManager/dtsM') ? 'active' : '' }}"
-                                            style="right: 50px;" href="{{ route('ParkManager.dtsM.index') }}">
-
-
-                                            Demandes de travaux
-                                            (DT)</a>
-                                    </li>
-
-                                @if (Auth::user()->type == 'Gestionnaire parc' ||
-                                    Auth::user()->type == 'Utilisateur' ||
-                                    Auth::user()->type == 'Gestionnaire Sup')
-                                    <li>
-                                        <a class="  {{ Request::is('ParkManager/repairsM') ? 'active' : '' }}"
-                                            style="right: 50px;" href="{{ route('ParkManager.repairsM.index') }}">
-
-
-                                            Gérer les Réparations</a>
-                                    </li>
-                                    <li>
-                                        <a class="  {{ Request::is('ParkManager/externalsM') ? 'active' : '' }}"
-                                            style="right: 50px;" href="{{ route('ParkManager.externalsM.index') }}">
-
-                                            Maintenances externes</a>
-                                    </li>
-                                @endif
-                            </ul>
-                        </li>
                         @if (Auth::user()->type == 'Gestionnaire parc' ||
                             Auth::user()->type == 'Utilisateur' ||
                             Auth::user()->type == 'Gestionnaire Sup')
@@ -237,14 +223,14 @@
                                 <ul class="submenu">
 
 
-                                        <li>
-                                            <a class="  {{ Request::is('ParkManager/cps') ? 'active' : '' }}"
-                                                style="right: 50px;" style="right: 60px;"
-                                                href="{{ route('ParkManager.cps.index') }}">
+                                    <li>
+                                        <a class="  {{ Request::is('ParkManager/cps') ? 'active' : '' }}"
+                                            style="right: 50px;" style="right: 60px;"
+                                            href="{{ route('ParkManager.cps.index') }}">
 
 
-                                                Pieces Consommés </a>
-                                        </li>
+                                            Pieces Consommés </a>
+                                    </li>
 
                                     <li>
                                         <a class="  {{ Request::is('ParkManager/liquids') ? 'active' : '' }}"
@@ -272,20 +258,20 @@
                         </a>
                         <ul class="submenu">
 
-                                <li>
-                                    <a class="  {{ Request::is('ParkManager/gasVehicules') ? 'active' : '' }}"
-                                        style="right: 50px;" href="{{ route('ParkManager.gasVehicules.index') }}">
+                            <li>
+                                <a class="  {{ Request::is('ParkManager/gasVehicules') ? 'active' : '' }}"
+                                    style="right: 50px;" href="{{ route('ParkManager.gasVehicules.index') }}">
 
-                                        Gest. de Carb. Véhicule </a>
-                                </li>
+                                    Gest. de Carb. Véhicule </a>
+                            </li>
 
 
-                                <li>
-                                    <a class="  {{ Request::is('ParkManager/gasPipes') ? 'active' : '' }}"
-                                        style="right: 50px;" href="{{ route('ParkManager.gasPipes.index') }}">
+                            <li>
+                                <a class="  {{ Request::is('ParkManager/gasPipes') ? 'active' : '' }}"
+                                    style="right: 50px;" href="{{ route('ParkManager.gasPipes.index') }}">
 
-                                        Gest. de Carb. Unité </a>
-                                </li>
+                                    Gest. de Carb. Unité </a>
+                            </li>
 
 
 
@@ -303,7 +289,7 @@
                         <ul class="submenu">
 
                             <li>
-                                <a class="{{ Request::is('ParkManager/attendances') ? 'active':''}}"
+                                <a class="{{ Request::is('ParkManager/attendances') ? 'active' : '' }}"
                                     style="right: 50px;" href="{{ route('ParkManager.attendances.index') }}">
 
                                     Gest. des Pointages </a>
@@ -328,12 +314,12 @@
                         </a>
                         <ul class="submenu">
 
-                                <li>
-                                    <a class="  {{ Request::is('ParkManager/missions') ? 'active' : '' }}"
-                                        style="right: 50px;" href="{{ route('ParkManager.missions.index') }}">
+                            <li>
+                                <a class="  {{ Request::is('ParkManager/missions') ? 'active' : '' }}"
+                                    style="right: 50px;" href="{{ route('ParkManager.missions.index') }}">
 
-                                        Gérer les Déplacements</a>
-                                </li>
+                                    Gérer les Déplacements</a>
+                            </li>
 
 
                         </ul>

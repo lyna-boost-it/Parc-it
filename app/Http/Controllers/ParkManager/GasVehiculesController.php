@@ -66,7 +66,9 @@ $gases=GazPrice::all();
 
 
     ));
-
+$type=GazPrice::where('name','=',$gasvehicule->type)->first();
+$gasvehicule->litter_price=$type->price;
+$gasvehicule->save();
 
 
        return redirect()->route ('ParkManager.gasVehicules.index')->with('success',"vous avez ajouteré une consommations de carburant pour vehicule avec succès");

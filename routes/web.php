@@ -111,6 +111,8 @@ Route::namespace('ParkManager')->prefix('ParkManager')->name('ParkManager.')->gr
     Route::resource('/designations', 'DesignationController');
     Route::resource('/Gazprice', 'GazPriceController');
 
+ Route::resource('/GiveUnit', 'GiveUnit');
+
 
 
 
@@ -198,6 +200,8 @@ Route::namespace('ParkManager')->prefix('ParkManager')->name('ParkManager.')->gr
     //Route::get('/externalsM/showExternal/{id}', 'ValidateContoller@showV')->name('validation.showV');
     // Route::delete('/externalsM/destroyExternal/{id}', 'ValidateContoller@destroyV')->name('validation.destroyV');
     Route::post('/validation/storeV/{id}', 'ValidateContoller@storeV')->name('validation.storeV');
+    Route::get('/validation/{id}/choose1', 'ValidateContoller@choose1')->name('validation.choose1');
+
     //  Route::put('/externalsM/updateExternal/{id}', 'ValidateContoller@updateV')->name('validation.updateExternal');
     // Route::get('/externalsM/{id}/editExternal', 'ValidateContoller@editV')->name('validation.editExternal');
     // Route::get('/externalsM', 'ValidateContoller@index')->name('validation.index');

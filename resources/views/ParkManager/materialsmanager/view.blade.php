@@ -46,7 +46,7 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        <h4 style="display: inline;color:#000000">Type de la machine: </h4>
+                                        <h4 style="display: inline;color:#000000">Catégorie de la machine: </h4>
                                         <h5 style="display: inline;color:#000000">{{ $material->type_of_machine }} </h5> </h5>
                                     </th>
                                     <th>

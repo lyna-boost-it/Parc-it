@@ -65,8 +65,7 @@
 
 								<tbody>
                                     @foreach($staffs as $staff)
-                                        @foreach($units as $unit)
-                                          @if($unit->id==$staff->unit_id)
+
 
 
                                             <tr>
@@ -75,7 +74,49 @@
                                             <td>{{$staff->serial_numbers}}</td>
                                              <td>{{$staff->phone}}</td>
                                              <td>{{$staff->person_type}}</td>
-                                              <td>{{$unit->name}}</td>
+                                              <td>
+                                                @php
+                                                $i = 0;
+
+                                            @endphp
+                                                @foreach($units as $unit)
+                                                @if($unit->id==$staff->unit_id)
+
+                                                {{$unit->name}}
+                                                @endif
+
+
+                                                @if($staff->unit_id == 0 && $i==0)
+                                                @php
+                                                $i = $i + 1;
+                                            @endphp
+
+                                                @if (Auth::user()->type == 'Gestionnaire Sup')   <a class="dropdown-item"  style="  color: currentColor;
+                                                cursor: not-allowed;
+                                                opacity: 0.5;
+                                                text-decoration: none;"  > <i class="dw dw-delete-3"></i>Effectuez une unité
+</a>
+
+                                              @else
+
+                                    <form class="form-delete dropdown-item" method="get" action={{route('ParkManager.GiveUnit.show',$staff->id)}}">
+
+                                            @csrf
+                                            <input hidden value="staff" name="type">
+                                            <button   type="submit" style=" background-color: transparent;
+                                            border-color: transparent;"   >
+
+                                                <i class="dw dw-delete-3"></i>Effectuez une unité
+
+                                            </button>
+                                        </form>
+                                              @endif
+
+
+
+
+                                                @endif
+                                                @endforeach </td>
                                             <td>
                                                 <div class="dropdown">
                                                     <a
@@ -120,8 +161,7 @@
                                             </td>
                                                                                     </tr>
 
-                                 @endif
-                          @endforeach
+
 
                           @endforeach
 

@@ -174,4 +174,11 @@ class ValidateContoller extends Controller
     {
         //
     }
+    public function choose1($id)
+    {
+
+        $dt=Dt::find($id);
+
+        return view('ParkManager.validation.choice1', compact('dt' ));
+    }
 }

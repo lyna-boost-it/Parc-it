@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <link rel="stylesheet" type="text/css" href="vendors/styles/core.css" />
         <link rel="stylesheet" type="text/css" href="vendors/styles/core.css" />
                 <link rel="stylesheet" type="text/css" href="{{URL('assets/vendors/styles/core.css')}}"; />

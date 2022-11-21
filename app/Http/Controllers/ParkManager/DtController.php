@@ -4,10 +4,20 @@ namespace App\Http\Controllers\ParkManager;
 
 
 use App\Dt;
+use App\External;
+use App\Garanti;
 use App\Http\Controllers\Controller;
+use App\Maintenance;
+use App\Maintenance_Staff;
+use App\Marque;
+use App\Material;
+use App\Models\Designation;
 use App\Models\User;
 use App\MoreNotifs;
 use App\Notifications\DtVNotification;
+use App\Repair;
+use App\Repair_pieces;
+use App\Repair_Staff;
 use App\Staff;
 use App\Unit;
 use App\Vehicule;
@@ -70,12 +80,13 @@ $maintenance->save();
         $dt = new Dt();
         $units=Unit::all();
         $vehicules=Vehicule::all();
+        $materials=Material::all();
         $drivers=Staff::all()->where('person_type','=','Conducteur')->where('staff_state','=','au travail');
         $staffs=Staff::all()->where('person_type','=','Personnel du parc')->where('staff_state','=','au travail');
 
         return view('ParkManager.dts.create', compact('dt',
         'units' ,'drivers' ,
-        'vehicules' ,'staffs'));
+        'vehicules' ,'staffs','materials'));
 
         }
 
@@ -89,7 +100,7 @@ $maintenance->save();
     {
         $dt=Dt:: create($request->only('unit_id','staff_id' ,'perso_id',1,
         'action','observation','type_maintenance','type_panne','nature_panne','user_id',
-        'enter_time', 'enter_date','driver_id','code_dt','vehicle_id' ));
+        'enter_time', 'enter_date','driver_id','code_dt','vehicle_id' ,'type'));
         $year = substr($dt->enter_date, 2, 2);
         $month = substr($dt->enter_date, 5, 2);
         if(Str::length($dt->id)==1){  $zero='000'; }
@@ -144,9 +155,36 @@ $maintenance->save();
         $driver=Staff::find($maintenance->driver_id);
         $unit=Unit::find($maintenance->unit_id);
         $vehicule=Vehicule::find($maintenance->vehicle_id);
+        $repair=null;
+        $external=null;
+        $dt=null;
+        $repair_staffs=null;
+        $rps=null;
+        $guaranti=null;
 
+        $maintenance_staffs=null;
+        $external=External::where('dt_code','=',$id)->first();
+        $dt=Maintenance::where('dt_code','=',$id)->first();
+        $repair=Repair::where('dt_code','=',$id)->first();
+        if($repair!=null){
+            $repair_staffs = Repair_Staff::all()->where('repair_id', '=', $repair->id);
+            $rps = Repair_pieces::all()->where('repair_id', '=', $repair->id);
+        }
+        if($dt!=null){
+
+            $maintenance_staffs=Maintenance_Staff::all()->where('maintenance_id','=',$dt->id);
+
+        }
+          if($external!=null){
+            $guaranti=Garanti::find($external->supplier_id);
+
+        }
         $staff=Staff::find($maintenance->staff_id);
-        return view('ParkManager.dts.view', compact('maintenance','unit','vehicule','driver','staff'));
+        $staffs = Staff::all()->where('person_type', '=', 'Personnel du parc');
+
+        $designations=Designation::all();
+        $marks=Marque::all();
+        return view('ParkManager.dts.view', compact('guaranti','maintenance_staffs','marks','designations','rps','staffs','maintenance','unit','vehicule','driver','staff','external','dt','repair','repair_staffs'));
 
 
     }
@@ -180,7 +218,7 @@ $maintenance->save();
         $dt = Dt::find($id);
         $dt->update($request->only('unit_id','staff_id' ,'perso_id','vehicle_id',
         'action','observation','type_maintenance','type_panne','nature_panne',
-       'driver_id','code_dt','enter_time', 'enter_date',
+       'driver_id','code_dt','enter_time', 'enter_date','type'
         ));     return redirect()->route ('ParkManager.dts.index')->with('success',"vous avez modifié une demandes de travaux avec succès");
 
     }

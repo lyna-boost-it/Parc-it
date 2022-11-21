@@ -123,8 +123,6 @@
 
 
 
-
-
                             <div class="card-body">
                                 <div class="row">
                                     <label class="col-md-3 col-form-label">{{ __('Date') }}</label>

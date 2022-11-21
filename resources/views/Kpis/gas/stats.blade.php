@@ -15,12 +15,12 @@
 
             <div class="mobile-menu-overlay"></div>
 
-                <div class="main-container">
+            <div class="main-container">
 
-                    <button id="button" class="btn btn-warning btn-round"><span class="fa fa-print  "
-                        style="color: #000000"> </span> Imprimer</button>
+                <button id="button" class="btn btn-warning btn-round"><span class="fa fa-print  " style="color: #000000">
+                    </span> Imprimer</button>
 
-                        <div id="makepdf">
+                <div id="makepdf">
                     <div class="xs-pd-20-10 pd-ltr-20">
                         <div class="card-box pd-20 height-100-p mb-30">
                             <div class="row align-items-center">
@@ -97,19 +97,11 @@
 
                     <div class="row">
 
-
                         <div class="col-md-6 mb-20">
-                            <div class="card-box height-100-p pd-20">
-
-                                <div id="myChart" class="chart--container">
-
-                                </div>
-                            </div>
-
-
-
+                            <div id="piechart"></div>
 
                         </div>
+
                         <div class="col-md-6 mb-20">
                             <div class="card-box height-100-p pd-20">
 
@@ -118,7 +110,8 @@
                                         <div class="px-3 pt-12 pb-10 text-center relative z-20">
                                             <h1 class="text-sm uppercase text-gray-500 leading-tight text-orange"
                                                 style="font-size: 2.5em;">Consomation tottale </h1>
-                                            <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3 text-orange">
+                                            <h3
+                                                class="text-3xl text-gray-700 font-semibold leading-tight my-3 text-orange">
                                                 {{ $TotalGas }} L</h3>
 
                                         </div>
@@ -179,171 +172,53 @@
                         </div>
                     </div>
 
-                </div></div>
+                </div>
+            </div>
             </div>
 
 
             <br><br><br>
-            <input type="hidden" value="{{ $GLPP }} " id="essenceP">
-            <input type="hidden" value="{{ $GazoleP }} " id="gazoleP">
-            <input type="hidden" value="{{ $EssenceP }} " id="gplP">
+            <input type="hidden" value="{{ $GLP }} " id="gplP">
+            <input type="hidden" value="{{ $Essence }} " id="essenceP">
+            <input type="hidden" value="{{ $Gazole }} " id="gazoleP">Gazole
 
-            <script>
+
+            <script type="text/javascript">
                 var essenceP = parseInt($("#essenceP").val());
                 var gazoleP = parseInt($("#gazoleP").val());
                 var gplP = parseInt($("#gplP").val());
-                var rest = parseInt($("#gplP").val());
-
-                ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"];
-                let chartConfig = {
-                    type: 'ring',
-                    legend: {
-                        align: 'center',
-                        borderWidth: '0px',
-                        item: {
-                            cursor: 'pointer',
-                            fontSize: '15px',
-                            offsetX: '-5px',
-                        },
-                        layout: 'vertical',
-                        marker: {
-                            type: 'circle',
-                            cursor: 'pointer',
-                            size: '10px',
-                        },
-                        toggleAction: 'remove', // remove plot so it re-calculates percentage
-                        verticalAlign: 'middle',
-                    },
-                    plot: {
-                        tooltip: {
-                            visible: false,
-                        },
-                        detached: false, // turn off click on slices
-                        slice: 150, // set hole size in middle of chart
-                    },
-                    series: [{
-                            text: 'GPL ',
-                            values: [gplP],
-                            backgroundColor: '#FE7A5D',
-                        },
-                        {
-                            text: 'Essence ',
-                            values: [essenceP],
-                            backgroundColor: '#69A8F8',
-                        },
-                        {
-                            text: 'Gazole ',
-                            values: [gazoleP],
-                            backgroundColor: '#54DBB9',
-                        },
-
-                    ],
-                };
-
-                zingchart.render({
-                    id: 'myChart',
-                    data: chartConfig,
-                    height: '100%',
-                    width: '100%',
+                // Load google charts
+                google.charts.load('current', {
+                    'packages': ['corechart']
                 });
+                google.charts.setOnLoadCallback(drawChart);
 
-                /*
-                 * Every 35 milliseconds we will update the chart
-                 * angle by 1.5 degress so it simulates rotatition
-                 * animation!
-                 */
-                let angle = 0;
-                setInterval(function() {
-                    angle = angle + 1.5;
-                    zingchart.exec('myChart', 'modify', {
-                        object: 'plot',
-                        data: {
-                            refAngle: angle % 360,
-                        },
-                    });
-                }, 35);
-            </script>
-            <script>
-                const chartOptions = {
-                    maintainAspectRatio: false,
-                    legend: {
-                        display: false,
-                    },
-                    tooltips: {
-                        enabled: false,
-                    },
-                    elements: {
-                        point: {
-                            radius: 0
-                        },
-                    },
-                    scales: {
-                        xAxes: [{
-                            gridLines: false,
-                            scaleLabel: false,
-                            ticks: {
-                                display: false
-                            }
-                        }],
-                        yAxes: [{
-                            gridLines: false,
-                            scaleLabel: false,
-                            ticks: {
-                                display: false,
-                                suggestedMin: 0,
-                                suggestedMax: 10
-                            }
-                        }]
-                    }
-                };
-                //
-                var ctx = document.getElementById('chart1').getContext('2d');
-                var chart = new Chart(ctx, {
-                    type: "line",
-                    data: {
-                        labels: [1, 2, 1, 3, 5, 4, 7],
-                        datasets: [{
-                            backgroundColor: "rgba(101, 116, 205, 0.1)",
-                            borderColor: "rgba(101, 116, 205, 0.8)",
-                            borderWidth: 2,
-                            data: [1, 2, 1, 3, 5, 4, 7],
-                        }, ],
-                    },
-                    options: chartOptions
-                });
-                //
-                var ctx = document.getElementById('chart2').getContext('2d');
-                var chart = new Chart(ctx, {
-                    type: "line",
-                    data: {
-                        labels: [2, 3, 2, 9, 7, 7, 4],
-                        datasets: [{
-                            backgroundColor: "rgba(246, 109, 155, 0.1)",
-                            borderColor: "rgba(246, 109, 155, 0.8)",
-                            borderWidth: 2,
-                            data: [2, 3, 2, 9, 7, 7, 4],
-                        }, ],
-                    },
-                    options: chartOptions
-                });
-                //
-                var ctx = document.getElementById('chart3').getContext('2d');
-                var chart = new Chart(ctx, {
-                    type: "line",
-                    data: {
-                        labels: [2, 5, 1, 3, 2, 6, 7],
-                        datasets: [{
-                            backgroundColor: "rgba(246, 153, 63, 0.1)",
-                            borderColor: "rgba(246, 153, 63, 0.8)",
-                            borderWidth: 2,
-                            data: [2, 5, 1, 3, 2, 6, 7],
-                        }, ],
-                    },
-                    options: chartOptions
-                });
+                // Draw the chart and set the chart values
+                function drawChart() {
+                    var data = google.visualization.arrayToDataTable([
+                        ['Task', 'Hours per Day'],
+                        ['GPL', gplP],
+                        ['Essence', essenceP],
+                        ['Gazole', gazoleP]
+                    ]);
+
+                    // Optional; add a title and set the width and height of the chart
+                    var options = {
+                        'title': 'CONSOMATION',
+                        'width': 900,
+                        'height': 650
+                    };
+
+                    // Display the chart inside the <div> element with id="piechart"
+                    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+                    chart.draw(data, options);
+                }
             </script>
 
-@include('layouts.footerforKPI')
+
+
+
+            @include('layouts.footerforKPI')
 
 
         </body>
@@ -360,166 +235,161 @@
 
             <div class="main-container">
                 <button id="button" class="btn btn-warning btn-round"><span class="fa fa-print  "
-                    style="color: #000000"> </span> Imprimer</button>
+                        style="color: #000000"> </span> Imprimer</button>
 
-                    <div id="makepdf">
-                <div class="xs-pd-20-10 pd-ltr-20">
-                    <div class="card-box pd-20 height-100-p mb-30">
-                        <div class="row align-items-center">
+                <div id="makepdf">
+                    <div class="xs-pd-20-10 pd-ltr-20">
+                        <div class="card-box pd-20 height-100-p mb-30">
+                            <div class="row align-items-center">
 
-                            <div class="col-md-8">
-                                <h4 class="font-20 weight-500 mb-10 text-capitalize">
+                                <div class="col-md-8">
+                                    <h4 class="font-20 weight-500 mb-10 text-capitalize">
 
 
 
-                                    <div class="weight-600 font-30 text-orange"> Consomation du Carburant en Mois de <b>
-                                            @switch($monthDA)
-                                                @case(1)
-                                                    Janvier
-                                                @break
+                                        <div class="weight-600 font-30 text-orange"> Consomation du Carburant en Mois de
+                                            <b>
+                                                @switch($monthDA)
+                                                    @case(1)
+                                                        Janvier
+                                                    @break
 
-                                                @case(2)
-                                                    Février
-                                                @break
+                                                    @case(2)
+                                                        Février
+                                                    @break
 
-                                                @case(3)
-                                                    Mars
-                                                @break
+                                                    @case(3)
+                                                        Mars
+                                                    @break
 
-                                                @case(4)
-                                                    Avril
-                                                @break
+                                                    @case(4)
+                                                        Avril
+                                                    @break
 
-                                                @case(5)
-                                                    Mai
-                                                @break
+                                                    @case(5)
+                                                        Mai
+                                                    @break
 
-                                                @case(6)
-                                                    Juin
-                                                @break
+                                                    @case(6)
+                                                        Juin
+                                                    @break
 
-                                                @case(7)
-                                                    Juillet
-                                                @break
+                                                    @case(7)
+                                                        Juillet
+                                                    @break
 
-                                                @case(8)
-                                                    Aout
-                                                @break
+                                                    @case(8)
+                                                        Aout
+                                                    @break
 
-                                                @case(9)
-                                                    Septembre
-                                                @break
+                                                    @case(9)
+                                                        Septembre
+                                                    @break
 
-                                                @case(10)
-                                                    Octobre
-                                                @break
+                                                    @case(10)
+                                                        Octobre
+                                                    @break
 
-                                                @case(11)
-                                                    Novembre
-                                                @break
+                                                    @case(11)
+                                                        Novembre
+                                                    @break
 
-                                                @case(12)
-                                                    Décembre
-                                                @break
+                                                    @case(12)
+                                                        Décembre
+                                                    @break
 
-                                                @default
-                                            @endswitch
-                                        </b> </div>
-                                </h4>
+                                                    @default
+                                                @endswitch
+                                            </b> </div>
+                                    </h4>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="row">
+
+
+                        <div class="col-md-6 mb-20">
+                            <div id="piechart"></div>
+
+                        </div>
+                        <div class="col-md-6 mb-20">
+                            <div class="card-box height-100-p pd-20">
+
+                                <div class="rounded-lg shadow-sm mb-12">
+                                    <div class="rounded-lg bg-white shadow-lg md:shadow-xl relative overflow-hidden">
+                                        <div class="px-3 pt-12 pb-10 text-center relative z-20">
+                                            <h1 class="text-sm uppercase text-gray-500 leading-tight text-orange"
+                                                style="font-size: 2.5em;">Consomation tottale </h1>
+                                            <h3
+                                                class="text-3xl text-gray-700 font-semibold leading-tight my-3 text-orange">
+                                                {{ $TotalDA }} L</h3>
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                                <div class="rounded-lg shadow-sm mb-12">
+                                    <div class="rounded-lg bg-white shadow-lg md:shadow-xl relative overflow-hidden">
+                                        <div class="px-3 pt-12 pb-10 text-center relative z-20">
+                                            <h1 class="text-sm uppercase text-gray-500 leading-tight"
+                                                style="font-size: 2.5em;">GPL</h1>
+                                            <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">
+                                                {{ $GLPDA }} DA</h3>
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                                <div class="rounded-lg shadow-sm mb-4">
+                                    <div class="rounded-lg bg-white shadow-lg md:shadow-xl relative overflow-hidden">
+                                        <div class="px-3 pt-8 pb-10 text-center relative z-10">
+                                            <h1 class="text-sm uppercase text-gray-500 leading-tight"
+                                                style="font-size: 2.5em;">Essence</h1>
+                                            <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">
+                                                {{ $EssenceDA }} DA</h3>
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                                <div class="rounded-lg shadow-sm mb-4">
+                                    <div class="rounded-lg bg-white shadow-lg md:shadow-xl relative overflow-hidden">
+                                        <div class="px-3 pt-8 pb-10 text-center relative z-10">
+                                            <h1 class="text-sm uppercase text-gray-500 leading-tight"
+                                                style="font-size: 2.5em;">Gazole</h1>
+                                            <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">
+                                                {{ $GazoleDA }} DA</h3>
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+
+
+                                <!-- BUY ME A BEER AND HELP SUPPORT OPEN-SOURCE RESOURCES -->
+
+
 
                             </div>
                         </div>
                     </div>
+
                 </div>
-
-
-
-
-                <div class="row">
-
-
-                    <div class="col-md-6 mb-20">
-                        <div class="card-box height-100-p pd-20">
-
-                            <div id="myChart" class="chart--container">
-
-                            </div>
-                        </div>
-
-
-
-
-                    </div>
-                    <div class="col-md-6 mb-20">
-                        <div class="card-box height-100-p pd-20">
-
-                            <div class="rounded-lg shadow-sm mb-12">
-                                <div class="rounded-lg bg-white shadow-lg md:shadow-xl relative overflow-hidden">
-                                    <div class="px-3 pt-12 pb-10 text-center relative z-20">
-                                        <h1 class="text-sm uppercase text-gray-500 leading-tight text-orange"
-                                            style="font-size: 2.5em;">Consomation tottale </h1>
-                                        <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3 text-orange">
-                                            {{ $TotalDA }} L</h3>
-
-                                    </div>
-
-
-                                </div>
-                            </div>
-
-                            <div class="rounded-lg shadow-sm mb-12">
-                                <div class="rounded-lg bg-white shadow-lg md:shadow-xl relative overflow-hidden">
-                                    <div class="px-3 pt-12 pb-10 text-center relative z-20">
-                                        <h1 class="text-sm uppercase text-gray-500 leading-tight"
-                                            style="font-size: 2.5em;">GPL</h1>
-                                        <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">
-                                            {{ $GLPDA }} DA</h3>
-
-                                    </div>
-
-
-                                </div>
-                            </div>
-
-                            <div class="rounded-lg shadow-sm mb-4">
-                                <div class="rounded-lg bg-white shadow-lg md:shadow-xl relative overflow-hidden">
-                                    <div class="px-3 pt-8 pb-10 text-center relative z-10">
-                                        <h1 class="text-sm uppercase text-gray-500 leading-tight"
-                                            style="font-size: 2.5em;">Essence</h1>
-                                        <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">
-                                            {{ $EssenceDA }} DA</h3>
-
-                                    </div>
-
-
-                                </div>
-                            </div>
-
-                            <div class="rounded-lg shadow-sm mb-4">
-                                <div class="rounded-lg bg-white shadow-lg md:shadow-xl relative overflow-hidden">
-                                    <div class="px-3 pt-8 pb-10 text-center relative z-10">
-                                        <h1 class="text-sm uppercase text-gray-500 leading-tight"
-                                            style="font-size: 2.5em;">Gazole</h1>
-                                        <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">
-                                            {{ $GazoleDA }} DA</h3>
-
-                                    </div>
-
-
-                                </div>
-                            </div>
-
-
-
-                            <!-- BUY ME A BEER AND HELP SUPPORT OPEN-SOURCE RESOURCES -->
-
-
-
-                        </div>
-                    </div>
-                </div>
-
-            </div></div>
+            </div>
 
 
 
@@ -535,82 +405,38 @@
             <input type="hidden" value="{{ $EssenceDA }} " id="essenceP">
             <input type="hidden" value="{{ $GazoleDA }} " id="gazoleP">
             <input type="hidden" value="{{ $GLPDA }} " id="gplP">
-
-            <script>
+            <script type="text/javascript">
                 var essenceP = parseInt($("#essenceP").val());
                 var gazoleP = parseInt($("#gazoleP").val());
                 var gplP = parseInt($("#gplP").val());
-                var rest = parseInt($("#gplP").val());
-
-                ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"];
-                let chartConfig = {
-                    type: 'ring',
-                    legend: {
-                        align: 'center',
-                        borderWidth: '0px',
-                        item: {
-                            cursor: 'pointer',
-                            fontSize: '15px',
-                            offsetX: '-5px',
-                        },
-                        layout: 'vertical',
-                        marker: {
-                            type: 'circle',
-                            cursor: 'pointer',
-                            size: '10px',
-                        },
-                        toggleAction: 'remove', // remove plot so it re-calculates percentage
-                        verticalAlign: 'middle',
-                    },
-                    plot: {
-                        tooltip: {
-                            visible: false,
-                        },
-                        detached: false, // turn off click on slices
-                        slice: 150, // set hole size in middle of chart
-                    },
-                    series: [{
-                            text: 'GPL ',
-                            values: [gplP],
-                            backgroundColor: '#FE7A5D',
-                        },
-                        {
-                            text: 'Essence ',
-                            values: [essenceP],
-                            backgroundColor: '#69A8F8',
-                        },
-                        {
-                            text: 'Gazole ',
-                            values: [gazoleP],
-                            backgroundColor: '#54DBB9',
-                        },
-
-                    ],
-                };
-
-                zingchart.render({
-                    id: 'myChart',
-                    data: chartConfig,
-                    height: '100%',
-                    width: '100%',
+                // Load google charts
+                google.charts.load('current', {
+                    'packages': ['corechart']
                 });
+                google.charts.setOnLoadCallback(drawChart);
 
-                /*
-                 * Every 35 milliseconds we will update the chart
-                 * angle by 1.5 degress so it simulates rotatition
-                 * animation!
-                 */
-                let angle = 0;
-                setInterval(function() {
-                    angle = angle + 1.5;
-                    zingchart.exec('myChart', 'modify', {
-                        object: 'plot',
-                        data: {
-                            refAngle: angle % 360,
-                        },
-                    });
-                }, 35);
+                // Draw the chart and set the chart values
+                function drawChart() {
+                    var data = google.visualization.arrayToDataTable([
+                        ['Task', 'Hours per Day'],
+                        ['GPL', gplP],
+                        ['Essence', essenceP],
+                        ['Gazole', gazoleP]
+                    ]);
+
+                    // Optional; add a title and set the width and height of the chart
+                    var options = {
+                        'title': 'CONSOMATION',
+                        'width': 900,
+                        'height': 650
+                    };
+
+                    // Display the chart inside the <div> element with id="piechart"
+                    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+                    chart.draw(data, options);
+                }
             </script>
+
             <script>
                 const chartOptions = {
                     maintainAspectRatio: false,
@@ -691,7 +517,7 @@
                 });
             </script>
 
-@include('layouts.footerforKPI')
+            @include('layouts.footerforKPI')
 
 
         </body>
@@ -715,141 +541,144 @@
 
             <div class="main-container">
                 <button id="button" class="btn btn-warning btn-round"><span class="fa fa-print  "
-                    style="color: #000000"> </span> Imprimer</button>
+                        style="color: #000000"> </span> Imprimer</button>
 
-                    <div id="makepdf">
+                <div id="makepdf">
 
-                <div class="xs-pd-20-10 pd-ltr-20">
+                    <div class="xs-pd-20-10 pd-ltr-20">
+                        <div class="card-box pd-20 height-100-p mb-30">
+                            <div class="row align-items-center">
+
+                                <div class="col-md-8">
+                                    <h4 class="font-20 weight-500 mb-10 text-capitalize">
+
+
+
+                                        <div class="weight-600 font-30 text-orange"> Consomation du Carburant en Mois
+                                            de:
+                                            <b>
+                                                @switch($monthDAm)
+                                                    @case(1)
+                                                        Janvier
+                                                    @break
+
+                                                    @case(2)
+                                                        Février
+                                                    @break
+
+                                                    @case(3)
+                                                        Mars
+                                                    @break
+
+                                                    @case(4)
+                                                        Avril
+                                                    @break
+
+                                                    @case(5)
+                                                        Mai
+                                                    @break
+
+                                                    @case(6)
+                                                        Juin
+                                                    @break
+
+                                                    @case(7)
+                                                        Juillet
+                                                    @break
+
+                                                    @case(8)
+                                                        Aout
+                                                    @break
+
+                                                    @case(9)
+                                                        Septembre
+                                                    @break
+
+                                                    @case(10)
+                                                        Octobre
+                                                    @break
+
+                                                    @case(11)
+                                                        Novembre
+                                                    @break
+
+                                                    @case(12)
+                                                        Décembre
+                                                    @break
+
+                                                    @default
+                                                @endswitch
+                                            </b>
+                                        </div>
+                                    </h4>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
                     <div class="card-box pd-20 height-100-p mb-30">
                         <div class="row align-items-center">
 
-                            <div class="col-md-8">
-                                <h4 class="font-20 weight-500 mb-10 text-capitalize">
-
-
-
-                                    <div class="weight-600 font-30 text-orange"> Consomation du Carburant en Mois de:
-                                        <b>
-                                            @switch($monthDAm)
-                                                @case(1)
-                                                    Janvier
-                                                @break
-
-                                                @case(2)
-                                                    Février
-                                                @break
-
-                                                @case(3)
-                                                    Mars
-                                                @break
-
-                                                @case(4)
-                                                    Avril
-                                                @break
-
-                                                @case(5)
-                                                    Mai
-                                                @break
-
-                                                @case(6)
-                                                    Juin
-                                                @break
-
-                                                @case(7)
-                                                    Juillet
-                                                @break
-
-                                                @case(8)
-                                                    Aout
-                                                @break
-
-                                                @case(9)
-                                                    Septembre
-                                                @break
-
-                                                @case(10)
-                                                    Octobre
-                                                @break
-
-                                                @case(11)
-                                                    Novembre
-                                                @break
-
-                                                @case(12)
-                                                    Décembre
-                                                @break
-
-                                                @default
-                                            @endswitch
-                                        </b>
-                                    </div>
-                                </h4>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <div class="card-box pd-20 height-100-p mb-30">
-                    <div class="row align-items-center">
-
-                        <div class="col-md-12">
+                            <div class="col-md-12">
 
 
 
 
-                            <div class="rounded-lg shadow-sm mb-4">
-                                <div class="rounded-lg bg-white shadow-lg md:shadow-xl relative overflow-hidden">
-                                    <div class="px-3 pt-8 pb-10 text-center relative z-10">
-                                        <h1 class="text-sm uppercase text-gray-500 leading-tight"
-                                            style="font-size: 2.5em;">Consomation tottale du Carburant pour les
-                                            matériels motorisés (DA):</h1>
-                                        <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">
-                                            {{ $MaterialDA }} DA</h3>
+                                <div class="rounded-lg shadow-sm mb-4">
+                                    <div class="rounded-lg bg-white shadow-lg md:shadow-xl relative overflow-hidden">
+                                        <div class="px-3 pt-8 pb-10 text-center relative z-10">
+                                            <h1 class="text-sm uppercase text-gray-500 leading-tight"
+                                                style="font-size: 2.5em;">Consomation tottale du Carburant pour les
+                                                matériels motorisés (DA):</h1>
+                                            <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">
+                                                {{ $MaterialDA }} DA</h3>
+
+                                        </div>
+
 
                                     </div>
-
-
                                 </div>
-                            </div>
 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-box pd-20 height-100-p mb-30">
+                        <div class="row align-items-center">
+
+                            <div class="col-md-12">
+
+
+                                <div class="rounded-lg shadow-sm mb-12">
+                                    <div class="rounded-lg bg-white shadow-lg md:shadow-xl relative overflow-hidden">
+                                        <div class="px-3 pt-12 pb-10 text-center relative z-20">
+                                            <h1 class="text-sm uppercase text-gray-500 leading-tight"
+                                                style="font-size: 2.5em;">Consomation tottale du Carburant pour les matériels
+                                                motorisés (littre):</h1>
+                                            <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">
+                                                {{ $MaterialGaz }} L</h3>
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+
+
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div> </div>
+            </div>
             </div>
 
 
 
 
-            <div class="card-box pd-20 height-100-p mb-30">
-                <div class="row align-items-center">
 
-                    <div class="col-md-12">
-
-
-                        <div class="rounded-lg shadow-sm mb-12">
-                            <div class="rounded-lg bg-white shadow-lg md:shadow-xl relative overflow-hidden">
-                                <div class="px-3 pt-12 pb-10 text-center relative z-20">
-                                    <h1 class="text-sm uppercase text-gray-500 leading-tight"
-                                        style="font-size: 2.5em;">Consomation tottale du Carburant pour les matériels
-                                        motorisés (littre):</h1>
-                                    <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">
-                                        {{ $MaterialGaz }} L</h3>
-
-                                </div>
-
-
-                            </div>
-                        </div>
-
-
-
-                    </div>
-                </div>
-            </div>
 
             </div>
 

@@ -96,19 +96,18 @@
             <div class="row">
 
 
-                <div class="col-md-6 mb-20">
-                    <div class="card-box height-100-p pd-20">
-
-                        <div id="myChart" class="chart--container">
-
-                        </div>
-                    </div>
-
-
 
 
                 </div>
                 <div class="col-md-6 mb-20">
+                    <div class="card-box height-100-p pd-20">
+
+                        <div id="piechart"></div>
+
+
+                        </div>
+                    </div>
+
                     <div class="card-box height-100-p pd-20">
 
                         <div class="rounded-lg shadow-sm mb-12">
@@ -167,81 +166,35 @@
         <input type="hidden" value="{{ $enpanne }} " id="enpanne">
         <input type="hidden" value="{{ $enmaintenance }} " id="enmaintenance">
 
-        <script>
-            var operationel = parseInt($("#operationel").val());
+        <script type="text/javascript">
+                    var operationel = parseInt($("#operationel").val());
             var enpanne = parseInt($("#enpanne").val());
             var enmaintenance = parseInt($("#enmaintenance").val());
-            var rest = parseInt($("#gplP").val());
+            // Load google charts
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
 
-            ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"];
-            let chartConfig = {
-                type: 'ring',
-                legend: {
-                    align: 'center',
-                    borderWidth: '0px',
-                    item: {
-                        cursor: 'pointer',
-                        fontSize: '15px',
-                        offsetX: '-5px',
-                    },
-                    layout: 'vertical',
-                    marker: {
-                        type: 'circle',
-                        cursor: 'pointer',
-                        size: '10px',
-                    },
-                    toggleAction: 'remove', // remove plot so it re-calculates percentage
-                    verticalAlign: 'middle',
-                },
-                plot: {
-                    tooltip: {
-                        visible: false,
-                    },
-                    detached: false, // turn off click on slices
-                    slice: 150, // set hole size in middle of chart
-                },
-                series: [{
-                        text: 'Opérationnel',
-                        values: [operationel],
-                        backgroundColor: '#FE7A5D',
-                    },
-                    {
-                        text: 'En panne',
-                        values: [enpanne],
-                        backgroundColor: '#69A8F8',
-                    },
-                    {
-                        text: 'En maintenance',
-                        values: [enmaintenance],
-                        backgroundColor: '#54DBB9',
-                    },
+            // Draw the chart and set the chart values
+            function drawChart() {
+              var data = google.visualization.arrayToDataTable([
+              ['Task', 'Hours per Day'],
+              ['Opérationnel', operationel],
+              ['En panne', enpanne],
+              ['En maintenance', enmaintenance],
 
-                ],
-            };
+            ]);
 
-            zingchart.render({
-                id: 'myChart',
-                data: chartConfig,
-                height: '100%',
-                width: '100%',
-            });
+              // Optional; add a title and set the width and height of the chart
+              var options = {'title':'L\'état Des Équipements Roulants', 'width':650, 'height':450};
 
-            /*
-             * Every 35 milliseconds we will update the chart
-             * angle by 1.5 degress so it simulates rotatition
-             * animation!
-             */
-            let angle = 0;
-            setInterval(function() {
-                angle = angle + 1.5;
-                zingchart.exec('myChart', 'modify', {
-                    object: 'plot',
-                    data: {
-                        refAngle: angle % 360,
-                    },
-                });
-            }, 35);
-        </script>
+              // Display the chart inside the <div> element with id="piechart"
+              var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+              chart.draw(data, options);
+            }
+            </script>
+
+
+
         <script>
             const chartOptions = {
                 maintainAspectRatio: false,

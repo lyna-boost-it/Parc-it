@@ -78,15 +78,28 @@
 
              <div class="card-body" >
                     <div class="row">
-                        <label class="col-md-3 col-form-label">{{ __(' Type de la machine') }}</label>
+                        <label class="col-md-3 col-form-label">{{ __(' Catégorie de la machine') }}</label>
                                                 <div class="col-md-9" >
                                                     <div class="form-group">
-                                                        <input type="text"
-                                                        name="type_of_machine"
+
+                                                        <select  name="type_of_machine"
                                                         class="form-control"
 
                                                         placeholder=" Type de la machine"
                                                         value="{{ $material->type_of_machine }}" required>
+                                                            <option value="Tailleuse de Haie ">Tailleuse de Haie </option>
+                                                            <option value="Motobineuse">Motobineuse</option>
+                                                            <option value="Débrousailleuse telescopique ">Débrousailleuse telescopique </option>
+                                                            <option value="Tailleuse de Haie telescopique">Tailleuse de Haie telescopique</option>
+                                                            <option value="tronçonneuse telescopique ">tronçonneuse telescopique </option>
+                                                            <option value="Aspirateur ">Aspirateur </option>
+                                                            <option value="tronçonneuse ">tronçonneuse </option>
+                                                            <option value="faucheuse ">faucheuse </option>
+                                                            </select>
+
+
+
+
                                                     </div>
                                                     @if ($errors->has('type_of_machine'))
                                                         <span class="invalid-feedback" style="display: block;" role="alert">

@@ -126,41 +126,48 @@
                                     <h4>Pièces consommées:<br> </h4>
                                     <div>
                                         @foreach ($rps as $rp)
-                                         @foreach ($designations as $designation)
-                                        @if($rp->designation==$designation->id)
-                                        <div class="sidenav">
+                                        1
+                                            @foreach ($designations as $designation)
+                                                @foreach ($marks as $mark)
 
-                                            <button class="dropdown-btn">Désignation:{{ $designation->name }}</b>
-                                                <i class="fa fa-caret-down"></i>
-                                            </button>
-                                            <div class="dropdown-container">
-                                                <table style=" width: 90%;border-collapse: collapse;">
-                                                    <tr>
-                                                        <th>
-                                                            <h4>Reference:{{ $rp->reference }} </h4>
+                                                @if ($rp->type == $designation->id)
+                                                <div class="sidenav">
 
-
-                                                        </th>
-                                                        <th>
-                                                            <h4> Quantite: {{ $rp->quantity }} </h4>
-                                                        </th>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>
-                                                            <h4>prix: {{ $rp->price }}</h4>
-                                                        </th>
-                                                        <th>
-                                                            <h4>Prix total: {{ $rp->full_price }} </h4>
-                                                        </th>
-                                                    </tr>
-                                                </table>
+                                                    <button
+                                                        class="dropdown-btn">Marque:{{ $designation->name }}</b>
+                                                        <i class="fa fa-caret-down"></i>
+                                                    </button>
+                                                    <div class="dropdown-container">
+                                                        <table style=" width: 90%;border-collapse: collapse;">
+                                                            <tr>
+                                                                <th>
+                                                                    <h4>Reference:{{ $rp->reference }} </h4>
 
 
+                                                                </th>
+                                                                <th>
+                                                                    <h4> Quantite: {{ $rp->quantity }} </h4>
+                                                                </th>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>
+                                                                    <h4>prix: {{ $rp->price }}</h4>
+                                                                </th>
+                                                                <th>
+                                                                    <h4>Prix total: {{ $rp->full_price }} </h4>
+                                                                </th>
+                                                            </tr>
+                                                        </table>
 
-                                            </div>
-                                        </div>
-                                        @endif  @endforeach
 
+
+                                                    </div>
+                                                </div>
+                                            @endif
+
+                                                @endforeach
+
+                                            @endforeach
                                         @endforeach
                                     </div>
                                 </div>

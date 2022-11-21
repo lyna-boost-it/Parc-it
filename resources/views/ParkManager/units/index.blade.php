@@ -47,10 +47,10 @@
 									<tr>
                                         <th >ID</th>
                                         <th >Nom de l’unité</th>
-                                        <th >Nom et Prénom du contact</th>
-                                        <th  >Fonction du contact</th>
-                                        <th  > N° du Téléphone</th>
-                                        <th  > Adresse E-mail</th>
+                                        <th >Contact</th>
+                                        <th  >Fonction</th>
+                                        <th  > Téléphone</th>
+                                        <th  > E-mail</th>
                                       <th class="datatable-nosort">Action</th>
 
 									</tr>

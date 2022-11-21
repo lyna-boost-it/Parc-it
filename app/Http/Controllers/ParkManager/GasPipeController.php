@@ -5,6 +5,7 @@ namespace App\Http\Controllers\ParkManager;
 use App\Attendance;
 use App\GasPipe;
 use App\Http\Controllers\Controller;
+use App\Models\GazPrice;
 use App\Shift;
 use App\Shift_Staff;
 use App\Staff;
@@ -46,10 +47,10 @@ class GasPipeController extends Controller
 
         $staffs=Staff::all()->where("person_type",'=','Personnel du parc');
         $units=Unit::all();
-
+        $gases=GazPrice::all();
         return view('ParkManager.gasPipes.create',
         compact('gaspipe'
-        ,'drivers','staffs','units'));
+        ,'drivers','staffs','units','gases'));
     }
 
     /**
@@ -63,8 +64,13 @@ class GasPipeController extends Controller
 
 
         $gaspipe=GasPipe:: create($request->only(   'id',
-        'driver_id','staff_id','unit_id','ticket','price','litter','litter_price'
+        'driver_id','staff_id','unit_id','ticket','price','litter','litter_price','type'
         ));
+
+
+        $type=GazPrice::where('name','=',$gaspipe->type)->first();
+$gaspipe->litter_price=$type->price;
+$gaspipe->save();
         return redirect()->route ('ParkManager.gasPipes.index')
         ->with('success',"vous avez ajouté une consommations de carburant pour équipements motorisés avec succès");
     }
@@ -115,7 +121,7 @@ class GasPipeController extends Controller
         $gaspipe=GasPipe::find($id);
         $gaspipe->update($request->only('id',
         'id',
-        'driver_id','staff_id','unit_id','ticket','price','litter_price','litter'
+        'driver_id','staff_id','unit_id','ticket','price','litter_price','litter','type'
         ));
 
                 return redirect('/ParkManager/gasPipes')->with('success',"vous avez modifié une consommations de carburant pour équipements motorisés avec succès");
