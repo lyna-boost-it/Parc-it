@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Dt;
 use App\DtMaterial;
 use App\Material;
 use App\MoreNotifs;
@@ -19,7 +20,7 @@ class DtMNotification extends Notification
      *
      * @return void
      */
-    public function __construct(DtMaterial $dt, MoreNotifs $more_notifs)
+    public function __construct(Dt $dt, MoreNotifs $more_notifs)
     {
         $this->dt=$dt;
          $this->more_notifs=$more_notifs;
@@ -58,8 +59,8 @@ class DtMNotification extends Notification
      */
     public function toArray($notifiable)
     {
-        $vehicule=Material::find($this->dt->mm_id);
-        $p=$vehicule->acquisition_date;
+        $vehicule=Material::find($this->dt->vehicle_id);
+        $p=$vehicule->ref;
 
         return [
             'type'=>'dt',

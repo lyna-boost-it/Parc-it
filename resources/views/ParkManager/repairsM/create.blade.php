@@ -111,7 +111,7 @@
 
 
 
-                        <input type="hidden" id="mm_id" name="mm_id" value="{{ $material->id }}">
+                        <input type="hidden" id="mm" name="mm_id" value="{{ $material->id }}">
                         <input type="hidden" id="dt_code" name="dt_code" value="{{ $dt->id }}">
 
 
@@ -184,7 +184,6 @@
                         </div>
 
 
-
                         <div class="card-body">
 
                             <div class="card">
@@ -193,8 +192,13 @@
                                 <div class="card-body">
                                     <table class="table" id="Pieces_table">
                                         <thead>
-                                            <tr><th>Code</th>
+                                            <tr>
+
+
+                                                <th>MARQUE</th>
+                                                <th>Type</th>
                                                 <th>Désignation</th>
+                                                <th>Code</th>
                                                 <th>Réf</th>
                                                 <th>Qte</th>
                                                 <th>Prix</th>
@@ -202,41 +206,56 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <td>
-                                                <input type="text" name="codes[]"
-                                                    class="form-control"
-                                                  />
-                                            </td>
                                             <tr id="product0">
                                                 <td>
-                                                    <select name="designations[]" class="form-control">
-                                                        <option value="">Choisissez une Désignation</option>
-                                                    @foreach ($designations as $designation )
-                                                    <option value="{{ $designation->id }}">{{ $designation->name }}</option>
 
-                                                    @endforeach
+                                                    <select name="marques[]" class="form-control">
+                                                        <option value="">Choisissez une Marque</option>
+                                                        @foreach ($marques as $designation)
+                                                            <option value="{{ $designation->id }}">
+                                                                {{ $designation->name }}</option>
+                                                        @endforeach
 
                                                     </select>
                                                 </td>
                                                 <td>
-                                                    <input type="number" name="references[]"
-                                                        class="form-control"
-                                                      />
+
+                                                    <select name="types[]" class="form-control">
+                                                        <option value="">Choisissez un Type</option>
+                                                        @foreach ($designations as $designation)
+                                                            <option value="{{ $designation->id }}">
+                                                                {{ $designation->name }}</option>
+                                                        @endforeach
+
+                                                    </select>
+                                                </td>
+
+                                                <td>
+
+                                                    <input type="text" name="designations[]"
+                                                        class="form-control" />
+
+
+
+
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="codes[]" class="form-control" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="references[]"
+                                                        class="form-control" />
                                                 </td>
                                                 <td>
                                                     <input type="number" name="quantities[]"
-                                                        class="form-control"
-                                                      />
+                                                        class="form-control" />
                                                 </td>
                                                 <td>
-                                                    <input type="number" name="prices[]"
-                                                        class="form-control"
-                                                      />
+                                                    <input type="number" step="0.01" name="prices[]"
+                                                        class="form-control" />
                                                 </td>
                                                 <td>
-                                                    <input type="number" name="receip[]"
-                                                        class="form-control"
-                                                      />
+                                                    <input type="text" name="receip[]" class="form-control" />
                                                 </td>
 
 
@@ -262,14 +281,29 @@
 
 
 
-                         <div class="card-footer ">
+                        @if (Str::length($dt->state)!=1  )
+                        <div class="card-footer ">
                             <div class="row">
-                             <div class="col-md-12 text-center">
-                                    <button type="submit" class="btn  btn-round"
-                                    style="background:#EE643A;color:#ffffff;">{{ __('Ajouter') }}</button>
+                                <div class="col-md-12 text-center">
+
+
+                                    <button type="submit" name="action" value="more"
+                                        class="btn   btn-round"
+                                        style="background:#EE643A;color:#ffffff;">{{ __('Ajouter et créer d\'autres sorties') }}</button>
                                 </div>
                             </div>
                         </div>
+                    @endif
+
+
+                    <div class="card-footer ">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <button type="submit" name="action" value="end" class="btn   btn-round"
+                                    style="background:#EE643A;color:#ffffff;">{{ __('Ajouter') }}</button>
+                            </div>
+                        </div>
+                    </div>
         </div>
                 </form>
 

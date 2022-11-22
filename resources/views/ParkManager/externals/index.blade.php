@@ -22,7 +22,7 @@
                         <div class="col-md-6 col-sm-12">
                             <div class="title">
                                 <h3 style="color:#EE643A; ">
-                                    Liste des Maintenances externes:</h3>
+                                    Liste des Maintenances externes pour Véhicule:</h3>
                             </div>
 
                         </div>
@@ -40,11 +40,12 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
+                                    <th>N° de la Demande de Travaux (DT)</th>
                                     <th>Véhicule</th>
                                     <th>Type V</th>
                                     <th>Marque</th>
                                     <th> Contrat </th>
-                                    <th>N° de la Demande de Travaux (DT)</th>
+
 
                                     <th class="datatable-nosort">Action</th>
 
@@ -60,11 +61,12 @@
                                         @foreach ($vehicules as $vehicule)
                                             @if ($external->vehicule_id == $vehicule->id && $external->dt_code == $dt->id)
                                                 <td>{{ $external->id }}</td>
+                                                <td>{{ $dt->code_dt }}</td>
                                                 <td>{{ $vehicule->marticule }}</td>
                                                 <td>{{ $vehicule->vehicle_type }}</td>
                                                 <td> {{ $vehicule->mark }}</td>
                                                 <td>{{ $external->contract }}</td>
-                                                <td>{{ $dt->code_dt }}</td>
+
 
                                                 <td>
                                                     <div class="dropdown">
@@ -89,27 +91,28 @@
                                                                     class="dw dw-eye"></i> Consulter</a>
 
 
-                                                                    @if (Auth::user()->type == 'Gestionnaire Sup')
-                                                                    <a class="dropdown-item "
-                                                                        style="  color: currentColor;
+                                                            @if (Auth::user()->type == 'Gestionnaire Sup')
+                                                                <a class="dropdown-item "
+                                                                    style="  color: currentColor;
                                                                             cursor: not-allowed;
                                                                             opacity: 0.5;
-                                                                            text-decoration: none;"><i class="dw dw-delete-3"></i> Supprimer</a>
-                                                                    @else
-                                                                    <form class="form-delete dropdown-item" method="post"
-                                                                action="{{ route('ParkManager.externals.destroyExternal', $external->id) }}">
-                                                                @method('DELETE')
-                                                                @csrf
-                                                                <button type="submit"
-                                                                    style=" background-color: transparent;
+                                                                            text-decoration: none;"><i
+                                                                        class="dw dw-delete-3"></i> Supprimer</a>
+                                                            @else
+                                                                <form class="form-delete dropdown-item" method="post"
+                                                                    action="{{ route('ParkManager.externals.destroyExternal', $external->id) }}">
+                                                                    @method('DELETE')
+                                                                    @csrf
+                                                                    <button type="submit"
+                                                                        style=" background-color: transparent;
                                                                 border-color: transparent;"
-                                                                    onclick="return confirm('êtes-vous sûr?')">
+                                                                        onclick="return confirm('êtes-vous sûr?')">
 
-                                                                    <i class="dw dw-delete-3">Supprimer</i>
+                                                                        <i class="dw dw-delete-3">Supprimer</i>
 
-                                                                </button>
-                                                            </form>
-                                                              @endif
+                                                                    </button>
+                                                                </form>
+                                                            @endif
 
                                                         </div>
                                                     </div>
@@ -142,7 +145,7 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="title">
-                                <h4>Liste des demandes de travaux (DT): Maintenances externes</h4>
+                                <h4>Liste des Maintenances externes pour Matériel Motorisés</h4>
                             </div>
 
                         </div>
@@ -150,31 +153,23 @@
                     </div>
                 </div>
 
-
-
                 <div class="card-box mb-30">
-                    <div class="pd-20">
-                        <a  style="background:#EE643A;color:#ffffff;float: right;
-                    @if (Auth::user()->type == 'Gestionnaire Sup') color: currentColor;
-cursor: not-allowed;
-opacity: 0.5;
-text-decoration: none; @endif
-                    "
-        href="{{ route('ParkManager.dts.create') }}" class="btn btn-sm ">
-        Créer une demande
-    </a></div>
+
                     <div class="pb-20">
 
                         <table class="table nowrap hover data-table-export">
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>TYPE DE PANNE</th>
+                                    <th>N° de la Demande de Travaux (DT)</th>
+                                    <th>Ref Matériel</th>
+                <th>Type</th>
+                <th>Marque</th>
+                <th>Modéle</th>
 
-                                    <th>Action d'entrée</th>
-                                    <th>DATE ET HEURE D'ENTREE</th>
-                                    <th>VEHICULE</th>
-                                    <th>Type de maintenance </th>
+                                    <th> Contrat </th>
+
+
                                     <th class="datatable-nosort">Action</th>
 
                                 </tr>
@@ -184,69 +179,96 @@ text-decoration: none; @endif
 
 
                             <tbody>
-                                @foreach ($dts as $maintenance)
-                                    @foreach ($vehicules as $vehicule)
-                                        @if ($maintenance->vehicle_id == $vehicule->id)
-                                            <tr>
-
-                                                <td>{{ $maintenance->code_dt }}</td>
-                                                <td>{{ $maintenance->type_panne }}</td>
-
-                                                <td>{{ $maintenance->action }}</td>
-                                                <td>{{ $maintenance->enter_date }} {{ $maintenance->enter_time }}
-                                                <td>{{ $vehicule->code }}</td>
-                                                <td>{{ $maintenance->type_maintenance }}
-                                                <td>
-                                                    <div class="dropdown">
-                                                        <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
-                                                            href="#" role="button" data-toggle="dropdown">
-                                                            <i class="dw dw-more"></i>
-                                                        </a>
-                                                        <div
-                                                            class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                @foreach ($dts as $dt)
+                                    @foreach ($externalsM as $external)
+                                        @foreach ($materials as $material)
+                                            @if ($external->mm_id == $material->id && $external->dt_code == $dt->id)
+                                                <tr>
+                                                    <td>{{ $external->id }}</td>
+                                                    <td>{{ $dt->code_dt }}</td>
+                                                    <td>{{ $material->ref }}</td>
+                                                    <td>{{ $material->type_of_machine }}</td>
+ <td>{{ $material->mark }}</td>
+ <td>{{ $material->model }}</td>
 
 
-                                                            @if ($maintenance->state != 'fait')
+                                                    <td>{{ $external->contract }}</td>
+
+
+                                                   <td>
+                                                        <div class="dropdown">
+                                                            <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+                                                                href="#" role="button" data-toggle="dropdown">
+                                                                <i class="dw dw-more"></i>
+                                                            </a>
+                                                            <div
+                                                                class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+
                                                                 <a class="dropdown-item"
-                                                                    href="{{ route('ParkManager.externals.createExternal', $maintenance->id) }}"@if (Auth::user()->type == 'Gestionnaire Sup') style="  color: currentColor;
-                                                                    cursor: not-allowed;
-                                                                    opacity: 0.5;
-                                                                    text-decoration: none;" @endif>
-                                                                    <i class="icon-copy dw dw-add"></i> Ajouter</a>
-                                                            @endif
+                                                                    href="{{ route('ParkManager.externalsM.editExternal', $external->id) }}"
+                                                                    @if (Auth::user()->type == 'Gestionnaire Sup') style="  color: currentColor;
+                                                            cursor: not-allowed;
+                                                            opacity: 0.5;
+                                                            text-decoration: none;" @endif><i
+                                                                        class="dw dw-edit2"></i> Modifier</a>
+
+
+                                                                <a class="dropdown-item"
+                                                                    href="{{ route('ParkManager.externalsM.showExternal', $external->id) }}"><i
+                                                                        class="dw dw-eye"></i> Consulter</a>
 
 
 
-                                                            <a class="dropdown-item"
-                                                                href="{{ route('ParkManager.dts.show', $maintenance->id) }}"
-                                                                @if (Auth::user()->type == 'Gestionnaire Sup') style="  color: currentColor;
+                                                                @if (Auth::user()->type == 'Gestionnaire Sup')
+                                                                    <a class="dropdown-item"
+                                                                        href="{{ route('ParkManager.externalsM.editExternal', $external->id) }}"
+                                                                        @if (Auth::user()->type == 'Gestionnaire Sup') style="  color: currentColor;
                                                                 cursor: not-allowed;
                                                                 opacity: 0.5;
                                                                 text-decoration: none;" @endif><i
-                                                                    class="dw dw-eye"></i> Consulter</a>
+                                                                            class="dw dw-delete-3">Supprimer</i></a>
+                                                                @else
+                                                                    <form class="form-delete dropdown-item"
+                                                                        method="post"
+                                                                        action="{{ route('ParkManager.externalsM.destroyExternal', $external->id) }}">
+                                                                        @method('DELETE')
+                                                                        @csrf
+                                                                        <button type="submit"
+                                                                            style=" background-color: transparent;
+                                                                border-color: transparent;"
+                                                                            onclick="return confirm('êtes-vous sûr?')">
 
+                                                                            <i class="dw dw-delete-3">Supprimer</i>
 
+                                                                        </button>
+                                                                    </form>
+                                                                @endif
+
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </td>
+                                                    </td>
 
 
 
 
-                                                </td>
-                                            </tr>
-                                        @endif
+                                                    </td>
+                                                </tr>
+                                            @endif
+                                        @endforeach
                                     @endforeach
                                 @endforeach
 
                             </tbody>
                         </table>
+
+
+
+
+
                     </div>
                 </div>
 
-            </div>
-
-            @include('layouts.footerForIndexx')
+                @include('layouts.footerForIndexx')
 
     </body>
 

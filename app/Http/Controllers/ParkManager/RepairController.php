@@ -9,12 +9,14 @@ use App\DT_Piece;
 use App\Http\Controllers\Controller;
 use App\Liquids;
 use App\Marque;
+use App\Material;
 use App\Models\User;
 use App\MoreNotifs;
 use App\Notifications\RepairVNotification;
 use App\Repair;
 use App\Repair_pieces;
 use App\Repair_Staff;
+use App\RepairsMaterial;
 use App\Staff;
 use App\Vehicule;
 use Illuminate\Http\Request;
@@ -33,12 +35,15 @@ class RepairController extends Controller
      */
     public function index()
     {
-        $dts = Dt::all()->where('type_maintenance', '=', 'Réparation')->where('answer', '=', 'Acceptée');
+
         $repairs = Repair::all();
+        $repairsM=RepairsMaterial::all();
         $vehicules = Vehicule::all();
+$materials=Material::all();
+$dts=Dt::all();
         $drivers = Staff::all()->where('person_type', '=', 'Conducteur');
         return view('ParkManager.repairs.index')
-            ->with('repairs', $repairs)->with('vehicules', $vehicules)->with('drivers', $drivers)->with('dts', $dts);
+            ->with('dts', $dts) ->with('repairs', $repairs)->with('vehicules', $vehicules)->with('repairsM', $repairsM)->with('materials', $materials);
     }
 
     /**
@@ -56,7 +61,7 @@ class RepairController extends Controller
         $pieces = ConsumedPieces::all()->where('type', '=', 'Véhicule');
         $lubrifiant = Liquids::where('type', '=', 'Lubrifiant')->first();
         $liquid = Liquids::where('type', '=', 'Liquide')->first();
-        $staffs = Staff::all()->where('person_type', '=', 'Personnel du centre de maintenance')->where('function', '!=', 'Mécanicien spécialisé (matériel motorisé)')->where('staff_state', '=', 'au travail');
+        $staffs = Staff::all()->where('person_type', '=', 'Personnel du centre de maintenance')->where('function', '=', 'Mécanicien spécialisé (matériel motorisé)')->where('staff_state', '=', 'au travail');
 
         $drivers = Staff::all()->where('person_type', '=', 'Conducteur');
         return view(
@@ -82,6 +87,7 @@ class RepairController extends Controller
      */
     public function storeRepairs(Request $request)
     {
+
         $pieces = $request->input('pieces', []);
         $quantities = $request->input('quantities', []);
 
@@ -221,6 +227,7 @@ else{     $dt->previous_state = $dt->state;
         $driver = Staff::find($repair->driver_id);
         $repair_staffs = Repair_Staff::all()->where('repair_id', '=', $repair->id);
         $rps = Repair_pieces::all()->where('repair_id', '=', $repair->id);
+        $marks=Marque::all();
         return view(
             'ParkManager.repairs.view',
             compact(
@@ -230,7 +237,7 @@ else{     $dt->previous_state = $dt->state;
                 'repair_staffs',
                 'vehicule',
                 'staffs',
-                'rps','designations'
+                'rps','designations','marks'
             )
         );
     }

@@ -67,9 +67,7 @@
                     <div class="col-md-6  ">
                         <div class="panel">
                             <div class="panel-body bio-chart"  >
-                                    <h4  style="display: inline; ">Employé: </h4>
-                                    <h5  style="display: inline;">{{ $emp->name }} {{ $emp->last_name }}</h5>
-                                    <br>
+
                                     <h4 style="display: inline;" >Affectation (unité) : </h4>
                                     <h5 style="display: inline;">{{ $unit->name }}</h5>
                             </div>
@@ -78,9 +76,7 @@
                     <div class="col-md-6  ">
                         <div class="panel">
                             <div class="panel-body bio-desk">
-                                    <h4   style="display: inline;">Réception (Pers) : </h4>
-                                    <h5 style="display: inline;">{{ $staff->name }} {{ $staff->last_name }}</h5>
-                                    <br>
+
                                     <h4 style="display: inline;" >Action d'entrée (État): </h4>
                                     <h5 style="display: inline;">{{ $maintenance->action }}</h5>
                             </div>

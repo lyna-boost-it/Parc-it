@@ -31,12 +31,23 @@
 
                         <div class="row">
                             <div class="col-sm">
-                                @if (!str_contains($dt->state, '1'))
+                                @if (!str_contains($dt->state, '1') && $dt->type=='Véhicule' )
 
 
                                 <a class="btn  btn-round"
-                                href="{{ route('ParkManager.repairs.createRepairs', $dt->id) }}" style="background:#EE643A;color:#ffffff;">
-                            <h3> Réparations</h3></a>
+                                href="{{ route('ParkManager.repairs.createRepairs', $dt->id) }}"
+                                style="background:#EE643A;color:#ffffff;">
+                            <h3 style="color: white"> Réparations</h3></a>
+
+
+                                    @endif
+     @if (!str_contains($dt->state, '1') && $dt->type=='Matériel Motorisés' )
+
+
+                                <a class="btn  btn-round"
+                                href="{{ route('ParkManager.repairsM.createRepairs', $dt->id) }}"
+                                style="background:#EE643A;color:#ffffff;">
+                            <h3 style="color: white"> Réparations</h3></a>
 
 
                                     @endif
@@ -46,19 +57,45 @@
                         <div class="col-sm">
                             @if (!str_contains($dt->state, '2'))
 
-                            <a class="btn  btn-round"
-                            href="{{ route('ParkManager.maintenances.createMaintenance', $dt->id) }}" style="background:#EE643A;color:#ffffff;">
-                            <h3>  Entretiens</h3></a>
 
+                              @if($dt->type=='Véhicule')
+                              <a class="btn  btn-round"
+                            href="{{ route('ParkManager.maintenances.createMaintenance', $dt->id) }}" style="background:#EE643A;color:#ffffff;">
+                            <h3 style="color: white">  Entretiens</h3></a>
+
+                            @endif
                             @endif
                         </div>
                             <div class="col-sm">
 
-                                @if (!str_contains($dt->state, '3'))
+                               @if (!str_contains($dt->state, '3') && $dt->type=='Véhicule' )
                                 <a class="btn  btn-round"
-                                    href="{{ route('ParkManager.externals.createExternal', $dt->id) }}" style="background:#EE643A;color:#ffffff;">
-                                    <h3>   Maintenances externes</h3></a>
+
+                                    href="{{ route('ParkManager.externals.createExternal', $dt->id) }}"
+
+
+
+                                    style="background:#EE643A;color:#ffffff;">
+                                    <h3 style="color: white">   Maintenances externes</h3></a>
+
                                     @endif
+
+
+                                    @if (!str_contains($dt->state, '3') && $dt->type=='Matériel Motorisés' )
+
+
+                                    <a class="btn  btn-round"
+
+                                    href="{{ route('ParkManager.externalsM.createExternal', $dt->id) }}"
+
+
+
+                                    style="background:#EE643A;color:#ffffff;">
+                                    <h3 style="color: white">   Maintenances externes</h3></a>
+
+
+                                    @endif
+
                             </div>
 
 

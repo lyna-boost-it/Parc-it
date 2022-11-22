@@ -55,14 +55,13 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Véhicule</th>
-                                        <th>Type V</th>
-                                        <th>Marque</th>
+                                        <th>Type</th>
+
                                         <th>TYPE DE PANNE</th>
                                         <th>Type de Maintenance</th>
                                         <th>Action d'entrée</th>
                                         <th>DATE ET HEURE D'ENTREE</th>
-                                        <th>Validité</th>
+                                        <th>Etat</th>
 
 
                                         <th class="datatable-nosort">Action</th>
@@ -78,30 +77,159 @@
                                         @foreach ($vehicules as $vehicule)
                                             @if ($maintenance->vehicle_id == $vehicule->id)
                                                 <tr
-                                                    style="background-color:  @if ($maintenance->answer == 'Acceptée') #73eb9229 @endif
-                                                         @if ($maintenance->answer == 'en attente') #ff48002b @endif
+                                                    style="background-color:
+                                                          @if($maintenance->state=='en instance') #ffc0003b  @endif
 
-                                                         @if ($maintenance->answer == 'Refusée') #de00003d @endif  ">
+
+                                                    @if ($maintenance->state == 'en cours') #73eb9229 @endif
+                                                         @if ($maintenance->state == 'en attente') #ff48002b @endif
+
+                                                      ">
 
                                                     <td>{{ $maintenance->code_dt }}</td>
-                                                    <td>{{ $vehicule->marticule }}</td>
-                                                    <td>{{ $vehicule->vehicle_type }}</td>
-                                                    <td> {{ $vehicule->mark }}</td>
+                                                    <td>{{ $maintenance->type }}</td>
+
                                                     <td>{{ $maintenance->type_panne }}</td>
                                                     <td>{{ $maintenance->type_maintenance }}</td>
                                                     <td>{{ $maintenance->action }}</td>
                                                     <td>{{ $maintenance->enter_date }} {{ $maintenance->enter_time }}
                                                     <td><b>
-                                                            @if ($maintenance->action == ' A programmer mais opérationnel' ||
-                                                                $maintenance->type_maintenance ==
-                                                                    ' A programmer mais en
-                                                            panne' ||
-                                                                $maintenance->action == 'En panne (à l\'arrêt)')
-                                                                En instance
-                                                            @endif
-                                                            @if ($maintenance->action == 'En maintenance')
-                                                                en cours
-                                                            @endif
+                                                        {{ $maintenance->state}}
+                                                        </b></td>
+
+
+                                                        <td>
+                                                            <div class="dropdown">
+                                                                @if ($maintenance->answer == 'en attente' && Auth::user()->type != 'Gestionnaire Sup')
+                                                                    <div style=" display: inline-block;">
+                                                                        <form style="display: inline;"
+                                                                            action="{{ route('ParkManager.validation.createV', $maintenance->id) }}"
+                                                                            method="get" class="dropdown-item">
+                                                                            @csrf
+
+                                                                            <button type="submit"
+                                                                                style=" display: inline;background-color: transparent; border-color: transparent;">
+                                                                                <input type="hidden" value="Vehicule"
+                                                                                    id="type" name="type">
+                                                                                <input type="hidden" value="accepted"
+                                                                                    id="valide" name="valide">
+
+                                                                                <span class="hovertext"
+                                                                                    data-hover="Accepté">
+                                                                                    <i class="dw dw-check"
+                                                                                        style="color: green"></i></span>
+                                                                            </button>
+                                                                        </form>
+                                                                        <form style="display: inline;"
+                                                                            action="{{ route('ParkManager.validation.createV', $maintenance->id) }}"
+                                                                            method="get" class="dropdown-item">
+                                                                            @csrf
+
+                                                                            <button type="submit"
+                                                                                style="display: inline; background-color: transparent; border-color: transparent;">
+                                                                                <input type="hidden" value="Vehicule"
+                                                                                    id="type" name="type">
+                                                                                <input type="hidden" value="archivé"
+                                                                                    id="valide" name="valide">
+
+                                                                                <span class="hovertext"
+                                                                                    data-hover="Archivé">
+                                                                                    <i class="fas fa-archive  "
+                                                                                        style="color: red"></i>
+                                                                                </span>
+                                                                            </button>
+                                                                        </form>
+                                                                    </div>
+                                                                @endif
+                                                                <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+                                                                    href="#" role="button" data-toggle="dropdown">
+                                                                    <i class="dw dw-more"></i>
+                                                                </a>
+                                                                <div
+                                                                    class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+
+
+                                                                    <a class="dropdown-item"
+                                                                        href="{{ route('ParkManager.dts.show', $maintenance->id) }}"><i
+                                                                            class="dw dw-eye"></i> Consulter</a>
+
+
+                                                                    @if (Auth::user()->type == 'Gestionnaire Sup')
+                                                                    @else
+
+                                                                    @if ($maintenance->state == 'en instance')
+
+
+                                                                    <form class="form-delete dropdown-item"
+                                                                    method="get"
+                                                                    action="{{ route('ParkManager.validation.createV', $maintenance->id) }}">
+
+                                                                    @csrf
+                                                                    <input type="hidden" value="Vehicule"
+                                                                    id="type" name="type">
+                                                                <input type="hidden" value="accepted"
+                                                                    id="valide" name="valide">
+                                                                    <button type="submit"
+                                                                        style=" background-color: transparent;
+                                                                             border-color: transparent;">
+
+                                                                        <i class="dw dw-edit2"></i>2eme
+                                                                        Traitement
+
+                                                                    </button>
+                                                                </form>
+
+                                                                    @endif
+                                                                    @if ($maintenance->state == 'en cours')
+                                                                        <form class="form-delete dropdown-item"
+                                                                            method="get"
+                                                                            action="{{ route('ParkManager.validation.choose1', $maintenance->id) }}">
+
+                                                                            @csrf
+                                                                            <button type="submit"
+                                                                                style=" background-color: transparent;
+                                                                                     border-color: transparent;">
+
+                                                                                <i class="dw dw-delete-3"></i>Sortie
+
+                                                                            </button>
+                                                                        </form>
+
+                                                                    @endif    @endif
+                                                                </div>
+                                                            </div>
+                                                        </td>
+
+
+
+
+
+                                                    </td>
+                                                </tr>
+                                            @endif
+                                        @endforeach
+
+                                        @foreach ($materials as $material)
+                                            @if ($maintenance->vehicle_id == $material->id)
+                                                <tr
+                                                style="background-color:
+                                                @if($maintenance->state=='en instance') #ffc0003b  @endif
+
+
+                                          @if ($maintenance->state == 'en cours') #73eb9229 @endif
+                                               @if ($maintenance->state == 'en attente') #ff48002b @endif
+
+                                            ">
+
+                                                    <td>{{ $maintenance->code_dt }}</td>
+                                                    <td>{{ $maintenance->type }}</td>
+
+                                                    <td>{{ $maintenance->type_panne }}</td>
+                                                    <td>{{ $maintenance->type_maintenance }}</td>
+                                                    <td>{{ $maintenance->action }}</td>
+                                                    <td>{{ $maintenance->enter_date }} {{ $maintenance->enter_time }}
+                                                    <td><b>
+                                                         {{ $maintenance->state}}
                                                         </b></td>
 
 
@@ -155,57 +283,52 @@
                                                             <div
                                                                 class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
 
-                                                                <a class="dropdown-item"
-                                                                    href="{{ route('ParkManager.dts.edit', $maintenance->id) }}"
-                                                                    @if (Auth::user()->type == 'Gestionnaire Sup') style="  color: currentColor;
-                                                                            cursor: not-allowed;
-                                                                            opacity: 0.5;
-                                                                            text-decoration: none;" @endif><i
-                                                                        class="dw dw-edit2"></i> Modifier</a>
+
                                                                 <a class="dropdown-item"
                                                                     href="{{ route('ParkManager.dts.show', $maintenance->id) }}"><i
                                                                         class="dw dw-eye"></i> Consulter</a>
 
 
                                                                 @if (Auth::user()->type == 'Gestionnaire Sup')
-                                                                    <a class="dropdown-item" href="#"
-                                                                        @if (Auth::user()->type == 'Gestionnaire Sup') style="  color: currentColor;
-                                                                cursor: not-allowed;
-                                                                opacity: 0.5;
-                                                                text-decoration: none;" @endif>
-                                                                        <i class="dw dw-delete-3"></i> Supprimer</a>
                                                                 @else
+                                                                @if ($maintenance->state == 'en instance')
+
+
+                                                                <form class="form-delete dropdown-item"
+                                                                method="get"
+                                                                action="{{ route('ParkManager.validation.createV', $maintenance->id) }}">
+
+                                                                @csrf
+                                                                <input type="hidden" value="Vehicule"
+                                                                id="type" name="type">
+                                                            <input type="hidden" value="accepted"
+                                                                id="valide" name="valide">
+                                                                <button type="submit"
+                                                                    style=" background-color: transparent;
+                                                                         border-color: transparent;">
+
+                                                                    <i class="dw dw-edit2"></i>2eme
+                                                                    Traitement
+
+                                                                </button>
+                                                            </form>
+
+                                                                @endif
+                                                                @if ($maintenance->state == 'en cours')
                                                                     <form class="form-delete dropdown-item"
-                                                                        method="post"
-                                                                        action="{{ route('ParkManager.dts.destroy', $maintenance->id) }}">
-                                                                        @method('DELETE')
+                                                                        method="get"
+                                                                        action="{{ route('ParkManager.validation.choose1', $maintenance->id) }}">
+
                                                                         @csrf
                                                                         <button type="submit"
                                                                             style=" background-color: transparent;
-                                                            border-color: transparent;"
-                                                                            onclick="return confirm('êtes-vous sûr?')">
+                                                                                 border-color: transparent;">
 
-                                                                            <i class="dw dw-delete-3"></i>Supprimer
+                                                                            <i class="dw dw-delete-3"></i>Sortie
 
                                                                         </button>
                                                                     </form>
-
-
-                                                                    <form class="form-delete dropdown-item"
-                                                                    method="get"
-                                                                    action="{{ route('ParkManager.validation.choose1', $maintenance->id) }}">
-
-                                                                    @csrf
-                                                                    <button type="submit"
-                                                                        style=" background-color: transparent;
-                                                                        border-color: transparent;"
-                                                                        >
-
-                                                                        <i class="dw dw-delete-3"></i>Sortie
-
-                                                                    </button>
-                                                                </form>
-                                                                @endif
+                                                                @endif     @endif
                                                             </div>
                                                         </div>
                                                     </td>
@@ -261,9 +384,9 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Véhicule</th>
-                                        <th>Type V</th>
-                                        <th>Marque</th>
+
+                                        <th>Type </th>
+
                                         <th>TYPE DE PANNE</th>
                                         <th>Type de Maintenance</th>
                                         <th>Action d'entrée</th>
@@ -286,9 +409,8 @@
                                                 <tr>
 
                                                     <td>{{ $maintenance->code_dt }}</td>
-                                                    <td>{{ $vehicule->marticule }}</td>
-                                                    <td>{{ $vehicule->vehicle_type }}</td>
-                                                    <td> {{ $vehicule->mark }}</td>
+
+                                                    <td>{{ $maintenance->type }}</td>
                                                     <td>{{ $maintenance->type_panne }}</td>
                                                     <td>{{ $maintenance->type_maintenance }}</td>
                                                     <td>{{ $maintenance->action }}</td>
@@ -323,6 +445,49 @@
                                                 </tr>
                                             @endif
                                         @endforeach
+
+
+                                        @foreach ($materials as $material)
+                                            @if ($maintenance->vehicle_id == $material->id)
+                                            <tr>
+
+                                                <td>{{ $maintenance->code_dt }}</td>
+
+                                                <td>{{ $maintenance->type }}</td>
+                                                <td>{{ $maintenance->type_panne }}</td>
+                                                <td>{{ $maintenance->type_maintenance }}</td>
+                                                <td>{{ $maintenance->action }}</td>
+                                                <td>{{ $maintenance->enter_date }} {{ $maintenance->enter_time }}
+
+
+
+                                                <td>
+                                                    <div class="dropdown">
+
+                                                        <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+                                                            href="#" role="button" data-toggle="dropdown">
+                                                            <i class="dw dw-more"></i>
+                                                        </a>
+                                                        <div
+                                                            class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+
+
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('ParkManager.dts.show', $maintenance->id) }}"><i
+                                                                    class="dw dw-eye"></i> Consulter</a>
+
+
+                                                        </div>
+                                                    </div>
+                                                </td>
+
+
+
+
+                                                </td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
                                     @endforeach
 
                                 </tbody>

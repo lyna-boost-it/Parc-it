@@ -7,6 +7,7 @@ use App\Designation;
 use App\Dt;
 use App\DtMaterial;
 use App\Http\Controllers\Controller;
+use App\Marque;
 use App\Material;
 use App\Models\User;
 use App\MoreNotifs;
@@ -45,15 +46,16 @@ class RepairMController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function createRepairs($id)
-    {
-        $dt=DtMaterial::find($id);
-        $material=Material::find($dt->mm_id);
+    {    $designations=Designation::all();
+        $marques=Marque::all();
+        $dt=Dt::find($id);
+        $material=Material::find($dt->vehicle_id );
         $repair = new RepairsMaterial();
         $staffs=Staff::all()->where('person_type','=','Personnel du centre de maintenance')->where('function','=','Mécanicien spécialisé (matériel motorisé)')->where('staff_state','=','au travail');
         $pieces = ConsumedPieces::all()->where('type', '=', 'Machine');
-        $designations=Designation::all();
+
           return view('ParkManager.repairsM.create',
-          compact('repair','dt' , 'staffs', 'material','pieces','designations' ));
+          compact('repair','dt' , 'staffs', 'material','pieces','designations' ,'marques'));
 
     }
 
@@ -71,13 +73,13 @@ class RepairMController extends Controller
 
     foreach($staffs as $s){
         $staff=Staff::find($s);
-$staff_repair=new RepairsMaterial_Staff();
-$staff_repair->staff_id=$staff->id;
-$staff_repair->repairmaterial_id=$repair->id;
-$staff_repair->save();
+        $staff_repair=new RepairsMaterial_Staff();
+        $staff_repair->staff_id=$staff->id;
+        $staff_repair->repairmaterial_id=$repair->id;
+        $staff_repair->save();
     }
 
-    $dt=DtMaterial::find($repair->dt_code);
+    $dt=Dt::find($repair->dt_code);
     $dt->previous_state=$dt->state;
     $dt->state='fait';
 
@@ -107,23 +109,51 @@ $quantities = $request->input('quantities', []);
 $references = $request->input('references', []);
 $designations = $request->input('designations', []);
 $receips = $request->input('receip', []);
+$codes = $request->input('codes', []);
+$marques = $request->input('marques', []);
+$types = $request->input('types', []);
 
 for ($designation = 0; $designation < count($designations); $designation++) {
     if ($designations[$designation] != '') {
         $dt_piece = new RepairM_pieces();
-        $dt_piece->repair_id =$repair->id;
+        $dt_piece->repair_id = $repair->id;
         $dt_piece->reference = $references[$designation];
         $dt_piece->designation = $designations[$designation];
-        $dt_piece->price =$prices[$designation];
+        $dt_piece->price = $prices[$designation];
         $dt_piece->quantity = $quantities[$designation];
         $dt_piece->receip = $receips[$designation];
+        $dt_piece->code = $codes[$designation];
+$dt_piece->marque = $marques[$designation];
+$dt_piece->type = $types[$designation];
 
-        $dt_piece->full_price =$dt_piece->price*$dt_piece->quantity;
+        $dt_piece->full_price = $dt_piece->price * $dt_piece->quantity;
         $dt_piece->save();
     }
 }
-    return redirect ('/ParkManager/repairsM')->with('success',"vous avez ajouté une reparation avec succès");
+
+
+if($request->action=='more'){
+    if ($dt->state=='en attente'){
+        $dt->state = '1';
+        $dt->save();
+    }else{
+        $dt->state = $dt->state.'1';
+        $dt->save();
     }
+    return view('ParkManager.validation.choice1', compact('dt' ));
+
+     }
+
+
+
+else{     $dt->previous_state = $dt->state;
+    $dt->state = 'fait';
+    $dt->save();
+
+    return redirect ('/ParkManager/dts')->with('success',"vous avez ajouté un Entretien avec succès");
+
+}
+      }
 
     /**
      * Display the specified resource.

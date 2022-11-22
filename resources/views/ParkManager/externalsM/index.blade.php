@@ -56,11 +56,11 @@
                                <tr>
 
                                 <td>{{$external->id}}</td>
-                <td>{{$external->contract}}</td>
-                <td>{{$dt->code_dt}}</td>
+                            <td>{{$external->contract}}</td>
+                            <td>{{$dt->code_dt}}</td>
 
-                <td>{{$material->acquisition_date}}</td>
-                                        <td>
+                            <td>{{$material->acquisition_date}}</td>
+                                                    <td>
                                                     <div class="dropdown">
                                                         <a
                                                             class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"

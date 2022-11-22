@@ -218,7 +218,7 @@
                                             <div class="form-group">
                                                 <select name="type_maintenance" class="form-control"
                                                     id="type_maintenance">
-                                                    <option value="" disabled selected>Choisissez un de
+                                                    <option value="" disabled selected>Choisissez un type de
                                                         Maintenance</option>
                                                     <option value="Réparation"
                                                         {{ old('type_maintenance', $dt->type_maintenance) === 'Réparation' ? 'selected' : '' }}>

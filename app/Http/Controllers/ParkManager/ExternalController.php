@@ -5,8 +5,10 @@ namespace App\Http\Controllers\ParkManager;
 use App\ConsumedPieces;
 use App\Dt;
 use App\External;
+use App\ExternalMaterial;
 use App\Garanti;
 use App\Http\Controllers\Controller;
+use App\Material;
 use App\Models\User;
 use App\MoreNotifs;
 use App\Notifications\ExternamVNotification;
@@ -27,14 +29,15 @@ class ExternalController extends Controller
      */
     public function index()
     {
-        $dts = Dt::all()->where('type_maintenance', '=', 'Maintenance Externe')->where('answer','=','Acceptée');
+        $dts = Dt::all();
 
         $externals = External::all();
+        $externalsM = ExternalMaterial::all();
         $vehicules = Vehicule::all();
         $drivers = Staff::all()->where('person_type', '=', 'Conducteur');
-
+        $materials = Material::all();
         return view('ParkManager.externals.index')
-            ->with('externals', $externals)->with('vehicules', $vehicules)->with('drivers', $drivers)->with('dts', $dts);
+            ->with('materials', $materials)->with('externalsM', $externalsM)->with('externals', $externals)->with('vehicules', $vehicules)->with('drivers', $drivers)->with('dts', $dts);
     }
 
     /**
@@ -110,29 +113,22 @@ class ExternalController extends Controller
         $currentUser->notify(new ExternamVNotification($external, $notif));
 
 
-        if($request->action=='more'){
-            if ($dt->state=='en attente'){
+        if ($request->action == 'more') {
+            if ($dt->state == 'en attente') {
                 $dt->state = '3';
                 $dt->save();
-            }else{
-                $dt->state = $dt->state.'3';
+            } else {
+                $dt->state = $dt->state . '3';
                 $dt->save();
             }
-            return view('ParkManager.validation.choice1', compact('dt' ));
-
-             }
-
-
-
-        else{     $dt->previous_state = $dt->state;
+            return view('ParkManager.validation.choice1', compact('dt'));
+        } else {
+            $dt->previous_state = $dt->state;
             $dt->state = 'fait';
             $dt->save();
             return redirect('/ParkManager/dts')->with('success', "vous avez ajouté une Maintenances externes avec succès");
-
         }
-
-
-   }
+    }
 
     /**
      * Display the specified resource.
@@ -147,7 +143,7 @@ class ExternalController extends Controller
         $vehicule = Vehicule::find($external->vehicule_id);
         $staffs = Staff::all()->where('person_type', '=', 'Personnel du parc');
         $driver = Staff::find($external->driver_id);
-        $guaranti=Garanti::find($external->supplier_id);
+        $guaranti = Garanti::find($external->supplier_id);
         return view(
             'ParkManager.externals.view',
             compact(

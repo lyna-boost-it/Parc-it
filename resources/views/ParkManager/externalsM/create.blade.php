@@ -209,7 +209,7 @@
                         </div>
 
 
-                        <input type="hidden" id="mm_id" name="mm_id" value="{{ $material->id }}">
+                        <input type="hidden"   name="mm_id" value="{{ $material->id }}">
                         <input type="hidden" id="dt_code" name="dt_code" value="{{ $dt->id }}">
 
 

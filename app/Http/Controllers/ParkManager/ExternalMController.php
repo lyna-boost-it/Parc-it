@@ -47,8 +47,8 @@ class ExternalMController extends Controller
     public function createExternal($id)
     {
 
-        $dt = DtMaterial::find($id);
-        $material = Material::find($dt->mm_id);
+        $dt = Dt::find($id);
+        $material = Material::find($dt->vehicle_id);
         $external = new ExternalMaterial();
 $garanties=Garanti::all();
         return view(
@@ -79,7 +79,7 @@ $garanties=Garanti::all();
             'price',
         ));
 
-        $dt = DtMaterial::find($external->dt_code);
+        $dt = Dt::find($external->dt_code);
         $dt->previous_state = $dt->state;
         $dt->state = 'fait';
         $dt->save();
@@ -101,8 +101,27 @@ $garanties=Garanti::all();
             $user->notify(new ExternamMNotification($external, $notif));
         }
         $currentUser->notify(new ExternamMNotification($external, $notif));
-        return redirect('/ParkManager/externalsM')->with('success', "vous avez ajouté une Maintenances externe avec succès");
-    }
+        if($request->action=='more'){
+            if ($dt->state=='en attente'){
+                $dt->state = '1';
+                $dt->save();
+            }else{
+                $dt->state = $dt->state.'1';
+                $dt->save();
+            }
+            return view('ParkManager.validation.choice1', compact('dt' ));
+
+             }
+
+
+
+        else{     $dt->previous_state = $dt->state;
+            $dt->state = 'fait';
+            $dt->save();
+
+            return redirect ('/ParkManager/dts')->with('success',"vous avez ajouté un Entretien avec succès");
+
+        }}
 
     /**
      * Display the specified resource.
@@ -113,8 +132,9 @@ $garanties=Garanti::all();
     public function showExternal($id)
     {
         $external = ExternalMaterial::find($id);
-        $dt = DtMaterial::find($external->dt_code);
-        $material = Material::find($external->mm_id);
+        $dt = Dt::find($external->dt_code);
+        $material = Material::find($dt->vehicle_id);
+
         $guaranti=Garanti::find($external->supplier_id);
         return view(
             'ParkManager.externalsM.view',
