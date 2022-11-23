@@ -41,7 +41,7 @@ class DtController extends Controller
     public function index()
     {
 
-        $maintenances = Dt::all()->where('state', '!=', 'fait');
+        $maintenances = Dt::all()->where('state', '!=', 'fait')->where('state','!=','archived');
         $maintenances_done = Dt::all()->where('state', '=', 'fait');
         $drivers = Staff::all()->where('person_type', '=', 'Conducteur');
         $units = Unit::all();
@@ -302,5 +302,41 @@ if($maintenance->type=='Matériel Motorisés'){ $vehicule = Material::find($main
         $maintenance->delete();
         return redirect()->route('ParkManager.dts.index')
             ->with('success', "vous avez supprimé une demandes de travaux avec succès");
+    }
+
+
+
+
+
+    public function archived()
+    {
+
+        $maintenances = Dt::all()->where('state','=','archived');
+
+        $drivers = Staff::all()->where('person_type', '=', 'Conducteur');
+        $units = Unit::all();
+        $vehicules = Vehicule::all();
+        $materials=Material::all();
+        $staffs = Staff::all()->where('person_type', '=', 'Personnel du parc');
+        $current_date = Carbon::now()->format('Y-m-d');
+        foreach ($vehicules as $vehicule) {
+            foreach ($maintenances as $maintenance) {
+                if ($vehicule->id == $maintenance->vehicle_id) {
+
+
+                    $a = date('Y-m-d', strtotime($current_date));
+                    $b = date('Y-m-d', strtotime($maintenance->enter_date));
+
+                    if ($a == $b && $maintenance->state == 'en attente' && $vehicule->vehicle_state != 'en maintenance') {
+                        $vehicule->vehicle_state = 'en maintenance';
+                        $vehicule->save();
+                        $maintenance->state = 'en cours';
+                        $maintenance->save();
+                    }
+                }
+            }
+        }
+        return view('ParkManager.dts.index', compact('materials','current_date',
+         'maintenances', 'units', 'vehicules', 'drivers', 'staffs'));
     }
 }

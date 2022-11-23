@@ -91,28 +91,6 @@
                                                                     class="dw dw-eye"></i> Consulter</a>
 
 
-                                                            @if (Auth::user()->type == 'Gestionnaire Sup')
-                                                                <a class="dropdown-item "
-                                                                    style="  color: currentColor;
-                                                                            cursor: not-allowed;
-                                                                            opacity: 0.5;
-                                                                            text-decoration: none;"><i
-                                                                        class="dw dw-delete-3"></i> Supprimer</a>
-                                                            @else
-                                                                <form class="form-delete dropdown-item" method="post"
-                                                                    action="{{ route('ParkManager.externals.destroyExternal', $external->id) }}">
-                                                                    @method('DELETE')
-                                                                    @csrf
-                                                                    <button type="submit"
-                                                                        style=" background-color: transparent;
-                                                                border-color: transparent;"
-                                                                        onclick="return confirm('êtes-vous sûr?')">
-
-                                                                        <i class="dw dw-delete-3">Supprimer</i>
-
-                                                                    </button>
-                                                                </form>
-                                                            @endif
 
                                                         </div>
                                                     </div>
@@ -188,8 +166,8 @@
                                                     <td>{{ $dt->code_dt }}</td>
                                                     <td>{{ $material->ref }}</td>
                                                     <td>{{ $material->type_of_machine }}</td>
- <td>{{ $material->mark }}</td>
- <td>{{ $material->model }}</td>
+                                                    <td>{{ $material->mark }}</td>
+                                                    <td>{{ $material->model }}</td>
 
 
                                                     <td>{{ $external->contract }}</td>
@@ -219,30 +197,7 @@
 
 
 
-                                                                @if (Auth::user()->type == 'Gestionnaire Sup')
-                                                                    <a class="dropdown-item"
-                                                                        href="{{ route('ParkManager.externalsM.editExternal', $external->id) }}"
-                                                                        @if (Auth::user()->type == 'Gestionnaire Sup') style="  color: currentColor;
-                                                                cursor: not-allowed;
-                                                                opacity: 0.5;
-                                                                text-decoration: none;" @endif><i
-                                                                            class="dw dw-delete-3">Supprimer</i></a>
-                                                                @else
-                                                                    <form class="form-delete dropdown-item"
-                                                                        method="post"
-                                                                        action="{{ route('ParkManager.externalsM.destroyExternal', $external->id) }}">
-                                                                        @method('DELETE')
-                                                                        @csrf
-                                                                        <button type="submit"
-                                                                            style=" background-color: transparent;
-                                                                border-color: transparent;"
-                                                                            onclick="return confirm('êtes-vous sûr?')">
 
-                                                                            <i class="dw dw-delete-3">Supprimer</i>
-
-                                                                        </button>
-                                                                    </form>
-                                                                @endif
 
                                                             </div>
                                                         </div>

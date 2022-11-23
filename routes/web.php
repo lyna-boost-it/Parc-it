@@ -176,6 +176,8 @@ Route::namespace('ParkManager')->prefix('ParkManager')->name('ParkManager.')->gr
     Route::get('/externals', 'ExternalController@index')->name('externals.index');
     Route::resource('/materialsmanager', 'MaterialManagerController');
     Route::resource('/dtsM', 'DtMController');
+    Route::resource('/archives', 'ArchivedDTController');
+Route::resource('/amandes', 'AmandeController');
 
 
     Route::get('/repairsM', 'RepairMController@index')->name('repairsM.index');
@@ -201,6 +203,7 @@ Route::namespace('ParkManager')->prefix('ParkManager')->name('ParkManager.')->gr
     // Route::delete('/externalsM/destroyExternal/{id}', 'ValidateContoller@destroyV')->name('validation.destroyV');
     Route::post('/validation/storeV/{id}', 'ValidateContoller@storeV')->name('validation.storeV');
     Route::get('/validation/{id}/choose1', 'ValidateContoller@choose1')->name('validation.choose1');
+  Route::get('/validation/{id}/archive', 'ValidateContoller@archive')->name('validation.archive');
 
     //  Route::put('/externalsM/updateExternal/{id}', 'ValidateContoller@updateV')->name('validation.updateExternal');
     // Route::get('/externalsM/{id}/editExternal', 'ValidateContoller@editV')->name('validation.editExternal');

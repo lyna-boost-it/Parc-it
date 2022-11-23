@@ -164,7 +164,7 @@ class ExternalController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function editExternal($id)
-    {
+    {$garanties = Garanti::all();
         $external = External::find($id);
         $dt = Dt::find($external->dt_code);
         $vehicule = Vehicule::find($external->vehicule_id);
@@ -177,7 +177,7 @@ class ExternalController extends Controller
                 'external',
                 'drivers',
                 'staffs',
-                'vehicule'
+                'vehicule','garanties'
             )
         );
     }
@@ -197,7 +197,7 @@ class ExternalController extends Controller
             'dt_code',
             'vehicule_id',
             'contract',
-            'supplier',
+            'supplier_id',
             'panne_type',
             'changed_piece',
             'start_date',

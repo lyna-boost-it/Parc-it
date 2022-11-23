@@ -126,11 +126,11 @@
                                     <h4>Pièces consommées:<br> </h4>
                                     <div>
                                         @foreach ($rps as $rp)
-                                        1
+
                                             @foreach ($designations as $designation)
                                                 @foreach ($marks as $mark)
 
-                                                @if ($rp->type == $designation->id)
+                                                @if ($rp->type == $designation->id && $rp->marque == $mark->id)
                                                 <div class="sidenav">
 
                                                     <button

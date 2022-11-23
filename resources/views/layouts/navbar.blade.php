@@ -178,6 +178,13 @@
 
                                     Liste des Maintenance externe</a>
                             </li>
+                            <li>
+                                <a class="  {{ Request::is('ParkManager/archives') ? 'active' : '' }}"
+                                    style="right: 50px;" href="{{ route('ParkManager.archives.index') }}">
+
+
+                                    Liste des DT archivées</a>
+                            </li>
                         @endif
 
 
@@ -193,10 +200,11 @@
                     Auth::user()->type == 'Utilisateur' ||
                     Auth::user()->type == 'Gestionnaire Sup')
                     <li class="dropdown">
-                        <a href="javascript:;" class="dropdown-toggle" style="font-size: 14px">
 
-                            <span class="fas fa-puzzle-piece"></span><span class="mtext"><b>Param. Pièces de Rechange</b></span>
-                        </a>
+                        <a href="javascript:;" class="dropdown-toggle" style="font-size: 14px">
+                            <span class="micon fa fa-puzzle-piece"></span><span class="mtext">
+                                <b> Param. Pièces de Rechange</b></span>
+                     </a>
                         <ul class="submenu">
 
 
@@ -220,6 +228,31 @@
                     </li>
                 @endif
 
+                @if (Auth::user()->type == 'Gestionnaire parc' ||
+                    Auth::user()->type == 'Utilisateur' ||
+                    Auth::user()->type == 'Gestionnaire Sup')
+                    <li class="dropdown">
+
+                        <a href="javascript:;" class="dropdown-toggle" style="font-size: 14px">
+                            <span class="micon fa fa-edit"></span><span class="mtext">
+                                <b> Sanctions et Amandes</b></span>
+                     </a>
+                        <ul class="submenu">
+
+
+                            <li>
+                                <a class="  {{ Request::is('ParkManager/amandes') ? 'active' : '' }}" style="right: 50px;"
+                                    style="right: 60px;" href="{{ route('ParkManager.amandes.index') }}">
+
+
+                                    Gestion des Amandes</a>
+                            </li>
+
+
+
+                        </ul>
+                    </li>
+                @endif
 
 
             </ul>

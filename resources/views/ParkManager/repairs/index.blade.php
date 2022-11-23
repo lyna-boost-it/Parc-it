@@ -35,12 +35,11 @@
 							<table class="table nowrap hover data-table-export">
 								<thead>
 									<tr>
-                                        <th >ID</th>
+                                        <th>ID</th>
+                                        <th>N° de la Demande de Travaux (DT)</th>
                                         <th>Véhicule</th>
                                         <th>Type V</th>
                                         <th>Marque</th>
-                                        <th >Date d’intervention</th>
-                                        <th >N° de la demande de travaux (DT)</th>
                                        <th  >DATE ET HEURE DE SORTIE</th>
 
                                       <th class="datatable-nosort">Action</th>
@@ -56,13 +55,12 @@
                                                                  @foreach ($vehicules as $vehicule )
                                                                 @if ($repair->vehicule_id == $vehicule->id )
                                     <tr>
-
+                                        <td>{{$repair->dt_code}}</td>
                                         <td>{{$repair->id}}</td>
                                         <td>{{ $vehicule->marticule }}</td>
                                         <td>{{ $vehicule->vehicle_type }}</td>
                                         <td> {{ $vehicule->mark }}</td>
-                                        <td>{{$repair->intervention_date}}</td>
-                                        <td>{{$repair->dt_code}}</td>
+
                                         <td>{{$repair->end_date}} {{$repair->end_time}}</td>
 
 
@@ -86,24 +84,7 @@
                                                                 text-decoration: none;" @endif   ><i class="dw dw-edit2"></i> Modifier</a>
                                                        <a class="dropdown-item" href="{{route('ParkManager.repairs.showRepairs',$repair->id)}}"
                                                                 ><i class="dw dw-eye"></i> Consulter</a>
-                                                                @if (Auth::user()->type == 'Gestionnaire Sup')   <a class="dropdown-item"  style="  color: currentColor;
-                                                                cursor: not-allowed;
-                                                                opacity: 0.5;
-                                                                text-decoration: none;"  > <i class="dw dw-delete-3"></i>Supprimer</a>
 
-                                                              @else
-                                                              <form class="form-delete dropdown-item" method="post" action="{{route('ParkManager.repairs.destroyRepairs',$repair->id)}}">
-                                                                @method('DELETE')
-                                                                @csrf
-                                                                <button   type="submit" style=" background-color: transparent;
-                                                                border-color: transparent;" onclick="return confirm('êtes-vous sûr?')" >
-
-                                                                    <i class="dw dw-delete-3">Supprimer</i>
-
-                                                                </button>
-                                                            </form>
-
-                                                              @endif
 
                                                         </div>
                                                     </div>
@@ -161,9 +142,13 @@
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
-                                                    <th> Date d’intervention </th>
                                                     <th>N° de la Demande de Travaux (DT)</th>
-                                                    <th>Matériel</th>
+                                                    <th>Ref Matériel</th>
+                                <th>Type</th>
+                                <th>Marque</th>
+                                <th>Modéle</th>
+
+
                                                     <th class="datatable-nosort">Action</th>
 
                                                 </tr>
@@ -177,10 +162,14 @@
                                                     @foreach ($materials as $material)
                                                         @foreach ($dts as $dt)
                                                             @if ($repair->mm_id == $material->id && $dt->id == $repair->dt_code)
-                                                                <td>{{ $repair->id }}</td>
-                                                                <td>{{ $repair->intervention_date }}</td>
-                                                                <td>{{ $dt->code_dt }}</td>
-                                                                <td>{{ $repair->end_date }} {{ $repair->end_time }}</td>
+                                                            <td>{{ $dt->code_dt }}</td>
+                                                            <td>{{ $material->ref }}</td>
+                                                            <td>{{ $material->type_of_machine }}</td>
+                                                            <td>{{ $material->mark }}</td>
+                                                            <td>{{ $material->model }}</td>
+
+
+
 
                                                                 <td>{{ $material->acquisition_date }}</td>
 
@@ -204,28 +193,7 @@
                                                                             <a class="dropdown-item"
                                                                                 href="{{ route('ParkManager.repairsM.showRepairs', $repair->id) }}"><i
                                                                                     class="dw dw-eye"></i> Consulter</a>
-                                                                            @if (Auth::user()->type == 'Gestionnaire Sup')
-                                                                                <a class="dropdown-item"
-                                                                                    style="  color: currentColor;
-                                                                                cursor: not-allowed;
-                                                                                opacity: 0.5;
-                                                                                text-decoration: none;">
-                                                                                    <i class="dw dw-delete-3"></i>Supprimer</a>
-                                                                            @else
-                                                                                <form class="form-delete dropdown-item" method="post"
-                                                                                    action="{{ route('ParkManager.repairsM.destroyRepairs', $repair->id) }}">
-                                                                                    @method('DELETE')
-                                                                                    @csrf
-                                                                                    <button type="submit"
-                                                                                        style=" background-color: transparent;
-                                                                                border-color: transparent;"
-                                                                                        onclick="return confirm('êtes-vous sûr?')">
 
-                                                                                        <i class="dw dw-delete-3">Supprimer</i>
-
-                                                                                    </button>
-                                                                                </form>
-                                                                            @endif
 
 
                                                                         </div>

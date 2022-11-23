@@ -121,16 +121,13 @@
                                                                             </button>
                                                                         </form>
                                                                         <form style="display: inline;"
-                                                                            action="{{ route('ParkManager.validation.createV', $maintenance->id) }}"
+                                                                            action="{{ route('ParkManager.validation.archive', $maintenance->id) }}"
                                                                             method="get" class="dropdown-item">
                                                                             @csrf
 
                                                                             <button type="submit"
                                                                                 style="display: inline; background-color: transparent; border-color: transparent;">
-                                                                                <input type="hidden" value="Vehicule"
-                                                                                    id="type" name="type">
-                                                                                <input type="hidden" value="archivé"
-                                                                                    id="valide" name="valide">
+
 
                                                                                 <span class="hovertext"
                                                                                     data-hover="Archivé">

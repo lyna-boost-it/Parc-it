@@ -164,8 +164,9 @@ else{     $dt->previous_state = $dt->state;
     public function showRepairs($id)
     {  $designations=Designation::all();
         $repair =RepairsMaterial::find($id);
-        $dt=DtMaterial::find($repair->dt_code);
-        $material=Material::find($repair->mm_id);
+        $dt=Dt::find($repair->dt_code);
+
+        $material=Material::find($dt->vehicle_id);
         $staffs=Staff::all() ;
         $rps=RepairM_pieces::all()->where('repair_id', '=', $repair->id);
 
@@ -184,7 +185,7 @@ else{     $dt->previous_state = $dt->state;
     {
 
         $repair =RepairsMaterial::find($id);
-        $dt=DtMaterial::find($repair->dt_code);
+        $dt=Dt::find($repair->dt_code);
         $material=Material::find($repair->mm_id);
 
         return view('ParkManager.repairsM.edit',
@@ -202,7 +203,7 @@ else{     $dt->previous_state = $dt->state;
     {
         $repair =RepairsMaterial::find($id);
         $repair->update($request->only('id', 'dt_code', 'intervention_date', 'repaired_breakdowns', 'end_date','end_time',  'observation', 'mm_id'));
-    return redirect ('/ParkManager/repairsM')->with('success',"vous avez modifié une reparation avec succès");
+    return redirect ('/ParkManager/repairs')->with('success',"vous avez modifié une reparation avec succès");
     }
 
     /**
@@ -231,7 +232,7 @@ else{     $dt->previous_state = $dt->state;
     }
 
         $repair->delete();
-        return redirect('/ParkManager/repairsM')
+        return redirect('/ParkManager/repairs')
         ->with('success',"vous avez supprimé une reparation avec succès");
     }}
 

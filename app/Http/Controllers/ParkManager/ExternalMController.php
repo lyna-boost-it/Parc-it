@@ -149,14 +149,14 @@ $garanties=Garanti::all();
      * @return \Illuminate\Http\Response
      */
     public function editExternal($id)
-    {
+    {$garanties=Garanti::all();
         $external = ExternalMaterial::find($id);
-        $dt = DtMaterial::find($external->dt_code);
-        $material = Material::find($external->mm_id);
+        $dt = Dt::find($external->dt_code);
+        $material = Material::find($dt->vehicle_id);
 
         return view(
             'ParkManager.externalsM.edit',
-            compact('dt', 'material', 'external')
+            compact('dt', 'material', 'external','garanties')
         )->with('success', "vous avez modifier une Maintenances externe avec succès");
     }
 
@@ -175,14 +175,14 @@ $garanties=Garanti::all();
             'dt_code',
             'mm_id',
             'contract',
-            'supplier',
+            'supplier_id',
             'panne_type',
             'changed_piece',
             'start_date',
             'end_date',
             'price',
         ));
-        return redirect('/ParkManager/externalsM')->with('success', "vous avez modifié une Maintenances externe avec succès");
+        return redirect('/ParkManager/externals')->with('success', "vous avez modifié une Maintenances externe avec succès");
     }
 
     /**

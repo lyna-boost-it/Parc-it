@@ -61,24 +61,34 @@
 
 
 
-<div class="card-body" >
+<div class="card-body">
     <div class="row">
         <label class="col-md-3 col-form-label">{{ __('Nom du fournisseur') }}</label>
-        <div class="col-md-9" >
+        <div class="col-md-9">
             <div class="form-group">
-                <input type="text"
-                name="supplier"
-                class="form-control"
+                <select id="supplier_id" type="text"
+                    class="form-control select2 @error('supplier_id') is-invalid
+                            @enderror"
+                    name="supplier_id" required autocomplete="supplier_id" autofocus>
+                    <option value="" disabled selected>Nom du fournisseur</option>
+                    @foreach ($garanties as $garantie)
+                        <option value="{{ $garantie->id }}">
+                            {{ $garantie->name_vendor }}</option>
+                    @endforeach
 
-                placeholder="Nom du fournisseur"
-                value="{{ $external->supplier }}" required>
+                    </option>
+
+
+                </select>
             </div>
-            @if ($errors->has('supplier'))
-                <span class="invalid-feedback" style="display: block;" role="alert">
-                    <strong>{{ $errors->first('supplier') }}</strong>
-                </span>
-            @endif
         </div>
+
+
+        @if ($errors->has('registration'))
+            <span class="invalid-feedback" style="display: block;" role="alert">
+                <strong>{{ $errors->first('registration') }}</strong>
+            </span>
+        @endif
     </div>
 </div>
 

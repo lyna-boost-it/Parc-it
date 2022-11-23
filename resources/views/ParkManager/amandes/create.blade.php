@@ -18,7 +18,7 @@
 
                 </div>
                 <div class="col-md-12 text-center">
-                    <form action="{{ route('ParkManager.externals.storeExternal', $external->id) }}" method="post">
+                    <form action="{{ route('ParkManager.amandes.store', $amande->id) }}" method="post">
 
                         @csrf
 
@@ -27,33 +27,7 @@
 
 
                             <div class="card-header">
-                                <h3 class="title">{{ __('Créer une maintenance externe ') }}</h3>
-                            </div>
-
-                            <div class="card-header">
-                                <h4 class="title">{{ __(' N° de la Demande de Travaux (DT):') }} {{ $dt->code_dt }}
-                                </h4>
-                            </div>
-
-                            <div class="card-header">
-                                <h5 class="title">{{ __('Véhicule:') }} {{ $vehicule->code }}</h5>
-                            </div>
-
-                            <div class="card-body">
-                                <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __('Contrat') }}</label>
-                                    <div class="col-md-9">
-                                        <div class="form-group">
-                                            <input type="text" name="contract" class="form-control"
-                                                placeholder="Contrat" value="{{ $external->contract }}" required>
-                                        </div>
-                                        @if ($errors->has('contract'))
-                                            <span class="invalid-feedback" style="display: block;" role="alert">
-                                                <strong>{{ $errors->first('contract') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
-                                </div>
+                                <h5 class="title">{{ __('Créer une amande ') }}</h5>
                             </div>
 
 
@@ -61,49 +35,71 @@
 
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __('Nom du fournisseur') }}</label>
-                                    <div class="col-md-9">
+                                    <label
+                                        class="col-md-3 col-form-label">{{ __('  Nom et prénom du conducteur') }}</label>
+                                    <div class="col-md-6" for="conducteur_field_for_absence">
                                         <div class="form-group">
-                                            <select id="supplier_id" type="text"
-                                                class="form-control select2 @error('supplier_id') is-invalid
-                                                        @enderror"
-                                                name="supplier_id" required autocomplete="supplier_id" autofocus>
-                                                <option value="" disabled selected>Nom du fournisseur</option>
-                                                @foreach ($garanties as $garantie)
-                                                    <option value="{{ $garantie->id }}">
-                                                        {{ $garantie->name_vendor }}</option>
+                                            <select style="width: 300px" id="selectField" class="vh"
+                                                name="driver_id" placeholder="  Nom et prénom de l\'absent"
+                                                value="{{ old('driver_id'), $amande->driver_id }}"class="form-control"
+                                                id="staff_type">
+                                                <option></option>
+                                                @foreach ($drivers as $driver)
+                                                    <option value="{{ $driver->id }}"
+                                                        {{ old('driver_id', $amande->driver_id) === 'driver_id' ? 'selected' : '' }}>
+                                                        {{ $driver->name }} {{ $driver->last_name }}</option>
                                                 @endforeach
-
-                                                </option>
-
 
                                             </select>
                                         </div>
+
+                                        <div style="  position: relative;">
+
+
+                                            @foreach ($drivers as $driver)
+                                                <div style="width: 50%; float: left; padding: 20px;position: absolute; "
+                                                    id="{{ $driver->id }}" class="content">
+                                                    <h1>Fonction: {{ $driver->function }}</h1>
+                                                </div>
+                                            @endforeach
+
+                                        </div>
                                     </div>
-
-
-                                    @if ($errors->has('registration'))
-                                        <span class="invalid-feedback" style="display: block;" role="alert">
-                                            <strong>{{ $errors->first('registration') }}</strong>
-                                        </span>
-                                    @endif
                                 </div>
                             </div>
-
-
-
+                            <br><br><br>
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __(' Date d’entrée') }}</label>
+                                    <label
+                                        class="col-md-3 col-form-label">{{ __(' Date d\'infraction (amande)  ') }}</label>
                                     <div class="col-md-9">
                                         <div class="form-group">
-                                            <input type="date" name="start_date" class="form-control"
-                                                placeholder=" Date d’entrée" value="{{ $external->start_date }}"
+                                            <input type="date" name="date" class="form-control"
+                                                placeholder="Date d\'infraction (amande)" value="{{ $amande->p_name }}"
                                                 required>
                                         </div>
-                                        @if ($errors->has('start_date'))
+                                        @if ($errors->has('date'))
                                             <span class="invalid-feedback" style="display: block;" role="alert">
-                                                <strong>{{ $errors->first('start_date') }}</strong>
+                                                <strong>{{ $errors->first('date') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="card-body">
+                                <div class="row">
+                                    <label class="col-md-3 col-form-label">{{ __('Infraction') }}</label>
+                                    <div class="col-md-9">
+                                        <div class="form-group">
+                                            <input type="text" name="infraction" class="form-control"
+                                                placeholder="Prénom du personne accompagné"
+                                                value="{{ $amande->infraction }}" required>
+                                        </div>
+                                        @if ($errors->has('infraction'))
+                                            <span class="invalid-feedback" style="display: block;" role="alert">
+                                                <strong>{{ $errors->first('infraction') }}</strong>
                                             </span>
                                         @endif
                                     </div>
@@ -113,37 +109,68 @@
 
 
 
+
+
+
+
+
+
+
+
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __('Date de sortie') }}</label>
+                                    <label class="col-md-3 col-form-label">{{ __('Motif ') }}</label>
                                     <div class="col-md-9">
                                         <div class="form-group">
-                                            <input type="date" name="end_date" class="form-control"
-                                                placeholder="Date de sortie" value="{{ $external->end_date }}"
+                                            <input type="text" name="motive" class="form-control"
+                                                placeholder="Motif " value="{{ $amande->motive }}" required>
+                                        </div>
+                                        @if ($errors->has('motive'))
+                                            <span class="invalid-feedback" style="display: block;" role="alert">
+                                                <strong>{{ $errors->first('motive') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+                            <div class="card-body">
+                                <div class="row">
+                                    <label class="col-md-3 col-form-label">{{ __('Sanction ') }}</label>
+                                    <div class="col-md-9">
+                                        <div class="form-group">
+                                            <input type="text" name="sanction" class="form-control"
+                                                placeholder="Sanction" value="{{ $amande->sanction }}" required>
+                                        </div>
+                                        @if ($errors->has('sanction'))
+                                            <span class="invalid-feedback" style="display: block;" role="alert">
+                                                <strong>{{ $errors->first('sanction') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+                            <div class="card-body">
+                                <div class="row">
+                                    <label class="col-md-3 col-form-label">{{ __('Période de la sanction ') }}</label>
+                                    <div class="col-md-9">
+                                        <div class="form-group">
+                                            <input type="text" name="period" class="form-control"
+                                                placeholder="Période de la sanction " value="{{ $amande->period }}"
                                                 required>
                                         </div>
-                                        @if ($errors->has('end_date'))
+                                        @if ($errors->has('period'))
                                             <span class="invalid-feedback" style="display: block;" role="alert">
-                                                <strong>{{ $errors->first('end_date') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="card-body">
-                                <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __('Type de panne') }}</label>
-                                    <div class="col-md-9">
-                                        <div class="form-group">
-                                            <input type="text" name="panne_type" class="form-control"
-                                                placeholder="Type de panne" value="{{ $external->panne_type }}"
-                                                required>
-                                        </div>
-                                        @if ($errors->has('panne_type'))
-                                            <span class="invalid-feedback" style="display: block;" role="alert">
-                                                <strong>{{ $errors->first('panne_type') }}</strong>
+                                                <strong>{{ $errors->first('period') }}</strong>
                                             </span>
                                         @endif
                                     </div>
@@ -152,78 +179,15 @@
 
 
 
-                            <div class="card-body">
-                                <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __('Pièces rechangées') }}</label>
-                                    <div class="col-md-9">
-                                        <div class="form-group">
-                                            <input type="text" name="changed_piece" class="form-control"
-                                                placeholder="Pièces rechangées" value="{{ $external->changed_piece }}"
-                                                required>
-                                        </div>
-                                        @if ($errors->has('changed_piece'))
-                                            <span class="invalid-feedback" style="display: block;" role="alert">
-                                                <strong>{{ $errors->first('changed_piece') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
 
-
-
-                            <div class="card-body">
-                                <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __('Coût') }}</label>
-                                    <div class="col-md-9">
-                                        <div class="form-group">
-                                            <input type="number" step="0.1" name="price" class="form-control"
-                                                placeholder="Coût " value="{{ $external->price }}" required>
-                                        </div>
-                                        @if ($errors->has('price'))
-                                            <span class="invalid-feedback" style="display: block;" role="alert">
-                                                <strong>{{ $errors->first('price') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <input type="hidden" id="vehicule_id" name="vehicule_id" value="{{ $vehicule->id }}">
-                            <input type="hidden" id="dt_code" name="dt_code" value="{{ $dt->id }}">
-
-
-
-
-
-
-
-
-
-
-
-                            @if (!str_contains($dt->state, '2') && !str_contains($dt->state, '1') && !str_contains($dt->state, '3'))
-                            <div class="card-footer ">
-                                <div class="row">
-                                    <div class="col-md-12 text-center">
-
-
-                                        <button type="submit" name="action" value="more"
-                                            class="btn   btn-round"
-                                            style="background:#EE643A;color:#ffffff;">{{ __('Ajouter et créer d\'autres sorties') }}</button>
-                                    </div>
-                                </div>
-                            </div>
-                        @endif
 
 
 
                             <div class="card-footer ">
                                 <div class="row">
                                     <div class="col-md-12 text-center">
-                                        <button type="submit" name="action" value="end"
-                                            class="btn   btn-round" style="background:#EE643A;color:#ffffff;">{{ __('Ajouter') }}</button>
+                                        <button type="submit" class="btn  btn-round"
+                                            style="background:#EE643A;color:#ffffff;">{{ __('Ajouter') }}</button>
                                     </div>
                                 </div>
                             </div>
@@ -233,7 +197,38 @@
                 </div>
             </div>
         </div>
+
+        <script>
+            $("#destination_type").change(function() {
+                if ($(this).val() == "Destination (A->B)") {
+                    $('#AB_Div').show();
+                    $('#AB').attr('required', '');
+                    $('#AB').attr('data-error', 'This field is required.');
+                } else {
+                    $('#AB_Div').hide();
+                    $('#AB').removeAttr('required');
+                    $('#AB').removeAttr('data-error');
+                }
+            });
+            $("#destination_type").trigger("change");
+        </script>
+
+        <script>
+            $("#destination_type").change(function() {
+                if ($(this).val() == "Territoire") {
+                    $('#Territoire_Div').show();
+                    $('#Territoire').attr('required', '');
+                    $('#Territoire').attr('data-error', 'This field is required.');
+                } else {
+                    $('#Territoire_Div').hide();
+                    $('#Territoire').removeAttr('required');
+                    $('#Territoire').removeAttr('data-error');
+                }
+            });
+            $("#destination_type").trigger("change");
+        </script>
         @include('layouts.footerForIndexx')
+
 
     </body>
 

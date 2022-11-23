@@ -68,7 +68,7 @@
                                     <div class="form-group">
                                         <select id="supplier_id" type="text"
                                             class="form-control select2 @error('supplier_id') is-invalid
-                        @enderror"
+                                            @enderror"
                                             name="supplier_id" required autocomplete="supplier_id" autofocus>
                                             <option value="" disabled selected>Nom du fournisseur</option>
                                             @foreach ($garanties as $garantie)

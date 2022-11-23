@@ -153,7 +153,7 @@ class ValidateContoller extends Controller
             $notif->save();
         }
         $maintenance->save();
-        return redirect()->route('ParkManager.dts.index')->with('success', 'vous avez accepté cette demande de travaux pour vehicule avec succès');
+        return redirect()->route('ParkManager.dts.index')->with('success', 'vous avez accepté cette demande de travaux  ');
     }
         if ($answer == 'Refusée') {
             $maintenance->update($request->only(
@@ -183,7 +183,7 @@ class ValidateContoller extends Controller
                 $notif->save();
             }
             $maintenance->save();
-            return redirect()->route('ParkManager.dts.index')->with('error', 'vous avez refusé cette demande de travaux pour vehicule avec succès');
+            return redirect()->route('ParkManager.dts.index')->with('error', 'vous avez refusé cette demande de travaux pour ');
         }
     }
 
@@ -229,7 +229,11 @@ class ValidateContoller extends Controller
      */
     public function destroy($id)
     {
-        //
+        $dt=DT::find($id);
+        $dt->state='archived';
+        $dt->save();
+        return redirect()->route('ParkManager.dts.index')->with('error', 'vous avez Archivé cette demande de travaux  ');
+
     }
     public function choose1($id)
     {
@@ -237,5 +241,13 @@ class ValidateContoller extends Controller
         $dt = Dt::find($id);
 
         return view('ParkManager.validation.choice1', compact('dt'));
+    }
+    public function archive($id)
+    {
+        $dt=DT::find($id);
+        $dt->state='archived';
+        $dt->save();
+        return redirect()->route('ParkManager.dts.index')->with('error', 'vous avez Archivé cette demande de travaux  ');
+
     }
 }
