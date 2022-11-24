@@ -255,7 +255,7 @@
                 @endif
 
 
-            </ul>
+
             </li>
             @if (Auth::user()->type == 'Gestionnaire parc' ||
                 Auth::user()->type == 'Utilisateur' ||

@@ -99,7 +99,7 @@
 
 
                                     <th>
-                                        <h4 style="display: inline;color:#000000">N D\'imatriculation: </h4>
+                                        <h4 style="display: inline;color:#000000">N D'imatriculation: </h4>
                                         <h5 style="display: inline;">{{ $vehicule->marticule }}</h5>
                                     </th>
 

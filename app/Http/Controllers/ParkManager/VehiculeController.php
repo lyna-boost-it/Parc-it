@@ -5,11 +5,20 @@ namespace App\Http\Controllers\ParkManager;
 
 use App\Accident;
 use App\DrivingLicence;
+use App\Dt;
+use App\External;
 use App\Garanti;
 use App\GasVehicules;
 use App\Http\Controllers\Controller;
 use App\Insurance;
+use App\Maintenance;
+use App\Maintenance_Staff;
+use App\Marque;
 use App\Mission;
+use App\Models\Designation;
+use App\Repair;
+use App\Repair_pieces;
+use App\Repair_Staff;
 use App\Staff;
 use App\Sticker;
 use App\TechnicalControl;
@@ -158,4 +167,28 @@ $vehicule->save();
         return redirect('/ParkManager/vehicules')->with('success',"vous avez supprimé un vehicule avec succès");
 
     }
+
+  public function showDT ($id)
+    {
+        $repair_staffs = Repair_Staff::all() ;
+        $garanties = Garanti::all();
+        $rps = Repair_pieces::all() ;
+        $marks=Marque::all();
+        $designations=Designation::all();
+         $vehicule=Vehicule::find($id);
+         $dts=Dt::all()->where('vehicle_id','=',$id );
+         $repairs=Repair::all();
+         $externals=External::all();
+         $maintenances=Maintenance::all();
+         $staffs=Staff::all();
+         $units=Unit::all();
+         $maintenance_staffs=Maintenance_Staff::all() ;
+                return view('ParkManager.vehicules.viewDT', compact('vehicule','dts','repairs','externals'
+         ,'maintenances','staffs'
+         ,'units','repair_staffs','rps','marks','designations','garanties', 'maintenance_staffs') );
+
+    }
+
+
+
 }

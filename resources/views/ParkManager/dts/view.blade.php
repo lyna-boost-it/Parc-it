@@ -1,6 +1,7 @@
 @if (Auth::user()->type == 'Gestionnaire parc' ||
     Auth::user()->type == 'Utilisateur' ||
-    Auth::user()->type == 'Gestionnaire Sup')
+    Auth::user()->type == 'Gestionnaire Sup' ||
+    Auth::user()->type == 'Demandeur')
     <div class="main-container" id="makepdf">
         <!DOCTYPE html>
         <html>
@@ -20,10 +21,12 @@
                         <div class="page-header">
                             <div class="row">
 
-                                <h3>Information demande de travaux (DT) pour {{ $maintenance->type  }} :{{ $maintenance->id  }} </h3>
+                                <h3>Information demande de travaux (DT) pour {{ $maintenance->type }}
+                                    :{{ $maintenance->id }} </h3>
 
                             </div>
                         </div>
+
                         <div class="page-header">
 
                             <div class="row">
@@ -64,11 +67,11 @@
                                             <h5 style="display: inline;color:#000000">{{ $unit->name }}</h5>
                                         </th>
                                         <th>
-@if ($staff)
-<h4 style="display: inline;color:#000000">Réception (Pers) : </h4>
-<h5 style="display: inline;color:#000000">{{ $staff->name }}
-    {{ $staff->last_name }}</h5>
-@endif
+                                            @if ($staff)
+                                                <h4 style="display: inline;color:#000000">Réception (Pers) : </h4>
+                                                <h5 style="display: inline;color:#000000">{{ $staff->name }}
+                                                    {{ $staff->last_name }}</h5>
+                                            @endif
 
                                             <br>
                                             <h4 style="display: inline;color:#000000">Action d'entrée (État): </h4>
@@ -84,30 +87,31 @@
                                             <h5 style="display: inline;color:#000000">{{ $maintenance->enter_date }}
                                                 {{ $maintenance->enter_time }}</h5>
                                             <br>
-                                            @if($maintenance->type=='Véhicule')
-                                            <h4 style="display: inline;color:#000000">Matricule du véhicule: </h4>
-                                            <h5 style="display: inline;color:#000000">{{ $vehicule->marticule }}
-                                            </h5>
+                                            @if ($maintenance->type == 'Véhicule')
+                                                <h4 style="display: inline;color:#000000">Matricule du véhicule: </h4>
+                                                <h5 style="display: inline;color:#000000">{{ $vehicule->marticule }}
+                                                </h5>
                                             @else
-                                            <h4 style="display: inline;color:#000000">Modèle du Machine: </h4>
-                                            <h5 style="display: inline;color:#000000">{{ $vehicule->model }}
-                                            </h5>
-
-@endif
+                                                <h4 style="display: inline;color:#000000">Modèle du Machine: </h4>
+                                                <h5 style="display: inline;color:#000000">{{ $vehicule->model }}
+                                                </h5>
+                                            @endif
                                         </th>
                                         <th>
-                                            @if($maintenance->type=='Véhicule')
-                                            <h4 style="display: inline;color:#000000">Type: {{ $vehicule->vehicle_type }}</h4>
+                                            @if ($maintenance->type == 'Véhicule')
+                                                <h4 style="display: inline;color:#000000">Type:
+                                                    {{ $vehicule->vehicle_type }}</h4>
 
-                                            <h5 style="display: inline;color:#000000">
-                                            Marque: {{ $vehicule->mark }}</h5>
-                                            <br>
+                                                <h5 style="display: inline;color:#000000">
+                                                    Marque: {{ $vehicule->mark }}</h5>
+                                                <br>
                                             @else
-                                            <h4 style="display: inline;color:#000000">Type: {{ $vehicule->type_of_machine }}</h4>
+                                                <h4 style="display: inline;color:#000000">Type:
+                                                    {{ $vehicule->type_of_machine }}</h4>
 
-                                            <h5 style="display: inline;color:#000000">
-                                            Marque: {{ $vehicule->mark }}</h5>
-                                            <br>
+                                                <h5 style="display: inline;color:#000000">
+                                                    Marque: {{ $vehicule->mark }}</h5>
+                                                <br>
                                             @endif
                                             <h4 style="display: inline;color:#000000">Observation: </h4>
                                             <h5 style="display: inline;color:#000000">{{ $maintenance->observation }}
@@ -165,7 +169,8 @@
                                     <div class="col-md-6  ">
                                         <div class="panel">
                                             <div class="panel-body bio-desk">
-                                                <h4 style="display: inline;color:#000000">Personne(s) intervenante(s): </h4>
+                                                <h4 style="display: inline;color:#000000">Personne(s) intervenante(s):
+                                                </h4>
                                                 <h5 style="display: inline;color:#000000">
                                                     @foreach ($maintenance_staffs as $maintenance_staff)
                                                         @foreach ($staffs as $staff)
@@ -197,7 +202,8 @@
                                         </div>
                                     </div>
 
-                                </div></div>
+                                </div>
+                            </div>
 
 
 
@@ -229,17 +235,20 @@
                                         <div class="panel">
                                             <div class="panel-body bio-chart">
                                                 <h4 style="display: inline;color:#000000 ">Date d'intervention: </h4>
-                                                <h5 style="display: inline;color:#000000">{{ $repair->intervention_date }}</h5>
+                                                <h5 style="display: inline;color:#000000">
+                                                    {{ $repair->intervention_date }}</h5>
                                                 <br>
                                                 <h4 style="display: inline;color:#000000"> Diagnostique: </h4>
-                                                <h5 style="display: inline;color:#000000">{{ $repair->diagnostic }}</h5>
+                                                <h5 style="display: inline;color:#000000">{{ $repair->diagnostic }}
+                                                </h5>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6  ">
                                         <div class="panel">
                                             <div class="panel-body bio-desk">
-                                                <h4 style="display: inline;color:#000000">Personne(s) intervenante(s): </h4>
+                                                <h4 style="display: inline;color:#000000">Personne(s) intervenante(s):
+                                                </h4>
                                                 <h5 style="display: inline;color:#000000">
                                                     @foreach ($repair_staffs as $repair_staff)
                                                         @foreach ($staffs as $staff)
@@ -251,7 +260,8 @@
                                                 </h5>
                                                 <br>
                                                 <h4 style="display: inline;color:#000000">Pannes réparées: </h4>
-                                                <h5 style="display: inline;color:#000000">{{ $repair->repaired_breakdowns }}</h5>
+                                                <h5 style="display: inline;color:#000000">
+                                                    {{ $repair->repaired_breakdowns }}</h5>
 
                                             </div>
                                         </div>
@@ -270,7 +280,8 @@
                                     <div class="col-md-6  ">
                                         <div class="panel">
                                             <div class="panel-body bio-desk">
-                                                <h4 style="display: inline;color:#000000">Date et Heure de sortie: </h4>
+                                                <h4 style="display: inline;color:#000000">Date et Heure de sortie:
+                                                </h4>
                                                 <h5 style="display: inline;color:#000000">{{ $repair->end_date }}
                                                     {{ $repair->end_time }}</h5>
                                                 <br>
@@ -284,7 +295,8 @@
                                         <div class="panel">
                                             <div class="panel-body bio-desk">
                                                 <h4 style="display: inline;color:#000000">Observation: </h4>
-                                                <h5 style="display: inline;color:#000000">{{ $repair->observation }}</h5>
+                                                <h5 style="display: inline;color:#000000">{{ $repair->observation }}
+                                                </h5>
                                                 <br>
                                                 <h4 style="display: inline;color:#000000">Conducteur (sortie): </h4>
                                                 <h5 style="display: inline;color:#000000">{{ $driver->name }}
@@ -311,62 +323,72 @@
                     <div class="page-header">
                         <div class="row">
                             @foreach ($rps as $rp)
-                            @foreach ($designations as $designation)
-                                @foreach ($marks as $mark)
+                                @foreach ($designations as $designation)
+                                    @foreach ($marks as $mark)
+                                        @if ($rp->type == $designation->id && $rp->marque == $mark->id)
+                                            <div class="sidenav">
 
-                                @if ($rp->type == $designation->id && $rp->marque == $mark->id)
-                                    <div class="sidenav">
-
-                                        <button
-                                            class="dropdown-btn">Marque: {{ $mark->name }}</b> Type: {{ $designation->name }}
-                                            <i class="fa fa-caret-down"></i>
-                                        </button>
-                                        <div class="dropdown-container">
-                                            <table style=" width: 90%;border-collapse: collapse;">
-                                                <tr>
-                                                    <th>
-                                                        <h4 style="display: inline;color: #000000 ">Désignation: </h4>
-                                                        <h5 style="display: inline;color: #000000">{{ $rp->designation }}
-                                                        </h5>
-                                                    </th>
-
-
-                                                    <th>
-                                                        <h4 style="display: inline;color: #000000">Reference: </h4>
-                                                        <h5 style="display: inline;color: #000000">{{ $rp->reference }}
-                                                        </h5> </th>
-                                                </tr>
-                                                <tr>
-                                                    <th>
-                                                        <h4 style="display: inline;color: #000000 ">Quantite: </h4>
-                                                        <h5 style="display: inline;color: #000000">{{ $rp->quantity }}
-                                                        </h5>
-                                                    </th>
+                                                <button class="dropdown-btn">Marque: {{ $mark->name }}</b> Type:
+                                                    {{ $designation->name }}
+                                                    <i class="fa fa-caret-down"></i>
+                                                </button>
+                                                <div class="dropdown-container">
+                                                    <table style=" width: 90%;border-collapse: collapse;">
+                                                        <tr>
+                                                            <th>
+                                                                <h4 style="display: inline;color: #000000 ">
+                                                                    Désignation: </h4>
+                                                                <h5 style="display: inline;color: #000000">
+                                                                    {{ $rp->designation }}
+                                                                </h5>
+                                                            </th>
 
 
-                                                    <th>
-                                                        <h4 style="display: inline;color: #000000">prix: </h4>
-                                                        <h5 style="display: inline;color: #000000">{{ $rp->price }}
-                                                        </h5>
-                                                    </th>
-                                                </tr>
+                                                            <th>
+                                                                <h4 style="display: inline;color: #000000">Reference:
+                                                                </h4>
+                                                                <h5 style="display: inline;color: #000000">
+                                                                    {{ $rp->reference }}
+                                                                </h5>
+                                                            </th>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>
+                                                                <h4 style="display: inline;color: #000000 ">Quantite:
+                                                                </h4>
+                                                                <h5 style="display: inline;color: #000000">
+                                                                    {{ $rp->quantity }}
+                                                                </h5>
+                                                            </th>
 
-                                                <tr>
-                                                    <th>
-                                                        <h4 style="display: inline;color: #000000 ">Prix total: </h4>
-                                                        <h5 style="display: inline;color: #000000">{{ $rp->full_price }}
-                                                        </h5>
-                                                    </th>
+
+                                                            <th>
+                                                                <h4 style="display: inline;color: #000000">prix: </h4>
+                                                                <h5 style="display: inline;color: #000000">
+                                                                    {{ $rp->price }}
+                                                                </h5>
+                                                            </th>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <th>
+                                                                <h4 style="display: inline;color: #000000 ">Prix total:
+                                                                </h4>
+                                                                <h5 style="display: inline;color: #000000">
+                                                                    {{ $rp->full_price }}
+                                                                </h5>
+                                                            </th>
 
 
 
-                                                </tr>
-                                            </table>
-                                        </div>
-                                    </div>
-                                @endif
-                            @endforeach  @endforeach
-                        @endforeach
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                @endforeach
+                            @endforeach
 
 
                         </div>

@@ -141,6 +141,9 @@
                                                             <a class="dropdown-item"
                                                                 href="{{ route('ParkManager.vehicules.show', $vehicule->id) }}"><i
                                                                     class="dw dw-eye"></i> Consulter</a>
+                                                                    <a class="dropdown-item"
+                                                                    href="{{ route('ParkManager.vehicules.showDT', $vehicule->id) }}"><i
+                                                                        class="dw dw-eye"></i> Consulter DT</a>
                                                             @if (Auth::user()->type == 'Gestionnaire Sup')
                                                                 <a class="dropdown-item"
                                                                     style="  color: currentColor;

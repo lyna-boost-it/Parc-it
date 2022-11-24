@@ -24,7 +24,7 @@ use App\Unit;
 use App\Vehicule;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class DtController extends Controller
@@ -40,9 +40,17 @@ class DtController extends Controller
      */
     public function index()
     {
+        $maintenances =null;
+        $user=User::find(Auth::user()->id);
+if($user->type=='Demandeur'){
+    $maintenances = Dt::all()->where('user_id', '==', $user->id)->where('state', '!=', 'fait')->where('state','!=','archived');
+    $maintenances_done = Dt::all()->where('state', '=', 'fait')->where('user_id', '==', $user->id);
+}else{
+    $maintenances = Dt::all()->where('state', '!=', 'fait')->where('state','!=','archived');
+    $maintenances_done = Dt::all()->where('state', '=', 'fait');
+}
 
-        $maintenances = Dt::all()->where('state', '!=', 'fait')->where('state','!=','archived');
-        $maintenances_done = Dt::all()->where('state', '=', 'fait');
+
         $drivers = Staff::all()->where('person_type', '=', 'Conducteur');
         $units = Unit::all();
         $vehicules = Vehicule::all();

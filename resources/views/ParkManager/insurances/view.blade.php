@@ -64,12 +64,12 @@
                                         <th>
                                             <br>
                                             <h4 style="display: inline;;color:#000000">Type d'assurance: </h4>
-                                            <h5 style="display: inline;;color:#000000">{{ $inssurance->agency_code }}
+                                            <h5 style="display: inline;;color:#000000">{{ $inssurance->insurance_type }}
                                             </h5>
 
                                         <th>
                                             <h4 style="display: inline;;color:#000000">Adresse de l'agence:</h4>
-                                            <h5 style="display: inline;;color:#000000">{{ $inssurance->insurance_type }}
+                                            <h5 style="display: inline;;color:#000000">{{ $inssurance->agency_address }}
                                             </h5>
                                     </tr>
                                     <tr>

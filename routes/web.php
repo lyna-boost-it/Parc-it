@@ -204,6 +204,7 @@ Route::resource('/amandes', 'AmandeController');
     Route::post('/validation/storeV/{id}', 'ValidateContoller@storeV')->name('validation.storeV');
     Route::get('/validation/{id}/choose1', 'ValidateContoller@choose1')->name('validation.choose1');
   Route::get('/validation/{id}/archive', 'ValidateContoller@archive')->name('validation.archive');
+  Route::get('/vehicules/{id}/showDT', 'VehiculeController@showDT')->name('vehicules.showDT');
 
     //  Route::put('/externalsM/updateExternal/{id}', 'ValidateContoller@updateV')->name('validation.updateExternal');
     // Route::get('/externalsM/{id}/editExternal', 'ValidateContoller@editV')->name('validation.editExternal');
