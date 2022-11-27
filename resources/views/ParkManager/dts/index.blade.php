@@ -259,17 +259,17 @@
                                                                     </button>
                                                                 </form>
                                                                     @endif
-                                                                    <form style="display: inline;"
-                                                                        action="{{ route('ParkManager.validation.createV', $maintenance->id) }}"
-                                                                        method="get" class="dropdown-item">
-                                                                        @csrf
 
+                                                                        <form class="form-delete dropdown-item" method="post"
+                                                                        action="{{ route('ParkManager.validation.destroy', $maintenance->id) }}">
+                                                                        @method('DELETE')
+                                                                        @csrf
                                                                         <button type="submit"
                                                                             style="display: inline; background-color: transparent; border-color: transparent;">
                                                                             <input type="hidden" value="Vehicule"
                                                                                 id="type" name="type">
-                                                                            <input type="hidden" value="archivé"
-                                                                                id="valide" name="valide">
+                                                                            <input type="hidden" value="Refusée"
+                                                                                id="valide" name="valide" onclick="return confirm('êtes-vous sûr?')">
 
                                                                             <span class="hovertext"
                                                                                 data-hover="Archivé">

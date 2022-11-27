@@ -28,6 +28,12 @@
 
                             <div class="card-header">
                                 <h3 class="title">{{ __('Créer une vignettes ') }}</h3>
+                                @if ($vehicules==null)
+                                <h6>Pour: {{ $vehicle->marticule }}</h6>
+                                <input hidden name="vehicle_id2" value={{ $vehicle->id }} >
+                                <input hidden name="sticker" value={{$sticker->id }} >
+
+                                @endif
                             </div>
 
 
@@ -56,7 +62,7 @@
 
 
 
-
+                            @if ($vehicules!=null)
                             <div class="card-body">
                                 <div class="row">
                                     <label class="col-md-3 col-form-label">{{ __('Véhicule') }}</label>
@@ -89,7 +95,7 @@
                                     </div>
                                 </div>
                             </div>
-
+                            @endif
 
 
 

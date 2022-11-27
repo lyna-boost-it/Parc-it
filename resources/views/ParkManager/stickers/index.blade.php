@@ -34,9 +34,9 @@
 
                             <a  style="background:#EE643A;color:#ffffff;float: right;
                             @if (Auth::user()->type == 'Gestionnaire Sup')   color: currentColor;
-      cursor: not-allowed;
-      opacity: 0.5;
-      text-decoration: none;  @endif
+                                cursor: not-allowed;
+                                opacity: 0.5;
+                                text-decoration: none;  @endif
                             " href="{{route('ParkManager.stickers.create')}}" class="btn btn-sm  ">
                                 Créer une vignette
                             </a>
@@ -88,13 +88,20 @@
                                                         <div
                                                             class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
 
-                                                            <a class="dropdown-item" href="{{route('ParkManager.stickers.edit',$sticker->id)}}"
+
+                                                              @if ($sticker->validity!='Valide')
+                                                              <a class="dropdown-item" href="{{route('ParkManager.stickers.edit',$sticker->id)}}"
                                                                 @if (Auth::user()->type == 'Gestionnaire Sup') style="  color: currentColor;
                                                                 cursor: not-allowed;
                                                                 opacity: 0.5;
                                                                 text-decoration: none;" @endif ><i class="dw dw-edit2"></i> Renouveler</a>
-                                                               <a class="dropdown-item" href="{{route('ParkManager.stickers.show',$sticker->id)}}"
+
+                                                              @endif
+
+
+                                                              <a class="dropdown-item" href="{{route('ParkManager.stickers.show',$sticker->id)}}"
                                                                 ><i class="dw dw-eye"></i> Consulter</a>
+
                                                                 @if (Auth::user()->type == 'Gestionnaire Sup')   <a class="dropdown-item"  style="  color: currentColor;
                                                                 cursor: not-allowed;
                                                                 opacity: 0.5;
@@ -102,7 +109,8 @@
 
                                                               @else
 
-         <form class="form-delete dropdown-item" method="post" action="{{route('ParkManager.stickers.destroy',$sticker->id)}}">
+                                                                <form class="form-delete dropdown-item" method="post"
+                                                                action="{{route('ParkManager.stickers.destroy',$sticker->id)}}">
                                                                 @method('DELETE')
                                                                 @csrf
                                                                 <button   type="submit" style=" background-color: transparent;

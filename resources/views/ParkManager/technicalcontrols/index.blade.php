@@ -102,7 +102,7 @@
                                                                 cursor: not-allowed;
                                                                 opacity: 0.5;
                                                                 text-decoration: none;" @endif><i
-                                                                    class="dw dw-edit2"></i> Renouveler</a>
+                                                                    class="dw dw-edit2"></i> Modifier</a>
                                                             <a class="dropdown-item"
                                                                 href="{{ route('ParkManager.technicalcontrols.show', $technicalcontrol->id) }}"><i
                                                                     class="dw dw-eye"></i> Consulter</a>

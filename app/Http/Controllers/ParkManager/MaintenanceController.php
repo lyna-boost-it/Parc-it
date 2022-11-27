@@ -112,7 +112,7 @@ $currentUser->notify(new MaintenaceNotification($maintenance, $notif));
 
 
 if($request->action=='more'){
-    if ($dt->state=='en attente'){
+    if ($dt->state=='en attente'  || $dt->state == 'en cours' ){
         $dt->state = '2';
         $dt->save();
     }else{

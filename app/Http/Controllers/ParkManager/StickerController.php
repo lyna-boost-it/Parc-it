@@ -22,7 +22,7 @@ class StickerController extends Controller
      */
     public function index()
     {
-        $stickers=Sticker::all();
+        $stickers=Sticker::all()->where('update','!=','yes');
 
         $vehicules=Vehicule::all();
         AllSticker_Checker( );
@@ -54,11 +54,21 @@ class StickerController extends Controller
      */
     public function store(Request $request)
     {
-
+if($request->sticker!=null){
+    $st=Sticker::find($request->sticker);
+    $st->update='yes';
+    $st->save();
+}
         $sticker=Sticker:: create($request->only(
             'id', 'year','validity','vehicle_id'
     ));
 
+    if($request->vehicle_id2!=''){
+        $sticker->vehicle_id=$request->vehicle_id2;
+
+        $sticker->save();
+
+    }
 
  $sticker->save();
  $usersA = User::all()->where('type', '=', 'Gestionnaire parc');
@@ -98,8 +108,10 @@ class StickerController extends Controller
     public function edit($id)
     {
         $sticker=Sticker::find($id);
+        $vehicules=null;
+        $vehicle=Vehicule::find($sticker->vehicle_id);
 
- return view("ParkManager.stickers.edit", compact('sticker') );
+ return view("ParkManager.stickers.create", compact('sticker','vehicules','vehicle') );
     }
 
     /**

@@ -115,7 +115,7 @@ AllLisence_Checker( );
             'id', 'start_date','end_date','vehicle_id','institution'));
 
             AllLisence_Checker( );
-                return redirect('/ParkManager/licences')->with('success',"vous avez renouvelé un permis de circulation avec succès");
+                return redirect('/ParkManager/licences')->with('success',"vous avez modifier un permis de circulation avec succès");
     }
 
     /**

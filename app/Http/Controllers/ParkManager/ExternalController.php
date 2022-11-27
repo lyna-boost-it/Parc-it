@@ -114,7 +114,7 @@ class ExternalController extends Controller
 
 
         if ($request->action == 'more') {
-            if ($dt->state == 'en attente') {
+            if ($dt->state == 'en attente' || $dt->state == 'en cours' ) {
                 $dt->state = '3';
                 $dt->save();
             } else {

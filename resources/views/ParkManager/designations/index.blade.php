@@ -168,7 +168,7 @@
                                         <div class="col-md-9">
                                             <div class="form-group">
                                                 <input type="text" name="name" class="form-control"
-                                                    placeholder="Marque"   required>
+                                                    placeholder="Type"   required>
                                             </div>
 
                                         </div>

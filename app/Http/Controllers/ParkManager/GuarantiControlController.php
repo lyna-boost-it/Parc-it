@@ -66,12 +66,21 @@ class GuarantiControlController extends Controller
                 'address_vendor',
                 'vehicle_id','start_date','end_date'
     ));
-    $date = Carbon::createFromFormat('Y-m-d', $guaranti->start_date);
-    $date->addYears($request->duration);
-    $date = $date->toDateString();
-    $guaranti->end_date = $date;
-    $guaranti->save();
+    if($guaranti->km==null && $guaranti->year==null){
+        $guaranti->km=$request->kmBoth;
+        $guaranti->year=$request->yearBoth;
 
+
+    }
+    if($guaranti->date){
+        $date = Carbon::createFromFormat('Y-m-d', $guaranti->start_date);
+        $date->addYears($request->duration);
+        $date = $date->toDateString();
+        $guaranti->end_date = $date;
+
+    }
+
+    $guaranti->save();
 
        return redirect()->route ('ParkManager.guarantis.index')->with('success',"vous avez ajouté un Service après-vente avec succès");
     }

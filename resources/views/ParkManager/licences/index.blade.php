@@ -93,14 +93,18 @@
                                                         </a>
                                                         <div
                                                             class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-
+                                                            @if ($licence->state=='en cours')
                                                             <a class="dropdown-item" href="{{route('ParkManager.licences.edit',$licence->id)}}"
                                                                 @if (Auth::user()->type == 'Gestionnaire Sup') style="  color: currentColor;
                                                                 cursor: not-allowed;
                                                                 opacity: 0.5;
-                                                                text-decoration: none;" @endif  ><i class="dw dw-edit2"></i>Renouveler</a>
-                    <a class="dropdown-item" href="{{route('ParkManager.licences.show',$licence->id)}}"
-                                                                ><i class="dw dw-edit2"></i> Consulter</a>
+                                                                text-decoration: none;" @endif  ><i class="dw dw-edit2"></i>Modifier</a>
+@endif
+
+                                                                <a class="dropdown-item" href="{{route('ParkManager.licences.show',$licence->id)}}"
+                                                                ><i class="dw dw-eye"></i> Consulter</a>
+@if ($licence->state=='en cours')
+
                                                                 @if (Auth::user()->type == 'Gestionnaire Sup')   <a class="dropdown-item"  style="  color: currentColor;
                                                                 cursor: not-allowed;
                                                                 opacity: 0.5;
@@ -108,7 +112,8 @@
 
                                                               @else
 
-   <form class="form-delete" method="post" action="{{route('ParkManager.licences.destroy',$licence->id)}}">
+
+                                                              <form class="form-delete" method="post" action="{{route('ParkManager.licences.destroy',$licence->id)}}">
                                                                 @method('DELETE')
                                                                 @csrf
                                                                 <button class="dropdown-item" type="submit" style=" background-color: transparent;
@@ -118,6 +123,10 @@
 
                                                                 </button>
                                                             </form>
+
+                                                              @endif
+
+
                                                               @endif
 
                                                         </div>

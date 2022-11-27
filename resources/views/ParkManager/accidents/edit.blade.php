@@ -70,16 +70,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <label
-                                                class="col-md-3 col-form-label">{{ __('Information du conducteur adversaire') }}</label>
 
-
-                                            <input type="file" id="docpicker" name="path" accept=".doc,.xml,.pdf">
-
-                                        </div>
-                                    </div>
                                     <div class="card-body">
                                         <div class="row">
                                             <label
@@ -189,16 +180,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <label
-                                                class="col-md-3 col-form-label">{{ __('Photos d\'accident en format pdf') }}</label>
-
-
-                                            <input type="file" id="docpicker" name="picture" accept=".doc,.xml,.pdf">
-
-                                        </div>
-                                    </div>
+                             
                                     <div class="card-body">
                                         <div class="row">
                                             <label class="col-md-3 col-form-label">{{ __('Date de l’expertise') }}</label>

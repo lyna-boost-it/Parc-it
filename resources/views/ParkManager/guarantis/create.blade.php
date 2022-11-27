@@ -147,7 +147,7 @@
                                         <label class="col-md-3 col-form-label">{{ __('KM') }}</label>
                                         <div class="col-md-9">
                                             <div class="form-group" for="AB">
-                                                <input type="numbe" step="0.1" name="km" id="km"
+                                                <input type="numbe" step="0.1" name="kmBoth" id="km"
                                                     class="form-control" placeholder="KM" value="{{ $guaranti->km }}">
                                             </div>
                                         </div>
@@ -162,7 +162,7 @@
                                         <div class="col-md-9" for="Territoire">
                                             <div class="form-group">
                                                 <input type="numbe" step="1" id="territory" id="year"
-                                                    name="year" class="form-control" placeholder="Année"
+                                                    name="yearBoth" class="form-control" placeholder="Année"
                                                     value="{{ $guaranti->year }}">
                                             </div>
 
@@ -290,7 +290,7 @@
 
 
 
- 
+
 
                             <div class="card-footer ">
                                 <div class="row">

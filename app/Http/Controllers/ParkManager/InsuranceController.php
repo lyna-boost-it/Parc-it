@@ -65,6 +65,15 @@ class InsuranceController extends Controller
         $insurance=Insurance:: create($request->only(      'police_number','effective_date'
         ,'expiration_date','company_name','agency_code',
         'agency_address','insurance_type','vehicle_id'  ));
+        if($request->vehicle_id2!=''){
+            $insurance->vehicle_id=$request->vehicle_id2;
+
+            $insurance->save();
+
+        }
+
+
+
         $usersA = User::all()->where('type', '=', 'Gestionnaire parc');
         $usersB = User::all()->where('type', '=', 'Utilisateur');
         $notif = new MoreNotifs();
@@ -103,8 +112,9 @@ class InsuranceController extends Controller
     {
 
         $insurance=Insurance::find($id);
-
-        return view("ParkManager.insurances.edit", compact('insurance') );
+$vehicules=null;
+$vehicle=Vehicule::find($insurance->vehicle_id);
+        return view("ParkManager.insurances.create", compact('insurance','vehicules','vehicle') );
     }
 
     /**

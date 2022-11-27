@@ -20,7 +20,10 @@
                         <div class="page-header">
                             <div class="row">
 
-                                <h3>Information {{ $technicalcontroll->type }}:  </h3>
+                                <h3>Information {{ $technicalcontroll->type }}: Véhicule {{ $vehicule->marticule }} <a
+                                    href="{{ route('ParkManager.vehicules.show', $vehicule->id) }}">
+                                    <span class="fa fa-eye  "
+                                        style="color: #3d5fbb"></span> </a></h3>
 
                             </div>
                         </div>
@@ -38,6 +41,10 @@
                                         <th>
                                             <h4  style="display: inline;color:rgb(42, 165, 124)">ID: </h4>
                                             <h5  style="display: inline;color:#000000">{{ $technicalcontroll->id }}</h5>
+                                        </th>
+                                        <th>
+                                            <h4  style="display: inline;color:#000000">Validité: </h4>
+                                            <h5  style="display: inline; ">{{ $technicalcontroll->state }}</h5>
                                         </th>
 
 

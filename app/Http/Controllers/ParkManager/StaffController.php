@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\ParkManager;
 
+use App\Amande;
 use App\Driver;
 use App\Http\Controllers\Controller;
 use App\MaintenanceCenter;
@@ -97,8 +98,9 @@ if($type=='Personnel du parc'){
     public function show($id)
     {
         $staff=Staff::find($id);
+        $amandes=Amande::all()->where('driver_id','=',$id);
         $unit=Unit::find($staff->unit_id);
-        return view('ParkManager.staffs.viewStaff')->with('staff',$staff)->with('unit',$unit);
+        return view('ParkManager.staffs.viewStaff')->with('amandes',$amandes)->with('staff',$staff)->with('unit',$unit);
     }
 
     /**

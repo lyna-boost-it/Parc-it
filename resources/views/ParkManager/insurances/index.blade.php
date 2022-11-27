@@ -96,14 +96,16 @@
                                                         </a>
                                                         <div
                                                             class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+@if ($insurance->state!='en cours')
+<a class="dropdown-item"
+href="{{ route('ParkManager.insurances.edit', $insurance->id) }}"
+@if (Auth::user()->type == 'Gestionnaire Sup') style="  color: currentColor;
+cursor: not-allowed;
+opacity: 0.5;
+text-decoration: none;" @endif><i
+    class="dw dw-edit2"></i> Renouveler</a>
+@endif
 
-                                                            <a class="dropdown-item"
-                                                                href="{{ route('ParkManager.insurances.edit', $insurance->id) }}"
-                                                                @if (Auth::user()->type == 'Gestionnaire Sup') style="  color: currentColor;
-                                                                cursor: not-allowed;
-                                                                opacity: 0.5;
-                                                                text-decoration: none;" @endif><i
-                                                                    class="dw dw-edit2"></i> Renouveler</a>
 
 
                                                             <a class="dropdown-item"

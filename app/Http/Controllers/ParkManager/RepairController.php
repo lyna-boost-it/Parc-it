@@ -191,7 +191,7 @@ $dts=Dt::all();
         }
 
 if($request->action=='more'){
-    if ($dt->state=='en attente'){
+    if ($dt->state=='en attente'  || $dt->state == 'en cours' ){
         $dt->state = '1';
         $dt->save();
     }else{

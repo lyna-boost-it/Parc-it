@@ -244,7 +244,23 @@
 
 
 
-
+                        <div class="card-body" >
+                            <div class="row">
+                                <label class="col-md-3 col-form-label">{{ __('Observation') }}</label>
+                                <div class="col-md-9" >
+                                    <div class="form-group">
+                                        <input type="text"  name="observation" class="form-control"
+                                        placeholder=" Observation"
+                                        value="{{ $technicalcontrol->observation }}" required>
+                                    </div>
+                                    @if ($errors->has('observation'))
+                                        <span class="invalid-feedback" style="display: block;" role="alert">
+                                            <strong>{{ $errors->first('observation') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
 
 
                          <div class="card-footer ">

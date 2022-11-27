@@ -145,6 +145,7 @@ Route::namespace('ParkManager')->prefix('ParkManager')->name('ParkManager.')->gr
     Route::get('/liquids/{id}/edit', 'LiquidsController@edit')->name('liquids.edit');
 
 
+
     Route::get('/repairs/createRepairs/{id}', 'RepairController@createRepairs')->name('repairs.createRepairs');
     Route::get('/repairs/showRepairs/{id}', 'RepairController@showRepairs')->name('repairs.showRepairs');
     Route::delete('/repairs/destroyRepairs/{id}', 'RepairController@destroyRepairs')->name('repairs.destroyRepairs');
@@ -205,6 +206,7 @@ Route::resource('/amandes', 'AmandeController');
     Route::get('/validation/{id}/choose1', 'ValidateContoller@choose1')->name('validation.choose1');
   Route::get('/validation/{id}/archive', 'ValidateContoller@archive')->name('validation.archive');
   Route::get('/vehicules/{id}/showDT', 'VehiculeController@showDT')->name('vehicules.showDT');
+  Route::delete('/validation/destroy/{id}', 'ValidateContoller@destroy')->name('validation.destroy');
 
     //  Route::put('/externalsM/updateExternal/{id}', 'ValidateContoller@updateV')->name('validation.updateExternal');
     // Route::get('/externalsM/{id}/editExternal', 'ValidateContoller@editV')->name('validation.editExternal');

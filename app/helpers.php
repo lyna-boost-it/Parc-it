@@ -310,7 +310,8 @@ function CalculateHours($start_att, $end_att, Hours $hour)
 
 
 function Insurance_checker(Insurance $insurance)
-{   $usersA = User::all()->where('type', '=', 'Gestionnaire parc');
+{
+    $usersA = User::all()->where('type', '=', 'Gestionnaire parc');
     $usersB = User::all()->where('type', '=', 'Utilisateur');
     $date = date($insurance->expiration_date);
     $ldate =  date(Carbon::now());
@@ -328,6 +329,7 @@ function Insurance_checker(Insurance $insurance)
         $insurance->state = 'expiré';
         $insurance->save();
     }else{
+
         if ($date > $ldate &&  $insurance->state == 'expiré'){
             $notif = new MoreNotifs();
             $notif->details = 'l\'assurance de vehcule: ' . $insurance->vehicle_id . ' a a été mis à jour';

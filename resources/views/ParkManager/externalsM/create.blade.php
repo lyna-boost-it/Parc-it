@@ -213,7 +213,19 @@
                         <input type="hidden" id="dt_code" name="dt_code" value="{{ $dt->id }}">
 
 
+                        @if (Str::length($dt->state)!=2  )
+                        <div class="card-footer ">
+                            <div class="row">
+                                <div class="col-md-12 text-center">
 
+
+                                    <button type="submit" name="action" value="more"
+                                        class="btn   btn-round"
+                                        style="background:#EE643A;color:#ffffff;">{{ __('Créer d\'autres sorties') }}</button>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
 
 
 
@@ -225,7 +237,7 @@
                          <div class="card-footer ">
                             <div class="row">
                              <div class="col-md-12 text-center">
-                                    <button type="submit" class="btn  btn-round" style="background:#EE643A;color:#ffffff;">{{ __('Ajouter') }}</button>
+                                    <button type="submit" class="btn  btn-round" style="background:#EE643A;color:#ffffff;">{{ __('Enregistrer') }}</button>
                                 </div>
                             </div>
                         </div>

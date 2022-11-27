@@ -363,7 +363,7 @@
 
                                             <button type="submit" name="action" value="more"
                                                 class="btn   btn-round"
-                                                style="background:#EE643A;color:#ffffff;">{{ __('Ajouter et créer d\'autres sorties') }}</button>
+                                                style="background:#EE643A;color:#ffffff;">{{ __('Créer d\'autres sorties') }}</button>
                                         </div>
                                     </div>
                                 </div>
@@ -374,7 +374,7 @@
                                 <div class="row">
                                     <div class="col-md-12 text-center">
                                         <button type="submit" name="action" value="end" class="btn   btn-round"
-                                            style="background:#EE643A;color:#ffffff;">{{ __('Ajouter') }}</button>
+                                            style="background:#EE643A;color:#ffffff;">{{ __('Enregistrer') }}</button>
                                     </div>
                                 </div>
                             </div>

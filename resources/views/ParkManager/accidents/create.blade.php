@@ -35,7 +35,7 @@
 
 
                             <fieldset>
-                                <legend>Information du conducteur EDEVAL</legend>
+                                <legend>Informations du conducteur EDEVAL</legend>
                                 <div class="card-body">
                                     <div class="row">
                                         <label
@@ -98,7 +98,7 @@
                             </fieldset>
 
                             <fieldset>
-                                <legend>Information du conducteur adversaire</legend>
+                                <legend>Informations du conducteur adversaire</legend>
                                 <div class="card-body">
                                     <div class="row">
                                         <label
@@ -185,7 +185,7 @@
                                 </div>
                             </fieldset>
                             <fieldset>
-                                <legend>Information d'accident'</legend>
+                                <legend>Informations d'accident</legend>
 
                                 <div class="card-body">
                                     <div class="row">

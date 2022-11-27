@@ -32,6 +32,34 @@
 
         <div class="card-body" >
             <div class="row">
+                <label class="col-md-3 col-form-label">{{ __('Type du Contrôle technique   ') }}</label>
+                <div class="col-md-9" >
+                    <div class="form-group">
+                        <select id="type" type="text"
+                        class="form-control select2 @error('type') is-invalid @enderror"
+                        name="type" required autocomplete="type" autofocus>
+                        <option value="" disabled selected>Type du Contrôle technique</option>
+                        <option value="Normal"
+                            {{ old('type', $technicalcontrol->type) === 'Normal' ? 'selected' : '' }}>
+                            Normal</option>
+                        <option value="SirGaz"
+                            {{ old('type', $technicalcontrol->type) === 'SirGaz' ? 'selected' : '' }}>
+                            SirGaz</option>
+
+
+
+                    </select>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="card-body" >
+            <div class="row">
                 <label class="col-md-3 col-form-label">{{ __('Date d’effet ') }}</label>
                 <div class="col-md-9" >
                     <div class="form-group">
@@ -48,6 +76,129 @@
             </div>
         </div>
 
+
+
+
+
+
+        <div class="card-body" >
+            <div class="row">
+                <label class="col-md-3 col-form-label">{{ __('Date d’expiration') }}</label>
+                <div class="col-md-9" >
+                    <div class="form-group">
+                        <input type="date"  name="expiration_date" class="form-control"
+                        placeholder="Date d’expiration"
+                        value="{{ $technicalcontrol->expiration_date }}" required>
+                    </div>
+                    @if ($errors->has('expiration_date'))
+                        <span class="invalid-feedback" style="display: block;" role="alert">
+                            <strong>{{ $errors->first('expiration_date') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="card-body" >
+            <div class="row">
+                <label class="col-md-3 col-form-label">{{ __('Réserve') }}</label>
+                <div class="col-md-9" >
+                    <div class="form-group">
+                        <input type="text"  name="reserve" class="form-control"
+                        placeholder=" Réserve"
+                        value="{{ $technicalcontrol->reserve }}" required>
+                    </div>
+                    @if ($errors->has('reserve'))
+                        <span class="invalid-feedback" style="display: block;" role="alert">
+                            <strong>{{ $errors->first('reserve') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+        <div class="card-body" >
+            <div class="row">
+                <label class="col-md-3 col-form-label">{{ __('Numéro du contrôle Technique') }}</label>
+                <div class="col-md-9" >
+                    <div class="form-group">
+                        <input type="number" maxlength="10" minlength="10" name="technical_control_number" class="form-control"
+                        placeholder=" Numéro du contrôle Technique"
+                        value="{{ $technicalcontrol->technical_control_number }}" required>
+                    </div>
+                    @if ($errors->has('technical_control_number'))
+                        <span class="invalid-feedback" style="display: block;" role="alert">
+                            <strong>{{ $errors->first('technical_control_number') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="card-body" >
+            <div class="row">
+                <label class="col-md-3 col-form-label">{{ __('L’organisme émetteur') }}</label>
+                <div class="col-md-9" >
+                    <div class="form-group">
+                        <input type="text" name="transmitter" class="form-control"
+                        placeholder=" L’organisme émetteur"
+                        value="{{ $technicalcontrol->transmitter }}" required>
+                    </div>
+                    @if ($errors->has('transmitter'))
+                        <span class="invalid-feedback" style="display: block;" role="alert">
+                            <strong>{{ $errors->first('transmitter') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="card-body" >
+            <div class="row">
+                <label class="col-md-3 col-form-label">{{ __('Observation') }}</label>
+                <div class="col-md-9" >
+                    <div class="form-group">
+                        <input type="text"  name="observation" class="form-control"
+                        placeholder=" Observation"
+                        value="{{ $technicalcontrol->observation }}" required>
+                    </div>
+                    @if ($errors->has('observation'))
+                        <span class="invalid-feedback" style="display: block;" role="alert">
+                            <strong>{{ $errors->first('observation') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+        </div>
 
 
 

@@ -28,9 +28,46 @@
 
                         <div class="card-header">
                             <h5 class="title">{{ __('Créer une assurance ') }}</h5>
+                            @if ($vehicules==null)
+<h6>Pour: {{ $vehicle->marticule }}</h6>
+<input hidden name="vehicle_id2" value={{ $vehicle->id }} >
+                            @endif
                         </div>
                         <br><br><br>
+@if ($vehicules!=null)
+<div class="card-body">
+    <div class="row">
+        <label class="col-md-3 col-form-label">{{ __('Véhicule') }}</label>
+        <div class="col-md-9">
+            <div   style="width: 50%;
+            float: left;
+            padding: 20px;
+             ">
 
+
+                <select style="width: 300px"  id="selectField"  class="vh"  name="vehicle_id" >
+                    <option></option>
+                    @foreach ($vehicules as $vehicule)
+                        <option   value="{{ $vehicule->id }}">
+                           {{ $vehicule->marticule }}</option>
+                    @endforeach
+                </select>
+            </div>
+                @foreach ($vehicules as $vehicule)
+
+                <div style="width: 50%;
+                float: left;
+                padding: 20px;
+                " id="{{ $vehicule->id }}" class="content" >
+                   <h1>Type: {{ $vehicule->vehicle_type }}, Marque: {{ $vehicule->mark }}</h1>
+
+                </div>
+                @endforeach
+
+        </div>
+    </div>
+</div>
+@endif
 
 
                         <div class="card-body" >
@@ -153,38 +190,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('Véhicule') }}</label>
-                                <div class="col-md-9">
-                                    <div   style="width: 50%;
-                                    float: left;
-                                    padding: 20px;
-                                     ">
 
-
-                                        <select style="width: 300px"  id="selectField"  class="vh"  name="vehicle_id" >
-                                            <option></option>
-                                            @foreach ($vehicules as $vehicule)
-                                                <option   value="{{ $vehicule->id }}">
-                                                   {{ $vehicule->marticule }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                        @foreach ($vehicules as $vehicule)
-
-                                        <div style="width: 50%;
-                                        float: left;
-                                        padding: 20px;
-                                        " id="{{ $vehicule->id }}" class="content" >
-                                           <h1>Type: {{ $vehicule->vehicle_type }}, Marque: {{ $vehicule->mark }}</h1>
-
-                                        </div>
-                                        @endforeach
-
-                                </div>
-                            </div>
-                        </div>
 
 </div>
                          <div class="card-footer ">
@@ -202,26 +208,28 @@
     </div>
 
 
+@if ($vehicules!=null)
+@foreach ($vehicules as $vehicule)
+<script>
 
-    @foreach ($vehicules as $vehicule)
-    <script>
-
-        $("#vehicle_id").change(function() {
-            if ($(this).val() == id ) {
-                $('#vehicule_div').show();
-                $('#v').attr('required','');
-                $('#v').attr('data-error', 'This field is required.');
-            } else {
-                $('#vehicule_div').hide();
-                $('#v').removeAttr('required');
-                $('#v').removeAttr('data-error');
-            }
-        });
-        $("#vehicle_id").trigger("change");
+    $("#vehicle_id").change(function() {
+        if ($(this).val() == id ) {
+            $('#vehicule_div').show();
+            $('#v').attr('required','');
+            $('#v').attr('data-error', 'This field is required.');
+        } else {
+            $('#vehicule_div').hide();
+            $('#v').removeAttr('required');
+            $('#v').removeAttr('data-error');
+        }
+    });
+    $("#vehicle_id").trigger("change");
 
 
-          </script>
- @endforeach
+      </script>
+@endforeach
+@endif
+
 
     @include('layouts.footerForIndexx')
 
