@@ -5,6 +5,7 @@ namespace App\Http\Controllers\ParkManager;
 
 use App\Dt;
 use App\External;
+use App\ExternalMaterial;
 use App\Garanti;
 use App\Http\Controllers\Controller;
 use App\Maintenance;
@@ -19,6 +20,9 @@ use App\Notifications\DtVNotification;
 use App\Repair;
 use App\Repair_pieces;
 use App\Repair_Staff;
+use App\RepairM_pieces;
+use App\RepairsMaterial;
+use App\RepairsMaterial_Staff;
 use App\Staff;
 use App\Unit;
 use App\Vehicule;
@@ -222,18 +226,29 @@ if($maintenance->type=='Matériel Motorisés'){ $vehicule = Material::find($main
 
         $repair = null;
         $external = null;
+        $repairM = null;
+        $externalM = null;
         $dt = null;
         $repair_staffs = null;
+        $repair_material_staffs=null;
         $rps = null;
+        $rpsM = null;
         $guaranti = null;
+        $guarantiM = null;
 
         $maintenance_staffs = null;
         $external = External::where('dt_code', '=', $id)->first();
+          $externalM = ExternalMaterial::where('dt_code', '=', $id)->first();
         $dt = Maintenance::where('dt_code', '=', $id)->first();
         $repair = Repair::where('dt_code', '=', $id)->first();
+         $repairM = RepairsMaterial::where('dt_code', '=', $id)->first();
         if ($repair != null) {
             $repair_staffs = Repair_Staff::all()->where('repair_id', '=', $repair->id);
             $rps = Repair_pieces::all()->where('repair_id', '=', $repair->id);
+        }
+        if ($repairM != null) {
+            $repair_material_staffs = RepairsMaterial_Staff::all()->where('repair_id', '=', $repairM->id);
+            $rpsM = RepairM_pieces::all()->where('repair_id', '=', $repairM->id);
         }
         if ($dt != null) {
 
@@ -242,12 +257,17 @@ if($maintenance->type=='Matériel Motorisés'){ $vehicule = Material::find($main
         if ($external != null) {
             $guaranti = Garanti::find($external->supplier_id);
         }
+        if ($externalM != null) {
+            $guarantiM = Garanti::find($externalM->supplier_id);
+        }
         $staff = Staff::find($maintenance->staff_id);
         $staffs = Staff::all()->where('person_type', '=', 'Personnel du parc');
 
         $designations = Designation::all();
         $marks = Marque::all();
-        return view('ParkManager.dts.view', compact('guaranti', 'maintenance_staffs', 'marks', 'designations', 'rps', 'staffs', 'maintenance', 'unit', 'vehicule', 'driver', 'staff', 'external', 'dt', 'repair', 'repair_staffs'));
+        return view('ParkManager.dts.view', compact('guarantiM','guaranti', 'maintenance_staffs',
+         'marks', 'designations', 'rps',  'rpsM', 'staffs', 'maintenance', 'unit', 'vehicule',
+         'driver', 'staff', 'externalM', 'external', 'dt', 'repairM','repair_material_staffs', 'repair', 'repair_staffs'));
     }
 
     /**

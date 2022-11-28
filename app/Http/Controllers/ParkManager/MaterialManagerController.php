@@ -4,9 +4,16 @@
 
 namespace App\Http\Controllers\ParkManager;
 
-
+use App\Dt;
+use App\ExternalMaterial;
+use App\Garanti;
 use App\Http\Controllers\Controller;
+use App\Marque;
 use App\Material;
+use App\Models\Designation;
+use App\RepairM_pieces;
+use App\RepairsMaterial;
+use App\RepairsMaterial_Staff;
 use App\Unit;
 use Illuminate\Http\Request;
 
@@ -66,7 +73,29 @@ class MaterialManagerController extends Controller
     {
         $material =  Material::find($id);
         $unit =  Unit::find($material->unit_id);
-        return view("ParkManager.materialsmanager.view", compact('unit','material') );
+        $maintenance = Dt::where('vehicle_id','=',$material->id)->first();
+        //dd($maintenance);
+
+        $repairM = null;
+        $externalM = null;
+        $guarantiM = null;
+        $repair_material_staffs = null;
+        $rpsM = null;
+
+        $designations = Designation::all();
+        $marks = Marque::all();
+
+        $repairM = RepairsMaterial::where('dt_code', '=', $maintenance->id)->first();
+        $externalM = ExternalMaterial::where('dt_code', '=', $maintenance->id)->first();
+        if ($repairM != null) {
+            $repair_material_staffs = RepairsMaterial_Staff::all()->where('repair_id', '=', $repairM->id);
+            $rpsM = RepairM_pieces::all()->where('repair_id', '=', $repairM->id);
+        }
+        if ($externalM != null) {
+            $guarantiM = Garanti::find($externalM->supplier_id);
+        }
+
+        return view("ParkManager.materialsmanager.view", compact('rpsM','repair_material_staffs','guarantiM','externalM','repairM','maintenance','material','unit','material') );
     }
 
     /**

@@ -385,7 +385,7 @@
            ]);
 
              // Optional; add a title and set the width and height of the chart
-             var options = {'title':'Consomation de Liquide et Lubrifiant  ','width':1800, 'height':500};
+             var options = {'title':'Consomation de Liquide et Lubrifiant  ','width':1520, 'height':500};
 
              // Display the chart inside the <div> element with id="piechart"
              var chart = new google.visualization.PieChart(document.getElementById('piechart'));
