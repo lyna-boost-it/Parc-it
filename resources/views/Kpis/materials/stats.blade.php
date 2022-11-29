@@ -93,22 +93,22 @@
                     <div class="row">
 
 
-                        <div class="col-md-6 mb-20">
-                            <div class="card-box height-100-p pd-20">
+                        <div class="card-box col-md-8 mb-20">
+
                                 <div id="piechart"></div>
-                            </div>
+
 
 
 
 
                         </div>
-                        <div class="col-md-6 mb-20">
-                            <div class="card-box height-100-p pd-20">
-                                <div class="rounded-lg shadow-sm mb-12">
+                        <div class="card-box col-md-4 mb-20">
+                            <div class="card-box height-p pd-10">
+                                <div class="rounded-lg shadow-sm mb-10">
                                     <div class="rounded-lg bg-white shadow-lg md:shadow-xl relative overflow-hidden">
-                                        <div class="px-3 pt-12 pb-10 text-center relative z-20">
-                                            <h1 class="text-sm uppercase text-gray-500 leading-tight text-orange  "
-                                                style="font-size: 2.5em;">Nombre totale des machines</h1>
+                                        <div class="px-3 pt-10 pb-10 text-center relative z-20">
+                                            <h3 class="text-sm uppercase text-gray-500 leading-tight text-orange  "
+                                                style="font-size: 2.5em;">Nombre totale des machines</h3>
                                             <h3
                                                 class="text-3xl text-gray-700 font-semibold leading-tight my-3 text-orange">
                                                 {{ $operationel }} Machine</h3>
@@ -123,7 +123,7 @@
                                     <div class="rounded-lg bg-white shadow-lg md:shadow-xl relative overflow-hidden">
                                         <div class="px-3 pt-12 pb-10 text-center relative z-20">
                                             <h1 class="text-sm uppercase text-gray-500 leading-tight  "
-                                                style="font-size: 2.5em;">Opérationnel</h1>
+                                                style="font-size: 2em;">Opérationnel</h1>
                                             <h3
                                                 class="text-3xl text-gray-700 font-semibold leading-tight my-3 text-orange">
                                                 {{ $operationel }} Machine</h3>
@@ -138,7 +138,7 @@
                                     <div class="rounded-lg bg-white shadow-lg md:shadow-xl relative overflow-hidden">
                                         <div class="px-3 pt-12 pb-10 text-center relative z-20">
                                             <h1 class="text-sm uppercase text-gray-500 leading-tight"
-                                                style="font-size: 2.5em;">
+                                                style="font-size: 2em;">
                                                 En panne</h1>
                                             <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">
                                                 {{ $enpanne }} Machine</h3>
@@ -153,7 +153,7 @@
                                     <div class="rounded-lg bg-white shadow-lg md:shadow-xl relative overflow-hidden">
                                         <div class="px-3 pt-8 pb-10 text-center relative z-10">
                                             <h1 class="text-sm uppercase text-gray-500 leading-tight"
-                                                style="font-size: 2.5em;">
+                                                style="font-size: 2em;">
                                                 En maintenance</h1>
                                             <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">
                                                 {{ $enmaintenance }} Machine</h3>
@@ -166,8 +166,8 @@
 
 
 
-                            </div>
-                        </div>
+                            </div> </div>
+
                     </div>
 
                 </div></div>
@@ -197,7 +197,7 @@
                 ]);
 
                   // Optional; add a title and set the width and height of the chart
-                  var options = {'title':'L\'état Des Engins Et Matériels Agricoles ', 'width':800, 'height':800};
+                  var options = {'title':'L\'état Des Engins Et Matériels Agricoles ', 'width':800, 'height':600};
 
                   // Display the chart inside the <div> element with id="piechart"
                   var chart = new google.visualization.PieChart(document.getElementById('piechart'));

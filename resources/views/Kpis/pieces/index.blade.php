@@ -546,7 +546,7 @@
             // Optional; add a title and set the width and height of the chart
             var options = {
                 'title': 'Consommation totale des Pièces',
-                'width': 800,
+                'width':915,
                 'height': 400
             };
 

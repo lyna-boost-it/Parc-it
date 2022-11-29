@@ -4,6 +4,7 @@ namespace App\Http\Controllers\ParkManager;
 
 use App\Http\Controllers\Controller;
 use App\Role;
+use App\Unit;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
@@ -25,6 +26,7 @@ class UserController extends Controller
             'username' => ['required', 'string', 'max:255', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'type' => ['required', 'string', 'email', 'max:255'],
+             'unit_id' => ['required', 'string', 'email', 'max:255'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
 
         ]);
@@ -37,8 +39,8 @@ class UserController extends Controller
     public function index()
     {
         $users=User::all();
-
-        return view('ParkManager.users.index')->with('users',$users);
+        $units=Unit::all();
+        return view('ParkManager.users.index')->with('users',$users)->with('units',$units);
     }
 
     /**
@@ -49,8 +51,8 @@ class UserController extends Controller
     public function create()
     {
         $user = new User();
-
-        return view('ParkManager.users.create', compact('user')) ;
+        $units=Unit::all();
+        return view('ParkManager.users.create', compact('user','units')) ;
     }
 
     /**
@@ -64,7 +66,7 @@ class UserController extends Controller
 
         $user=User:: create($request->only(
             'id',
-            'email','username','password','type' ));
+            'email','username','password','type' ,'unit_id'));
             $password = Hash::make($request->password);
             $user->password=$password;
             $user->save();
@@ -104,7 +106,7 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $user->update($request->only('username','email','type'));
+        $user->update($request->only('username','email','type','unit_id'));
         return redirect('/ParkManager/users')->with('success',"vous avez modifié un utilisateur avec succès");
     }
 

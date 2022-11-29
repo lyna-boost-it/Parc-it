@@ -94,7 +94,14 @@
                                                     <td>{{ $maintenance->action }}</td>
                                                     <td>{{ $maintenance->enter_date }} {{ $maintenance->enter_time }}
                                                     <td><b>
-                                                            {{ $maintenance->state }}
+                                                            @if ($maintenance->state == 'en attente')
+                                                                Envoyée
+                                                            @endif
+                                                            @if ($maintenance->state == 'en instance')
+                                                                Traitée
+                                                                @endif @if ($maintenance->state == 'en cours')
+                                                                    {{ $maintenance->state }}
+                                                                @endif
                                                         </b></td>
 
 
@@ -103,7 +110,6 @@
                                                             @if ($maintenance->answer == 'en attente' && Auth::user()->type == 'Gestionnaire parc')
                                                                 <div style=" display: inline-block;">
                                                                     @if ($maintenance->answer == 'en attente' && Auth::user()->type != 'Gestionnaire Sup')
-
                                                                         <form style="display: inline;"
                                                                             action="{{ route('ParkManager.validation.createV', $maintenance->id) }}"
                                                                             method="get" class="dropdown-item">
@@ -122,8 +128,9 @@
                                                                                         style="color: green"></i></span>
                                                                             </button>
                                                                         </form>
-@endif
-
+                                                                    @endif
+                                                                    @endif
+                                                                    @if ($maintenance->answer == 'en attente' || $maintenance->answer == 'en instance')
                                                                     <form style="display: inline;"
                                                                         action="{{ route('ParkManager.validation.archive', $maintenance->id) }}"
                                                                         method="get" class="dropdown-item">
@@ -158,44 +165,44 @@
                                                                 @if (Auth::user()->type == 'Gestionnaire Sup')
                                                                 @else
                                                                     @if ($maintenance->state == 'en instance')
-                                                                    @if ( Auth::user()->type != 'Demandeur')
+                                                                        @if (Auth::user()->type != 'Demandeur')
+                                                                            <form class="form-delete dropdown-item"
+                                                                                method="get"
+                                                                                action="{{ route('ParkManager.validation.createV', $maintenance->id) }}">
 
-                                                                        <form class="form-delete dropdown-item"
-                                                                            method="get"
-                                                                            action="{{ route('ParkManager.validation.createV', $maintenance->id) }}">
-
-                                                                            @csrf
-                                                                            <input type="hidden" value="Vehicule"
-                                                                                id="type" name="type">
-                                                                            <input type="hidden" value="accepted"
-                                                                                id="valide" name="valide">
-                                                                            <button type="submit"
-                                                                                style=" background-color: transparent;
+                                                                                @csrf
+                                                                                <input type="hidden" value="Vehicule"
+                                                                                    id="type" name="type">
+                                                                                <input type="hidden" value="accepted"
+                                                                                    id="valide" name="valide">
+                                                                                <button type="submit"
+                                                                                    style=" background-color: transparent;
                                                                              border-color: transparent;">
 
-                                                                                <i class="dw dw-edit2"></i>2eme
-                                                                                Traitement
+                                                                                    <i class="dw dw-edit2"></i>2eme
+                                                                                    Traitement
 
-                                                                            </button>
-                                                                        </form>
-                                                                    @endif     @endif
+                                                                                </button>
+                                                                            </form>
+                                                                        @endif
+                                                                    @endif
                                                                     @if ($maintenance->state == 'en cours')
-                                                                    @if (Auth::user()->type != 'Demandeur')
+                                                                        @if (Auth::user()->type != 'Demandeur')
+                                                                            <form class="form-delete dropdown-item"
+                                                                                method="get"
+                                                                                action="{{ route('ParkManager.validation.choose1', $maintenance->id) }}">
 
-                                                                        <form class="form-delete dropdown-item"
-                                                                            method="get"
-                                                                            action="{{ route('ParkManager.validation.choose1', $maintenance->id) }}">
-
-                                                                            @csrf
-                                                                            <button type="submit"
-                                                                                style=" background-color: transparent;
+                                                                                @csrf
+                                                                                <button type="submit"
+                                                                                    style=" background-color: transparent;
                                                                                      border-color: transparent;">
 
-                                                                                <i class="dw dw-delete-3"></i>Sortie
+                                                                                    <i class="dw dw-delete-3"></i>Sortie
 
-                                                                            </button>
-                                                                        </form>
-                                                                    @endif    @endif
+                                                                                </button>
+                                                                            </form>
+                                                                        @endif
+                                                                    @endif
                                                                 @endif
                                                             </div>
                                                         </div>
@@ -230,37 +237,46 @@
                                                     <td>{{ $maintenance->action }}</td>
                                                     <td>{{ $maintenance->enter_date }} {{ $maintenance->enter_time }}
                                                     <td><b>
-                                                            {{ $maintenance->state }}
+                                                            @if ($maintenance->state == 'en attente')
+                                                                Envoyée
+                                                            @endif
+                                                            @if ($maintenance->state == 'en instance')
+                                                                Traitée
+                                                                @endif @if ($maintenance->state == 'en cours')
+                                                                    {{ $maintenance->state }}
+                                                                @endif
+
+
                                                         </b></td>
 
 
                                                     <td>
                                                         <div class="dropdown">
                                                             @if ($maintenance->answer == 'en attente' && Auth::user()->type != 'Gestionnaire Sup')
-
                                                                 <div style=" display: inline-block;">
                                                                     @if (Auth::user()->type != 'Demandeur')
-                                                                    <form style="display: inline;"
-                                                                    action="{{ route('ParkManager.validation.createV', $maintenance->id) }}"
-                                                                    method="get" class="dropdown-item">
-                                                                    @csrf
+                                                                        <form style="display: inline;"
+                                                                            action="{{ route('ParkManager.validation.createV', $maintenance->id) }}"
+                                                                            method="get" class="dropdown-item">
+                                                                            @csrf
 
-                                                                    <button type="submit"
-                                                                        style=" display: inline;background-color: transparent; border-color: transparent;">
-                                                                        <input type="hidden" value="Vehicule"
-                                                                            id="type" name="type">
-                                                                        <input type="hidden" value="accepted"
-                                                                            id="valide" name="valide">
+                                                                            <button type="submit"
+                                                                                style=" display: inline;background-color: transparent; border-color: transparent;">
+                                                                                <input type="hidden" value="Vehicule"
+                                                                                    id="type" name="type">
+                                                                                <input type="hidden" value="accepted"
+                                                                                    id="valide" name="valide">
 
-                                                                        <span class="hovertext"
-                                                                            data-hover="Accepté">
-                                                                            <i class="dw dw-check"
-                                                                                style="color: green"></i></span>
-                                                                    </button>
-                                                                </form>
-                                                                    @endif
-
-                                                                        <form class="form-delete dropdown-item" method="post"
+                                                                                <span class="hovertext"
+                                                                                    data-hover="Accepté">
+                                                                                    <i class="dw dw-check"
+                                                                                        style="color: green"></i></span>
+                                                                            </button>
+                                                                        </form>
+                                                                    @endif    @endif
+                                                                    @if ($maintenance->answer == 'en attente'|| $maintenance->answer == 'en instance')
+                                                                    <form class="form-delete dropdown-item"
+                                                                        method="post"
                                                                         action="{{ route('ParkManager.validation.destroy', $maintenance->id) }}">
                                                                         @method('DELETE')
                                                                         @csrf
@@ -269,7 +285,8 @@
                                                                             <input type="hidden" value="Vehicule"
                                                                                 id="type" name="type">
                                                                             <input type="hidden" value="Refusée"
-                                                                                id="valide" name="valide" onclick="return confirm('êtes-vous sûr?')">
+                                                                                id="valide" name="valide"
+                                                                                onclick="return confirm('êtes-vous sûr?')">
 
                                                                             <span class="hovertext"
                                                                                 data-hover="Archivé">
@@ -296,42 +313,45 @@
                                                                 @if (Auth::user()->type == 'Gestionnaire Sup')
                                                                 @else
                                                                     @if ($maintenance->state == 'en instance')
-                                                                    @if (Auth::user()->type != 'Demandeur')
-                                                                        <form class="form-delete dropdown-item"
-                                                                            method="get"
-                                                                            action="{{ route('ParkManager.validation.createV', $maintenance->id) }}">
+                                                                        @if (Auth::user()->type != 'Demandeur')
+                                                                            <form class="form-delete dropdown-item"
+                                                                                method="get"
+                                                                                action="{{ route('ParkManager.validation.createV', $maintenance->id) }}">
 
-                                                                            @csrf
-                                                                            <input type="hidden" value="Vehicule"
-                                                                                id="type" name="type">
-                                                                            <input type="hidden" value="accepted"
-                                                                                id="valide" name="valide">
-                                                                            <button type="submit"
-                                                                                style=" background-color: transparent;
+                                                                                @csrf
+                                                                                <input type="hidden" value="Vehicule"
+                                                                                    id="type" name="type">
+                                                                                <input type="hidden" value="accepted"
+                                                                                    id="valide" name="valide">
+                                                                                <button type="submit"
+                                                                                    style=" background-color: transparent;
                                                                          border-color: transparent;">
 
-                                                                                <i class="dw dw-edit2"></i>2eme
-                                                                                Traitement
+                                                                                    <i class="dw dw-edit2"></i>2eme
+                                                                                    Traitement
 
-                                                                            </button>
-                                                                        </form>
-                                                                    @endif       @endif
+                                                                                </button>
+                                                                            </form>
+                                                                        @endif
+                                                                    @endif
                                                                     @if ($maintenance->state == 'en cours')
-                                                                    @if (Auth::user()->type != 'Demandeur')
-                                                                        <form class="form-delete dropdown-item"
-                                                                            method="get"
-                                                                            action="{{ route('ParkManager.validation.choose1', $maintenance->id) }}">
+                                                                        @if (Auth::user()->type != 'Demandeur')
+                                                                            <form class="form-delete dropdown-item"
+                                                                                method="get"
+                                                                                action="{{ route('ParkManager.validation.choose1', $maintenance->id) }}">
 
-                                                                            @csrf
-                                                                            <button type="submit"
-                                                                                style=" background-color: transparent;
+                                                                                @csrf
+                                                                                <button type="submit"
+                                                                                    style=" background-color: transparent;
                                                                                  border-color: transparent;">
 
-                                                                                <i class="dw dw-delete-3"></i>Sortie
+                                                                                    <i
+                                                                                        class="dw dw-delete-3"></i>Sortie
 
-                                                                            </button>
-                                                                        </form>
-                                                                    @endif  @endif
+                                                                                </button>
+                                                                            </form>
+                                                                        @endif
+                                                                    @endif
                                                                 @endif
                                                             </div>
                                                         </div>

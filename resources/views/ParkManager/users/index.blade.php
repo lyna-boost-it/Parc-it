@@ -51,6 +51,7 @@
                                         <th >ID</th>
                                         <th >Userame</th>
                                       <th >Email</th>
+                                      <th >Affectation</th>
                                       <th >Type</th>
                                       <th class="datatable-nosort">Action</th>
 
@@ -68,6 +69,12 @@
                                                 {{$user->username}}
                                             </td>
                                             <td>{{$user->email}}</td>
+                                            @foreach ($units as $unit)
+                                            @if ($unit->id==$user->unit_id)
+                                            <td>  {{ $unit->name }}</td>
+                                            @endif
+
+                                             @endforeach
                                             <td>{{$user->type}}</td>
 
                                                 <td>

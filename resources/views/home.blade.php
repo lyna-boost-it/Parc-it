@@ -317,8 +317,8 @@
         <div class="row">
 
 
-            <div class="col-md-6 mb-20">
-                <div class="card-box height-100-p pd-20">
+            <div class="card-box col-md-6 mb-20">
+
 
 
                     <main>
@@ -338,10 +338,9 @@
                             <table class="table nowrap hover data-table-export">
                                 <thead>
                                     <tr>
-                                        <th>Numéro</th>
-                                        <th>ID</th>
-                                        <th> Nom</th>
-                                        <th> Pourcentage</th>
+                                        <th style="width:70%">Num</th>
+                                        <th style="width:40%"> Nom</th>
+                                        <th style="width:70%"><b> %</b></th>
                                     </tr>
                                 </thead>
                                 @php
@@ -356,10 +355,9 @@
                                             $c = 0;
                                         @endphp
                                         <tr>
-                                            <td> {{ $i }}</td>
-                                            <td>{{ $unit->id }}</td>
+                                            <td style="width:70%"> {{ $i }}</td>
 
-                                            <td>{{ $unit->name }}</td>
+                                            <td style="width:40%">{{ $unit->name }}</td>
                                             @foreach ($vehicules as $vehicule)
                                                 @foreach ($accidents as $accident)
                                                     @if ($vehicule->unit_id == $unit->id && $accident->vehicle_id == $vehicule->id)
@@ -369,7 +367,7 @@
                                                     @endif
                                                 @endforeach
                                             @endforeach
-                                            <td style="color: orange;">
+                                            <td style="color: orange;width:70%">
                                                 {{ ($c / DB::table('accidents')->count()) * 100 }}%</td>
 
                                         </tr>
@@ -501,13 +499,13 @@
 
 
 
-                </div>
+
 
             </div>
 
 
-            <div class="col-md-6 mb-20">
-                <div class="card-box height-100-p pd-20">
+            <div class=" card-box  col-md-6 mb-20">
+
                     <main>
                         <h4 class="font-20 weight-500 mb-10 text-capitalize text-orange">Nombre d'interventions de
                             réparation</h4>
@@ -529,11 +527,8 @@
                                 <thead>
                                     <tr>
                                         <th>Numéro</th>
-                                        <th>ID</th>
                                         <th>Véhicule</th>
-                                    <th>Type V</th>
-                                    <th>Marque</th>
-                                        <th> Pourcentage</th>
+                                        <th><b>%</b></th>
                                     </tr>
                                 </thead>
                                 @php
@@ -546,13 +541,10 @@
                                         @endphp
                                         <tr>
                                             <td> {{ $i }}</td>
-                                            <td>{{ $vehicule->id }}</td>
                                             <td>{{ $vehicule->marticule }}</td>
-                                                <td>{{ $vehicule->vehicle_type }}</td>
-                                                <td> {{ $vehicule->mark }}</td>
                                             <td style="color: orange;">
                                                 @if (DB::table('repairs')->count() != 0)
-                                                    {{ (DB::table('repairs')->where('vehicule_id', '=', $vehicule->id)->count() /DB::table('repairs')->count()) *100 }}
+                                                    {{ number_format((float) (DB::table('repairs')->where('vehicule_id', '=', $vehicule->id)->count() /DB::table('repairs')->count()) *100, 2, '.', '')}}
                                                 @else
                                                     0
                                                 @endif%
@@ -571,10 +563,9 @@
                                 <thead>
                                     <tr>
                                         <th>Numero</th>
-                                        <th>ID</th>
 
                                         <th> Nom Et Prénom</th>
-                                        <th>Pourcentage</th>
+                                        <th><b>%</b></th>
 
 
                                     </tr>
@@ -594,7 +585,6 @@
                                         @endphp
                                         <tr>
                                             <td> {{ $i }}</td>
-                                            <td>{{ $staff->id }}</td>
 
                                             <td>{{ $staff->name }} {{ $staff->last_name }}</td>
                                             @foreach ($repair_staffs as $repair_staff)
@@ -605,7 +595,7 @@
 												@if(DB::table('repair__staff')->count()==0)
 												0%
 												@else
-												 {{ (DB::table('repair__staff')->where('staff_id', '=', $staff->id)->count() /DB::table('repair__staff')->count()) *100 }}%
+												 {{ number_format((float)(DB::table('repair__staff')->where('staff_id', '=', $staff->id)->count() /DB::table('repair__staff')->count()) *100, 2, '.', '') }}%
 												@endif
 
                                             </td>
@@ -621,11 +611,10 @@
                             <table class="table nowrap hover data-table-export">
                                 <thead>
                                     <tr>
-                                        <th>Numero</th>
-                                        <th>ID</th>
+                                        <th>Num</th>
 
-                                        <th>Unité</th>
-                                        <th>Pourcentage</th>
+                                        <th style="width:30%">Unité</th>
+                                        <th style="width:30%"><b>%</b></th>
 
 
                                     </tr>
@@ -648,9 +637,8 @@
                                         @endphp
                                         <tr>
                                             <td> {{ $i }}</td>
-                                            <td>{{ $unit->id }}</td>
 
-                                            <td>{{ $unit->name }}</td>
+                                            <td style="width:30%;font-size: 11px">{{ $unit->name }}</td>
                                             @foreach ($vehicules as $vehicule)
                                                 @foreach ($repairs as $repair)
                                                     @if ($vehicule->unit_id == $unit->id && $repair->vehicule_id == $vehicule->id)
@@ -660,9 +648,9 @@
                                                     @endif
                                                 @endforeach
                                             @endforeach
-                                            <td style="color: orange;">
+                                            <td style="color: orange;width:30%">
                                                 @if (DB::table('repairs')->count() != 0)
-                                                    {{ ($c / DB::table('repairs')->count()) * 100 }}
+                                                    {{ number_format((float)($c / DB::table('repairs')->count()) * 100, 2, '.', '') }}
                                                 @else
                                                     0
                                                 @endif%
@@ -679,7 +667,7 @@
 
 
                     </main>
-                </div>
+
             </div>
 
         </div>
@@ -733,19 +721,19 @@
     label {
         display: inline-block;
         margin: 0 0 -1px;
-        padding: 15px 25px;
-        font-weight: 600;
+        padding: 15px 20px;
+        font-weight: 550;
         text-align: center;
         color: #bbb;
         border: 1px solid transparent;
-        font-size: 1.5em;
+        font-size: 1em;
     }
 
     label:before {
         font-family: fontawesome;
         font-weight: normal;
-        margin-right: 10px;
-        font-size: 1.5em;
+        margin-right: 8px;
+        font-size: 1em;
     }
 
 

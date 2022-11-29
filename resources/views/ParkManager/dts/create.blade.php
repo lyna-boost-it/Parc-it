@@ -93,28 +93,54 @@
                         <input type="hidden" id="user_id" name="user_id"
                         value="{{ Auth::user()->id }}">
 
+@if (Auth::user()->type=='Demandeur' )
+<div class="card-body" >
+    <div class="row">
+        <label class="col-md-3 col-form-label">{{ __(' Affectation') }}</label>
+        <div class="col-md-9" for="conducteur_field_for_absence">
+            <div class="form-group">
+                <select  name="unit_id"
+                value="{{ old('unit_id'),$dt->unit_id }}"class="form-control"
+                    id="staff_type">
+                    @foreach ($units as $unit)
+@if (Auth::user()->unit_id==$unit->id)
+<option value="{{ $unit->id }}"
+    {{ old('unit_id', $dt->unit_id)
+     === 'unit_id' ? 'selected' : '' }}>
+    {{ $unit->name }}</option>
+@endif
 
-                        <div class="card-body" >
-                            <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __(' Affectation') }}</label>
-                                <div class="col-md-9" for="conducteur_field_for_absence">
-                                    <div class="form-group">
-                                        <select  name="unit_id"   placeholder="Choisissez une unite"
-                                        value="{{ old('unit_id'),$dt->unit_id }}"class="form-control"
-                                            id="staff_type">
-                                            @foreach ($units as $unit)
+                    @endforeach
 
-                                            <option value="{{ $unit->id }}"
-                                            {{ old('unit_id', $dt->unit_id)
-                                             === 'unit_id' ? 'selected' : '' }}>
-                                            {{ $unit->name }}</option>
-                                            @endforeach
+                </select></div>
 
-                                        </select></div>
+        </div>
+    </div>
+</div>
+@else
+<div class="card-body" >
+    <div class="row">
+        <label class="col-md-3 col-form-label">{{ __(' Affectation') }}</label>
+        <div class="col-md-9" for="conducteur_field_for_absence">
+            <div class="form-group">
+                <select  name="unit_id"   placeholder="Choisissez une unite"
+                value="{{ old('unit_id'),$dt->unit_id }}"class="form-control"
+                    id="staff_type">
+                    @foreach ($units as $unit)
 
-                                </div>
-                            </div>
-                        </div>
+                    <option value="{{ $unit->id }}"
+                    {{ old('unit_id', $dt->unit_id)
+                     === 'unit_id' ? 'selected' : '' }}>
+                    {{ $unit->name }}</option>
+                    @endforeach
+
+                </select></div>
+
+        </div>
+    </div>
+</div>
+@endif
+
                         <div class="card-body">
                             <div class="row">
                                 <label class="col-md-3 col-form-label">{{ __('Type') }}</label>

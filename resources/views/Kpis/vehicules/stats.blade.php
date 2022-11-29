@@ -185,7 +185,7 @@
             ]);
 
               // Optional; add a title and set the width and height of the chart
-              var options = {'title':'L\'état Des Équipements Roulants', 'width':650, 'height':450};
+              var options = {'title':'L\'état Des Équipements Roulants', 'width':600, 'height':350};
 
               // Display the chart inside the <div> element with id="piechart"
               var chart = new google.visualization.PieChart(document.getElementById('piechart'));
