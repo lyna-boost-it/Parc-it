@@ -14,6 +14,7 @@ use App\Models\Designation;
 use App\RepairM_pieces;
 use App\RepairsMaterial;
 use App\RepairsMaterial_Staff;
+use App\Staff;
 use App\Unit;
 use Illuminate\Http\Request;
 
@@ -73,29 +74,32 @@ class MaterialManagerController extends Controller
     {
         $material =  Material::find($id);
         $unit =  Unit::find($material->unit_id);
-        $maintenance = Dt::where('vehicle_id','=',$material->id)->first();
+        $units =  Unit::all();
+        $maintenances = Dt::all()->where('vehicle_id','=',$material->id);
+        $staffs=Staff::all();
         //dd($maintenance);
-
-        $repairM = null;
-        $externalM = null;
-        $guarantiM = null;
-        $repair_material_staffs = null;
-        $rpsM = null;
+if($maintenances!=null){
+        $repairs = null;
+        $externals = null;
+        $guarantis = null;
+        $repair_staffs = null;
+        $rps = null;
 
         $designations = Designation::all();
         $marks = Marque::all();
 
-        $repairM = RepairsMaterial::where('dt_code', '=', $maintenance->id)->first();
-        $externalM = ExternalMaterial::where('dt_code', '=', $maintenance->id)->first();
-        if ($repairM != null) {
-            $repair_material_staffs = RepairsMaterial_Staff::all()->where('repair_id', '=', $repairM->id);
-            $rpsM = RepairM_pieces::all()->where('repair_id', '=', $repairM->id);
+        $repairs = RepairsMaterial::all();
+        $externals = ExternalMaterial::all();
+        if ($repairs != null) {
+            $repair_staffs = RepairsMaterial_Staff::all();
+            $rps = RepairM_pieces::all();
         }
-        if ($externalM != null) {
-            $guarantiM = Garanti::find($externalM->supplier_id);
-        }
+        if ($externals != null) {
+            $guarantis = Garanti::all();
+        }}
 
-        return view("ParkManager.materialsmanager.view", compact('rpsM','repair_material_staffs','guarantiM','externalM','repairM','maintenance','material','unit','material') );
+        return view("ParkManager.materialsmanager.view", compact('rps','repair_staffs','guarantis','externals','repairs','maintenances'
+        ,'material','unit','units','material','staffs','designations','marks') );
     }
 
     /**

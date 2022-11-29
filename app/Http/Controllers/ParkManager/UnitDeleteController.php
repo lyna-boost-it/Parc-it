@@ -68,24 +68,25 @@ class UnitDeleteController extends Controller
         $staffs=Staff::all();
         $vehicules=Vehicule::all();
         $materials=Material::all();
-        foreach( $staffs as $staff){
+		if($staffs!=null){    foreach( $staffs as $staff){
             if($staff->unit_id==$unit->id){
                 $staff->unit_id=0;
                 $staff->save();
             }
-        }
-        foreach( $vehicules as $vehicule){
+        }}
+    if($vehicules!=null){foreach( $vehicules as $vehicule){
             if($vehicule->unit_id==$unit->id){
                 $vehicule->unit_id=0;
                 $vehicule->save();
-            }
-        }
-       foreach( $materials as $material){
+            } }
+
+        } if($vehicules!=null){ foreach( $materials as $material){
             if($material->unit_id==$unit->id){
                 $material->unit_id=0;
                 $material->save();
             }
-        }
+        }}
+
         $unit->delete();
         return redirect('/ParkManager/units')->with('success',"vous avez supprimé une unité avec succès");
 

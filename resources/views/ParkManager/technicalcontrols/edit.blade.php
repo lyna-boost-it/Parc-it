@@ -58,47 +58,6 @@
 
 
 
-        <div class="card-body" >
-            <div class="row">
-                <label class="col-md-3 col-form-label">{{ __('Date d’effet ') }}</label>
-                <div class="col-md-9" >
-                    <div class="form-group">
-                        <input type="date" name="effective_date" class="form-control"
-                        placeholder=" Date d’effet "
-                        value="{{ $technicalcontrol->effective_date }}" required>
-                    </div>
-                    @if ($errors->has('effective_date'))
-                        <span class="invalid-feedback" style="display: block;" role="alert">
-                            <strong>{{ $errors->first('effective_date') }}</strong>
-                        </span>
-                    @endif
-                </div>
-            </div>
-        </div>
-
-
-
-
-
-
-        <div class="card-body" >
-            <div class="row">
-                <label class="col-md-3 col-form-label">{{ __('Date d’expiration') }}</label>
-                <div class="col-md-9" >
-                    <div class="form-group">
-                        <input type="date"  name="expiration_date" class="form-control"
-                        placeholder="Date d’expiration"
-                        value="{{ $technicalcontrol->expiration_date }}" required>
-                    </div>
-                    @if ($errors->has('expiration_date'))
-                        <span class="invalid-feedback" style="display: block;" role="alert">
-                            <strong>{{ $errors->first('expiration_date') }}</strong>
-                        </span>
-                    @endif
-                </div>
-            </div>
-        </div>
-
 
 
         <div class="card-body" >

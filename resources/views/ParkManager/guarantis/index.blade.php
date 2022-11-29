@@ -111,7 +111,7 @@
 
                                                             <a class="dropdown-item"
                                                                 href="{{ route('ParkManager.guarantis.show', $guaranti->id) }}"><i
-                                                                    class="dw dw-edit2"></i> Consulter</a>
+                                                                    class="dw dw-eye"></i> Consulter</a>
                                                             @if (Auth::user()->type == 'Gestionnaire Sup')
                                                                 <a class="dropdown-item"
                                                                     style="  color: currentColor;

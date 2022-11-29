@@ -30,48 +30,7 @@
 
 
 
-        <div class="card-body">
-            <div class="row">
-                <label class="col-md-3 col-form-label">{{ __('Date de début ') }}</label>
-                <div class="col-md-9">
-                    <div class="form-group">
-                        <input type="date" name="start_date" class="form-control"
-                            placeholder=" Date de début " value="{{ $licence->start_date }}"
-                            required>
-                    </div>
-                    @if ($errors->has('start_date'))
-                        <span class="invalid-feedback" style="display: block;" role="alert">
-                            <strong>{{ $errors->first('start_date') }}</strong>
-                        </span>
-                    @endif
-                </div>
-            </div>
-        </div>
-
-
-
-
-
-
-        <div class="card-body">
-            <div class="row">
-                <label class="col-md-3 col-form-label">{{ __('Date de fin') }}</label>
-                <div class="col-md-9">
-                    <div class="form-group">
-                        <input type="date" name="end_date" class="form-control"
-                            placeholder="Date de fin " value="{{ $licence->end_date }}" required>
-                    </div>
-                    @if ($errors->has('end_date'))
-                        <span class="invalid-feedback" style="display: block;" role="alert">
-                            <strong>{{ $errors->first('end_date') }}</strong>
-                        </span>
-                    @endif
-                </div>
-            </div>
-        </div>
-
-
-
+      
 
 
 

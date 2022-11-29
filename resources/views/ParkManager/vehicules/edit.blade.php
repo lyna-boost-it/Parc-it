@@ -177,17 +177,7 @@
 
                                         </div>
                                     </div>
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <label
-                                                class="col-md-3 col-form-label">{{ __('Information de la carte grise') }}</label>
 
-
-                                            <input type="file" id="docpicker" name="path"
-                                                accept=".doc,.xml,.pdf">
-
-                                        </div>
-                                    </div>
                             </div>
 
                             </fieldset>

@@ -46,7 +46,7 @@
 
                                             </select>
                                         </div>
-                                    </div>5
+                                    </div>
                                 </div>
                             </div>
 

@@ -95,7 +95,7 @@
                                                         </a>
                                                         <div
                                                             class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-
+                                                            @if ($technicalcontrol->state=='Valide')
                                                             <a class="dropdown-item"
                                                                 href="{{ route('ParkManager.technicalcontrols.edit', $technicalcontrol->id) }}"
                                                                 @if (Auth::user()->type == 'Gestionnaire Sup') style="  color: currentColor;
@@ -103,6 +103,7 @@
                                                                 opacity: 0.5;
                                                                 text-decoration: none;" @endif><i
                                                                     class="dw dw-edit2"></i> Modifier</a>
+                                                                    @endif
                                                             <a class="dropdown-item"
                                                                 href="{{ route('ParkManager.technicalcontrols.show', $technicalcontrol->id) }}"><i
                                                                     class="dw dw-eye"></i> Consulter</a>
@@ -114,6 +115,7 @@
                                                                 text-decoration: none;">
                                                                     <i class="dw dw-delete-3"></i>Supprimer</a>
                                                             @else
+                                                            @if ($technicalcontrol->state=='Valide')
                                                                 <form class="form-delete dropdown-item" method="post"
                                                                     action="{{ route('ParkManager.technicalcontrols.destroy', $technicalcontrol->id) }}">
                                                                     @method('DELETE')
@@ -127,6 +129,7 @@
 
                                                                     </button>
                                                                 </form>
+                                                            @endif
                                                             @endif
 
                                                         </div>

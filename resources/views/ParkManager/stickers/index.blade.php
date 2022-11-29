@@ -108,7 +108,7 @@
                                                                 text-decoration: none;"  > <i class="dw dw-delete-3"></i>Supprimer</a>
 
                                                               @else
-
+                                                              @if ($sticker->validity=='Valide')
                                                                 <form class="form-delete dropdown-item" method="post"
                                                                 action="{{route('ParkManager.stickers.destroy',$sticker->id)}}">
                                                                 @method('DELETE')
@@ -120,7 +120,7 @@
 
                                                                 </button>
                                                             </form>
-                                                              @endif
+                                                              @endif      @endif
 
                                                         </div>
                                                     </div>
