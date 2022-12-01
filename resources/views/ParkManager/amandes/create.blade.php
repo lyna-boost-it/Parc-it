@@ -94,7 +94,7 @@
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <input type="text" name="infraction" class="form-control"
-                                                placeholder="Prénom du personne accompagné"
+                                                placeholder="Infraction"
                                                 value="{{ $amande->infraction }}" required>
                                         </div>
                                         @if ($errors->has('infraction'))
@@ -165,7 +165,7 @@
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <input type="text" name="period" class="form-control"
-                                                placeholder="Période de la sanction " value="{{ $amande->period }}"
+                                                placeholder="Période de la sanction (Juurs)" value="{{ $amande->period }}"
                                                 required>
                                         </div>
                                         @if ($errors->has('period'))

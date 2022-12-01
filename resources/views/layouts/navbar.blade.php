@@ -32,7 +32,7 @@
                             <li>
 
 
-                                <a class="  {{ Request::is('ParkManager/staffs') ? 'active' : '' }}"
+                                <a class="  {{ Request::is('*ParkManager/staffs*') ? 'active' : '' }}"
                                     style="right: 50px;font-size: 14px" href="{{ route('ParkManager.staffs.index') }}">
 
                                     Gest. du Personnel </a>
@@ -46,7 +46,7 @@
 
                             <li>
 
-                                <a class="  {{ Request::is('ParkManager/units') ? 'active' : '' }}" style="right: 50px;"
+                                <a class="  {{ Request::is('*ParkManager/units*') ? 'active' : '' }}" style="right: 50px;"
                                     href="{{ route('ParkManager.units.index') }}">
 
 
@@ -57,7 +57,7 @@
 
                             <li>
 
-                                <a class="  {{ Request::is('ParkManager/vehicules') ? 'active' : '' }}"
+                                <a class="  {{ Request::is('*ParkManager/vehicules*') ? 'active' : '' }}"
                                     style="right: 50px;" href="{{ route('ParkManager.vehicules.index') }}">
                                     Gest. des Véhicules</a>
                             </li>
@@ -68,7 +68,7 @@
 
                             <li>
 
-                                <a class="  {{ Request::is('ParkManager/materialsmanager') ? 'active' : '' }}"
+                                <a class="  {{ Request::is('*ParkManager/materialsmanager*') ? 'active' : '' }}"
                                     style="right: 50px;" href="{{ route('ParkManager.materialsmanager.index') }}">
 
 
@@ -89,7 +89,7 @@
                         <ul class="submenu">
                             <li>
 
-                                <a class="  {{ Request::is('ParkManager/insurances') ? 'active' : '' }}"
+                                <a class="  {{ Request::is('*ParkManager/insurances*') ? 'active' : '' }}"
                                     style="right: 50px;" href="{{ route('ParkManager.insurances.index') }}">
 
 
@@ -97,14 +97,14 @@
                             </li>
 
                             <li>
-                                <a class="  {{ Request::is('ParkManager/stickers') ? 'active' : '' }}"
+                                <a class="  {{ Request::is('*ParkManager/stickers*') ? 'active' : '' }}"
                                     style="right: 50px;" href="{{ route('ParkManager.stickers.index') }}">
 
 
                                     Suivi des Vignettes</a>
                             </li>
                             <li>
-                                <a class="  {{ Request::is('ParkManager/technicalcontrols') ? 'active' : '' }}"
+                                <a class="  {{ Request::is('*ParkManager/technicalcontrols*') ? 'active' : '' }}"
                                     style="right: 50px;" href="{{ route('ParkManager.technicalcontrols.index') }}">
 
                                     Contrôles
@@ -112,7 +112,7 @@
                             </li>
                             <li>
 
-                                <a class="  {{ Request::is('ParkManager/licences') ? 'active' : '' }}"
+                                <a class="  {{ Request::is('*ParkManager/licences*') ? 'active' : '' }}"
                                     style="right: 50px;" href="{{ route('ParkManager.licences.index') }}">
 
 
@@ -120,13 +120,13 @@
                             </li>
                             <li>
 
-                                <a class="  {{ Request::is('ParkManager/guarantis') ? 'active' : '' }}"
+                                <a class="  {{ Request::is('*ParkManager/guarantis*') ? 'active' : '' }}"
                                     style="right: 50px;" href="{{ route('ParkManager.guarantis.index') }}">
 
                                     Garantis et SAV</a>
                             </li>
                             <li>
-                                <a class="  {{ Request::is('ParkManager/accidents') ? 'active' : '' }}"
+                                <a class="  {{ Request::is('*ParkManager/accidents*') ? 'active' : '' }}"
                                     style="right: 50px;" href="{{ route('ParkManager.accidents.index') }}">
 
 
@@ -146,7 +146,7 @@
                         <li class="dropdown">
                         <li>
 
-                            <a class="  {{ Request::is('ParkManager/dts') ? 'active' : '' }}" style="right: 50px;"
+                            <a class="  {{ Request::is('*ParkManager/dts*') ? 'active' : '' }}" style="right: 50px;"
                                 style="right: 60px;" href="{{ route('ParkManager.dts.index') }}">
 
 
@@ -156,7 +156,7 @@
                             Auth::user()->type == 'Utilisateur' ||
                             Auth::user()->type == 'Gestionnaire Sup')
                             <li>
-                                <a class="  {{ Request::is('ParkManager/repairs') ? 'active' : '' }}"
+                                <a class="  {{ Request::is('*ParkManager/repairs*') ? 'active' : '' }}"
                                     style="right: 50px;" href="{{ route('ParkManager.repairs.index') }}">
 
 
@@ -172,20 +172,21 @@
 
                             </li>
                             <li>
-                                <a class="  {{ Request::is('ParkManager/externals') ? 'active' : '' }}"
+                                <a class="  {{ Request::is('*ParkManager/externals*') ? 'active' : '' }}"
                                     style="right: 50px;" href="{{ route('ParkManager.externals.index') }}">
 
 
                                     Liste des Maintenance externe</a>
                             </li>
+                            @endif
                             <li>
-                                <a class="  {{ Request::is('ParkManager/archives') ? 'active' : '' }}"
+                                <a class="  {{ Request::is('*ParkManager/archives*') ? 'active' : '' }}"
                                     style="right: 50px;" href="{{ route('ParkManager.archives.index') }}">
 
 
                                     Liste des DT archivées</a>
                             </li>
-                        @endif
+
 
 
 
@@ -209,7 +210,7 @@
 
 
                             <li>
-                                <a class="  {{ Request::is('ParkManager/cps') ? 'active' : '' }}" style="right: 50px;"
+                                <a class="  {{ Request::is('*ParkManager/cps*') ? 'active' : '' }}" style="right: 50px;"
                                     style="right: 60px;" href="{{ route('ParkManager.cps.index') }}">
 
 
@@ -217,7 +218,7 @@
                             </li>
 
                             <li>
-                                <a class="  {{ Request::is('ParkManager/liquids') ? 'active' : '' }}"
+                                <a class="  {{ Request::is('*ParkManager/liquids*') ? 'active' : '' }}"
                                     style="right: 50px;" href="{{ route('ParkManager.liquids.index') }}">
 
 
@@ -241,7 +242,7 @@
 
 
                             <li>
-                                <a class="  {{ Request::is('ParkManager/amandes') ? 'active' : '' }}" style="right: 50px;"
+                                <a class="  {{ Request::is('*ParkManager/amandes*') ? 'active' : '' }}" style="right: 50px;"
                                     style="right: 60px;" href="{{ route('ParkManager.amandes.index') }}">
 
 
@@ -268,7 +269,7 @@
                     <ul class="submenu">
 
                         <li>
-                            <a class="  {{ Request::is('ParkManager/gasVehicules') ? 'active' : '' }}"
+                            <a class="  {{ Request::is('*ParkManager/gasVehicules*') ? 'active' : '' }}"
                                 style="right: 50px;" href="{{ route('ParkManager.gasVehicules.index') }}">
 
                                 Gest. de Carb. Véhicule </a>
@@ -276,7 +277,7 @@
 
 
                         <li>
-                            <a class="  {{ Request::is('ParkManager/gasPipes') ? 'active' : '' }}"
+                            <a class="  {{ Request::is('*ParkManager/gasPipes*') ? 'active' : '' }}"
                                 style="right: 50px;" href="{{ route('ParkManager.gasPipes.index') }}">
 
                                 Gest. de Carb. Unité </a>
@@ -298,13 +299,13 @@
                     <ul class="submenu">
 
                         <li>
-                            <a class="{{ Request::is('ParkManager/attendances') ? 'active' : '' }}"
+                            <a class="{{ Request::is('*ParkManager/attendances*') ? 'active' : '' }}"
                                 style="right: 50px;" href="{{ route('ParkManager.attendances.index') }}">
 
                                 Gest. des Pointages </a>
                         </li>
                         <li>
-                            <a class="  {{ Request::is('ParkManager/absences') ? 'active' : '' }}"
+                            <a class="  {{ Request::is('*ParkManager/absences*') ? 'active' : '' }}"
                                 style="right: 50px;" href="{{ route('ParkManager.absences.index') }}">
 
                                 Gest. des Absences</a>
@@ -324,7 +325,7 @@
                     <ul class="submenu">
 
                         <li>
-                            <a class="  {{ Request::is('ParkManager/missions') ? 'active' : '' }}"
+                            <a class="  {{ Request::is('*ParkManager/missions*') ? 'active' : '' }}"
                                 style="right: 50px;" href="{{ route('ParkManager.missions.index') }}">
 
                                 Gérer les Déplacements</a>
@@ -351,42 +352,42 @@
                     </a>
                     <ul class="submenu">
                         <li>
-                            <a class="  {{ Request::is('Kpis/gas') ? 'active' : '' }}" style="right: 50px;"
+                            <a class="  {{ Request::is('*Kpis/gas*') ? 'active' : '' }}" style="right: 50px;"
                                 href="{{ route('Kpis.gas.index') }}">
 
                                 <b> KPI's Carburant</b></b></a>
                         </li>
 
                         <li>
-                            <a class="  {{ Request::is('Kpis/liquids') ? 'active' : '' }}" style="right: 50px;"
+                            <a class="  {{ Request::is('*Kpis/liquids*') ? 'active' : '' }}" style="right: 50px;"
                                 href="{{ route('Kpis.liquids.index') }}">
 
 
                                 <b> KPI's Liquide & Lubrifiant</b> </a>
                         </li>
                         <li>
-                            <a class="  {{ Request::is('Kpis/pieces') ? 'active' : '' }}" style="right: 50px;"
+                            <a class="  {{ Request::is('*Kpis/pieces*') ? 'active' : '' }}" style="right: 50px;"
                                 href="{{ route('Kpis.pieces.index') }}">
 
 
                                 <b> KPI's Pieces</b> </a>
                         </li>
                         <li>
-                            <a class="  {{ Request::is('Kpis/vehicules') ? 'active' : '' }}" style="right: 50px;"
+                            <a class="  {{ Request::is('*Kpis/vehicules*') ? 'active' : '' }}" style="right: 50px;"
                                 href="{{ route('Kpis.vehicules.index') }}">
 
 
                                 <b> KPI's Véhicules</b></a>
                         </li>
                         <li>
-                            <a class="  {{ Request::is('Kpis/materials') ? 'active' : '' }}" style="right: 50px;"
+                            <a class="  {{ Request::is('*Kpis/materials*') ? 'active' : '' }}" style="right: 50px;"
                                 href="{{ route('Kpis.materials.index') }}">
 
 
                                 <b> KPI's Matériels Motorisés</b></a>
                         </li>
                         <li>
-                            <a class="  {{ Request::is('Kpis/pannes') ? 'active' : '' }}" style="right: 50px;"
+                            <a class="  {{ Request::is('*Kpis/pannes*') ? 'active' : '' }}" style="right: 50px;"
                                 href="{{ route('Kpis.pannes.index') }}">
 
 
@@ -394,7 +395,7 @@
                         </li>
 
                         <li>
-                            <a class="  {{ Request::is('Kpis/staff') ? 'active' : '' }}" style="right: 50px;"
+                            <a class="  {{ Request::is('*Kpis/staff*') ? 'active' : '' }}" style="right: 50px;"
                                 href="{{ route('Kpis.staff.index') }}">
 
 
@@ -421,7 +422,7 @@
                 Auth::user()->type == 'Utilisateur' ||
                 Auth::user()->type == 'Gestionnaire Sup')
                 <li>
-                    <a class="{{ Request::is('ParkManager/users') ? 'active' : '' }}  dropdown-toggle no-arrow"
+                    <a class="{{ Request::is('*ParkManager/users*') ? 'active' : '' }}  dropdown-toggle no-arrow"
                         href="{{ route('ParkManager.users.index') }}" style="font-size: 14px">
 
 

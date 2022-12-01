@@ -160,7 +160,7 @@
                                                     class="col-md-3 col-form-label">{{ __(' Diplôme pour les conducteurs d\'engins') }}</label>
                                                 <div class="col-md-9" for="conducteur_field">
                                                     <div class="form-group">
-                                                        <input type="number" id="conducteur_field" name="diploma"
+                                                        <input type="text" id="conducteur_field" name="diploma"
                                                             class="form-control" placeholder="Diplôme"
                                                             value="{{ $staff->diploma }}">
                                                     </div>

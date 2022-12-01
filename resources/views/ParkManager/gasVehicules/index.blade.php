@@ -43,7 +43,7 @@
                         text-decoration: none; @endif
                                                 "
                             href="{{ route('ParkManager.Gazprice.index') }}" class="btn btn-sm ">
-                            Modifier prix des carburant.
+                            Modifier prix des carburants.
                         </a>
 						</div>
                     </div>

@@ -199,7 +199,7 @@ if($user->type=='Demandeur'){
             $usersA = User::all()->where('type', '=', 'Gestionnaire parc');
 
             $notif = new MoreNotifs();
-            $notif->details = 'une demandes de travaux pour vehicule: ' . $dt->vehicle_id . ' est créé';
+            $notif->details = 'une demandes de travaux pour machine: ' . $dt->vehicle_id . ' est créé';
             $notif->save();
             foreach ($usersA as $user) {
                 $user->notify(new DtMNotification($dt, $notif));

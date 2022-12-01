@@ -49,10 +49,6 @@
                     </div>
                 </div>
             </div>
-
-
-
-
             <div class="card-body" >
                 <div class="row">
                     <label class="col-md-3 col-form-label">{{ __(' Coût') }}</label>
@@ -70,8 +66,6 @@
                     </div>
                 </div>
             </div>
-
-
             <div class="card-body" >
                 <div class="row">
                     <label class="col-md-3 col-form-label">{{ __(' Litre de Carburant') }}</label>
@@ -89,16 +83,13 @@
                     </div>
                 </div>
             </div>
-
-
-
             <div class="card-body" >
                 <div class="row">
                     <label class="col-md-3 col-form-label">{{ __('  Prix du litre') }}</label>
                     <div class="col-md-9" >
                         <div class="form-group">
                             <input type="number" step="0.1"  name="litter_price" class="form-control"
-                            placeholder=" Prix du litre (DA)"
+                            placeholder="Nombre des litres (L)"
                             value="{{ $gaspipe->litter_price }}" required>
                         </div>
                         @if ($errors->has('litter_price'))
@@ -109,14 +100,6 @@
                     </div>
                 </div>
             </div>
-
-
-
-
-
-
-
-
                         <div class="card-footer ">
                             <div class="row">
                                 <div class="col-md-12 text-center">

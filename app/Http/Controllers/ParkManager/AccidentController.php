@@ -6,6 +6,8 @@ use App\Accident;
 use App\Http\Controllers\Controller;
 use App\Staff;
 use App\Vehicule;
+use Illuminate\Support\Str;
+
 use Illuminate\Http\Request;
 class AccidentController extends Controller
 { public function __construct()
@@ -65,31 +67,31 @@ class AccidentController extends Controller
 
 
     ));
-
+if($request->path!=null){
     $request->validate([
         'path' => 'required|mimes:pdf,xlx,csv,xlsx|max:2048',
     ]);
-
-    $fileName = time().'.'.$request->path->extension();
+    $random = Str::random(40);
+    $fileName = $random.time().'.'.$request->path->extension();
 
 
     $request->path->move(public_path().'/files/accidents_files', $fileName);
 
     $accident->path=$fileName;
 
+}
 
+if($request->picture!=null){
     $request->validate([
         'picture' => 'required|mimes:pdf,xlx,csv,xlsx|max:2048',
     ]);
+    $random1 = Str::random(40);
+    $fileName1 = $random1.time().'.'.$request->picture->extension();
 
-    $fileName = time().'.'.$request->picture->extension();
+    $request->picture->move(public_path().'/files/accidents_pictures', $fileName1);
 
-
-    $request->picture->move(public_path().'/files/accidents_pictures', $fileName);
-
-    $accident->picture=$fileName;
+    $accident->picture=$fileName1;}
     $accident->save();
-
 
        return redirect()->route ('ParkManager.accidents.index')->with('success',"vous avez ajouté un accident avec succès");
     }

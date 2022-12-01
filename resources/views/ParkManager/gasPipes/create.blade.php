@@ -178,7 +178,7 @@
             <div class="col-md-9" >
                 <div class="form-group">
                     <input type="number" step="0.1"  name="litter" class="form-control"
-                    placeholder=" Prix du litre (DA)"
+                    placeholder=" Nombre des litres (L)"
                     value="{{ $gaspipe->litter }}" required>
                 </div>
                 @if ($errors->has('litter'))

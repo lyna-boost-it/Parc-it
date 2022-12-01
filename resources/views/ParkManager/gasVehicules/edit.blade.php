@@ -25,155 +25,156 @@
                                     <h5 class="title">{{ __('Modifier une consommation ') }}</h5>
                                 </div>
 
-            <div class="card-body" >
-                <div class="row">
-                    <label class="col-md-3 col-form-label">{{ __('Date') }}</label>
-                    <div class="col-md-9" >
-                        <div class="form-group">
-                            <input type="date"  name="date" class="form-control"
-                            placeholder="Date"
-                            value="{{ $gasvehicule->date }}" required>
-                        </div>
-                        @if ($errors->has('date'))
-                            <span class="invalid-feedback" style="display: block;" role="alert">
-                                <strong>{{ $errors->first('date') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-                </div>
-            </div>
 
 
-            <div class="card-body" >
-                <div class="row">
-                    <label class="col-md-3 col-form-label">{{ __(' KM') }}</label>
-                    <div class="col-md-9" >
-                        <div class="form-group">
-                            <input type="number" step="0.1"  name="km" class="form-control"
-                            placeholder="KM"
-                            value="{{ $gasvehicule->km }}" required>
-                        </div>
-                        @if ($errors->has('km'))
-                            <span class="invalid-feedback" style="display: block;" role="alert">
-                                <strong>{{ $errors->first('km') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-                </div>
-            </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <label
+                                            class="col-md-3 col-form-label">{{ __('  Nom et prénom du conducteur') }}</label>
+                                        <div class="col-md-9" for="conducteur_field_for_absence">
+                                            <div class="form-group">
+                                                <select name="driver_id" placeholder="  Nom et prénom de l\'absent"
+                                                    value="{{ old('driver_id'), $gasvehicule->driver_id }}"class="form-control"
+                                                    id="staff_type">
+                                                    @foreach ($drivers as $driver)
+                                                        <option value="{{ $driver->id }}"
+                                                            {{ old('driver_id', $gasvehicule->driver_id) === 'driver_id' ? 'selected' : '' }}>
+                                                            {{ $driver->name }} {{ $driver->last_name }}</option>
+                                                    @endforeach
 
+                                                </select>
+                                            </div>
 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <label class="col-md-3 col-form-label">{{ __('  Agent remplisseur') }}</label>
+                                        <div class="col-md-9" for="conducteur_field_for_absence">
+                                            <div class="form-group">
+                                                <select name="staff_id" placeholder="  Nom et prénom de l\'absent"
+                                                    value="{{ old('staff_id'), $gasvehicule->staff_id }}"class="form-control"
+                                                    id="staff_type">
+                                                    @foreach ($staffs as $staff)
+                                                        <option value="{{ $staff->id }}"
+                                                            {{ old('staff_id', $gasvehicule->staff_id) === 'staff_id' ? 'selected' : '' }}>
+                                                            {{ $staff->name }} {{ $staff->last_name }}</option>
+                                                    @endforeach
 
+                                                </select>
+                                            </div>
 
-
-            <div class="card-body" >
-                <div class="row">
-                    <label class="col-md-3 col-form-label">{{ __('Type du Carburant') }}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <label class="col-md-3 col-form-label">{{ __('Date') }}</label>
                                         <div class="col-md-9">
                                             <div class="form-group">
-                                                <select id="type" type="text" class="form-control select2 @error('type')
-                                                 is-invalid @enderror" name="type" required autocomplete="type" autofocus>
-                                                    <option value="" disabled selected>Type du Carburant</option>
-                                                    <option value="Essence" {{ old('type', $gasvehicule->type) === 'Essence' ? 'selected' : '' }} >Essence</option>
-                                                    <option value="Gazole" {{ old('type', $gasvehicule->type) === 'Gazole' ? 'selected' : '' }} >Gazole</option>
-                                                    <option value="GLP" {{ old('type', $gasvehicule->type) === 'GLP' ? 'selected' : '' }} >GPL</option>
-
-
-                                                </select> </div>
-                                            @if ($errors->has('type'))
+                                                <input type="date" name="date" class="form-control" placeholder="Date"
+                                                    value="{{ $gasvehicule->date }}" required>
+                                            </div>
+                                            @if ($errors->has('date'))
                                                 <span class="invalid-feedback" style="display: block;" role="alert">
-                                                    <strong>{{ $errors->first('type') }}</strong>
+                                                    <strong>{{ $errors->first('date') }}</strong>
                                                 </span>
                                             @endif
-                    </div>
-                </div>
-            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <label class="col-md-3 col-form-label">{{ __(' KM') }}</label>
+                                        <div class="col-md-9">
+                                            <div class="form-group">
+                                                <input type="number" step="0.1" name="km" class="form-control"
+                                                    placeholder="KM" value="{{ $gasvehicule->km }}" required>
+                                            </div>
+                                            @if ($errors->has('km'))
+                                                <span class="invalid-feedback" style="display: block;" role="alert">
+                                                    <strong>{{ $errors->first('km') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <label class="col-md-3 col-form-label">{{ __('Type du Carburant') }}</label>
+                                        <div class="col-md-9">
+                                            <div
+                                                    style="width: 50%;
+                                                                    float: left;
+                                                                    padding: 20px;
+                                                                    ">
 
 
+                                                <select style="width: 300px" id="selectFieldd" class="vhm"
+                                                    name="type">
+                                                    <option></option>
+                                                    @foreach ($gases as $gase)
+                                                        <option value="{{ $gase->name }}">
+                                                    <h1></h1>
+                                                    {{ $gase->name }}, {{ $gase->price }} DA</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
 
 
-
-            <div class="card-body" >
-                <div class="row">
-                    <label class="col-md-3 col-form-label">{{ __('  N du ticket') }}</label>
-                    <div class="col-md-9" >
-                        <div class="form-group">
-                            <input type="number"   name="ticket" class="form-control"
-                            placeholder=" N du ticket"
-                            value="{{ $gasvehicule->ticket }}" required>
-                        </div>
-                        @if ($errors->has('ticket'))
-                            <span class="invalid-feedback" style="display: block;" role="alert">
-                                <strong>{{ $errors->first('ticket') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-                </div>
-            </div>
-
-
-
-
-            <div class="card-body" >
-                <div class="row">
-                    <label class="col-md-3 col-form-label">{{ __(' Coût') }}</label>
-                    <div class="col-md-9" >
-                        <div class="form-group">
-                            <input type="number" step="0.1"  name="price" class="form-control"
-                            placeholder="Coût (DA)"
-                            value="{{ $gasvehicule->price }}" required>
-                        </div>
-                        @if ($errors->has('price'))
-                            <span class="invalid-feedback" style="display: block;" role="alert">
-                                <strong>{{ $errors->first('price') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="card-body" >
-                <div class="row">
-                    <label class="col-md-3 col-form-label">{{ __(' Litre de Carburant') }}</label>
-                    <div class="col-md-9" >
-                        <div class="form-group">
-                            <input type="number" step="0.1"  name="litter" class="form-control"
-                            placeholder="Litre de Carburant"
-                            value="{{ $gasvehicule->litter }}" required>
-                        </div>
-                        @if ($errors->has('litter'))
-                            <span class="invalid-feedback" style="display: block;" role="alert">
-                                <strong>{{ $errors->first('litter') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-                </div>
-            </div>
-
-
-
-            <div class="card-body" >
-                <div class="row">
-                    <label class="col-md-3 col-form-label">{{ __('  Prix du litre') }}</label>
-                    <div class="col-md-9" >
-                        <div class="form-group">
-                            <input type="number" step="0.1"  name="litter_price" class="form-control"
-                            placeholder=" Prix du litre (DA)"
-                            value="{{ $gasvehicule->litter_price }}" required>
-                        </div>
-                        @if ($errors->has('litter_price'))
-                            <span class="invalid-feedback" style="display: block;" role="alert">
-                                <strong>{{ $errors->first('litter_price') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-                </div>
-            </div>
-
-
-
-
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <label class="col-md-3 col-form-label">{{ __('  N du ticket') }}</label>
+                                        <div class="col-md-9">
+                                            <div class="form-group">
+                                                <input type="number" name="ticket" class="form-control"
+                                                    placeholder=" N du ticket" value="{{ $gasvehicule->ticket }}" required>
+                                            </div>
+                                            @if ($errors->has('ticket'))
+                                                <span class="invalid-feedback" style="display: block;" role="alert">
+                                                    <strong>{{ $errors->first('ticket') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <label class="col-md-3 col-form-label">{{ __(' Coût') }}</label>
+                                        <div class="col-md-9">
+                                            <div class="form-group">
+                                                <input type="number" step="0.1" name="price" class="form-control"
+                                                    placeholder="Coût (DA)" value="{{ $gasvehicule->price }}" required>
+                                            </div>
+                                            @if ($errors->has('price'))
+                                                <span class="invalid-feedback" style="display: block;" role="alert">
+                                                    <strong>{{ $errors->first('price') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <label class="col-md-3 col-form-label">{{ __('Litre') }}</label>
+                                        <div class="col-md-9">
+                                            <div class="form-group">
+                                                <input type="number" step="0.1" name="litter" class="form-control"
+                                                    placeholder="Nombre des litres (L)" value="{{ $gasvehicule->litter }}"
+                                                    required>
+                                            </div>
+                                            @if ($errors->has('litter'))
+                                                <span class="invalid-feedback" style="display: block;" role="alert">
+                                                    <strong>{{ $errors->first('litter') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
 
 
 

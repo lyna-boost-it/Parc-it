@@ -12,8 +12,10 @@ use App\Unit;
 use App\Vehicule;
 use Attribute;
 use Illuminate\Http\Request;
+
 class GasVehiculesController extends Controller
-{ public function __construct()
+{
+    public function __construct()
     {
         $this->middleware('auth');
     }
@@ -24,15 +26,15 @@ class GasVehiculesController extends Controller
      */
     public function index()
     {
-        $gasvehicules=GasVehicules::all();
-        $drivers=Staff::all()->where("person_type",'=','Conducteur');
-         $staffs=Staff::all()->where("person_type",'=','Personnel du parc');
-         $vehicules=Vehicule::all();
+        $gasvehicules = GasVehicules::all();
+        $drivers = Staff::all()->where("person_type", '=', 'Conducteur');
+        $staffs = Staff::all()->where("person_type", '=', 'Personnel du parc');
+        $vehicules = Vehicule::all();
 
         return view('ParkManager.gasVehicules.index')
-        ->with('gasvehicules',$gasvehicules) ->with('staffs',$staffs)
-        ->with('drivers',$drivers)
-       ->with('vehicules',$vehicules);
+            ->with('gasvehicules', $gasvehicules)->with('staffs', $staffs)
+            ->with('drivers', $drivers)
+            ->with('vehicules', $vehicules);
     }
 
     /**
@@ -43,13 +45,20 @@ class GasVehiculesController extends Controller
     public function create()
     {
         $gasvehicule = new GasVehicules();
-        $drivers=Staff::all()->where('person_type','=','Conducteur');
-        $vehicules=Vehicule::all();
-        $staffs=Staff::all()->where("person_type",'=','Personnel du parc');
-$gases=GazPrice::all();
-        return view('ParkManager.gasVehicules.create',
-        compact('gasvehicule'
-        ,'drivers','vehicules' ,'staffs' ,'gases'));
+        $drivers = Staff::all()->where('person_type', '=', 'Conducteur');
+        $vehicules = Vehicule::all();
+        $staffs = Staff::all()->where("person_type", '=', 'Personnel du parc');
+        $gases = GazPrice::all();
+        return view(
+            'ParkManager.gasVehicules.create',
+            compact(
+                'gasvehicule',
+                'drivers',
+                'vehicules',
+                'staffs',
+                'gases'
+            )
+        );
     }
 
     /**
@@ -60,18 +69,28 @@ $gases=GazPrice::all();
      */
     public function store(Request $request)
     {
-        $gasvehicule=GasVehicules:: create($request->only('id',
+        $gasvehicule = GasVehicules::create($request->only(
+            'id',
 
-       'driver_id','staff_id','date','km','type','ticket','price','litter','litter_price','vehicle_id'
+            'driver_id',
+            'staff_id',
+            'date',
+            'km',
+            'type',
+            'ticket',
+            'price',
+            'litter',
+            'litter_price',
+            'vehicle_id'
 
 
-    ));
-$type=GazPrice::where('name','=',$gasvehicule->type)->first();
-$gasvehicule->litter_price=$type->price;
-$gasvehicule->save();
+        ));
+        $type = GazPrice::where('name', '=', $gasvehicule->type)->first();
+        $gasvehicule->litter_price = $type->price;
+        $gasvehicule->save();
 
 
-       return redirect()->route ('ParkManager.gasVehicules.index')->with('success',"vous avez ajouteré une consommations de carburant pour vehicule avec succès");
+        return redirect()->route('ParkManager.gasVehicules.index')->with('success', "vous avez ajouteré une consommations de carburant pour vehicule avec succès");
     }
 
     /**
@@ -82,15 +101,15 @@ $gasvehicule->save();
      */
     public function show($id)
     {
-        $gasvehicules=GasVehicules::find($id);
-        $driver=Staff::find($gasvehicules->driver_id);
-         $staff=Staff::find($gasvehicules->staff_id);
-         $vehicule=Vehicule::find($gasvehicules->vehicle_id);
+        $gasvehicules = GasVehicules::find($id);
+        $driver = Staff::find($gasvehicules->driver_id);
+        $staff = Staff::find($gasvehicules->staff_id);
+        $vehicule = Vehicule::find($gasvehicules->vehicle_id);
 
         return view('ParkManager.gasVehicules.view')
-        ->with('gasvehicules',$gasvehicules) ->with('staff',$staff)
-        ->with('driver',$driver)
-       ->with('vehicule',$vehicule);
+            ->with('gasvehicules', $gasvehicules)->with('staff', $staff)
+            ->with('driver', $driver)
+            ->with('vehicule', $vehicule);
     }
 
     /**
@@ -99,13 +118,19 @@ $gasvehicule->save();
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit( $id)
+    public function edit($id)
     {
-
- $gasvehicule=GasVehicules::find($id);
-
-        return view("ParkManager.gasVehicules.edit", compact('gasvehicule') );
-
+        $drivers = Staff::all()->where('person_type', '=', 'Conducteur');
+        $vehicules = Vehicule::all();
+        $staffs = Staff::all()->where("person_type", '=', 'Personnel du parc');
+        $gases = GazPrice::all();
+        $gasvehicule = GasVehicules::find($id);
+        $gases = GazPrice::all();
+        return view("ParkManager.gasVehicules.edit", compact('gasvehicule',
+        'drivers',
+        'vehicules',
+        'staffs',
+        'gases'));
     }
 
     /**
@@ -116,12 +141,27 @@ $gasvehicule->save();
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request,  $id)
-    { $gasvehicule=GasVehicules::find($id);
-        $gasvehicule->update($request->only('id',
+    {
+        $gasvehicule = GasVehicules::find($id);
+        $gasvehicule->update($request->only(
+            'id',
 
-        'driver_id','staff_id','date','km','type','ticket','price','litter','litter_price','vehicle_id'));
+            'driver_id',
+            'staff_id',
+            'date',
+            'km',
+            'type',
+            'ticket',
+            'price',
+            'litter',
+            'litter_price',
+            'vehicle_id'
+        ));
+        $type = GazPrice::where('name', '=', $gasvehicule->type)->first();
+        $gasvehicule->litter_price = $type->price;
+        $gasvehicule->save();
 
-                return redirect('/ParkManager/gasVehicules')->with('success',"vous avez modifié une consommations de carburant pour vehicule avec succès");
+        return redirect('/ParkManager/gasVehicules')->with('success', "vous avez modifié une consommations de carburant pour vehicule avec succès");
     }
 
     /**
@@ -132,9 +172,9 @@ $gasvehicule->save();
      */
     public function destroy($id)
     {
-        $gasvehicule=GasVehicules::find($id);
+        $gasvehicule = GasVehicules::find($id);
 
         $gasvehicule->delete();
-        return redirect('/ParkManager/gasVehicules')->with('success',"vous avez supprimé une consommations de carburant pour vehicule avec succès");
+        return redirect('/ParkManager/gasVehicules')->with('success', "vous avez supprimé une consommations de carburant pour vehicule avec succès");
     }
 }

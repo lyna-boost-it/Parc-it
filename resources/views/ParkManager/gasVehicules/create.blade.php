@@ -55,7 +55,6 @@
                                 </div>
                             </div>
 
-
                             <div class="card-body">
                                 <div class="row">
                                     <label class="col-md-3 col-form-label">{{ __('  Agent remplisseur') }}</label>
@@ -76,10 +75,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
-
-
                             <div class="card-body">
                                 <div class="row">
                                     <label class="col-md-3 col-form-label">{{ __('Véhicule') }}</label>
@@ -115,14 +110,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
-
-
-
-
-
-
                             <div class="card-body">
                                 <div class="row">
                                     <label class="col-md-3 col-form-label">{{ __('Date') }}</label>
@@ -139,8 +126,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
                             <div class="card-body">
                                 <div class="row">
                                     <label class="col-md-3 col-form-label">{{ __(' KM') }}</label>
@@ -183,19 +168,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
                             <div class="card-body">
                                 <div class="row">
                                     <label class="col-md-3 col-form-label">{{ __('  N du ticket') }}</label>
@@ -212,10 +184,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
-
-
                             <div class="card-body">
                                 <div class="row">
                                     <label class="col-md-3 col-form-label">{{ __(' Coût') }}</label>
@@ -232,17 +200,13 @@
                                     </div>
                                 </div>
                             </div>
-
-
-
-
                             <div class="card-body">
-                                <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __('Litre') }}</label>
+                                 <div class="row">
+                                   <label class="col-md-3 col-form-label">{{ __('Litre') }}</label>
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <input type="number" step="0.1" name="litter" class="form-control"
-                                                placeholder=" Prix du litre (DA)" value="{{ $gasvehicule->litter }}"
+                                                placeholder=" Nombre des litres (L)" value="{{ $gasvehicule->litter }}"
                                                 required>
                                         </div>
                                         @if ($errors->has('litter'))
@@ -253,10 +217,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
-
-
 
                             <div class="card-footer ">
                                 <div class="row">

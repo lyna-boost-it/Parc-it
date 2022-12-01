@@ -137,7 +137,8 @@
                                                                         @csrf
 
                                                                         <button type="submit"
-                                                                            style="display: inline; background-color: transparent; border-color: transparent;">
+                                                                            style="display: inline; background-color: transparent; border-color: transparent;"
+                                                                            onclick="return confirm('êtes-vous sûr?')">
 
 
                                                                             <span class="hovertext"
@@ -281,7 +282,8 @@
                                                                         @method('DELETE')
                                                                         @csrf
                                                                         <button type="submit"
-                                                                            style="display: inline; background-color: transparent; border-color: transparent;">
+                                                                            style="display: inline; background-color: transparent; border-color: transparent;
+                                                                            "  onclick="return confirm('êtes-vous sûr?')">
                                                                             <input type="hidden" value="Vehicule"
                                                                                 id="type" name="type">
                                                                             <input type="hidden" value="Refusée"
@@ -389,16 +391,7 @@
                 </div>
                 <div class="card-box mb-30">
                     <div class="pd-20">
-                        <a style="background:#EE643A;color:#ffffff;float: right;
-                        @if (Auth::user()->type == 'Gestionnaire Sup') color: currentColor;
-                                cursor: not-allowed;
-                                opacity: 0.5;
-                                text-decoration: none; @endif
-                                                        "
-                            href="{{ route('ParkManager.dts.create') }}" class="btn btn-sm  "
-                            @if (Auth::user()->type == 'Gestionnaire Sup') disabled @endif>
-                            Créer une demande
-                        </a>
+
 
                     </div>
                     <div class="pb-20 table_container">
@@ -412,9 +405,9 @@
                                         <th>Type </th>
 
                                         <th>TYPE DE PANNE</th>
+                                        <th>NATURE DE PANNE</th>
                                         <th>Type de Maintenance</th>
-                                        <th>Action d'entrée</th>
-                                        <th>DATE ET HEURE D'ENTREE</th>
+                                    <th>DATE ET HEURE DE SORTIE</th>
 
 
 
@@ -436,9 +429,10 @@
 
                                                     <td>{{ $maintenance->type }}</td>
                                                     <td>{{ $maintenance->type_panne }}</td>
+                                                     <td>{{ $maintenance->nature_panne }}</td>
                                                     <td>{{ $maintenance->type_maintenance }}</td>
-                                                    <td>{{ $maintenance->action }}</td>
-                                                    <td>{{ $maintenance->enter_date }} {{ $maintenance->enter_time }}
+
+                                                    <td>{{ $maintenance->updated_at }}
 
 
 
@@ -479,9 +473,9 @@
 
                                                     <td>{{ $maintenance->type }}</td>
                                                     <td>{{ $maintenance->type_panne }}</td>
+                                                      <td>{{ $maintenance->nature_panne }}</td>
                                                     <td>{{ $maintenance->type_maintenance }}</td>
-                                                    <td>{{ $maintenance->action }}</td>
-                                                    <td>{{ $maintenance->enter_date }} {{ $maintenance->enter_time }}
+                                                     <td>{{ $maintenance->updated_at }}
 
 
 

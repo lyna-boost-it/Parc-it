@@ -73,7 +73,7 @@ class MissionController extends Controller
         'from',
         'territory',
         'mission_state'));
-
+        Absence_cheker_forOne($mission );
         return redirect()->route ('ParkManager.missions.index')->with('success',"vous avez ajouté une mission avec succès");
     }
 

@@ -290,10 +290,10 @@
                                         <div class="col-md-4">
                                             <label>{{ __('Pressions Av et Ar') }}</label>
                                             <div class="form-group">
-                                                <input type="number" step="0.01" name="pressure_forward"
+                                                <input type="text" step="0.01" name="pressure_forward"
                                                     class="form-control" placeholder="Pressions Av"
                                                     value="{{ $vehicule->pressure_forward }}" required>
-                                                <input type="number" name="pressure_back" class="form-control"
+                                                <input type="text" name="pressure_back" class="form-control"
                                                     placeholder="Pressions Ar" value="{{ $vehicule->pressure_back }}"
                                                     required>
                                             </div>

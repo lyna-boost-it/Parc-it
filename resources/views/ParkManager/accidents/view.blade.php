@@ -96,9 +96,10 @@
                                         <tr>
 
                                             <th>
+
+                                                @if($accident->path!=null)
                                                 <h4 style="display: inline;color:#000000 ">Documents de l'adversaire:
                                                 </h4>
-
 
 
                                                 <h5 style="display: inline;"> <a
@@ -108,6 +109,7 @@
                                                         <span class="fa fa-eye  " style="color: #7e3dbb"> </span>
 
                                                     </a></h5>
+                                                    @endif
                                             </th>
 
                                         </tr>
@@ -174,20 +176,19 @@
                                         </tr>
                                         <tr>
 
-
                                             <th>
-                                                <h4 style="display: inline;color:#000000 ">Documents de l'adversaire:
+
+                                                @if($accident->picture!=null)
+                                                <h4 style="display: inline;color:#000000 ">Photos d'accident:
                                                 </h4>
-
-
-
                                                 <h5 style="display: inline;"> <a
-                                                        href="https://parcit.edeval.dz/public/files/accidenst_pictures/{{ $accident->picture }}">
+                                                        href="https://parcit.edeval.dz/public/files/accidents_pictures/{{ $accident->picture }}">
 
 
                                                         <span class="fa fa-eye  " style="color: #7e3dbb"> </span>
 
                                                     </a></h5>
+                                                    @endif
                                             </th>
 
                                         </tr>

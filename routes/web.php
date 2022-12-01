@@ -63,7 +63,7 @@ Route::get('markAsRead/{id}', function ($id) {
                 return  redirect('ParkManager/piecesMaterial/');
             }
             if ($notification->type == 'App\Notifications\DtMNotification') {
-                return  redirect('ParkManager/dtsM/');
+                return  redirect('ParkManager/dts/');
             }
             if ($notification->type == 'App\Notifications\DtVNotification') {
                 return  redirect('ParkManager/dts/');

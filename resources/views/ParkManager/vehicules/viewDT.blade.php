@@ -187,8 +187,8 @@ $i=0;
 
 
                                         @foreach ($repairs as $repair)
-
-                                                <div class="sidenav">
+@if($dt->id==$repair->dt_code )
+  <div class="sidenav">
                                                     @php
                                                         $a = $a + 1;
                                                     @endphp
@@ -389,10 +389,14 @@ $i=0;
 
                                                 </div>
 
+@endif
+
                                         @endforeach
 
                                         @foreach ($externals as $external)
-                                            <div class="sidenav">
+
+                                        @if($dt->id==$external->dt_code )
+                                        <div class="sidenav">
                                                 @php
                                                     $e = $e + 1;
                                                 @endphp
@@ -481,95 +485,100 @@ $i=0;
 
 
                                             </div>
+
+@endif
+
                                         @endforeach
 
 
                                         @foreach ($maintenances as $m )
+                                        @if($dt->id==$m->dt_code )
+                                        <div class="sidenav">
+                                            @php
+                                                $f = $f + 1;
+                                            @endphp
+                                            <button class="dropdown-btn">Entretien {{ $f }}: déclaré le
+                                                {{ $m->created_at }}
+                                                <i class="fa fa-caret-down"></i>
+                                            </button>
+                                                <div class="sidenav">
 
-                                            <div class="sidenav">
-                                                @php
-                                                    $f = $f + 1;
-                                                @endphp
-                                                <button class="dropdown-btn">Entretien {{ $f }}: déclaré le
-                                                    {{ $m->created_at }}
-                                                    <i class="fa fa-caret-down"></i>
-                                                </button>
-                                                    <div class="sidenav">
-
-                                                        <div class="row">
-                                                            <div class="col-md-6  ">
-                                                                <div class="panel">
-                                                                    <div class="panel-body bio-chart">
-                                                                        <h4 style="display: inline; ">Désignation: </h4>
-                                                                        <h5 style="display: inline;">
-                                                                            {{ $m->designation }} </h5>
-                                                                        <br>
-                                                                        <h4 style="display: inline;">KM: </h4>
-                                                                        <h5 style="display: inline;">
-                                                                            {{ $m->km }} </h5>
-                                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6  ">
+                                                            <div class="panel">
+                                                                <div class="panel-body bio-chart">
+                                                                    <h4 style="display: inline; ">Désignation: </h4>
+                                                                    <h5 style="display: inline;">
+                                                                        {{ $m->designation }} </h5>
+                                                                    <br>
+                                                                    <h4 style="display: inline;">KM: </h4>
+                                                                    <h5 style="display: inline;">
+                                                                        {{ $m->km }} </h5>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-md-6  ">
-                                                                <div class="panel">
-                                                                    <div class="panel-body bio-desk">
-                                                                        <h4 style="display: inline;">Personne(s)
-                                                                            intervenante(s):
-                                                                        </h4>
-                                                                        <h5 style="display: inline;">
-                                                                            @foreach ($maintenance_staffs as $maintenance_staff)
-                                                                                @foreach ($staffs as $staff)
-                                                                                    @if ($maintenance_staff->staff_id == $staff->id && $maintenance_staff->maintenance_id == $m->id)
-                                                                                        {{ $staff->name }}
-                                                                                        {{ $staff->last_name }} ,
-                                                                                    @endif
-                                                                                @endforeach
-                                                                            @endforeach
-                                                                        </h5>
-                                                                        <br>
-                                                                        <h4 style="display: inline;">Liquide consommés:
-                                                                        </h4>
-                                                                        <h5 style="display: inline;">
-                                                                            {{ $m->liquid }}
-                                                                        </h5>
-
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-md-6  ">
-                                                                <div class="panel">
-                                                                    <div class="panel-body bio-chart">
-                                                                        <h4 style="display: inline; ">Lubrifiant consommés:
-                                                                        </h4>
-                                                                        <h5 style="display: inline;">
-                                                                            {{ $m->lubricant }}
-                                                                        </h5>
-                                                                        <br>
-
-                                                                        @foreach ($staffs as $staff)
-                                                                            @if ($staff->id == $m->driver_id)
-                                                                                <h4 style="display: inline;">Conducteur
-                                                                                    (sortie):
-                                                                                </h4>
-                                                                                <h5 style="display: inline;">
-                                                                                    {{ $staff->name }}
-                                                                                    {{ $staff->last_name }} </h5>
-                                                                            @endif
-                                                                        @endforeach
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-
-
-
                                                         </div>
+                                                        <div class="col-md-6  ">
+                                                            <div class="panel">
+                                                                <div class="panel-body bio-desk">
+                                                                    <h4 style="display: inline;">Personne(s)
+                                                                        intervenante(s):
+                                                                    </h4>
+                                                                    <h5 style="display: inline;">
+                                                                        @foreach ($maintenance_staffs as $maintenance_staff)
+                                                                            @foreach ($staffs as $staff)
+                                                                                @if ($maintenance_staff->staff_id == $staff->id && $maintenance_staff->maintenance_id == $m->id)
+                                                                                    {{ $staff->name }}
+                                                                                    {{ $staff->last_name }} ,
+                                                                                @endif
+                                                                            @endforeach
+                                                                        @endforeach
+                                                                    </h5>
+                                                                    <br>
+                                                                    <h4 style="display: inline;">Liquide consommés:
+                                                                    </h4>
+                                                                    <h5 style="display: inline;">
+                                                                        {{ $m->liquid }}
+                                                                    </h5>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6  ">
+                                                            <div class="panel">
+                                                                <div class="panel-body bio-chart">
+                                                                    <h4 style="display: inline; ">Lubrifiant consommés:
+                                                                    </h4>
+                                                                    <h5 style="display: inline;">
+                                                                        {{ $m->lubricant }}
+                                                                    </h5>
+                                                                    <br>
+
+                                                                    @foreach ($staffs as $staff)
+                                                                        @if ($staff->id == $m->driver_id)
+                                                                            <h4 style="display: inline;">Conducteur
+                                                                                (sortie):
+                                                                            </h4>
+                                                                            <h5 style="display: inline;">
+                                                                                {{ $staff->name }}
+                                                                                {{ $staff->last_name }} </h5>
+                                                                        @endif
+                                                                    @endforeach
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
 
 
                                                     </div>
 
-                                            </div>
+
+                                                </div>
+
+                                        </div>
+                                        @endif
+
                                         @endforeach
 
 

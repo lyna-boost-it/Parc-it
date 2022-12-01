@@ -5,12 +5,13 @@ namespace App\Http\Controllers\ParkManager;
 use App\Dt;
 use App\Http\Controllers\Controller;
 use App\Material;
+use App\Models\User;
 use App\Staff;
 use App\Unit;
 use App\Vehicule;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class ArchivedDTController extends Controller
@@ -26,7 +27,15 @@ class ArchivedDTController extends Controller
      */
     public function index()
     {
-        $maintenances = Dt::all()->where('state','=','archived');
+
+        $maintenances =null;
+        $user=User::find(Auth::user()->id);
+if($user->type=='Demandeur'){
+    $maintenances = Dt::all()->where('user_id', '==', $user->id)->where('state', '!=', 'fait')->where('state','==','archived');
+ }else{
+    $maintenances = Dt::all()->where('state', '!=', 'fait')->where('state','==','archived');
+
+}
 
         $drivers = Staff::all()->where('person_type', '=', 'Conducteur');
         $units = Unit::all();

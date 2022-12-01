@@ -111,7 +111,7 @@
                                     </div>
                                 </fieldset>
                                 <fieldset>
-                                    <legend>Information d'accident'</legend>
+                                    <legend>Information d'accident</legend>
 
                                     <div class="card-body">
                                         <div class="row">
@@ -180,7 +180,7 @@
                                             </div>
                                         </div>
                                     </div>
-                             
+
                                     <div class="card-body">
                                         <div class="row">
                                             <label class="col-md-3 col-form-label">{{ __('Date de l’expertise') }}</label>

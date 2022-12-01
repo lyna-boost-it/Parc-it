@@ -275,117 +275,6 @@
             </div>
         </div>
 
-        <div class="user-notification">
-            <div class="dropdown" style=" left:-10%;">
-                <a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
-
-
-                    <span class="hovertext" data-hover="Réparations ">
-                        <i class="fa-solid fa-toolbox  "style="color: grey" ></i>
-
-                    </span>
-
-                    <b>
-                        {{ Auth::user()->notifications->where('type','=','App\Notifications\RepairVNotification')->count()+
-                        Auth::user()->notifications->where('type','=','App\Notifications\RepairMNotification')->count() }}</b>
-                    <span class="badge  "></span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <div class="notification-list ">
-                        <ul>
-
-                            <li>
-
-                                <a href="{{ route('markAllRead') }}">
-                                    <h3 style="display:inline"> Tout marquer
-                                    </h3>
-                                    <p>
-                                        comme lu
-                                    </p>
-
-                                </a>
-                            </li>
-                            @foreach (Auth::user()->notifications as $notification)
-                                @if ($notification->type == 'App\Notifications\RepairVNotification' ||
-                                    $notification->type == 'App\Notifications\RepairMNotification')
-                                    <li
-                                        @if ($notification->read_at == null) style="background-color:rgb(238, 173, 173)" @endif>
-                                        <a href="{{ route('markAsRead', $notification->id) }} ">
-                                            <h3 style="display:inline">
-                                                @if ($notification->read_at != null)
-                                                    ✅
-                                                @else
-                                                    <span class="fa fa-circle" style="color: red">
-                                                    </span>
-                                                @endif {{ $notification->data['from'] }}
-                                            </h3>
-                                            <p>
-                                                {{ $notification->data['details'] }}
-                                            </p>
-
-                                        </a>
-                                    </li>
-                                @endif
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="user-notification">
-            <div class="dropdown" style=" left:-10%;">
-                <a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
-                    <span class="hovertext" data-hover="Entretiens ">
-                        <i class="fa-solid fa-screwdriver-wrench  "style="color: grey" ></i>
-
-                    </span>
-
-
-                    <b>
-                        {{ Auth::user()->notifications->where('type','=','App\Notifications\MaintenaceNotification')->count() }}</b>
-                    <span class="badge  "></span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <div class="notification-list ">
-                        <ul>
-
-                            <li>
-
-                                <a href="{{ route('markAllRead') }}">
-                                    <h3 style="display:inline"> Tout marquer
-                                    </h3>
-                                    <p>
-                                        comme lu
-                                    </p>
-
-                                </a>
-                            </li>
-                            @foreach (Auth::user()->notifications as $notification)
-                                @if ($notification->type == 'App\Notifications\MaintenaceNotification')
-                                    <li
-                                        @if ($notification->read_at == null) style="background-color:rgb(238, 173, 173)" @endif>
-                                        <a href="{{ route('markAsRead', $notification->id) }} ">
-                                            <h3 style="display:inline">
-                                                @if ($notification->read_at != null)
-                                                    ✅
-                                                @else
-                                                    <span class="fa fa-circle" style="color: red">
-                                                    </span>
-                                                @endif {{ $notification->data['from'] }}
-                                            </h3>
-                                            <p>
-                                                {{ $notification->data['details'] }}
-                                            </p>
-
-                                        </a>
-                                    </li>
-                                @endif
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <div class="user-notification">
             <div class="dropdown" style=" left:-10%;">
@@ -494,60 +383,7 @@
                 </div>
             </div>
         </div>
-        <div class="user-notification">
-            <div class="dropdown" style=" left:-10%;">
-                <a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
 
-
-                    <span class="hovertext" data-hover=" Maintenance externe ">
-                    <i class="fa-solid fa-square-up-right  "style="color: grey" ></i>
-                    </span>
-
-                    <b>
-                        {{ Auth::user()->notifications->where('type','=','App\Notifications\ExternamMNotification')->count()
-                        +Auth::user()->notifications->where('type','=','App\Notifications\ExternamVNotification')->count() }}</b>
-                    <span class="badge  "></span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <div class="notification-list ">
-                        <ul>
-
-                            <li>
-                                <a href="{{ route('markAllRead') }}">
-                                    <h3 style="display:inline"> Tout marquer
-                                    </h3>
-                                    <p>
-                                        comme lu
-                                    </p>
-
-                                </a>
-                            </li>
-                            @foreach (Auth::user()->notifications as $notification)
-                                @if ($notification->type == 'App\Notifications\ExternamMNotification' || $notification->type == 'App\Notifications\ExternamVNotification')
-                                    <li
-                                        @if ($notification->read_at == null) style="background-color:rgb(238, 173, 173)" @endif>
-                                        <a href="{{ route('markAsRead', $notification->id) }} ">
-                                            <h3 style="display:inline">
-                                                @if ($notification->read_at != null)
-                                                    ✅
-                                                @else
-                                                    <span class="fa fa-circle" style="color: red">
-                                                    </span>
-                                                @endif {{ $notification->data['from'] }}
-                                            </h3>
-                                            <p>
-                                                {{ $notification->data['details'] }}
-                                            </p>
-
-                                        </a>
-                                    </li>
-                                @endif
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="user-notification">
             <div class="dropdown" style=" left:-10%;">
                 <a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
@@ -663,7 +499,7 @@
 
         <div class="dashboard-setting user-notification">
             <div class="dropdown">
-                <a class="dropdown-toggle no-arrow" href="/"style="color: grey" >
+                <a class="dropdown-toggle no-arrow" href="/public"style="color: grey" >
                     <i class="dw dw-logout"style="color: grey" ></i><b> Se déconnecter</b></a>
                 </a>
             </div>

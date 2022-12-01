@@ -426,7 +426,9 @@ p  {
     background-color:  #f5956c;
 }
 .text-orange  {
-    color:  #f5956c;
+    color:  #f06331;
+    font-weight: bold;
+
 }
 .text-yellow  {
     color:  #ecc72f;
@@ -435,7 +437,7 @@ p  {
     color:  #12492f;
 }
 .text-orange-50  {
-    color:  #f2a654;
+    color:  #f06331;
 }
 .text-blue-50  {
     color:  #62a8ea;
@@ -512,6 +514,7 @@ p  {
 }
 .highcharts-root  {
     font-family:  'Inter',  sans-serif!important;
+    font-size:  14px;
 }
 .bootstrap-select .dropdown-toggle  {
     height:  45px;

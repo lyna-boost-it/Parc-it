@@ -41,26 +41,19 @@
                     </div>
                 </div>
 
-
                 <div class="xs-pd-20-10 pd-ltr-20">
-
-
-
                     <div class="card-box pd-20 height-100-p mb-30">
                         <div class="row align-items-center">
-                            <div class="weight-600 font-30 text-grey">Taux de consommation de Carburant pour les
+                            <div class="weight-100 font-30 text-grey" style=" display: inline-block;">Taux de consommation de Carburant pour les
                                 véhicules par <b>Litre</b> dans :
-
                             </div>
                             <div class="col-md-8">
                                 <form action="{{ route('Kpis.gas.create') }}" method="get">
-
                                     @csrf
-
                                     <label class="col-md-3 col-form-label">{{ __('choisissez un mois') }}</label>
                                     <div class="col-md-9">
-                                        <div class="form-group">
-                                            <select id="month" type="text"
+                                        <div class="form-group " style=" display: inline-block;">
+                                            <select id="month" type="text" style="width: 300px"
                                                 class="form-control select2 @error('month')
                                                                                                     is-invalid @enderror"
                                                 name="month" required autocomplete="month" autofocus>
@@ -82,30 +75,19 @@
 
                                             </select>
                                         </div>
-
+                                        <div class="form-group " style=" display: inline-block;">
+                                            <button type="submit"
+                                                class="btn btn-info btn-round">{{ __('Rechercher') }}</button>
+                                        </div>
                                     </div>
-
-
-
-
-                                    <div class="col-md-12 text-center">
-                                        <button type="submit"
-                                            class="btn btn-info btn-round">{{ __('Rechercher') }}</button>
-
-                                    </div>
-
                                 </form>
-
                             </div>
-
-
                         </div>
                     </div>
                     <div class="card-box pd-20 height-100-p mb-30">
                         <div class="row align-items-center">
-                            <div class="weight-600 font-30 text-grey">Taux de consommation de Carburant pour les
+                            <div class="weight-100 font-30 text-grey">Taux de consommation de Carburant pour les
                                 véhicules par <b>DA</b> dans :
-
                             </div>
                             <div class="col-md-8">
                                 <form action="{{ route('Kpis.gas.create') }}" method="get">
@@ -114,8 +96,8 @@
 
                                     <label class="col-md-3 col-form-label">{{ __('choisissez un mois') }}</label>
                                     <div class="col-md-9">
-                                        <div class="form-group">
-                                            <select id="monthDA" type="text"
+                                        <div class="form-group"  style=" display: inline-block;">
+                                            <select id="monthDA" type="text" style="width: 300px"
                                                 class="form-control select2 @error('monthDA')
                                                                                                     is-invalid @enderror"
                                                 name="monthDA" required autocomplete="monthDA" autofocus>
@@ -136,18 +118,19 @@
 
 
                                             </select>
+
                                         </div>
+                                        <div class="form-group"  style=" display: inline-block;">
+                                            <button type="submit"
+                                                class="btn btn-info btn-round">{{ __('Rechercher') }}</button>
 
+                                        </div>
                                     </div>
 
 
 
 
-                                    <div class="col-md-12 text-center">
-                                        <button type="submit"
-                                            class="btn btn-info btn-round">{{ __('Rechercher') }}</button>
 
-                                    </div>
 
                                 </form>
 
@@ -531,7 +514,7 @@
 
                 <div class="card-box pd-20 height-100-p mb-30">
                     <div class="row align-items-center">
-                        <div class="weight-600 font-30 text-grey">Taux de consommation de Carburant pour les matériels
+                        <div class="weight-100 font-30 text-grey">Taux de consommation de Carburant pour les matériels
                             motorisés</b> dans :
 
                         </div>
@@ -542,8 +525,8 @@
 
                                 <label class="col-md-3 col-form-label">{{ __('choisissez un mois') }}</label>
                                 <div class="col-md-9">
-                                    <div class="form-group">
-                                        <select id="monthDAm" type="text"
+                                    <div class="form-group"  style=" display: inline-block;">
+                                        <select id="monthDAm" type="text" style="width: 300px"
                                             class="form-control select2 @error('monthDAm')
                                                                                         is-invalid @enderror"
                                             name="monthDAm" required autocomplete="monthDAm" autofocus>
@@ -565,17 +548,14 @@
 
                                         </select>
                                     </div>
+                                    <div class="form-group"  style=" display: inline-block;">
+                                        <button type="submit"
+                                            class="btn btn-info btn-round">{{ __('Rechercher') }}</button>
 
+                                    </div>
                                 </div>
 
 
-
-
-                                <div class="col-md-12 text-center">
-                                    <button type="submit"
-                                        class="btn btn-info btn-round">{{ __('Rechercher') }}</button>
-
-                                </div>
 
                             </form>
 
@@ -726,7 +706,7 @@
     // Draw the chart and set the chart values
     function drawChart() {
       var data = google.visualization.arrayToDataTable([
-      ['Consommation de Carburant', 'PAr Littre'],
+      ['Consommation de Carburant', 'Par Littre'],
       ['Essence',essenceP],
       ['Gazole', gazoleP],
       ['GPL', gplP],

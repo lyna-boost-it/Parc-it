@@ -141,7 +141,7 @@
                                             class="col-md-3 col-form-label">{{ __('Information du conducteur adversaire') }}</label>
 
 
-                                        <input type="file" id="docpicker" name="path" accept=".doc,.xml,.pdf">
+                                        <input type="file"  name="path" accept=".doc,.xml,.pdf">
 
                                     </div>
                                 </div>
@@ -260,7 +260,7 @@
                                             class="col-md-3 col-form-label">{{ __('Photos d\'accident en format pdf') }}</label>
 
 
-                                        <input type="file" id="docpicker" name="picture" accept=".doc,.xml,.pdf">
+                                        <input type="file"  name="picture" accept=".doc,.xml,.pdf">
 
                                     </div>
                                 </div>
