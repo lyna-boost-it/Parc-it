@@ -117,57 +117,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
-
-
-
-                            <div class="card-body">
-                                <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __('Liquide consommés (littre)') }} Max
-                                        {{ $liquid->quantity }}</label>
-                                    <div class="col-md-9">
-                                        <div class="form-group">
-                                            <input type="number" max={{ $liquid->quantity }} name="liquid"
-                                                class="form-control" placeholder="Liquide consommés (littre)"
-                                                value="{{ $repair->liquid }}" required>
-                                        </div>
-                                        @if ($errors->has('liquid'))
-                                            <span class="invalid-feedback" style="display: block;" role="alert">
-                                                <strong>{{ $errors->first('liquid') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-
-
-
-
-
-                            <div class="card-body">
-                                <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __('Lubrifiant consommés (littre)') }}
-                                        Max {{ $lubrifiant->quantity }}</label>
-                                    <div class="col-md-9">
-                                        <div class="form-group">
-                                            <input type="number" max={{ $lubrifiant->quantity }} name="lubricant"
-                                                class="form-control" placeholder="Lubrifiant consommés (littre)"
-                                                value="{{ $repair->lubricant }}" required>
-                                        </div>
-                                        @if ($errors->has('lubricant'))
-                                            <span class="invalid-feedback" style="display: block;" role="alert">
-                                                <strong>{{ $errors->first('lubricant') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-
-
                             <input type="hidden" id="vehicule_id" name="vehicule_id" value="{{ $vehicule->id }}">
                             <input type="hidden" id="dt_code" name="dt_code" value="{{ $dt->id }}">
 

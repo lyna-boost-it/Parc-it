@@ -25,7 +25,7 @@
 
 
 
-{{ Absence_cheker() }}
+            {{ Absence_cheker() }}
 
 
 
@@ -47,73 +47,130 @@
                 </div>
             </div>
             <div class="row pb-10">
-                <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                <div class="col-xl-4 col-lg-3 col-md-6 mb-20">
                     <div class="card-box height-100-p widget-style3">
                         <div class="d-flex flex-wrap">
                             <div class="widget-data">
-                                <div class="weight-700 font-24 text-dark"><h3>{{ DB::table('vehicules')->count() }}</h3></div>
+                                <div class="weight-700 font-24 text-dark">
+                                    <h3>{{ DB::table('dts')->count() }}</h3>
+                                </div>
                                 <div class="font-14 text-secondary weight-500">
-                                   <h3>  Véhicules</h3>
+                                    <h3> Nombre total des DT</h3>
                                 </div>
                             </div>
                             <div class="widget-icon">
-                                <div class="icon" data-color="#00eccf">
-                                    <i class="icon-copy dw dw-car"></i>
+                                <div class="icon" data-color="#ffffff">
+                                    <i class="fas fa-toolbox"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                <div class="col-xl-4 col-lg-3 col-md-6 mb-20">
                     <div class="card-box height-100-p widget-style3">
                         <div class="d-flex flex-wrap">
                             <div class="widget-data">
-                                <div class="weight-700 font-24 text-dark"><h3>{{ DB::table('staff')->where('person_type', '=', 'Conducteur')->count() }}</h3></div>
+                                <div class="weight-700 font-24 text-dark">
+                                    <h3>{{ DB::table('dts')->where('state', '=', 'en attente')->count() }}</h3>
+                                </div>
                                 <div class="font-14 text-secondary weight-500">
-                                    <h3>  Conducteurs</h3>
+                                    <h3> Nouvelles demandes</h3>
                                 </div>
                             </div>
                             <div class="widget-icon">
-                                <div class="icon" data-color="#ff5b5b">
-                                    <i class="fas fa-user"></i>
+                                <div class="icon" data-color="#ffffff">
+                                    <i class="far fa-plus-square"></i>
 
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                <div class="col-xl-4 col-lg-3 col-md-6 mb-20">
                     <div class="card-box height-100-p widget-style3">
                         <div class="d-flex flex-wrap">
                             <div class="widget-data">
-                                <div class="weight-700 font-24 text-dark"><h3> {{ DB::table('materials')->count() }}</h3></div>
+                                <div class="weight-700 font-24 text-dark">
+                                    <h3> {{ DB::table('dts')->where('state', '=', 'en cours')->count() }}</h3>
+                                </div>
                                 <div class="font-14 text-secondary weight-500">
-                                    <h3>  Matériels Motorisés</h3>
+                                    <h3>Demandes en cours</h3>
                                 </div>
                             </div>
                             <div class="widget-icon">
-                                <div class="icon">
-                                    <i class="fas fa-truck-monster"></i>
+                                <div class="icon" data-color="#ffffff">
+                                    <i class="fas fa-spinner"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+
+            </div>
+
+
+
+            <div class="row pb-10">
+                <div class="col-xl-4 col-lg-3 col-md-6 mb-20">
                     <div class="card-box height-100-p widget-style3">
                         <div class="d-flex flex-wrap">
                             <div class="widget-data">
-                                <div class="weight-700 font-24 text-dark"><h3> {{ DB::table('staff')->count() }}</h3></div>
-                                <div class="font-14 text-secondary weight-500">  <h3>Personnels<h3></div>
+                                <div class="weight-700 font-24 text-dark">
+                                    <h3> {{ DB::table('dts')->where('state', '=', 'en instance')->count() }}</h3>
+                                </div>
+                                <div class="font-14 text-secondary weight-500">
+                                    <h3>Demandes en instances<h3>
+                                </div>
                             </div>
                             <div class="widget-icon">
-                                <div class="icon" data-color="#09cc06">
-                                    <i class="fas fa-users"></i>
+                                <div class="icon" data-color="#ffffff">
+                                    <i class="fas fa-tasks"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="col-xl-4 col-lg-3 col-md-6 mb-20">
+                    <div class="card-box height-100-p widget-style3">
+                        <div class="d-flex flex-wrap">
+                            <div class="widget-data">
+                                <div class="weight-700 font-24 text-dark">
+                                    <h3>{{ DB::table('dts')->where('state', '=', 'fait')->count() }}</h3>
+                                </div>
+                                <div class="font-14 text-secondary weight-500">
+                                    <h3> Demandes faites</h3>
+                                </div>
+                            </div>
+                            <div class="widget-icon">
+                                <div class="icon" data-color="#ffffff">
+
+                                    <i class="fas fa-check-double"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-3 col-md-6 mb-20">
+                    <div class="card-box height-100-p widget-style3">
+                        <div class="d-flex flex-wrap">
+                            <div class="widget-data">
+                                <div class="weight-700 font-24 text-dark">
+                                    <h3>{{ DB::table('dts')->where('state', '=', 'archived')->count() }}</h3>
+                                </div>
+                                <div class="font-14 text-secondary weight-500">
+                                    <h3> Demandes archivées</h3>
+                                </div>
+                            </div>
+                            <div class="widget-icon">
+                                <div class="icon" data-color="#ffffff">
+                                    <i class="far fa-folder-open"></i>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
 
@@ -232,6 +289,7 @@
 
         </div>
 
+
         <div class="row">
 
 
@@ -305,7 +363,88 @@
         </div>
 
 
+        <div class="xs-pd-20-10 pd-ltr-20">
+            <div class="row pb-10">
+                <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                    <div class="card-box height-100-p widget-style3">
+                        <div class="d-flex flex-wrap">
+                            <div class="widget-data">
+                                <div class="weight-700 font-24 text-dark">
+                                    <h3>{{ DB::table('vehicules')->count() }}</h3>
+                                </div>
+                                <div class="font-14 text-secondary weight-500">
+                                    <h3> Véhicules</h3>
+                                </div>
+                            </div>
+                            <div class="widget-icon">
+                                <div class="icon" data-color="#ffffff">
+                                    <i class="icon-copy dw dw-car"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                    <div class="card-box height-100-p widget-style3">
+                        <div class="d-flex flex-wrap">
+                            <div class="widget-data">
+                                <div class="weight-700 font-24 text-dark">
+                                    <h3>{{ DB::table('staff')->where('person_type', '=', 'Conducteur')->count() }}</h3>
+                                </div>
+                                <div class="font-14 text-secondary weight-500">
+                                    <h3> Conducteurs</h3>
+                                </div>
+                            </div>
+                            <div class="widget-icon">
+                                <div class="icon" data-color="#ffffff">
+                                    <i class="fas fa-user"></i>
 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                    <div class="card-box height-100-p widget-style3">
+                        <div class="d-flex flex-wrap">
+                            <div class="widget-data">
+                                <div class="weight-700 font-24 text-dark">
+                                    <h3> {{ DB::table('materials')->count() }}</h3>
+                                </div>
+                                <div class="font-14 text-secondary weight-500">
+                                    <h3> Matériels Motorisés</h3>
+                                </div>
+                            </div>
+                            <div class="widget-icon">
+                                <div class="icon">
+                                    <i class="fas fa-truck-monster"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                    <div class="card-box height-100-p widget-style3">
+                        <div class="d-flex flex-wrap">
+                            <div class="widget-data">
+                                <div class="weight-700 font-24 text-dark">
+                                    <h3> {{ DB::table('staff')->count() }}</h3>
+                                </div>
+                                <div class="font-14 text-secondary weight-500">
+                                    <h3>Personnels<h3>
+                                </div>
+                            </div>
+                            <div class="widget-icon">
+                                <div class="icon" data-color="#ffffff">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
 
 
 
@@ -321,179 +460,184 @@
 
 
 
-                    <main>
-                        <h4 class="font-20 weight-500 mb-10 text-capitalize text-orange">Nombre d'accidents</h4>
-                        <input id="tab1" type="radio" name="tabs" checked>
-                        <label for="tab1">Unité</label>
+                <main>
+                    <h4 class="font-20 weight-500 mb-10 text-capitalize text-orange">Nombre d'accidents</h4>
+                    <input id="tab1" type="radio" name="tabs" checked>
+                    <label for="tab1">Unité</label>
 
-                        <input id="tab2" type="radio" name="tabs">
-                        <label for="tab2">Age</label>
+                    <input id="tab2" type="radio" name="tabs">
+                    <label for="tab2">Age</label>
 
-                        <input id="tab3" type="radio" name="tabs">
-                        <label for="tab3">Personne</label>
+                    <input id="tab3" type="radio" name="tabs">
+                    <label for="tab3">Personne</label>
 
 
 
-                        <section id="content1">
-                            <table class="table nowrap hover data-table-export">
-                                <thead>
+                    <section id="content1">
+                        <table class="table nowrap hover data-table-export">
+                            <thead>
+                                <tr>
+                                    <th style="width:70%">Num</th>
+                                    <th style="width:40%"> Nom</th>
+                                    <th style="width:70%"><b> Accident</b></th>
+                                </tr>
+                            </thead>
+                            @php
+                                $i = 0;
+                            @endphp
+                            <tbody>
+                                @foreach ($units as $unit)
+                                    @php
+                                        $i = $i + 1;
+                                    @endphp
+                                    @php
+                                        $c = 0;
+                                    @endphp
                                     <tr>
-                                        <th style="width:70%">Num</th>
-                                        <th style="width:40%"> Nom</th>
-                                        <th style="width:70%"><b> %</b></th>
-                                    </tr>
-                                </thead>
-                                @php
-                                    $i = 0;
-                                @endphp
-                                <tbody>
-                                    @foreach ($units as $unit)
-                                        @php
-                                            $i = $i + 1;
-                                        @endphp
-                                        @php
-                                            $c = 0;
-                                        @endphp
-                                        <tr>
-                                            <td style="width:70%"> {{ $i }}</td>
+                                        <td style="width:70%"> {{ $i }}</td>
 
-                                            <td style="width:40%">{{ $unit->name }}</td>
-                                            @foreach ($vehicules as $vehicule)
-                                                @foreach ($accidents as $accident)
-                                                    @if ($vehicule->unit_id == $unit->id && $accident->vehicle_id == $vehicule->id)
-                                                        @php
-                                                            $c = $c + 1;
-                                                        @endphp
-                                                    @endif
-                                                @endforeach
-                                            @endforeach
-                                            <td style="color: orange;width:70%">
-                                                {{ ($c / DB::table('accidents')->count()) * 100 }}%</td>
-
-                                        </tr>
-                                    @endforeach
-
-                                </tbody>
-                            </table>
-                        </section>
-
-                        <section id="content2">
-                            <table class="table nowrap hover data-table-export">
-                                <thead>
-                                    <tr>
-                                        <th>Numéro</th>
-
-                                        <th>Intervale d'age</th>
-                                        <th>Pourcentage</th>
-
-
-                                    </tr>
-                                </thead>
-
-                                @php
-                                    $i = 0;
-
-                                @endphp
-
-
-                                <tbody>
-
-                                    <tr>
-                                        <td>1</td>
-                                        <td>18-20</td>
-                                        <td style="color: orange;">{{ ($aage / DB::table('accidents')->count()) * 100 }}%
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>2</td>
-                                        <td>20-25</td>
-                                        <td style="color: orange;">{{ ($bage / DB::table('accidents')->count()) * 100 }}%
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>25-30</td>
-                                        <td style="color: orange;">{{ ($cage / DB::table('accidents')->count()) * 100 }}%
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>30-35</td>
-                                        <td style="color: orange;">{{ ($dage / DB::table('accidents')->count()) * 100 }}%
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>35-40</td>
-                                        <td style="color: orange;">{{ ($eage / DB::table('accidents')->count()) * 100 }}%
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>6</td>
-                                        <td>45-50</td>
-                                        <td style="color: orange;">{{ ($fage / DB::table('accidents')->count()) * 100 }}%
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>7</td>
-                                        <td>55-60</td>
-                                        <td style="color: orange;">{{ ($gage / DB::table('accidents')->count()) * 100 }}%
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </section>
-
-                        <section id="content3">
-                            <table class="table nowrap hover data-table-export">
-                                <thead>
-                                    <tr>
-                                        <th>Numéro</th>
-                                        <th>ID</th>
-
-                                        <th> Nom Et Prénom</th>
-                                        <th>Pourcentage</th>
-
-
-                                    </tr>
-                                </thead>
-
-                                @php
-                                    $i = 0;
-
-                                @endphp
-
-
-                                <tbody>
-
-                                    @foreach ($staffs as $staff)
-                                        @php
-                                            $i = $i + 1;
-                                        @endphp
-                                        <tr>
-                                            <td> {{ $i }}</td>
-                                            <td>{{ $staff->id }}</td>
-
-                                            <td>{{ $staff->name }} {{ $staff->last_name }}</td>
+                                        <td style="width:40%">{{ $unit->name }}</td>
+                                        @foreach ($vehicules as $vehicule)
                                             @foreach ($accidents as $accident)
-                                                @if ($accident->driver_id == $staff->id)
+                                                @if ($vehicule->unit_id == $unit->id && $accident->vehicle_id == $vehicule->id)
+                                                    @php
+                                                        $c = $c + 1;
+                                                    @endphp
                                                 @endif
                                             @endforeach
-                                            <td style="color: orange;">
-                                                {{ (DB::table('accidents')->where('driver_id', '=', $staff->id)->count() /DB::table('accidents')->count()) *100 }}%
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                                        @endforeach
+                                        <td style="color: orange;width:70%">
+                                            {{ $c }} Accident(s)</td>
+
+                                    </tr>
+                                @endforeach
+
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <section id="content2">
+                        <table class="table nowrap hover data-table-export">
+                            <thead>
+                                <tr>
+                                    <th>Numéro</th>
+
+                                    <th>Intervale d'age</th>
+                                    <th>Accident</th>
 
 
-                                </tbody>
-                            </table>
-                        </section>
+                                </tr>
+                            </thead>
+
+                            @php
+                                $i = 0;
+
+                            @endphp
+
+
+                            <tbody>
+
+                                <tr>
+                                    <td>1</td>
+                                    <td>18-20</td>
+                                    <td style="color: orange;">{{ $aage }} Accident(s)
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>2</td>
+                                    <td>20-25</td>
+                                    <td style="color: orange;">{{ $bage }} Accident (s)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>25-30</td>
+                                    <td style="color: orange;">{{ $cage }} Accident (s)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>30-35</td>
+                                    <td style="color: orange;">{{ $dage }} Accident (s)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>35-40</td>
+                                    <td style="color: orange;">{{ $eage }} Accident (s)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>45-50</td>
+                                    <td style="color: orange;">{{ $fage }} Accident (s)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>55-60</td>
+                                    <td style="color: orange;">{{ $gage }} Accident (s)
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <section id="content3">
+                        <table class="table nowrap hover data-table-export">
+                            <thead>
+                                <tr>
+                                    <th>Numéro</th>
+                                    <th>ID</th>
+
+                                    <th> Nom Et Prénom</th>
+                                    <th>Accident</th>
+
+
+                                </tr>
+                            </thead>
+
+                            @php
+                                $i = 0;
+
+                            @endphp
+
+
+                            <tbody>
+
+                                @foreach ($staffs as $staff)
+                                    @php
+                                        $i = $i + 1;
+                                        $c = 0;
+                                    @endphp
+                                    <tr>
+                                        <td> {{ $i }}</td>
+                                        <td>{{ $staff->id }}</td>
+
+                                        <td>{{ $staff->name }} {{ $staff->last_name }}</td>
+                                        <td style="color: orange;">
+                                            @foreach ($accidents as $accident)
+                                                @if ($accident->driver_id == $staff->id)
+                                                    @php
+                                                        $c = $c + 1;
+                                                    @endphp
+                                                @endif
+                                            @endforeach
+                                            {{ $c }} Accident (s)
+
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+
+                            </tbody>
+                        </table>
+                    </section>
 
 
 
-                    </main>
+                </main>
 
 
 
@@ -506,167 +650,172 @@
 
             <div class=" card-box  col-md-6 mb-20">
 
-                    <main>
-                        <h4 class="font-20 weight-500 mb-10 text-capitalize text-orange">Nombre d'interventions de
-                            réparation</h4>
-                        <input id="tab4" type="radio" name="tabsd" checked>
-                        <label for="tab4">Véhicule</label>
+                <main>
+                    <h4 class="font-20 weight-500 mb-10 text-capitalize text-orange">Nombre d'interventions de
+                        réparation</h4>
+                    <input id="tab4" type="radio" name="tabsd" checked>
+                    <label for="tab4">Véhicule</label>
 
-                        <input id="tab5" type="radio" name="tabsd">
-                        <label for="tab5">Personne</label>
+                    <input id="tab5" type="radio" name="tabsd">
+                    <label for="tab5">Personne</label>
 
-                        <input id="tab6" type="radio" name="tabsd">
-                        <label for="tab6">Unité</label>
+                    <input id="tab6" type="radio" name="tabsd">
+                    <label for="tab6">Unité</label>
 
 
 
-                        <section id="content4">
+                    <section id="content4">
 
-                            <table class="table nowrap hover data-table-export">
+                        <table class="table nowrap hover data-table-export">
 
-                                <thead>
+                            <thead>
+                                <tr>
+                                    <th>Numéro</th>
+                                    <th>Matricule</th>
+                                    <th>Type</th>
+                                    <th>Marque</th>
+
+                                    <th><b>Intervenion</b></th>
+                                </tr>
+                            </thead>
+                            @php
+                                $i = 0;
+                            @endphp
+                            <tbody>
+                                @foreach ($vehicules as $vehicule)
+                                    @php
+                                        $i = $i + 1;
+                                    @endphp
                                     <tr>
-                                        <th>Numéro</th>
-                                        <th>Véhicule</th>
-                                        <th><b>%</b></th>
-                                    </tr>
-                                </thead>
-                                @php
-                                    $i = 0;
-                                @endphp
-                                <tbody>
-                                    @foreach ($vehicules as $vehicule)
-                                        @php
-                                            $i = $i + 1;
-                                        @endphp
-                                        <tr>
-                                            <td> {{ $i }}</td>
-                                            <td>{{ $vehicule->marticule }}</td>
-                                            <td style="color: orange;">
-                                                @if (DB::table('repairs')->count() != 0)
-                                                    {{ number_format((float) (DB::table('repairs')->where('vehicule_id', '=', $vehicule->id)->count() /DB::table('repairs')->count()) *100, 2, '.', '')}}
-                                                @else
-                                                    0
-                                                @endif%
-                                            </td>
-
-                                        </tr>
-                                    @endforeach
-
-
-                                </tbody>
-                            </table>
-                        </section>
-
-                        <section id="content5">
-                            <table class="table nowrap hover data-table-export">
-                                <thead>
-                                    <tr>
-                                        <th>Numero</th>
-
-                                        <th> Nom Et Prénom</th>
-                                        <th><b>%</b></th>
-
+                                        <td> {{ $i }}</td>
+                                        <td>{{ $vehicule->marticule }}</td>
+                                        <td>{{ $vehicule->vehicle_type }}</td>
+                                        <td> {{ $vehicule->mark }}</td>
+                                        <td style="color: orange;">
+                                            @if (DB::table('repairs')->count() != 0)
+                                                {{ DB::table('repairs')->where('vehicule_id', '=', $vehicule->id)->count() }}
+                                            @else
+                                                0
+                                            @endif Intervention(s)
+                                        </td>
 
                                     </tr>
-                                </thead>
-
-                                @php
-                                    $i = 0;
-
-                                @endphp
+                                @endforeach
 
 
-                                <tbody>
+                            </tbody>
+                        </table>
+                    </section>
 
-                                    @foreach ($staffs as $staff)
-                                        @php
-                                            $i = $i + 1;
-                                        @endphp
-                                        <tr>
-                                            <td> {{ $i }}</td>
+                    <section id="content5">
+                        <table class="table nowrap hover data-table-export">
+                            <thead>
+                                <tr>
+                                    <th>Numero</th>
 
-                                            <td>{{ $staff->name }} {{ $staff->last_name }}</td>
-                                            @foreach ($repair_staffs as $repair_staff)
-                                                @if ($repair_staff->staff_id == $staff->id)
+                                    <th> Nom Et Prénom</th>
+                                    <th><b>Intervention</b></th>
+
+
+                                </tr>
+                            </thead>
+
+                            @php
+                                $i = 0;
+
+                            @endphp
+
+
+                            <tbody>
+
+                                @foreach ($staffs as $staff)
+                                    @php
+                                        $i = $i + 1;
+                                    @endphp
+                                    <tr>
+                                        <td> {{ $i }}</td>
+
+                                        <td>{{ $staff->name }} {{ $staff->last_name }}</td>
+                                        @foreach ($repair_staffs as $repair_staff)
+                                            @if ($repair_staff->staff_id == $staff->id)
+                                            @endif
+                                        @endforeach
+                                        <td style="color: orange;">
+                                            @if (DB::table('repair__staff')->count() == 0)
+                                                0
+                                            @else
+                                                {{ DB::table('repair__staff')->where('staff_id', '=', $staff->id)->count() }}
+                                            @endif
+                                            Intervention(s)
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <section id="content6">
+                        <table class="table nowrap hover data-table-export">
+                            <thead>
+                                <tr>
+                                    <th>Num</th>
+
+                                    <th style="width:30%">Unité</th>
+                                    <th style="width:30%"><b>Intervention</b></th>
+
+
+                                </tr>
+                            </thead>
+
+                            @php
+                                $i = 0;
+
+                            @endphp
+
+
+                            <tbody>
+
+                                @foreach ($units as $unit)
+                                    @php
+                                        $i = $i + 1;
+                                    @endphp
+                                    @php
+                                        $c = 0;
+                                    @endphp
+                                    <tr>
+                                        <td> {{ $i }}</td>
+
+                                        <td style="width:30%;font-size: 11px">{{ $unit->name }}</td>
+                                        @foreach ($vehicules as $vehicule)
+                                            @foreach ($repairs as $repair)
+                                                @if ($vehicule->unit_id == $unit->id && $repair->vehicule_id == $vehicule->id)
+                                                    @php
+                                                        $c = $c + 1;
+                                                    @endphp
                                                 @endif
                                             @endforeach
-                                            <td style="color: orange;">
-												@if(DB::table('repair__staff')->count()==0)
-												0%
-												@else
-												 {{ number_format((float)(DB::table('repair__staff')->where('staff_id', '=', $staff->id)->count() /DB::table('repair__staff')->count()) *100, 2, '.', '') }}%
-												@endif
-
-                                            </td>
-                                        </tr>
-                                    @endforeach
-
-
-                                </tbody>
-                            </table>
-                        </section>
-
-                        <section id="content6">
-                            <table class="table nowrap hover data-table-export">
-                                <thead>
-                                    <tr>
-                                        <th>Num</th>
-
-                                        <th style="width:30%">Unité</th>
-                                        <th style="width:30%"><b>%</b></th>
-
+                                        @endforeach
+                                        <td style="color: orange;width:30%">
+                                            @if (DB::table('repairs')->count() != 0)
+                                                {{ $c }}
+                                            @else
+                                                0
+                                            @endif Intervention(s)
+                                        </td>
 
                                     </tr>
-                                </thead>
-
-                                @php
-                                    $i = 0;
-
-                                @endphp
+                                @endforeach
 
 
-                                <tbody>
-
-                                    @foreach ($units as $unit)
-                                        @php
-                                            $i = $i + 1;
-                                        @endphp
-                                        @php
-                                            $c = 0;
-                                        @endphp
-                                        <tr>
-                                            <td> {{ $i }}</td>
-
-                                            <td style="width:30%;font-size: 11px">{{ $unit->name }}</td>
-                                            @foreach ($vehicules as $vehicule)
-                                                @foreach ($repairs as $repair)
-                                                    @if ($vehicule->unit_id == $unit->id && $repair->vehicule_id == $vehicule->id)
-                                                        @php
-                                                            $c = $c + 1;
-                                                        @endphp
-                                                    @endif
-                                                @endforeach
-                                            @endforeach
-                                            <td style="color: orange;width:30%">
-                                                @if (DB::table('repairs')->count() != 0)
-                                                    {{ number_format((float)($c / DB::table('repairs')->count()) * 100, 2, '.', '') }}
-                                                @else
-                                                    0
-                                                @endif%
-                                            </td>
-
-                                        </tr>
-                                    @endforeach
-
-
-                                </tbody>
-                            </table>
-                        </section>
+                            </tbody>
+                        </table>
+                    </section>
 
 
 
-                    </main>
+                </main>
 
             </div>
 

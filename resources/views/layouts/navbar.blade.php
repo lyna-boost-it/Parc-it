@@ -217,13 +217,7 @@
                                     Pieces Consommés </a>
                             </li>
 
-                            <li>
-                                <a class="  {{ Request::is('*ParkManager/liquids*') ? 'active' : '' }}"
-                                    style="right: 50px;" href="{{ route('ParkManager.liquids.index') }}">
 
-
-                                    Liquides et Lubrifiants</a>
-                            </li>
 
                         </ul>
                     </li>

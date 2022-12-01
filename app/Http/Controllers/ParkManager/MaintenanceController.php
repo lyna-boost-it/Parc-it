@@ -4,14 +4,11 @@ namespace App\Http\Controllers\ParkManager;
 
 use App\Dt;
 use App\Http\Controllers\Controller;
-use App\Liquids;
 use App\Maintenance;
 use App\Maintenance_Staff;
 use App\Models\User;
 use App\MoreNotifs;
 use App\Notifications\MaintenaceNotification;
-use App\Repair;
-use App\Repair_Staff;
 use App\Staff;
 use App\Vehicule;
 use Illuminate\Http\Request;
@@ -48,13 +45,11 @@ class MaintenanceController extends Controller
     {   $dt=Dt::find($id);
         $vehicule=Vehicule::find($dt->vehicle_id);
         $maintenance = new Maintenance();
-        $liquid=Liquids:: where('type','=','Liquide')->first();
-        $lubrifiant=Liquids:: where('type','=','Lubrifiant')->first();
         $staffs=Staff::all()->where('person_type','=','Personnel du centre de maintenance')->where('function','!=','Mécanicien spécialisé (matériel motorisé)');
         $drivers=Staff::all()->where('person_type','=','Conducteur');
           return view('ParkManager.maintenances.create',
           compact('maintenance','dt'
-          , 'drivers', 'staffs', 'vehicule','lubrifiant','liquid'));
+          , 'drivers', 'staffs', 'vehicule' ));
     }
 
 
@@ -67,7 +62,7 @@ class MaintenanceController extends Controller
     public function storeMaintenance(Request $request)
     {
         $maintenance=Maintenance:: create($request->only(
-            'id', 'dt_code','designation','vehicule_id','km','liquid','lubricant','driver_id'
+            'id', 'dt_code','designation','vehicule_id','km', 'driver_id'
         ));
 $staffs=$request['staff'];
 
@@ -85,13 +80,6 @@ $vehicule=Vehicule::find($maintenance->vehicule_id);
 $vehicule->previous_state=$vehicule->vehicle_state;
 $vehicule->vehicle_state='Libre';
 $vehicule->save();
-$liquid=Liquids:: where('type','=','Liquide')->first();
-$lubrifiant=Liquids:: where('type','=','Lubrifiant')->first();
-$liquid->quantity=$liquid->quantity-$request->liquid;
-$liquid->save();
-$lubrifiant->quantity=$lubrifiant->quantity-$request->lubricant;
-$lubrifiant->save();
-
 $usersA = User::all()->where('type', '=', 'Gestionnaire parc');
 $usersB = User::all()->where('type', '=', 'Utilisateur');
 
@@ -191,7 +179,7 @@ else{     $dt->previous_state = $dt->state;
     public function updateMaintenance(Request $request, $id)
     {$maintenance =Maintenance::find($id);
         $maintenance->update($request->only(
-            'id', 'dt_code','designation','vehicle_id','km','liquid','lubricant','driver_id'
+            'id', 'dt_code','designation','vehicle_id','km' ,'driver_id'
         ));
     return redirect ('/ParkManager/maintenances')->with('success',"vous avez modifié un Entretien avec succès");
     }
@@ -216,12 +204,6 @@ else{     $dt->previous_state = $dt->state;
     foreach($maintenance_staffs as $maintenance_staff){
         $maintenance_staff->delete();
     }
-    $liquid=Liquids:: where('type','=','Liquide')->first();
-    $lubrifiant=Liquids:: where('type','=','Lubrifiant')->first();
-    $liquid->quantity=$liquid->quantity+$maintenance->liquid;
-    $liquid->save();
-    $lubrifiant->quantity=$lubrifiant->quantity+$maintenance->lubricant;
-    $lubrifiant->save();
         $maintenance->delete();
         return redirect('/ParkManager/maintenances')->with('success',"vous avez supprimé un Entretien avec succès");
     }

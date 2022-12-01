@@ -7,7 +7,6 @@ use App\Designation;
 use App\Dt;
 use App\DT_Piece;
 use App\Http\Controllers\Controller;
-use App\Liquids;
 use App\Marque;
 use App\Material;
 use App\Models\User;
@@ -59,8 +58,6 @@ $dts=Dt::all();
         $dt = Dt::find($id);
         $vehicule = Vehicule::find($dt->vehicle_id);
         $pieces = ConsumedPieces::all()->where('type', '=', 'Véhicule');
-        $lubrifiant = Liquids::where('type', '=', 'Lubrifiant')->first();
-        $liquid = Liquids::where('type', '=', 'Liquide')->first();
         $staffs = Staff::all()->where('person_type', '=', 'Personnel du centre de maintenance')->where('function', '=', 'Mécanicien spécialisé (matériel motorisé)')->where('staff_state', '=', 'au travail');
 
         $drivers = Staff::all()->where('person_type', '=', 'Conducteur');
@@ -72,8 +69,6 @@ $dts=Dt::all();
                 'drivers',
                 'staffs',
                 'vehicule',
-                'lubrifiant',
-                'liquid',
                 'pieces','designations','marques'
             )
         );
@@ -105,8 +100,6 @@ $dts=Dt::all();
             'intervention_date',
             'diagnostic',
             'repaired_breakdowns',
-            'liquid',
-            'lubricant',
             'end_date',
             'end_time',
             'driver_id',
@@ -160,12 +153,6 @@ $dts=Dt::all();
         $vehicule->previous_state = $vehicule->vehicle_state;
         $vehicule->vehicle_state = 'Libre';
         $vehicule->save();
-        $liquid = Liquids::where('type', '=', 'Liquide')->first();
-        $lubrifiant = Liquids::where('type', '=', 'Lubrifiant')->first();
-        $liquid->quantity = $liquid->quantity - $request->liquid;
-        $liquid->save();
-        $lubrifiant->quantity = $lubrifiant->quantity - $request->lubricant;
-        $lubrifiant->save();
         $usersA = User::all()->where('type', '=', 'Gestionnaire parc');
         $usersB = User::all()->where('type', '=', 'Utilisateur');
         $currentUser = User::find($dt->user_id);
@@ -319,12 +306,6 @@ else{     $dt->previous_state = $dt->state;
 
             $repair_piece->delete();
         }
-        $liquid = Liquids::where('type', '=', 'Liquide')->first();
-        $lubrifiant = Liquids::where('type', '=', 'Lubrifiant')->first();
-        $liquid->quantity = $liquid->quantity + $repair->liquid;
-        $liquid->save();
-        $lubrifiant->quantity = $lubrifiant->quantity + $repair->lubricant;
-        $lubrifiant->save();
         $repair->delete();
         return redirect('/ParkManager/repairs')->with('success', "vous avez supprimé une Reparation avec succès");
     }
