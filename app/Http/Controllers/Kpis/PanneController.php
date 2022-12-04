@@ -18,6 +18,7 @@ use DateTime;
 use Faker\Core\Version;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Date;
 use Ramsey\Uuid\Type\Integer;
 
 class PanneController extends Controller
@@ -58,31 +59,53 @@ class PanneController extends Controller
     public function create(Request $request)
     {
 
-
-
-        $month = $request->month;
-        $year = $request->year;
-        $monthDT = $request->monthDT;
-        $yearDT = $request->yearDT;
-
-        if ($month != '' && $year != '') {
-            $pannes = Dt::all()->count();
-            $lourde = Dt::whereYear('created_at', $year)->whereMonth('created_at', $month)->where('type_panne', '=', 'Lourde')->count();
-            $moyene = Dt::whereYear('created_at', $year)->whereMonth('created_at', $month)->where('type_panne', '=', 'Moyenne')->count();
-            $legere = Dt::whereYear('created_at', $year)->whereMonth('created_at', $month)->where('type_panne', '=', 'Légère')->count();
-             return view('Kpis.pannes.stats', compact('pannes', 'lourde', 'moyene', 'legere', 'month', 'year', 'monthDT', 'yearDT'));
+        $type = $request->type;
+        $date1 = $request->date1;
+        $date2 = $request->date2;
+        $date1_ = new Date($date1);
+        $date2_ = new Date($date2);
+        $dts = DT::all();
+        if ($type == 'dt') {
+            $pannes = 0;
+            $lourde = 0;
+            $moyene = 0;
+            $legere = 0;
+            foreach ($dts as $dt) {
+                $created_date = new Date($dt->created_at);
+                if ($created_date >= $date1_ && $created_date <= $date2_) {
+                    $pannes = $pannes + 1;
+                    if ($dt->type_panne == 'Lourde') {
+                        $lourde = $lourde + 1;
+                    }
+                    if ($dt->type_panne == 'Moyenne') {
+                        $moyene = $moyene + 1;
+                    }
+                    if ($dt->type_panne == 'Légère') {
+                        $legere = $legere + 1;
+                    }
+                    return view('Kpis.pannes.stats', compact('pannes', 'lourde', 'moyene', 'legere', 'date1', 'date2', 'type'));
+                }
+            }
         }
+        if ($type == 'repair') {
+            $a = 0;
+            $b = 0;
+            $dts = Dt::all();
+            foreach ($dts as $dt) {
+                $created_date = new Date($dt->created_at);
+                if ($created_date >= $date1_ && $created_date <= $date2_) {
+                    $a = $a + 1;
+                    if ($dt->statr = 'fait') {
+                        $b = $b + 1;
+                    }
+                }
+            }
+            if ($a == 0) {
+                $a = 1;
+            }
+            $taux = number_format((float)$b / $a * 100, 2, '.', '');
 
-        if ($monthDT != '' && $yearDT != '') {
-
-            $dts = Dt::whereYear('created_at', $yearDT)->whereMonth('created_at', $monthDT)->count();
-            $monthDts = Dt::whereYear('created_at', $yearDT)->whereMonth('created_at', $monthDT)->where('state', '=', 'fait')->count();
-            if($dts==0){
-                $dts=1;}
-
-            $taux = number_format((float)$monthDts / $dts * 100, 2, '.', '');
-
-            return view('Kpis.pannes.stats', compact('monthDts', 'dts', 'taux', 'monthDT', 'yearDT', 'month', 'year'));
+            return view('Kpis.pannes.stats', compact('a', 'b', 'taux', 'date1', 'date2', 'type'));
         }
     }
 
@@ -104,38 +127,43 @@ class PanneController extends Controller
      */
     public function show(Request $request, $id)
     {
-        $MTTRmonth = $request->MTTRmonth;
-        $MTTRyear = $request->MTTRyear;
-        $monthDT = $request->monthDT;
-        $monthTF = $request->monthTF;
-        $monthTR = $request->monthTR;
-        $MTBFyear = $request->MTBFyear;
-        $yearTF = $request->yearTF;
-        $yearTR = $request->yearTR;
-        $yearMP = $request->yearMP;
+
+        $type = $request->type;
+        $option_type = $request->option_type;
+        $date1 = $request->date1;
+        $date2 = $request->date2;
+        $date1_ = new Date($date1);
+        $date2_ = new Date($date2);
+
+
 
 
         $option_type = $request->option_type;
         if ($option_type == 'Vehicule') {
             $vehicule = Vehicule::find($id);
-            if ($MTTRyear != '' && $MTTRmonth != '') {
+            $dts = Dt::all()->where('vehicle_id', '=', $id);
+            if ($type == 'MTTR') {
 
                 $c = 0;
                 $hours = 0;
-                $dts = Dt::whereYear('created_at', $MTTRyear)->whereMonth('created_at', $MTTRmonth)->where('vehicule_id', '=', $id)->get();
+
                 $repairs = Repair::all();
                 $nbrR = 0;
                 foreach ($dts as $dt) {
                     foreach ($repairs as $repair) {
-                        if ($dt->id == $repair->dt_code) {
-                            $nbrR = $nbrR + 1;
-                            $a = new DateTime($repair->intervention_date);
-                            $b = new DateTime($repair->end_date);
-                            $c = $c + ($a->diff($b))->format('%a');
-                            $hours = $hours + (($c - 1) * 8);
-                            $t1 = $repair->end_time;
-                            $t1 = substr($t1, 0, 2);
-                            $hours = $hours + (int)$t1 - 8;
+
+                        $created_date = new Date($dt->created_at);
+                        if ($created_date >= $date1_ && $created_date <= $date2_) {
+                            if ($dt->id == $repair->dt_code) {
+                                $nbrR = $nbrR + 1;
+                                $a = new DateTime($repair->intervention_date);
+                                $b = new DateTime($repair->end_date);
+                                $c = $c + ($a->diff($b))->format('%a');
+                                $hours = $hours + (($c - 1) * 8);
+                                $t1 = $repair->end_time;
+                                $t1 = substr($t1, 0, 2);
+                                $hours = $hours + (int)$t1 - 8;
+                            }
                         }
                     }
                 }
@@ -144,31 +172,42 @@ class PanneController extends Controller
                     $nbrR = 1;
                 }
                 $hours = number_format((float)$hours / $nbrR, 2, '.', '');
-                if($hours !=0){   $Thours = number_format((float)1 / $hours, 2, '.', '');}
-                else{ $Thours=0;}
+                if ($hours != 0) {
+                    $Thours = number_format((float)1 / $hours, 2, '.', '');
+                } else {
+                    $Thours = 0;
+                }
+                $hours = $Thours;
 
-
-                return view('Kpis.pannes.MTTR', compact('hours', 'MTTRyear', 'MTTRmonth', 'vehicule', 'option_type', 'Thours'));
+                return view('Kpis.pannes.MTTR', compact('date1','date2','hours',   'vehicule', 'option_type', 'Thours'));
             }
 
-            if ($MTBFyear != '') {
-                $dtsMTBF = Dt::whereYear('created_at', $MTBFyear)->where('vehicule_id', '=', $id)->count();
-                $missionMTBF = Mission::whereYear('created_at', $MTBFyear)->where('vehicle_id', '=', $id)->get();
+            if ($type== 'MTBF') {
+                $dtsMTBF = Dt::whereYear('created_at', $MTBFyear)->where('vehicle_id', '=', $id)->count();
+                $missionsMTBF = Mission::all()->where('vehicle_id', '=', $id);
                 $daysV = 0;
-                foreach ($missionMTBF as $mission) {
-                    $a = new DateTime($mission->end_date);
-                    $b = new DateTime($mission->start_date);
-                    $daysV = $daysV + ($a->diff($b))->format('%a');
-                }
+
+                foreach ($dts as $dt) {
+                    foreach ($missionsMTBF as $mission) {
+
+                        $created_date = new Date($dt->created_at);
+                        $created_date2 = new Date($mission->created_at);
+                        if ($created_date >= $date1_ && $created_date <= $date2_) {
+                            $a = new DateTime($mission->end_date);
+                            $b = new DateTime($mission->start_date);
+                            $daysV = $daysV + ($a->diff($b))->format('%a');
+                        }}
+
                 if ($dtsMTBF == 0) {
                     $dtsMTBF = 1;
                 }
                 $daysV = number_format((float) $daysV / $dtsMTBF, 2, '.', '');
-                return view('Kpis.pannes.MTBF', compact('MTBFyear', 'vehicule', 'option_type', 'daysV'));
+
+                return view('Kpis.pannes.MTBF', compact('date1','date2', 'vehicule', 'option_type', 'daysV'));
             }
 
             if ($yearTF != '' && $monthTF != '') {
-                $dtsMTBF = Dt::whereYear('created_at', $yearTF)->whereMonth('created_at', $monthTF)->where('vehicule_id', '=', $id)->count();
+                $dtsMTBF = Dt::whereYear('created_at', $yearTF)->whereMonth('created_at', $monthTF)->where('vehicle_id', '=', $id)->count();
                 $missionMTBF = Mission::whereYear('start_date', $yearTF)->whereMonth('start_date', $monthTF)->where('vehicle_id', '=', $id)->get();
 
                 $daysV = 0;
@@ -189,14 +228,14 @@ class PanneController extends Controller
                     $TF = number_format((float)1 / $daysV, 2, '.', '');
                 }
 
-                return view('Kpis.pannes.TF', compact('yearTF', 'monthTF', 'vehicule', 'option_type', 'TF'));
+                return view('Kpis.pannes.TF', compact('date1','date2',  'vehicule', 'option_type', 'TF'));
             }
 
             if ($yearTR != '' && $monthTR != '') {
 
                 $c = 0;
                 $hours = 0;
-                $dts = Dt::whereYear('created_at', $yearTR)->whereMonth('created_at', $monthTR)->where('vehicule_id', '=', $id)->get();
+                $dts = Dt::whereYear('created_at', $yearTR)->whereMonth('created_at', $monthTR)->where('vehicle_id', '=', $id)->get();
                 $repairs = Repair::all();
                 $nbrR = 0;
                 foreach ($dts as $dt) {
@@ -219,13 +258,17 @@ class PanneController extends Controller
                 }
                 $hours = number_format((float)$hours / $nbrR, 2, '.', '');
 
-                if($hours !=0){   $Thours = number_format((float)1 / $hours, 2, '.', '');}
-                else{ $Thours=0;}
+                if ($hours != 0) {
+                    $Thours = number_format((float)1 / $hours, 2, '.', '');
+                } else {
+                    $Thours = 0;
+                }
+                $hours = number_format((float)$Thours / $nbrR, 2, '.', '');
 
-                return view('Kpis.pannes.TR', compact('hours', 'yearTR', 'monthTR', 'vehicule', 'option_type', 'Thours'));
+                return view('Kpis.pannes.TR', compact('date1','date2','hours',  'vehicule', 'option_type', 'Thours'));
             }
             if ($yearMP != '') {
-                $dts = Dt::whereYear('created_at', $yearMP)->where('vehicule_id', '=', $id)->count();
+                $dts = Dt::whereYear('created_at', $yearMP)->where('vehicle_id', '=', $id)->count();
                 $missionMP = Mission::whereYear('start_date', $yearMP)->where('vehicle_id', '=', $id)->get();
 
                 $daysV = 0;
@@ -240,7 +283,10 @@ class PanneController extends Controller
                 } else {
                     $MP = $dts / $daysV;
                 }
-                return view('Kpis.pannes.MP', compact('yearMP', 'vehicule', 'option_type', 'MP'));
+
+                $hours = number_format((float)$MP, 2, '.', '');
+
+                return view('Kpis.pannes.MP', compact('date1','date2','vehicule', 'option_type', 'MP'));
             }
         }
 
@@ -274,7 +320,7 @@ class PanneController extends Controller
                 }
                 $hours = number_format((float)$hours / $nbrR, 2, '.', '');
 
-                return view('Kpis.pannes.MTTR', compact('hours', 'MTTRyear', 'MTTRmonth', 'machine', 'option_type'));
+                return view('Kpis.pannes.MTTR', compact('date1','date2','hours', 'machine', 'option_type'));
             }
             if ($yearTR != '' && $monthTR != '') {
                 $c = 0;
@@ -301,12 +347,15 @@ class PanneController extends Controller
                     $nbrR = 1;
                 }
                 $hours = number_format((float)$hours / $nbrR, 2, '.', '');
-                if($hours !=0){   $Thours = number_format((float)1 / $hours, 2, '.', '');}
-                else{ $Thours=0;}
+                if ($hours != 0) {
+                    $Thours = number_format((float)1 / $hours, 2, '.', '');
+                } else {
+                    $Thours = 0;
+                }
 
 
 
-                return view('Kpis.pannes.TR', compact('hours', 'yearTR', 'monthTR', 'machine', 'option_type', 'Thours'));
+                return view('Kpis.pannes.TR', compact('date1','date2','hours', 'machine', 'option_type', 'Thours'));
             }
             if ($MTBFyear != '') {
                 $dtsMTBF = DtMaterial::whereYear('created_at', $MTBFyear)->where('mm_id', '=', $id)->count();
@@ -322,7 +371,7 @@ class PanneController extends Controller
                 }
 
                 $daysV = number_format((float)$daysV / $dtsMTBF, 2, '.', '');
-                return view('Kpis.pannes.MTBF', compact('MTBFyear', 'machine', 'option_type', 'daysV'));
+                return view('Kpis.pannes.MTBF', compact('date1','date2','machine', 'option_type', 'daysV'));
             }
         }
         if ($option_type == 'Staff') {
@@ -382,7 +431,7 @@ class PanneController extends Controller
                     $Thours = number_format((float) 1 / $hours, 2, '.', '');
                 }
 
-                return view('Kpis.pannes.MTTR', compact('hours', 'MTTRyear', 'MTTRmonth', 'staff', 'option_type', 'Thours'));
+                return view('Kpis.pannes.MTTR', compact('date1','date2','hours',   'staff', 'option_type', 'Thours'));
             }
             if ($yearTR != '' && $monthTR != '') {
                 $staff = Staff::find($id);
@@ -441,7 +490,7 @@ class PanneController extends Controller
                     $Thours = number_format((float) 1 / $hours, 2, '.', '');
                 }
 
-                return view('Kpis.pannes.TR', compact('hours', 'yearTR', 'monthTR', 'staff', 'option_type', 'Thours'));
+                return view('Kpis.pannes.TR', compact('hours' ,'date1','date2','staff', 'option_type', 'Thours'));
             }
         }
     }

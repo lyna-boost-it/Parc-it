@@ -27,7 +27,7 @@
 
 
                             <div class="card-header">
-                                <h5 class="title">{{ __('Créer une amande ') }}</h5>
+                                <h5 class="title">{{ __('Créer une amende ') }}</h5>
                             </div>
 
 

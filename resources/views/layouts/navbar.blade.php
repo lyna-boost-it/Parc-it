@@ -214,7 +214,7 @@
                                     style="right: 60px;" href="{{ route('ParkManager.cps.index') }}">
 
 
-                                    Pieces Consommés </a>
+                                    Pieces Consommées </a>
                             </li>
 
 
@@ -230,7 +230,7 @@
 
                         <a href="javascript:;" class="dropdown-toggle" style="font-size: 14px">
                             <span class="micon fa fa-edit"></span><span class="mtext">
-                                <b> Sanctions et Amandes</b></span>
+                                <b> Sanctions et Amendes</b></span>
                      </a>
                         <ul class="submenu">
 
@@ -240,7 +240,7 @@
                                     style="right: 60px;" href="{{ route('ParkManager.amandes.index') }}">
 
 
-                                    Gestion des Amandes</a>
+                                    Gestion des Amendes</a>
                             </li>
 
 
@@ -352,13 +352,7 @@
                                 <b> KPI's Carburant</b></b></a>
                         </li>
 
-                        <li>
-                            <a class="  {{ Request::is('*Kpis/liquids*') ? 'active' : '' }}" style="right: 50px;"
-                                href="{{ route('Kpis.liquids.index') }}">
-
-
-                                <b> KPI's Liquide & Lubrifiant</b> </a>
-                        </li>
+             
                         <li>
                             <a class="  {{ Request::is('*Kpis/pieces*') ? 'active' : '' }}" style="right: 50px;"
                                 href="{{ route('Kpis.pieces.index') }}">

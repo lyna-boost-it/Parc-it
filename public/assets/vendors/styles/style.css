@@ -3980,3 +3980,21 @@ color: #243b50;
 font-size: 14px;
     text-align: right;
 }
+
+
+.Orange-text-for-titles{
+    color: #f06331;
+    font-size: 30px;
+    font-weight: 600;
+}
+.Orange-text-for-big-text{
+    color: #f06331;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.Orange-text-for-p{
+    color: #f06331;
+    font-size: 18px;
+    font-weight: 600;
+}

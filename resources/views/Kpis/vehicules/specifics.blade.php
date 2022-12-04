@@ -119,58 +119,8 @@
 
 
                                 <div class="weight-600 font-30 text-orange">Taux d'utilisation du véhicule:
-                                    {{ $vehicule->marticule }}
-                                    par conducteur dans @switch($month)
-                                        @case(1)
-                                            Janvier
-                                        @break
-
-                                        @case(2)
-                                            Février
-                                        @break
-
-                                        @case(3)
-                                            Mars
-                                        @break
-
-                                        @case(4)
-                                            Avril
-                                        @break
-
-                                        @case(5)
-                                            Mai
-                                        @break
-
-                                        @case(6)
-                                            Juin
-                                        @break
-
-                                        @case(7)
-                                            Juillet
-                                        @break
-
-                                        @case(8)
-                                            Aout
-                                        @break
-
-                                        @case(9)
-                                            Septembre
-                                        @break
-
-                                        @case(10)
-                                            Octobre
-                                        @break
-
-                                        @case(11)
-                                            Novembre
-                                        @break
-
-                                        @case(12)
-                                            Décembre
-                                        @break
-
-                                        @default
-                                    @endswitch {{ $year }}
+                                    {{ $vehicule->marticule }} <br>
+                                    du {{ $date1 }} au {{ $date2 }}
 
                                 </div>
                             </h4>
@@ -228,7 +178,7 @@
 
                                     <tbody>
 
-                                        @foreach ($drivers as $driver)
+                                        @foreach ($participants as $driver)
                                             @php
                                                 $i = $i + 1;
                                             @endphp

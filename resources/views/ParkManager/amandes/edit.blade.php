@@ -25,7 +25,7 @@
                         <div class="card">
 
                             <div class="card-header">
-                                <h5 class="title">{{ __('Modifier une amande ') }}</h5>
+                                <h5 class="title">{{ __('Modifier une amende ') }}</h5>
                                 <br><h6>Pour: {{ $driver->name }} {{ $driver->last_name }}, Fonction: {{ $driver->function }}</h6>
                             </div>
                             <div class="card">

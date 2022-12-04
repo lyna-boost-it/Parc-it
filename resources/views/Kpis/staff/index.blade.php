@@ -42,78 +42,6 @@
                 </div>
 
 
-                <div class="xs-pd-20-10 pd-ltr-20">
-
-
-
-                    <div class="card-box pd-20 height-100-p mb-30">
-
-
-
-                        <form action="{{ route('Kpis.staff.create') }}" method="get">
-
-                            @csrf
-
-
-                            <label class="col-md-3 col-form-label" style=" display: block; font-size: 20px;"> Taux des
-                                absences
-                                durant:</label>
-
-
-                            <div class="form-group" style=" display: inline-block;">
-                                <select id="month" type="text"
-                                    class="form-control select2 @error('month')
-                            is-invalid @enderror"
-                                    name="month" required autocomplete="month" autofocus>
-                                    <option value="" disabled selected>mois</option>
-
-                                    <option value="1">Janvier </option>
-                                    <option value="2">Février </option>
-                                    <option value="3">Mars</option>
-                                    <option value="4">Avril</option>
-                                    <option value="5">Mai</option>
-                                    <option value="6">Juin </option>
-                                    <option value="7">Juillet </option>
-                                    <option value="8">Aout </option>
-                                    <option value="9">Septembre </option>
-                                    <option value="10">Octobre </option>
-                                    <option value="11">Novembre </option>
-                                    <option value="12">Décembre </option>
-
-
-                                </select>
-                            </div>
-
-
-
-
-                            <div class="form-group" style=" display: inline-block;">
-                                <input type="number" max="2090" min="2000" name="year" class="form-control"
-                                    placeholder="année">
-                            </div>
-
-
-
-
-
-
-
-                            <button type="submit" class="btn btn-info btn-round">{{ __('Rechercher') }}</button>
-
-
-
-                        </form>
-
-
-
-
-
-
-
-                    </div>
-
-                </div>
-
 
 
 
@@ -282,104 +210,72 @@
                                                 </td>
                                                 <td>
                                                     <div class="dropdown">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                                                         <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
                                                             href="#" role="button" data-toggle="dropdown">
                                                             <i class="dw dw-more"></i>
                                                         </a>
                                                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
-                                                            style="width: 400px;">
-                                                            <form style=" left:-10%;"
+                                                            style="width: 650px;">
+                                                            <form
                                                                 action="{{ route('Kpis.staff.show', $staff->id) }}"
                                                                 method="get" class="dropdown-item">
                                                                 @csrf
                                                                 <button type="submit"
-                                                                    class="btn btn-outline-primary btn-round">{{ __('Recherche') }}</button>
+                                                                    class="btn btn-outline-primary btn-round">{{ __('Stat') }}</button>
 
-                                                                <div class="form-group"
-                                                                    style=" display: inline-block;">
-                                                                    <select id="month" type="text"
-                                                                        class="form-control select2 @error('month')
-                                                                    is-invalid @enderror"
-                                                                        name="month" required autocomplete="month"
-                                                                        autofocus>
-                                                                        <option value="" disabled selected>
-                                                                            mois
-                                                                        </option>
-                                                                        <option value="1">Ja </option>
-                                                                        <option value="2">Fév </option>
-                                                                        <option value="3">Mar</option>
-                                                                        <option value="4">Avr</option>
-                                                                        <option value="5">Mai</option>
-                                                                        <option value="6">Jun </option>
-                                                                        <option value="7">Jul </option>
-                                                                        <option value="8">Aou </option>
-                                                                        <option value="9">Sep </option>
-                                                                        <option value="10">Oct </option>
-                                                                        <option value="11">Nov </option>
-                                                                        <option value="12">Déc </option>
+                                                                    <div class="form-group" style=" display: inline-block;">
+                                                                        Du
+                                                                     </div>
+                                                                     <input type="hidden" value="stat" id="type"
+                                                                     name="type">
 
-
-                                                                    </select>
-                                                                </div>
-                                                                <div class="form-group"
-                                                                    style=" display: inline-block;">
-                                                                    <input type="number" max="2090"
-                                                                        min="2000" name="year"
-                                                                        class="form-control" placeholder="année">
-                                                                </div>
+                                                                         <div class="form-group" style=" display: inline-block;">
+                                                                         <input type="date" style="width: 200px"
+                                                                         name="date1" class="form-control"
+                                                                         placeholder="Du">
+                                                                     </div>
+                                                                     <div class="form-group" style=" display: inline-block;">
+                                                                        Au
+                                                                     </div>
+                                                                     <div class="form-group" style=" display: inline-block;">
+                                                                         <input type="date"style="width: 200px"
+                                                                             name="date2" class="form-control"
+                                                                             placeholder="Au">
+                                                                     </div>
 
 
 
                                                             </form>
-                                                            <form action="{{ route('Kpis.staff.create') }}" method="get">
 
+
+
+
+                                                            <form action="{{  route('Kpis.staff.show', $staff->id) }}"
+                                                                method="get" class="dropdown-item">
                                                                 @csrf
                                                                 <button type="submit"
-                                                                class="btn btn-outline-primary btn-round">{{ __('Stat') }}</button>
-                                                                <input hidden name="staff_id"  id="staff_id" value="{{ $staff->id }}"
-                                                                >
-
-
+                                                                    class="btn btn-outline-primary btn-round">{{ __('Absences ') }}</button>
 
                                                                 <div class="form-group" style=" display: inline-block;">
-                                                                    <select id="monthStaff" type="text"
-                                                                        class="form-control select2 @error('monthStaff')
-                                                                    is-invalid @enderror"
-                                                                        name="monthStaff" autocomplete="monthStaff" autofocus>
-                                                                        <option value="" disabled selected>mois</option>
-
-                                                                        <option value="1">Janvier </option>
-                                                                        <option value="2">Février </option>
-                                                                        <option value="3">Mars</option>
-                                                                        <option value="4">Avril</option>
-                                                                        <option value="5">Mai</option>
-                                                                        <option value="6">Juin </option>
-                                                                        <option value="7">Juillet </option>
-                                                                        <option value="8">Aout </option>
-                                                                        <option value="9">Septembre </option>
-                                                                        <option value="10">Octobre </option>
-                                                                        <option value="11">Novembre </option>
-                                                                        <option value="12">Décembre </option>
-                                                                    </select>
+                                                                   Du
+                                                                </div>
+                                                                    <div class="form-group" style=" display: inline-block;">
+                                                                    <input type="date" style="width: 200px"
+                                                                    name="date1" class="form-control"
+                                                                    placeholder="Du">
                                                                 </div>
                                                                 <div class="form-group" style=" display: inline-block;">
-                                                                    <input type="number" max="2090" min="2000" name="yearStaff"
-                                                                        class="form-control" placeholder="année">
+                                                                   Au
                                                                 </div>
+                                                                <div class="form-group" style=" display: inline-block;">
+                                                                    <input type="date"style="width: 200px"
+                                                                        name="date2" class="form-control"
+                                                                        placeholder="Au">
+                                                                </div>
+
+                                                                <input type="hidden" value="abs" id="type"
+                                                                    name="type">
+
                                                             </form>
                                                         </div>
                                                     </div>

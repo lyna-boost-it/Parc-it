@@ -40,59 +40,60 @@
                         </div>
                     </div>
                 </div>
+                <div class="card">
+                    <form action="{{ route('Kpis.vehicules.create') }}" method="get">
 
+                        @csrf
+                        <div class="weight-100 font-30 text-grey"> L'état des Véhicules:
 
-                <div class="xs-pd-20-10 pd-ltr-20">
-                    <div class="card-box pd-20 height-100-p mb-30">
-                        <div class="row align-items-center">
-                            <div class="weight-600 font-30 text-grey">L'état des Véhicules :
-
-                            </div>
-                            <div class="col-md-8">
-                                <form action="{{ route('Kpis.vehicules.create') }}" method="get">
-                                    @csrf
-
-                                    <div class="form-group" style=" display: inline-block;" id="specificDiv">
-
-                                        <div class="form-group" style=" display: inline-block;">
-                                            <select id="month" type="text"
-                                                class="form-control select2 @error('month')
-                                                is-invalid @enderror"
-                                                name="month" required autocomplete="month" autofocus>
-                                                <option value="" disabled selected>mois</option>
-                                                <option value="1">Janvier </option>
-                                                <option value="2">Février </option>
-                                                <option value="3">Mars</option>
-                                                <option value="4">Avril</option>
-                                                <option value="5">Mai</option>
-                                                <option value="6">Juin </option>
-                                                <option value="7">Juillet </option>
-                                                <option value="8">Aout </option>
-                                                <option value="9">Septembre </option>
-                                                <option value="10">Octobre </option>
-                                                <option value="11">Novembre </option>
-                                                <option value="12">Décembre </option>
-
-
-                                            </select>
-                                        </div>
-                                        <div class="form-group" style=" display: inline-block;">
-                                            <input type="number" max="2090" min="2000" name="year"
-                                                class="form-control" placeholder="année">
-                                        </div>
-                                        <button type="submit"
-                                            class="btn btn-info btn-round">{{ __('Rechercher') }}</button>
-
-
-
-                                </form>
-                            </div>
 
                         </div>
 
 
-                    </div>
+
+
+
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="col-md-3 col-form-label">{{ __('Du') }}</label>
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                        <input type="date" name="date1" class="form-control" placeholder="Du"
+                                            required>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <input value="etat" name="type" hidden>
+
+                            <div class="col-md-4">
+                                <label class="col-md-3 col-form-label">{{ __('Au') }}</label>
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                        <input type="date" name="date2" class="form-control" placeholder="Au"
+                                            required>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-4">
+                                <div class="form-group" style=" display: inline-block;">
+                                    <button type="submit"
+                                        class="btn btn-info btn-round">{{ __('Rechercher') }}</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </form>
                 </div>
+
+
 
             </div>
 
@@ -149,7 +150,7 @@
                                                     <i class="dw dw-more"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
-                                                    style="width: 390px;">
+                                                    style="width: 650px;">
 
                                                     <form action="{{ route('Kpis.vehicules.show', $vehicule->id) }}"
                                                         method="get" class="dropdown-item">
@@ -176,33 +177,20 @@
                                                             class="btn btn-outline-primary btn-round">{{ __('Taux d\'utilisation') }}</button>
 
                                                         <div class="form-group" style=" display: inline-block;">
-                                                            <select id="month" type="text"
-                                                                class="form-control select2 @error('month')
-                                                                        is-invalid @enderror"
-                                                                name="month" required autocomplete="month"
-                                                                autofocus>
-                                                                <option value="" disabled selected>mois
-                                                                </option>
-                                                                <option value="1">Ja </option>
-                                                                <option value="2">Fév </option>
-                                                                <option value="3">Mar</option>
-                                                                <option value="4">Avr</option>
-                                                                <option value="5">Mai</option>
-                                                                <option value="6">Jun </option>
-                                                                <option value="7">Jul </option>
-                                                                <option value="8">Aou </option>
-                                                                <option value="9">Sep </option>
-                                                                <option value="10">Oct </option>
-                                                                <option value="11">Nov </option>
-                                                                <option value="12">Déc </option>
-
-
-                                                            </select>
+                                                           Du
+                                                        </div>
+                                                            <div class="form-group" style=" display: inline-block;">
+                                                            <input type="date" style="width: 200px"
+                                                            name="date1" class="form-control"
+                                                            placeholder="Du">
                                                         </div>
                                                         <div class="form-group" style=" display: inline-block;">
-                                                            <input type="number" max="2090" min="2000"
-                                                                name="year" class="form-control"
-                                                                placeholder="année">
+                                                           Au
+                                                        </div>
+                                                        <div class="form-group" style=" display: inline-block;">
+                                                            <input type="date"style="width: 200px"
+                                                                name="date2" class="form-control"
+                                                                placeholder="Au">
                                                         </div>
 
                                                         <input type="hidden" value="used_time" id="used_time"

@@ -219,61 +219,7 @@
                 </div>
             </div>
         </div>
-        <div class="user-notification">
-            <div class="dropdown" style=" left:-10%;">
-                <a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
-
-                    <span class="hovertext" data-hover="Pièce consommée">
-                            <i class="fa fa-puzzle-piece  " aria-hidden="true"style="color: grey" ></i>
-                    </span>
-
-                    <b>
-                        {{ Auth::user()->notifications->where('type','=','App\Notifications\CpMNotification')->count()+
-                        Auth::user()->notifications->where('type','=','App\Notifications\CpVNotification')->count() }}</b>
-                    <span class="badge  "></span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <div class="notification-list ">
-                        <ul>
-
-                            <li>
-
-                                <a href="{{ route('markAllRead') }}">
-                                    <h3 style="display:inline"> Tout marquer
-                                    </h3>
-                                    <p>
-                                        comme lu
-                                    </p>
-
-                                </a>
-                            </li>
-                            @foreach (Auth::user()->notifications as $notification)
-                                @if ($notification->type == 'App\Notifications\CpMNotification' ||
-                                    $notification->type == 'App\Notifications\CpVNotification')
-                                    <li
-                                        @if ($notification->read_at == null) style="background-color:rgb(238, 173, 173)" @endif>
-                                        <a href="{{ route('markAsRead', $notification->id) }} ">
-                                            <h3 style="display:inline">
-                                                @if ($notification->read_at != null)
-                                                    ✅
-                                                @else
-                                                    <span class="fa fa-circle" style="color: red">
-                                                    </span>
-                                                @endif {{ $notification->data['from'] }}
-                                            </h3>
-                                            <p>
-                                                {{ $notification->data['details'] }}
-                                            </p>
-
-                                        </a>
-                                    </li>
-                                @endif
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+       
 
 
         <div class="user-notification">

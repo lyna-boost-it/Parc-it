@@ -13,6 +13,8 @@ use App\RepairsMaterial;
 use App\Vehicule;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Date;
+
 class PiecesController extends Controller
 {
     /**
@@ -63,16 +65,33 @@ class PiecesController extends Controller
      */
     public function create(Request $request)
     {
-        $month=$request->month;
-        $year=$request->year;
+        $date1 = $request->date1;
+        $date2 = $request->date2;
+        $piecesM =RepairM_pieces ::all();
+        $piecesV =Repair_pieces ::all();
+        $piecesVp=0;
+        $piecesMp=0;
+        $piecesVprice=0;
+        $piecesMprice=0;
+        $date1_ = new Date($date1);
+        $date2_ = new Date($date2);
 
-        $piecesVprice =RepairM_pieces ::whereYear('created_at',$year)->whereMonth('created_at',$month)->sum('full_price');
-        $piecesMprice =Repair_pieces ::whereYear('created_at',$year)->whereMonth('created_at',$month)->sum('full_price');
-        $piecesV =RepairM_pieces ::whereYear('created_at',$year)->whereMonth('created_at',$month)->sum('quantity');
-        $piecesM =Repair_pieces ::whereYear('created_at',$year)->whereMonth('created_at',$month)->sum('quantity');
-
+        foreach($piecesV as $pieceV){
+            $created_date = new Date($pieceV->created_at);
+            if ($created_date >= $date1_ && $created_date <= $date2_) {
+                $piecesVprice=$piecesVprice+$pieceV->price;
+                $piecesVp=$piecesVp+$pieceV->quantity;
+            }
+        }
+        foreach($piecesM as $pieceM){
+            $created_date = new Date($pieceM->created_at);
+            if ($created_date >= $date1_ && $created_date <= $date2_) {
+                $piecesMprice=$piecesMprice+$pieceM->price;
+                $piecesMp=$piecesMp+$pieceM->quantity;
+            }
+        }
         return view('Kpis.pieces.stats',
-        compact( 'month','year','month','piecesVprice','piecesMprice','piecesV','piecesM' ));
+        compact( 'date1','date2','piecesVprice','piecesMprice','piecesVp','piecesMp' ));
     }
 
     /**

@@ -21,7 +21,7 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="title">
-                                <h3 style="color:#EE643A; ">Gestion des Amandes</h4>
+                                <h3 style="color:#EE643A; ">Gestion des Amendes</h4>
                             </div>
 
                         </div>
@@ -42,7 +42,7 @@
   text-decoration: none; @endif
                         "
                             href="{{ route('ParkManager.amandes.create') }}" class="btn btn-sm  ">
-                            Créer une amande
+                            Créer une amende
                         </a>
                     </div>
                     <div class="pb-20">

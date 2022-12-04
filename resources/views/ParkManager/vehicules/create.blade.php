@@ -184,7 +184,7 @@
 
 
                                             <input type="file" id="docpicker" name="path"
-                                                accept=".doc,.xml,.pdf">
+                                                accept=".doc,.xml,.pdf" required>
 
                                         </div>
                                     </div>

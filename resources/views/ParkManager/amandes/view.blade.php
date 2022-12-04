@@ -20,7 +20,7 @@
                         <div class="page-header">
                             <div class="row">
 
-                                <h3>Information d'amande : </h3>
+                                <h3>Information d'amende : </h3>
 
 
                             </div>

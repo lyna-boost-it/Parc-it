@@ -29,59 +29,9 @@
 
 
 
-                            <div class="weight-600 font-30 text-orange"> Consomation des Pièces en Mois de
+                            <div class="Orange-text-for-titles"> Consomation des Pièces: <br> du {{ $date1 }} au {{ $date2 }}.
                                 <b>
-                                    @switch($month)
-                                        @case(1)
-                                            Janvier
-                                        @break
 
-                                        @case(2)
-                                            Février
-                                        @break
-
-                                        @case(3)
-                                            Mars
-                                        @break
-
-                                        @case(4)
-                                            Avril
-                                        @break
-
-                                        @case(5)
-                                            Mai
-                                        @break
-
-                                        @case(6)
-                                            Juin
-                                        @break
-
-                                        @case(7)
-                                            Juillet
-                                        @break
-
-                                        @case(8)
-                                            Aout
-                                        @break
-
-                                        @case(9)
-                                            Septembre
-                                        @break
-
-                                        @case(10)
-                                            Octobre
-                                        @break
-
-                                        @case(11)
-                                            Novembre
-                                        @break
-
-                                        @case(12)
-                                            Décembre
-                                        @break
-
-                                        @default
-                                    @endswitch {{ $year }}
                                 </b>
                             </div>
                         </h4>
@@ -106,7 +56,7 @@
                                 <h1 class="text-sm uppercase text-gray-500 leading-tight" style="font-size: 2.5em;">
                                     Consomation des Pièces pour VEHICULES: </h1>
                                 <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">
-                                    {{ $piecesV }} P <br> {{ $piecesVprice }}DA</h3>
+                                    {{ $piecesVp }} P <br> {{ $piecesVprice }}DA</h3>
 
                             </div>
 
@@ -133,7 +83,7 @@
                                 <h1 class="text-sm uppercase text-gray-500 leading-tight" style="font-size: 2.5em;">
                                     Consomation des Pièces pour MATÉRIELS MOTORISÉS: </h1>
                                 <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">
-                                    {{ $piecesM }} P <br> {{ $piecesMprice }} DA</h3>
+                                    {{ $piecesMp }} P <br> {{ $piecesMprice }} DA</h3>
 
                             </div>
 

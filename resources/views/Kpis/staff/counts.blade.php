@@ -38,58 +38,9 @@
 
 
                             <div class="weight-600 font-30 text-orange">Récupération et heures
-                                supplémentaires en Mois de: <b>
-                                    @switch($month)
-                                        @case(1)
-                                            Janvier
-                                        @break
+                                supplémentaires pour {{ $staff->name }} {{ $staff->last_name }}:
+                                <br>du {{ $date1 }} au {{ $date2 }} <b>
 
-                                        @case(2)
-                                            Février
-                                        @break
-
-                                        @case(3)
-                                            Mars
-                                        @break
-
-                                        @case(4)
-                                            Avril
-                                        @break
-
-                                        @case(5)
-                                            Mai
-                                        @break
-
-                                        @case(6)
-                                            Juin
-                                        @break
-
-                                        @case(7)
-                                            Juillet
-                                        @break
-
-                                        @case(8)
-                                            Aout
-                                        @break
-
-                                        @case(9)
-                                            Septembre
-                                        @break
-
-                                        @case(10)
-                                            Octobre
-                                        @break
-
-                                        @case(11)
-                                            Novembre
-                                        @break
-
-                                        @case(12)
-                                            Décembre
-                                        @break
-
-                                        @default
-                                    @endswitch {{ $year }}
 
                                 </b>  </div>
                         </h4>

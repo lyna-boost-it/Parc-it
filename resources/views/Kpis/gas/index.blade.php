@@ -40,107 +40,60 @@
                         </div>
                     </div>
                 </div>
+                <div class="card">
+                    <form action="{{ route('Kpis.gas.create') }}" method="get">
 
-                <div class="xs-pd-20-10 pd-ltr-20">
-                    <div class="card-box pd-20 height-100-p mb-30">
-                        <div class="row align-items-center">
-                            <div class="weight-100 font-30 text-grey" style=" display: inline-block;">Taux de consommation de Carburant pour les
-                                véhicules par <b>Litre</b> dans :
-                            </div>
-                            <div class="col-md-8">
-                                <form action="{{ route('Kpis.gas.create') }}" method="get">
-                                    @csrf
-                                    <label class="col-md-3 col-form-label">{{ __('choisissez un mois') }}</label>
-                                    <div class="col-md-9">
-                                        <div class="form-group " style=" display: inline-block;">
-                                            <select id="month" type="text" style="width: 300px"
-                                                class="form-control select2 @error('month')
-                                                                                                    is-invalid @enderror"
-                                                name="month" required autocomplete="month" autofocus>
-                                                <option value="" disabled selected>mois</option>
-
-                                                <option value="1">Janvier </option>
-                                                <option value="2">Février </option>
-                                                <option value="3">Mars</option>
-                                                <option value="4">Avril</option>
-                                                <option value="5">Mai</option>
-                                                <option value="6">Juin </option>
-                                                <option value="7">Juillet </option>
-                                                <option value="8">Aout </option>
-                                                <option value="9">Septembre </option>
-                                                <option value="10">Octobre </option>
-                                                <option value="11">Novembre </option>
-                                                <option value="12">Décembre </option>
-
-
-                                            </select>
-                                        </div>
-                                        <div class="form-group " style=" display: inline-block;">
-                                            <button type="submit"
-                                                class="btn btn-info btn-round">{{ __('Rechercher') }}</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-box pd-20 height-100-p mb-30">
-                        <div class="row align-items-center">
-                            <div class="weight-100 font-30 text-grey">Taux de consommation de Carburant pour les
-                                véhicules par <b>DA</b> dans :
-                            </div>
-                            <div class="col-md-8">
-                                <form action="{{ route('Kpis.gas.create') }}" method="get">
-
-                                    @csrf
-
-                                    <label class="col-md-3 col-form-label">{{ __('choisissez un mois') }}</label>
-                                    <div class="col-md-9">
-                                        <div class="form-group"  style=" display: inline-block;">
-                                            <select id="monthDA" type="text" style="width: 300px"
-                                                class="form-control select2 @error('monthDA')
-                                                                                                    is-invalid @enderror"
-                                                name="monthDA" required autocomplete="monthDA" autofocus>
-                                                <option value="" disabled selected>mois</option>
-
-                                                <option value="1">Janvier </option>
-                                                <option value="2">Février </option>
-                                                <option value="3">Mars</option>
-                                                <option value="4">Avril</option>
-                                                <option value="5">Mai</option>
-                                                <option value="6">Juin </option>
-                                                <option value="7">Juillet </option>
-                                                <option value="8">Aout </option>
-                                                <option value="9">Septembre </option>
-                                                <option value="10">Octobre </option>
-                                                <option value="11">Novembre </option>
-                                                <option value="12">Décembre </option>
-
-
-                                            </select>
-
-                                        </div>
-                                        <div class="form-group"  style=" display: inline-block;">
-                                            <button type="submit"
-                                                class="btn btn-info btn-round">{{ __('Rechercher') }}</button>
-
-                                        </div>
-                                    </div>
-
-
-
-
-
-
-                                </form>
-
-                            </div>
+                        @csrf
+                        <div class="weight-100 font-30 text-grey">Taux de consommation de Carburant pour les Véhicules
+                            dans une periode:
 
 
                         </div>
-                    </div>
+
+
+
+
+
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="col-md-3 col-form-label">{{ __('Du') }}</label>
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                        <input type="date" name="date1" class="form-control" placeholder="Du"
+                                            required>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <input value="vehicle" name="type" hidden>
+
+                            <div class="col-md-4">
+                                <label class="col-md-3 col-form-label">{{ __('Au') }}</label>
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                        <input type="date" name="date2" class="form-control" placeholder="Au"
+                                            required>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-4">
+                                <div class="form-group" style=" display: inline-block;">
+                                    <button type="submit"
+                                        class="btn btn-info btn-round">{{ __('Rechercher') }}</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </form>
                 </div>
-
+                <br><br>
                 <div class="row">
 
 
@@ -158,11 +111,11 @@
 
 
 
-<br><br>
+                <br><br>
                 <div class="card-box height-100-p pd-20">
                     <main>
                         <h4 class="font-20 weight-500 mb-10 text-capitalize text-orange">Consommation carburant
-                            pour Véhicule</h4>
+                            pour Véhicules</h4>
 
                         <input id="tab5" type="radio" name="tabsd" checked>
                         <label for="tab5">Personne</label>
@@ -181,7 +134,7 @@
                                         <th>ID</th>
 
                                         <th> Nom Et Prénom</th>
-                                        <th>Pourcentage</th>
+                                        <th>L</th>
 
 
                                     </tr>
@@ -215,7 +168,7 @@
                                                 @endif
                                             @endforeach
                                             <td style="color: orange;">
-                                                {{ number_format(((float) $consume / $totalGas) * 100, 2, '.', '') }}%
+                                                {{$consume  }}L
                                             </td>
                                         </tr>
                                     @endforeach
@@ -233,7 +186,7 @@
                                         <th>ID</th>
 
                                         <th>Unité</th>
-                                        <th>Pourcentage</th>
+                                        <th>L</th>
 
 
                                     </tr>
@@ -269,7 +222,8 @@
                                                 @endforeach
                                             @endforeach
 
-                                            <td style="color: orange;"> {{  number_format( ($c / $totalGas) * 100, 2, ',', ' ')}}%</td>
+                                            <td style="color: orange;">
+                                                {{$c}}L</td>
 
                                         </tr>
                                     @endforeach
@@ -319,59 +273,37 @@
 
                 <div class="card-box pd-20 height-100-p mb-30">
                     <div class="row align-items-center">
-                        <div class="weight-600 font-30 text-grey"> Consommation de Carburant pour matériels motorisés
+                        <div class="Orange-text-for-titles"> Consommation de Carburant pour matériels motorisés:
 
                         </div>
-
-
-
                     </div>
                 </div>
-                <div class="row">
-
-
-                    <div class="col-md-6 mb-20">
-                        <div class="card-box height-100-p pd-20">
-
-
-                            <div class="rounded-lg shadow-sm mb-12">
-                                <div class="rounded-lg bg-white shadow-lg md:shadow-xl relative overflow-hidden">
-                                    <div class="px-3 pt-12 pb-10 text-center relative z-20">
-                                        <h1 class="text-sm uppercase text-gray-500 leading-tight"
-                                            style="font-size: 2.5em;">Consomation totale du Carburant pour les
-                                            matériels motorisés (litre): </h1>
-                                        <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">
-                                            {{ $GasPipesLitter }} Litre</h3>
-
-                                    </div>
-
-
-                                </div>
-                            </div>
-
-                            <div class="rounded-lg shadow-sm mb-4">
-                                <div class="rounded-lg bg-white shadow-lg md:shadow-xl relative overflow-hidden">
-                                    <div class="px-3 pt-8 pb-10 text-center relative z-10">
-                                        <h1 class="text-sm uppercase text-gray-500 leading-tight"
-                                            style="font-size: 2.5em;">Consomation totale du Carburant pour les
-                                            matériels motorisés (DA): </h1>
+                        <div class="rounded-lg shadow-sm mb-12">
+                            <div class="rounded-lg bg-white shadow-lg md:shadow-xl relative overflow-hidden">
+                                <div class="px-3 pt-12 pb-10 text-center relative z-20">
+                                    <h1 class="text-sm uppercase text-gray-500 leading-tight"
+                                        style="font-size: 2.5em;">
+                                        Consomation totale du Carburant pour les
+                                        matériels motorisés:</h1>
+                                    <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">
+                                        {{ $GasPipesLitter }} Litre</h3>
                                         <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">
                                             {{ $GasPipesPrice }} DA</h3>
 
-                                    </div>
-
 
                                 </div>
+
+
                             </div>
-
-
-
-
-
                         </div>
-                    </div>
-                    <div class="col-md-6 mb-20">
-                        <div class="card-box height-100-p pd-20">
+
+
+
+
+
+
+
+                    <div class="card-box height-100-p pd-20">
                             <main>
                                 <h4 class="font-20 weight-500 mb-10 text-capitalize text-orange">Consommation carburant
                                     pour matériels motorisés</h4>
@@ -393,7 +325,7 @@
                                                 <th>ID</th>
 
                                                 <th> Nom Et Prénom</th>
-                                                <th>Pourcentage</th>
+                                                <th>L</th>
 
 
                                             </tr>
@@ -428,9 +360,9 @@
                                                     @endforeach
                                                     <td style="color: orange;">
                                                         @if ($GasPipesLitter != 0)
-                                                            {{ number_format(((float) $consume / $GasPipesLitter) * 100, 2, '.', '') }}%
+                                                            {{ $consume }}L
                                                         @else
-                                                            0%
+                                                            0L
                                                         @endif
 
                                                     </td>
@@ -450,7 +382,7 @@
                                                 <th>ID</th>
 
                                                 <th>Unité</th>
-                                                <th>Pourcentage</th>
+                                                <th>L</th>
 
 
                                             </tr>
@@ -487,11 +419,9 @@
                                                     @endforeach
                                                     <td style="color: orange;">
                                                         @if ($GasPipesLitter != 0)
-
-
-                                                            {{ number_format(( $c / $GasPipesLitter) * 100), 2, '.', '' }}%
+                                                            {{ $c  }}L
                                                         @else
-                                                            0%
+                                                            0L
                                                         @endif
 
                                                     </td>
@@ -508,63 +438,66 @@
 
                             </main>
                         </div>
-                    </div>
-                </div>
 
 
-                <div class="card-box pd-20 height-100-p mb-30">
-                    <div class="row align-items-center">
-                        <div class="weight-100 font-30 text-grey">Taux de consommation de Carburant pour les matériels
-                            motorisés</b> dans :
+<br>
+<br>
+
+                <div class="card">
+                    <form action="{{ route('Kpis.gas.create') }}" method="get">
+
+                        @csrf
+                        <div class="weight-100 font-30 text-grey">Taux de consommation de Carburant pour les matériels motorisés
+                            dans une periode:
+
 
                         </div>
-                        <div class="col-md-8">
-                            <form action="{{ route('Kpis.gas.create') }}" method="get">
 
-                                @csrf
 
-                                <label class="col-md-3 col-form-label">{{ __('choisissez un mois') }}</label>
+
+
+
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="col-md-3 col-form-label">{{ __('Du') }}</label>
                                 <div class="col-md-9">
-                                    <div class="form-group"  style=" display: inline-block;">
-                                        <select id="monthDAm" type="text" style="width: 300px"
-                                            class="form-control select2 @error('monthDAm')
-                                                                                        is-invalid @enderror"
-                                            name="monthDAm" required autocomplete="monthDAm" autofocus>
-                                            <option value="" disabled selected>mois</option>
-
-                                            <option value="1">Janvier </option>
-                                            <option value="2">Février </option>
-                                            <option value="3">Mars</option>
-                                            <option value="4">Avril</option>
-                                            <option value="5">Mai</option>
-                                            <option value="6">Juin </option>
-                                            <option value="7">Juillet </option>
-                                            <option value="8">Aout </option>
-                                            <option value="9">Septembre </option>
-                                            <option value="10">Octobre </option>
-                                            <option value="11">Novembre </option>
-                                            <option value="12">Décembre </option>
-
-
-                                        </select>
+                                    <div class="form-group">
+                                        <input type="date" name="date1" class="form-control" placeholder="Du"
+                                            required>
                                     </div>
-                                    <div class="form-group"  style=" display: inline-block;">
-                                        <button type="submit"
-                                            class="btn btn-info btn-round">{{ __('Rechercher') }}</button>
 
-                                    </div>
                                 </div>
+                            </div>
+                            <input value="machine" name="type" hidden>
+
+                            <div class="col-md-4">
+                                <label class="col-md-3 col-form-label">{{ __('Au') }}</label>
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                        <input type="date" name="date2" class="form-control" placeholder="Au"
+                                            required>
+                                    </div>
+
+                                </div>
+                            </div>
 
 
+                            <div class="col-md-4">
+                                <div class="form-group" style=" display: inline-block;">
+                                    <button type="submit"
+                                        class="btn btn-info btn-round">{{ __('Rechercher') }}</button>
 
-                            </form>
-
+                                </div>
+                            </div>
                         </div>
 
 
-                    </div>
-                </div>
 
+                    </form>
+                </div>
+                <br>
+<br>
                 <div class="row">
 
 
@@ -695,31 +628,37 @@
             });
         }, 35);
     </script>
-<script type="text/javascript">
- var essenceP = parseInt($("#essenceP").val());
+    <script type="text/javascript">
+        var essenceP = parseInt($("#essenceP").val());
         var gazoleP = parseInt($("#gazoleP").val());
         var gplP = parseInt($("#gplP").val());
-    // Load google charts
-    google.charts.load('current', {'packages':['corechart']});
-    google.charts.setOnLoadCallback(drawChart);
+        // Load google charts
+        google.charts.load('current', {
+            'packages': ['corechart']
+        });
+        google.charts.setOnLoadCallback(drawChart);
 
-    // Draw the chart and set the chart values
-    function drawChart() {
-      var data = google.visualization.arrayToDataTable([
-      ['Consommation de Carburant', 'Par Littre'],
-      ['Essence',essenceP],
-      ['Gazole', gazoleP],
-      ['GPL', gplP],
+        // Draw the chart and set the chart values
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Consommation de Carburant', 'Par Littre'],
+                ['Essence', essenceP],
+                ['Gazole', gazoleP],
+                ['GPL', gplP],
 
-    ]);
+            ]);
 
-      // Optional; add a title and set the width and height of the chart
-      var options = {'title':'consommation de Carburant ', 'width':900, 'height':600};
+            // Optional; add a title and set the width and height of the chart
+            var options = {
+                'title': 'consommation de Carburant ',
+                'width': 900,
+                'height': 600
+            };
 
-      // Display the chart inside the <div> element with id="piechart"
-      var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-      chart.draw(data, options);
-    }
+            // Display the chart inside the <div> element with id="piechart"
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            chart.draw(data, options);
+        }
     </script>
 
 
@@ -815,7 +754,6 @@
             }
         }
     </style>
-
 @else
     <!DOCTYPE html>
     <html lang="en">

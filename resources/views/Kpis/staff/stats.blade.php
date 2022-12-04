@@ -11,7 +11,7 @@
 
 
 
-@if ($month != '')
+@if ($type == 'abs')
 
     <body>
 
@@ -36,58 +36,9 @@
 
 
 
-                                <div class="weight-600 font-30 text-orange">Taux d'absences en Mois de: <b>
-                                        @switch($month)
-                                            @case(1)
-                                                Janvier
-                                            @break
+                                <div class="weight-600 font-30 text-orange">Taux d'absences de {{ $staff->name }} {{ $staff->last_name }}:
+                                    du {{ $date1 }} au {{ $date2 }}<b>
 
-                                            @case(2)
-                                                Février
-                                            @break
-
-                                            @case(3)
-                                                Mars
-                                            @break
-
-                                            @case(4)
-                                                Avril
-                                            @break
-
-                                            @case(5)
-                                                Mai
-                                            @break
-
-                                            @case(6)
-                                                Juin
-                                            @break
-
-                                            @case(7)
-                                                Juillet
-                                            @break
-
-                                            @case(8)
-                                                Aout
-                                            @break
-
-                                            @case(9)
-                                                Septembre
-                                            @break
-
-                                            @case(10)
-                                                Octobre
-                                            @break
-
-                                            @case(11)
-                                                Novembre
-                                            @break
-
-                                            @case(12)
-                                                Décembre
-                                            @break
-
-                                            @default
-                                        @endswitch {{ $year }}
                                     </b> </div>
                             </h4>
 
@@ -110,9 +61,9 @@
                             <div class="rounded-lg bg-white shadow-lg md:shadow-xl relative overflow-hidden">
                                 <div class="px-3 pt-8 pb-10 text-center relative z-10">
                                     <h1 class="text-sm uppercase text-gray-500 leading-tight" style="font-size: 2.5em;">
-                                        Nombre totale de absences:</h1>
+                                        {{ $abs }}%  </h1>
                                     <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">
-                                        {{ $totalAbsences }} absence</h3>
+                                       </h3>
 
                                 </div>
 
@@ -127,31 +78,6 @@
 
 
 
-            <div class="card-box pd-20 height-100-p mb-30">
-                <div class="row align-items-center">
-
-                    <div class="col-md-12">
-
-
-                        <div class="rounded-lg shadow-sm mb-12">
-                            <div class="rounded-lg bg-white shadow-lg md:shadow-xl relative overflow-hidden">
-                                <div class="px-3 pt-12 pb-10 text-center relative z-20">
-                                    <h1 class="text-sm uppercase text-gray-500 leading-tight" style="font-size: 2.5em;">
-                                        Taux des absences:</h1>
-                                    <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">
-                                        {{ ($totalAbsences*30)/100 }}  %</h3>
-
-                                </div>
-
-
-                            </div>
-                        </div>
-
-
-
-                    </div>
-                </div>
-            </div>
 
         </div></div>
 
@@ -186,185 +112,6 @@
 
 
 
-
-@if ($monthStaff != '' && $yearStaff)
-
-    <body>
-
-        @include('layouts.header-bar')
-        @include('layouts.navbar')
-
-
-
-
-        <div class="main-container">
-            <button id="button" class="btn btn-warning btn-round"><span class="fa fa-print  " style="color: #000000">
-            </span> Imprimer</button>
-
-        <div id="makepdf">
-
-            <div class="xs-pd-20-10 pd-ltr-20">
-                <div class="card-box pd-20 height-100-p mb-30">
-                    <div class="row align-items-center">
-
-                        <div class="col-md-8">
-                            <h4 class="font-20 weight-500 mb-10 text-capitalize">
-
-
-
-                                <div class="weight-600 font-30 text-orange">Fiche de Statistique pour
-                                    {{ $staff->name }} {{ $staff->last_name }}: <b>
-                                        @switch($monthStaff)
-                                            @case(1)
-                                                Janvier
-                                            @break
-
-                                            @case(2)
-                                                Février
-                                            @break
-
-                                            @case(3)
-                                                Mars
-                                            @break
-
-                                            @case(4)
-                                                Avril
-                                            @break
-
-                                            @case(5)
-                                                Mai
-                                            @break
-
-                                            @case(6)
-                                                Juin
-                                            @break
-
-                                            @case(7)
-                                                Juillet
-                                            @break
-
-                                            @case(8)
-                                                Aout
-                                            @break
-
-                                            @case(9)
-                                                Septembre
-                                            @break
-
-                                            @case(10)
-                                                Octobre
-                                            @break
-
-                                            @case(11)
-                                                Novembre
-                                            @break
-
-                                            @case(12)
-                                                Décembre
-                                            @break
-
-                                            @default
-                                        @endswitch {{ $yearStaff }}
-                                    </b> </div>
-                            </h4>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card-box pd-20 height-100-p mb-30">
-                <div class="row align-items-center">
-
-                    <div class="col-md-12">
-
-
-
-
-                        <div class="rounded-lg shadow-sm mb-4">
-                            <div class="rounded-lg bg-white shadow-lg md:shadow-xl relative overflow-hidden">
-                                <div class="px-3 pt-8 pb-10 text-center relative z-10">
-                                    <h1 class="text-sm uppercase text-gray-500 leading-tight" style="font-size: 2.5em;">
-                                        Heures passées à travailler en plus: </h1>
-                                    <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">
-                                        {{ $earlyHours }} Heures</h3>
-
-                                </div>
-
-
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <div class="card-box pd-20 height-100-p mb-30">
-                <div class="row align-items-center">
-
-                    <div class="col-md-12">
-
-
-                        <div class="rounded-lg shadow-sm mb-12">
-                            <div class="rounded-lg bg-white shadow-lg md:shadow-xl relative overflow-hidden">
-                                <div class="px-3 pt-12 pb-10 text-center relative z-20">
-                                    <h1 class="text-sm uppercase text-gray-500 leading-tight" style="font-size: 2.5em;">
-                                        Heures manquées (arrivé en retard ou parti de bonne heure): </h1>
-                                    <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">
-                                        {{ $lateHours }} Heures</h3>
-
-                                </div>
-
-
-                            </div>
-                        </div>
-
-
-
-                    </div>
-                </div>
-            </div>
-            <div class="card-box pd-20 height-100-p mb-30">
-                <div class="row align-items-center">
-
-                    <div class="col-md-12">
-
-
-                        <div class="rounded-lg shadow-sm mb-12">
-                            <div class="rounded-lg bg-white shadow-lg md:shadow-xl relative overflow-hidden">
-                                <div class="px-3 pt-12 pb-10 text-center relative z-20">
-                                    <h1 class="text-sm uppercase text-gray-500 leading-tight" style="font-size: 2.5em;">
-                                        Nombre d'absences: </h1>
-                                    <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">
-                                        {{ $absence_staff }} fois</h3>
-
-                                </div>
-
-
-                            </div>
-                        </div>
-
-
-
-                    </div>
-                </div>
-            </div>
-
-        </div></div>
-
-
-
-
-        </div>
-        <br><br><br>
-
-
-
-
-
-        @include('layouts.footerforKPI ')
-
-
-    </body>
-@endif
 
 </html>
 @else
