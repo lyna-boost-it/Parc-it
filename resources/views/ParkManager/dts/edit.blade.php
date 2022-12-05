@@ -22,7 +22,7 @@
 
                     <div class="card">
                                             <div class="card-header">
-                                                <h3 class="title">{{ __('Modifier une DT ') }}</h3>
+                                                <h3 class="title">{{ __('Modifier une DR ') }}</h3>
                                             </div>
                         <div class="card-body">
                             <div class="row">
@@ -110,7 +110,7 @@
                                 </div>
                             </div>
                         </div>
-                       
+
                         <div class="card-body" >
                             <div class="row">
                                 <label class="col-md-3 col-form-label">{{ __('Observation') }}</label>

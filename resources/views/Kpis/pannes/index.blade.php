@@ -183,7 +183,7 @@
                                                             <i class="dw dw-more"></i>
                                                         </a>
                                                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
-                                                            style="width: 400px;">
+                                                            style="width: 450px;">
                                                             <form style=" left:-10%;" action="{{ route('Kpis.pannes.show', $vehicule->id) }}"
                                                                 method="get" class="dropdown-item">
                                                                 @csrf
@@ -321,7 +321,7 @@
                                                                 <input type="hidden" value="Vehicule"
                                                                 id="option_type" name="option_type">
 
-                                                                <input type="hidden" value="MTBF" id="type"
+                                                                <input type="hidden" value="MTTR" id="type"
                                                                     name="type">
                                                             </form>
 
@@ -333,7 +333,7 @@
 
                                             </td>
                                         </tr>
- @endforeach
+                                @endforeach
 
 
                                     </tbody>
@@ -379,7 +379,7 @@
                                                             <i class="dw dw-more"></i>
                                                         </a>
                                                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
-                                                            style="width: 400px;">
+                                                            style="width: 450px;">
                                                             <form style=" left:-10%;" action="{{ route('Kpis.pannes.show', $machine->id) }}"
                                                                 method="get" class="dropdown-item">
                                                                 @csrf
@@ -490,7 +490,7 @@
                                                             <i class="dw dw-more"></i>
                                                         </a>
                                                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
-                                                            style="width: 400px;">
+                                                            style="width: 450px;">
 
                                                             <form style=" left:-10%;" action="{{ route('Kpis.pannes.show', $staff->id) }}"
                                                                 method="get" class="dropdown-item">

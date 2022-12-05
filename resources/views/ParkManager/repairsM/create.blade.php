@@ -37,7 +37,23 @@
                         <div class="card-header">
                             <h5 class="title">{{ __('Matériel motorisé:') }} {{ $material->code }}</h5>
                         </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <label class="col-md-3 col-form-label">{{ __('Type de Panne') }}</label>
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                        <select  name="type_panne" class="form-control"
+                                            id="type_panne">
+                                            <option value="" disabled selected>Choisissez un type de Panne</option>
+                                            <option value="Légère" {{ old('type_panne', $dt->type_panne) === 'Légère' ? 'selected' : '' }} >Légère</option>
+                                            <option value="Lourde" {{ old('type_panne', $dt->type_panne) === 'Lourde' ? 'selected' : '' }} >Lourde</option>
+                                            <option value="Moyenne" {{ old('type_panne', $dt->type_panne) === 'Moyenne' ? 'selected' : '' }} >Moyenne</option>
 
+
+                                        </select>
+                                </div>
+                            </div>
+                        </div>
                         <div class="card-body" >
                             <div class="row">
                                 <label class="col-md-3 col-form-label">{{ __('Date d’intervention') }}</label>

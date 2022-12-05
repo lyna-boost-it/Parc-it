@@ -21,7 +21,7 @@
                         <div class="page-header">
                             <div class="row">
 
-                                <h3>Information demande de travaux (DT) pour {{ $maintenance->type }}
+                                <h3>Information demandes de réparation (DR) pour {{ $maintenance->type }}
                                     :{{ $maintenance->id }} </h3>
 
                             </div>

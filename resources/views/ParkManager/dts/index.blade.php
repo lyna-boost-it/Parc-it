@@ -23,7 +23,7 @@
                         <div class="col-md-6 col-sm-12">
                             <div class="title">
 
-                                <h3 style="color:#EE643A; ">Gestion des demandes de travaux
+                                <h3 style="color:#EE643A; ">Gestion des demandes de réparation
                                 </h3>
                             </div>
 

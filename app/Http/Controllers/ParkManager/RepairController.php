@@ -180,9 +180,11 @@ $dts=Dt::all();
 if($request->action=='more'){
     if ($dt->state=='en attente'  || $dt->state == 'en cours' ){
         $dt->state = '1';
+        $dt->type_panne=$request->type_panne;
         $dt->save();
     }else{
         $dt->state = $dt->state.'1';
+        $dt->type_panne=$request->type_panne;
         $dt->save();
     }
     return view('ParkManager.validation.choice1', compact('dt' ));
@@ -193,6 +195,7 @@ if($request->action=='more'){
 
 else{     $dt->previous_state = $dt->state;
     $dt->state = 'fait';
+    $dt->type_panne=$request->type_panne;
     $dt->save();
 
     return redirect ('/ParkManager/dts')->with('success',"vous avez ajouté un Entretien avec succès");

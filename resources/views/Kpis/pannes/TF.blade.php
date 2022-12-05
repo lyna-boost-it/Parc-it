@@ -60,58 +60,7 @@
                                 style="font-size: 2.5em;"> {{ $TF }} panne/heure</h1>
                             <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3  ">
 
-                                (En Mois de <b>
-                                   @switch($monthTF)
-                                       @case(1)
-                                           Janvier
-                                       @break
-
-                                       @case(2)
-                                           Février
-                                       @break
-
-                                       @case(3)
-                                           Mars
-                                       @break
-
-                                       @case(4)
-                                           Avril
-                                       @break
-
-                                       @case(5)
-                                           Mai
-                                       @break
-
-                                       @case(6)
-                                           Juin
-                                       @break
-
-                                       @case(7)
-                                           Juillet
-                                       @break
-
-                                       @case(8)
-                                           Aout
-                                       @break
-
-                                       @case(9)
-                                           Septembre
-                                       @break
-
-                                       @case(10)
-                                           Octobre
-                                       @break
-
-                                       @case(11)
-                                           Novembre
-                                       @break
-
-                                       @case(12)
-                                           Décembre
-                                       @break
-
-                                       @default
-                                   @endswitch {{ $yearTF }})
+                                Du {{ $date1 }} au {{ $date2 }}
                                 </h3>
 
                         </div>

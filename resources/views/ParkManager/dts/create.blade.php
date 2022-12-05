@@ -24,7 +24,7 @@
 
 
                         <div class="card-header">
-                            <h3 class="title">{{ __('Créer une demande de travaux (DT)  ') }}</h3>
+                            <h3 class="title">{{ __('Créer une demandes de réparation (DR)  ') }}</h3>
                         </div>
 
 

@@ -64,7 +64,7 @@
                                 style="font-size: 2.5em;"> {{ $MP }} panne/Mois</h1>
                             <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3  ">
 
-                                pendant l'annee{{ $yearMP }}
+                                Du {{ $date1 }} au {{ $date2 }}
                                 </h3>
 
                         </div>

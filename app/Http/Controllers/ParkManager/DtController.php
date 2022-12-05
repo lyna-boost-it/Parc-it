@@ -207,7 +207,7 @@ if($user->type=='Demandeur'){
         }
 
 
-        return redirect()->route('ParkManager.dts.index')->with('success', "vous avez ajouté une demandes de travaux avec succès");
+        return redirect()->route('ParkManager.dts.index')->with('success', "vous avez ajouté une demandes de réparation avec succès");
     }
 
     /**
@@ -312,7 +312,7 @@ if($maintenance->type=='Matériel Motorisés'){ $vehicule = Material::find($main
             'enter_date',
             'type'
         ));
-        return redirect()->route('ParkManager.dts.index')->with('success', "vous avez modifié une demandes de travaux avec succès");
+        return redirect()->route('ParkManager.dts.index')->with('success', "vous avez modifié une demandes de réparation avec succès");
     }
 
     /**
@@ -329,7 +329,7 @@ if($maintenance->type=='Matériel Motorisés'){ $vehicule = Material::find($main
         $vehicule->save();
         $maintenance->delete();
         return redirect()->route('ParkManager.dts.index')
-            ->with('success', "vous avez supprimé une demandes de travaux avec succès");
+            ->with('success', "vous avez supprimé une demandes de réparation avec succès");
     }
 
 

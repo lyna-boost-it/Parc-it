@@ -59,9 +59,7 @@
                                     <h1 class="text-sm uppercase text-gray-500 leading-tight text-orange  "
                                         style="font-size: 2.5em;"> {{ $daysV }} jours</h1>
                                     <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3  ">
-
-                                        En
-                                           {{ $MTBFyear }}
+ Du {{ $date1 }} au {{ $date2 }}
                                         </h3>
 
                                 </div>
