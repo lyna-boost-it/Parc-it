@@ -200,7 +200,7 @@ Highcharts.chart("bars", {
             ],
         },
         {
-            name: "Gazole",
+            name: "Gas-oil",
             data: [
                 parseFloat(gazoleArray[1]),
                 parseFloat(gazoleArray[2]),
@@ -290,7 +290,7 @@ Highcharts.chart("bars2", {
         },
         {
             color: "#554994",
-            name: "Gazole",
+            name: "Gas-oil",
             data: [
                 parseFloat(gazoleDAArray[1]),
                 parseFloat(gazoleDAArray[2]),

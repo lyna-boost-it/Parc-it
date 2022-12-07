@@ -56,7 +56,11 @@
                                             <h5 style="display: inline;color:#000000">{{ $gasvehicules->km }}</h5>
                                             <br>
                                             <h4  style="display: inline;color:#000000" >Type:</h4>
-                                            <h5 style="display: inline;color:#000000">{{ $gasvehicules->type }}</h5>
+                                            <h5 style="display: inline;color:#000000">@if ($gasvehicules->type=='Gazole')
+                                                Gas-oil
+                                                @else
+                                                {{ $gasvehicules->type }}
+                                            @endif</h5>
                                         </th>
                                         <th>
 

@@ -792,9 +792,13 @@
                                                 <th>
                                                     <h4 style="display: inline;color:#000000">Type du Carburant:
                                                     </h4>
-                                                    <h5 style="display: inline;color:#000000"><b> Nom
-                                                            fournisser</b>
-                                                        {{ $gase->type }} </h5>
+                                                    <h5 style="display: inline;color:#000000">
+
+                                                        @if ($gase->type=='Gazole')
+                                                        Gas-oil
+                                                        @else
+                                                        {{ $gase->type }}
+                                                    @endif</h5>
 
 
                                                 </th>

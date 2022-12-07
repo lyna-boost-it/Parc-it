@@ -113,7 +113,7 @@
                                     <div class="rounded-lg bg-white shadow-lg md:shadow-xl relative overflow-hidden">
                                         <div class="px-3 pt-8 pb-10 text-center relative z-10">
                                             <h1 class="Orange-text-for-titles"
-                                                style="font-size: 2.5em;">Gazole</h1>
+                                                style="font-size: 2.5em;">Gas-oil</h1>
                                             <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">
                                                 {{ $Gazole }} L</h3>
      <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">
@@ -162,7 +162,7 @@
                         ['Task', 'Hours per Day'],
                         ['GPL', gplP],
                         ['Essence', essenceP],
-                        ['Gazole', gazoleP]
+                        ['Gas-oil', gazoleP]
                     ]);
 
                     // Optional; add a title and set the width and height of the chart

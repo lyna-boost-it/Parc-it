@@ -29,8 +29,8 @@
 
 
 
-                                            <div class="weight-600 font-30 text-orange">L'état des engins et matériels
-                                                agricoles: <br> du {{ $date1 }} au {{ $date2 }}.
+                                            <div class="weight-600 font-30 text-orange">Taux des DT (Demandes de Travaux) traitées:
+                                                <br> du {{ $date1 }} au {{ $date2 }}.
                                                 <b><b>
                                                 </b> </div>
                                         </h4>
@@ -40,8 +40,10 @@
                             </div>
                         </div>
                         <div class="row">
+                            <div class="col-md-6 mb-20">
+                                <div id="piechart"></div>
 
-                            <div id="piechart"></div>
+                            </div>
                             <div class="col-md-6 mb-20">
                                 <div class="card-box height-100-p pd-20">
                                     <div class="rounded-lg shadow-sm mb-12">

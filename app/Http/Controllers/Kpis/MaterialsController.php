@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Kpis;
 
+use App\Dt;
 use App\DtMaterial;
 use App\Http\Controllers\Controller;
 use App\Material;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Date;
+
 class MaterialsController extends Controller
 {
     /**
@@ -51,43 +54,52 @@ class MaterialsController extends Controller
      */
     public function create(Request $request)
     {
-        $month = $request->month;
-        $year = $request->year;
-        $dts = DtMaterial::whereYear('created_at', $year)->whereMonth('created_at', $month)->get();
+
+        $date1 = $request->date1;
+        $date2 = $request->date2;
+        $dts = Dt::all()->where('type','=','Matériel Motorisés');
+
+        $date1_ = new Date($date1);
+        $date2_ = new Date($date2);
+        $materials=Material::all();
         $enpanne = 0;
         $enmaintenance = 0;
         $operationel = 0;
         $materialsNumber = Material::count();
-        $materials =Material::all();
         foreach ($materials as $material) {
             $t = true;
+            $r=true;
             foreach ($dts as $dt) {
-                if ($dt->mm_id == $material->id) {
+                $created_date = new Date($dt->created_at);
+
+                if ($created_date >= $date1_ && $created_date <= $date2_) {
+
+                if ($dt->vehicle_id == $material->id && $r==true) {
                     $t = false;
-                    if ($dt->action == 'En maintenance' && $dt->state == 'en attente') {
+                    if ($dt->action == 'En maintenance') {
+
                         $enmaintenance = $enmaintenance + 1;
-                    } else {
-                        if ($dt->action == 'En panne (à l’arrêt)' || $dt->action == 'A programmer mais en panne' ){
-                            if(  $dt->state == 'en attente') {
-                               $enpanne = $enpanne + 1;
-                            }
-                        } else {
-                            if ($dt->action == 'A programmer mais opérationnel' &&  $dt->state == 'en attente') {
-                                $operationel = $operationel + 1;
-                            } else {
-                                $operationel = $operationel + 1;
-                            }
+                        $r = false;
                         }
-                    }
+                        if ($dt->action == 'En panne (à l’arrêt)' || $dt->action == 'A programmer mais en panne' ){
+
+                               $enpanne = $enpanne + 1;
+                               $r = false;
+
+                        }
+
                 }
-            }
-            if ($t) {
-                $operationel = $operationel + 1;
             }
         }
 
+
+
+
+    }
+    $operationel =   $materialsNumber- ($enpanne+  $enmaintenance);
+
         return view('Kpis.materials.stats', compact(
-            'month','year','operationel', 'enpanne', 'enmaintenance','materialsNumber'
+            'date1','date2','operationel', 'enpanne', 'enmaintenance','materialsNumber'
         ));
     }
 

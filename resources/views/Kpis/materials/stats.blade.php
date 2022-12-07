@@ -5,7 +5,7 @@
     <html>
     @include('layouts.headforKPIindex')
 
-    @if ($month != '')
+
 
         <body>
 
@@ -30,59 +30,8 @@
 
 
                                         <div class="weight-600 font-30 text-orange">L'état des engins et matériels
-                                            agricoles
-                                            dans le Mois de <b>
-                                                @switch($month)
-                                                    @case(1)
-                                                        Janvier
-                                                    @break
+                                            agricoles: <br> du {{ $date1 }} au {{ $date2 }}<b>
 
-                                                    @case(2)
-                                                        Février
-                                                    @break
-
-                                                    @case(3)
-                                                        Mars
-                                                    @break
-
-                                                    @case(4)
-                                                        Avril
-                                                    @break
-
-                                                    @case(5)
-                                                        Mai
-                                                    @break
-
-                                                    @case(6)
-                                                        Juin
-                                                    @break
-
-                                                    @case(7)
-                                                        Juillet
-                                                    @break
-
-                                                    @case(8)
-                                                        Aout
-                                                    @break
-
-                                                    @case(9)
-                                                        Septembre
-                                                    @break
-
-                                                    @case(10)
-                                                        Octobre
-                                                    @break
-
-                                                    @case(11)
-                                                        Novembre
-                                                    @break
-
-                                                    @case(12)
-                                                        Décembre
-                                                    @break
-
-                                                    @default
-                                                @endswitch {{ $year }}
                                             </b> </div>
                                     </h4>
 
@@ -111,7 +60,7 @@
                                                 style="font-size: 2.5em;">Nombre totale des machines</h3>
                                             <h3
                                                 class="text-3xl text-gray-700 font-semibold leading-tight my-3 text-orange">
-                                                {{ $operationel }} Machine</h3>
+                                                {{ $materialsNumber }} Machine</h3>
 
                                         </div>
 
@@ -365,7 +314,7 @@
 
 
         </body>
-    @endif
+
 
 
 

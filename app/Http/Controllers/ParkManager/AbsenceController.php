@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\ParkManager;
 
 use App\Absence;
+use App\Attendance;
 use App\Driver;
-
+use App\Hours;
 use App\Http\Controllers\Controller;
 use App\MaintenanceCenter;
 use App\Staff;
@@ -77,16 +78,20 @@ class AbsenceController extends Controller
         $absence->save();
         $staff = Staff::find($absence->staff_id);
         $staff->staff_state = "absent";
-
         $staff->save();
-
-
         $date = Carbon::createFromFormat('Y-m-d', $absence->absence_date);
         $date->addDays($absence->duration);
         $date = $date->toDateString();
         $absence->absence_return = $date;
         $absence->save();
-
+        Absence_cheker();
+        $attendance=Attendance::where('staff_id','=',$staff->id)->latest()->first();
+        $attendance->left_at_time=$absence->created_at;
+        $attendance->left_at_date=$absence->created_at;
+        $attendance->observation="absent";
+        $attendance->save();
+        $hour = Hours::where('attendance_id', '=', $attendance->id)->first();
+        CalculateHours($attendance->arrived_at_time,$attendance->left_at_time,$hour);
         return redirect()->route('ParkManager.absences.index')->with('success', "vous avez ajouté une absences avec succès");;
     }
 

@@ -46,7 +46,7 @@ class GasController extends Controller
 
 
         foreach ($gasVehicules as $gasVehicule) {
-            if ($gasVehicule->type == 'GLP') {
+            if ($gasVehicule->type == 'GPL') {
                 $gpl = $gpl + $gasVehicule->litter;
                 $totalGas = $totalGas + $gasVehicule->litter;
                 $gplkm = $gplkm + $gasVehicule->km;
@@ -99,7 +99,7 @@ class GasController extends Controller
         }
 
         for ($i = 1; $i <= 12; $i++) {
-            $data1 = GasVehicules::whereMonth('created_at', $i)->where('type', '=', 'GLP')->sum('litter');
+            $data1 = GasVehicules::whereMonth('created_at', $i)->where('type', '=', 'GPL')->sum('litter');
 
             $gplArray[$i] = array($data1);
             $data2 = GasVehicules::whereMonth('created_at', $i)->where('type', '=', 'Essence')->sum('litter');
@@ -107,7 +107,7 @@ class GasController extends Controller
             $data3 = GasVehicules::whereMonth('created_at', $i)->where('type', '=', 'Gazole')->sum('litter');
             $gazoleArray[$i] = array($data3);
             $totalArray[$i] = array($data1 + $data2 + $data3);
-            $dataDA1 = GasVehicules::whereMonth('created_at', $i)->where('type', '=', 'GLP')->sum('price');
+            $dataDA1 = GasVehicules::whereMonth('created_at', $i)->where('type', '=', 'GPL')->sum('price');
             $gplDAArray[$i] = array($dataDA1);
             $dataDA2 = GasVehicules::whereMonth('created_at', $i)->where('type', '=', 'Essence')->sum('price');
             $essenceDAArray[$i] = array($dataDA2);

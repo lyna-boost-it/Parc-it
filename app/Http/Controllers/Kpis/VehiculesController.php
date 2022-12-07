@@ -105,25 +105,29 @@ class VehiculesController extends Controller
         $vehiculesNumber = Vehicule::count();
         foreach ($vehicules as $vehicule) {
             $t = true;
-
+            $r=true;
             foreach ($dts as $dt) {
                 $created_date = new Date($dt->created_at);
 
                 if ($created_date >= $date1_ && $created_date <= $date2_) {
 
-                    if ($dt->vehicle_id == $vehicule->id) {
+                    if ($dt->vehicle_id == $vehicule->id && $r==true) {
 
                         $t = false;
-                        if ($dt->action == 'En maintenance') {
+                        if ($dt->action == 'En maintenance' ) {
                             $enmaintenance = $enmaintenance + 1;
+                            $r=false;
                         } else {
-                            if ($dt->action == 'En panne (à l’arrêt)' || $dt->action == 'A programmer mais en panne') {
+                            if (($dt->action == 'En panne (à l’arrêt)' || $dt->action == 'A programmer mais en panne') ) {
                                 $enpanne = $enpanne + 1;
+                                $r=false;
                             } else {
-                                if ($dt->action == 'A programmer mais opérationnel') {
+                                if ($dt->action == 'A programmer mais opérationnel' ) {
                                     $operationel = $operationel + 1;
+                                    $r=false;
                                 } else {
                                     $operationel = $operationel + 1;
+                                    $r=false;
                                 }
                             }
                         }
@@ -131,7 +135,7 @@ class VehiculesController extends Controller
                 }
             }
 
-            if ($t) {
+            if ($t && $r) {
                 $operationel = $operationel + 1;
             }
         }

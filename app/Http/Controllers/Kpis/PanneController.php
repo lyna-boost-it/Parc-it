@@ -188,22 +188,27 @@ class PanneController extends Controller
                 $daysV = 0;
 
                 foreach ($dts as $dt) {
-                    foreach ($missions as $mission) {
-                        $created_date = new Date($dt->created_at);
-                        $created_date2 = new Date($mission->created_at);
-                        if ($created_date >= $date1_ && $created_date <= $date2_) {
-                            $dtsMTBF=$dtsMTBF+1;
-                            $a = new DateTime($mission->end_date);
-                            $b = new DateTime($mission->start_date);
-                            $daysV = $daysV + ($a->diff($b))->format('%a');
-                        }
-                    }
 
-                    if ($dtsMTBF == 0) {
-                        $dtsMTBF = 1;
-                                        }
+                    $dtsMTBF=$dtsMTBF+1;
+
                 }
-                $daysV = number_format((float) $daysV / $dtsMTBF, 2, '.', '');
+                foreach ($missions as $mission) {
+                    $created_date = new Date($dt->created_at);
+                    $created_date2 = new Date($mission->start_date);
+                    if ($created_date2 >= $date1_ && $created_date2 <= $date2_ &&
+                    $created_date >= $date1_ && $created_date <= $date2_) {
+
+                        $a = new DateTime($mission->end_date);
+                        $b = new DateTime($mission->start_date);
+                        $daysV = $daysV + ($a->diff($b))->format('%a');
+                    }
+                }
+                if ($dtsMTBF == 0) {
+                    $dtsMTBF = 1;
+                                    }
+
+
+               $daysV = number_format((float) $daysV / $dtsMTBF, 2, '.', '');
 
                 return view('Kpis.pannes.MTBF', compact('date1','date2', 'vehicule', 'option_type', 'daysV'));
             }

@@ -32,8 +32,7 @@
 
                                 <p class="font-18 max-width-600">
                                     Dans cette section vous trouverez les statistiques des Pannes, des Demandes de
-                                    Travaux
-                                    et des Réparation leurs types et tout ce
+                                    Réparations                                    et des Réparation leurs types et tout ce
                                     qui les concerne. <b>Le {{ $date }}</b>
                                 </p>
                             </div>
@@ -44,7 +43,7 @@
                     <form action="{{ route('Kpis.pannes.create') }}" method="get">
 
                         @csrf
-                        <div class="weight-100 font-30 text-grey">Taux des DT (Demandes de Travaux) traitées:
+                        <div class="weight-100 font-30 text-grey">Taux des DR (Demandes de Réparations) traitées:
                         </div>
                         <div class="row">
                             <div class="col-md-4">

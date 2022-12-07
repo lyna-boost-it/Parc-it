@@ -597,7 +597,7 @@
                     backgroundColor: '#69A8F8',
                 },
                 {
-                    text: 'Gazole ',
+                    text: 'Gas-oil',
                     values: [gazoleP],
                     backgroundColor: '#54DBB9',
                 },
@@ -643,7 +643,7 @@
             var data = google.visualization.arrayToDataTable([
                 ['Consommation de Carburant', 'Par Littre'],
                 ['Essence', essenceP],
-                ['Gazole', gazoleP],
+                ['Gas-oil', gazoleP],
                 ['GPL', gplP],
 
             ]);

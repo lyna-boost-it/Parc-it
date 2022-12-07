@@ -117,7 +117,11 @@
                                                     @foreach ($gases as $gase)
                                                         <option value="{{ $gase->name }}">
                                                     <h1></h1>
-                                                    {{ $gase->name }}, {{ $gase->price }} DA</option>
+                                                    @if ($gase->name=='Gazole')
+                                                    Gas-oil
+                                                    @else
+                                                    {{ $gase->name }}
+                                                @endif, {{ $gase->price }} DA</option>
                                                     @endforeach
                                                 </select>
                                             </div>

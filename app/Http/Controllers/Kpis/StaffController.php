@@ -130,6 +130,7 @@ class StaffController extends Controller
         $date2_ = new Date($date2);
         $nbr = 0;
         $dayhs = 0;
+        $abs=0;
         if ($type == 'abs') {
             $absences = Absence::all();
             foreach ($absences as $absence) {
