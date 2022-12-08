@@ -125,65 +125,68 @@ class StaffController extends Controller
         $date1 = $request->date1;
         $date2 = $request->date2;
         $type = $request->type;
-        $absences = null;
+        $staff = DB::table('staff')->find($id);
+        $absences = Absence::all()->where('staff_id','=',$id);
         $date1_ = new Date($date1);
         $date2_ = new Date($date2);
         $nbr = 0;
         $dayhs = 0;
-        $abs=0;
+        $abs = 0;
         if ($type == 'abs') {
-            $absences = Absence::all();
+
             foreach ($absences as $absence) {
                 $created_date = new Date($absence->created_at);
                 if ($created_date >= $date1_ && $created_date <= $date2_) {
                     $nbr = $nbr + 1;
                 }
             }
-            $staff = DB::table('staff')->find($id);
+
+            $hoursD = DB::table('hours')->where('staff_id', '=', $staff->id)->where('type_days', '=', 'Journée de travail')->count();
+            $NhoursD = DB::table('hours')->where('staff_id', '=', $staff->id)->where('type_days', '=', 'Nuit de travail')->count();
             $hours = DB::table('hours')->where('staff_id', '=', $staff->id)->where('type_days', '=', 'Journée de travail')->sum('day_hours');
-            $Nhours = DB::table('hours')->where('staff_id', '=', $staff->id)->where('type_days', '=', 'Journée de travail')->sum('night_hours');
+            $Nhours = DB::table('hours')->where('staff_id', '=', $staff->id)->where('type_days', '=', 'Nuit de travail')->sum('night_hours');
             $fridays = DB::table('hours')->where('staff_id', '=', $staff->id)->where('type_days', '=', 'Vendredi')->count();
             $freedays = DB::table('hours')->where('staff_id', '=', $staff->id)->where('type_days', '=', 'Jour férié')->count();
-            $dayhs = round(((CheckDayHours($hours)) + ($Nhours * 2) + ((($fridays + $freedays) * 8))) / 8);
+            $dayhs = round((CheckDayHours($hours) + ($Nhours * 2) )+ (($fridays+$hoursD+$NhoursD) * 8)) ;
             if ($dayhs != 0) {
-                $abs = $nbr / $dayhs;
+                $abs = $nbr / $dayhs*100;
             }
             return view(
                 'Kpis.staff.stats',
-                compact('date1', 'date2', 'staff',  'abs','type'));
+                compact('date1', 'date2', 'staff',  'abs', 'type')
+            );
         }
         if ($type == 'stat') {
-            $hours=0;
-            $Nhours=0;
-            $fridays=0;
-            $freedays=0;
-            $days=0;
-        $staff = DB::table('staff')->find($id);
-        $Hours=Hours::all()->where('staff_id', '=', $staff->id);
-foreach($Hours as $Hour){
-    $created_date = new Date($Hour->created_at);
-    if ($created_date >= $date1_ && $created_date <= $date2_) {
-        if($Hour->type_days=='Journée de travail'){
-            $hours = $hours +$Hour->day_hours;
-            $Nhours = $Nhours +$Hour->night_hours;
+            $hours = 0;
+            $Nhours = 0;
+            $fridays = 0;
+            $freedays = 0;
+            $days = 0;
+            $staff = DB::table('staff')->find($id);
+            $Hours = Hours::all()->where('staff_id', '=', $staff->id);
+            foreach ($Hours as $Hour) {
+                $created_date = new Date($Hour->created_at);
+                if ($created_date >= $date1_ && $created_date <= $date2_) {
+                    if ($Hour->type_days == 'Journée de travail') {
+                        $hours = $hours + $Hour->day_hours;
+                        $Nhours = $Nhours + $Hour->night_hours;
                     }
-        if($Hour->type_days=='Vendredi'){
-            $fridays =$fridays +1;
+                    if ($Hour->type_days == 'Vendredi') {
+                        $fridays = $fridays + 1;
+                    }
+                    if ($Hour->type_days == 'Jour férié') {
+                        $freedays = $freedays + 1;
+                    }
+                    $days = $days + round(((CheckDayHours($hours)) + ($Nhours * 2) + ((($fridays + $freedays) * 8))) / 8);
+                }
+            }
+
+
+            return view(
+                'Kpis.staff.counts',
+                compact('date1', 'date2', 'staff', 'hours', 'Nhours', 'fridays', 'freedays', 'days')
+            );
         }
-        if($Hour->type_days=='Jour férié'){
-            $freedays =$freedays +1;
-        }
-        $days =$days+ round(((CheckDayHours($hours)) + ($Nhours * 2) + ((($fridays + $freedays) * 8))) / 8);
-
-    }
-}
-
-
-        return view(
-            'Kpis.staff.counts',
-            compact('date1', 'date2', 'staff', 'hours', 'Nhours', 'fridays', 'freedays', 'days')
-        );
-    }
     }
 
     /**

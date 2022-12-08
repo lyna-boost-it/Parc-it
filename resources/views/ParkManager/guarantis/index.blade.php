@@ -21,7 +21,7 @@
                         <div class="col-md-6 col-sm-12">
                             <div class="title">
                                 <h3 style="color:#EE643A; ">
-                                    Gestion des Service après-vente et Garantis</h3>
+                                    Gestion de service après-vente et Garantis</h3>
                             </div>
 
                         </div>

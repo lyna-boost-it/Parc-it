@@ -40,7 +40,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th> Date d’intervention </th>
-                                    <th>N° de la Demande de Travaux (DT)</th>
+                                    <th>N° de la Demande de Réparation (DR)</th>
                                     <th>Matériel</th>
                                     <th class="datatable-nosort">Action</th>
 

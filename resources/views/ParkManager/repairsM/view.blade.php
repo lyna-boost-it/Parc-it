@@ -159,9 +159,9 @@
                 body {
                     font-family: "Lato", sans-serif;
                 }
-    
-    
-    
+
+
+
                 /* Style the sidenav links and the dropdown button */
                 .sidenav a,
                 .dropdown-btn {
@@ -177,9 +177,9 @@
                     cursor: pointer;
                     outline: none;
                 }
-    
-    
-    
+
+
+
                 /* Main content */
                 .main {
                     margin-left: 200px;
@@ -188,35 +188,35 @@
                     /* Increased text to enable scrolling */
                     padding: 0px 10px;
                 }
-    
-    
-    
+
+
+
                 /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
                 .dropdown-container {
                     display: none;
-    
+
                     padding-left: 8px;
                 }
-    
-    
-    
+
+
+
                 /* Some media queries for responsiveness */
                 @media screen and (max-height: 450px) {
                     .sidenav {
                         padding-top: 15px;
                     }
-    
+
                     .sidenav a {
                         font-size: 18px;
                     }
                 }
             </style>
-    
+
             <script>
                 /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
                 var dropdown = document.getElementsByClassName("dropdown-btn");
                 var i;
-    
+
                 for (i = 0; i < dropdown.length; i++) {
                     dropdown[i].addEventListener("click", function() {
                         this.classList.toggle("active");
@@ -229,7 +229,7 @@
                     });
                 }
             </script>
-    
+
 
 
 

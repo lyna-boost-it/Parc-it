@@ -31,7 +31,7 @@
 
 
 <div class="card-header">
-    <h4 class="title">{{ __(' N° de la Demande de Travaux (DT):') }} {{ $dt->code_dt }}</h4>
+    <h4 class="title">{{ __(' N° de la Demande de Réparation (DR):') }} {{ $dt->code_dt }}</h4>
 </div>
 
 <div class="card-header">

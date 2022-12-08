@@ -71,7 +71,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <label
-                                        class="col-md-3 col-form-label">{{ __(' Date d\'infraction (amande)  ') }}</label>
+                                        class="col-md-3 col-form-label">{{ __(' Date d\'infraction (amende)  ') }}</label>
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <input type="date" name="date" class="form-control"

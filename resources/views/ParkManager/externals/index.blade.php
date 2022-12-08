@@ -40,7 +40,7 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>N° de la Demande de Travaux (DT)</th>
+                                    <th>N° de la Demande de Réparation (DR)</th>
                                     <th>Véhicule</th>
                                     <th>Type V</th>
                                     <th>Marque</th>
@@ -139,7 +139,7 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>N° de la Demande de Travaux (DT)</th>
+                                    <th>N° de la Demande de Réparation (DR)</th>
                                     <th>Ref Matériel</th>
                 <th>Type</th>
                 <th>Marque</th>

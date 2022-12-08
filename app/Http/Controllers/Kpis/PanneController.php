@@ -142,46 +142,31 @@ class PanneController extends Controller
         $option_type = $request->option_type;
         if ($option_type == 'Vehicule') {
             $vehicule = Vehicule::find($id);
-            $dts = Dt::all()->where('vehicle_id', '=', $id);
+            $dts = Dt::all()->where('vehicle_id', '=', $id)->where('type','=','Véhicule');
             $missions=Mission::all()->where('vehicle_id', '=', $id);
             if ($type == 'MTTR') {
 
                 $c = 0;
                 $hours = 0;
-
-                $repairs = Repair::all();
                 $nbrR = 0;
                 foreach ($dts as $dt) {
-                    foreach ($repairs as $repair) {
-
-                        $created_date = new Date($dt->created_at);
-                        if ($created_date >= $date1_ && $created_date <= $date2_) {
-                            if ($dt->id == $repair->dt_code) {
-                                $nbrR = $nbrR + 1;
-                                $a = new DateTime($repair->intervention_date);
-                                $b = new DateTime($repair->end_date);
-                                $c = $c + ($a->diff($b))->format('%a');
-                                $hours = $hours + (($c - 1) * 8);
-                                $t1 = $repair->end_time;
-                                $t1 = substr($t1, 0, 2);
-                                $hours = $hours + (int)$t1 - 8;
-                            }
-                        }
+                    $created_date = new Date($dt->enter_date);
+                    $end_date= new Date($dt->updated_at);
+                    if ($dt->state=='fait' && $created_date >= $date1_ && $created_date <= $date2_
+                        && $end_date >= $date1_ && $end_date <= $date2_
+                    ) {
+                            $nbrR = $nbrR + 1;
+                            $a = new DateTime($dt->enter_date);
+                            $b = new DateTime($dt->updated_at);
+                            $c = $c + ($a->diff($b))->format('%a');
+                            $hours = $hours + (($c ) * 8);
                     }
                 }
-
                 if ($nbrR == 0) {
                     $nbrR = 1;
                 }
                 $hours = number_format((float)$hours / $nbrR, 2, '.', '');
-                if ($hours != 0) {
-                    $Thours = number_format((float)1 / $hours, 2, '.', '');
-                } else {
-                    $Thours = 0;
-                }
-                $hours = $Thours;
-
-                return view('Kpis.pannes.MTTR', compact('date1','date2','hours',   'vehicule', 'option_type', 'Thours'));
+                return view('Kpis.pannes.MTTR', compact('date1','date2','hours',   'vehicule', 'option_type'));
             }
             if ($type== 'MTBF') {
                 $dtsMTBF = 0;
@@ -215,32 +200,34 @@ class PanneController extends Controller
 
             if ($type=='TF') {
 
-                $dtsMTBF=0;
+                $dtsMTBF = 0;
                 $daysV = 0;
-                foreach ($dts as $dt) {
-                    foreach ($missions as $mission) {
-                        $created_date = new Date($dt->created_at);
-                        $created_date2 = new Date($mission->created_at);
-                        if ($created_date >= $date1_ && $created_date <= $date2_) {
-                            $a = new DateTime($mission->end_date);
-                            $b = new DateTime($mission->start_date);
-                            $daysV = $daysV + ($a->diff($b))->format('%a');
-                            $dtsMTBF=$dtsMTBF+1;
-                        }
-                    }
-                    }
 
+                foreach ($dts as $dt) {
+
+                    $dtsMTBF=$dtsMTBF+1;
+
+                }
+                foreach ($missions as $mission) {
+                    $created_date = new Date($dt->created_at);
+                    $created_date2 = new Date($mission->start_date);
+                    if ($created_date2 >= $date1_ && $created_date2 <= $date2_ &&
+                    $created_date >= $date1_ && $created_date <= $date2_) {
+
+                        $a = new DateTime($mission->end_date);
+                        $b = new DateTime($mission->start_date);
+                        $daysV = $daysV + ($a->diff($b))->format('%a');
+                    }
+                }
                 if ($dtsMTBF == 0) {
                     $dtsMTBF = 1;
-                }
+                                    }
 
-                $daysV = $daysV / $dtsMTBF;
 
-                if ($daysV == 0) {
-                    $TF = 0;
-                } else {
+               $daysV = number_format((float) $daysV / $dtsMTBF, 2, '.', '');
+
                     $TF = number_format((float)1 / $daysV, 2, '.', '');
-                }
+
 
                 return view('Kpis.pannes.TF', compact('date1','date2',  'vehicule', 'option_type', 'TF'));
             }
@@ -250,39 +237,29 @@ class PanneController extends Controller
 
                 $c = 0;
                 $hours = 0;
-                $repairs = Repair::all();
                 $nbrR = 0;
                 foreach ($dts as $dt) {
-                    foreach ($repairs as $repair) {
-
-                        $created_date = new Date($dt->created_at);
-                        $created_date2 = new Date($repair->created_at);
-                        if ($created_date >= $date1_ && $created_date <= $date2_) {
-                            if ($dt->id == $repair->dt_code) {
-                                $nbrR = $nbrR + 1;
-                                $a = new DateTime($repair->intervention_date);
-                                $b = new DateTime($repair->end_date);
-                                $c = $c + ($a->diff($b))->format('%a');
-                                $hours = $hours + (($c - 1) * 8);
-                                $t1 = $repair->end_time;
-                                $t1 = substr($t1, 0, 2);
-                                $hours = $hours + (int)$t1 - 8;
-                            }
-                        }
+                    $created_date = new Date($dt->enter_date);
+                    $end_date= new Date($dt->updated_at);
+                    if ($dt->state=='fait' && $created_date >= $date1_ && $created_date <= $date2_
+                        && $end_date >= $date1_ && $end_date <= $date2_
+                    ) {
+                            $nbrR = $nbrR + 1;
+                            $a = new DateTime($dt->enter_date);
+                            $b = new DateTime($dt->updated_at);
+                            $c = $c + ($a->diff($b))->format('%a');
+                            $hours = $hours + (($c ) * 8);
                     }
                 }
-
                 if ($nbrR == 0) {
                     $nbrR = 1;
                 }
-                $hours = number_format((float)$hours / $nbrR, 2, '.', '');
-
+                $hours = number_format((float)$hours / $nbrR, 3, '.', '');
                 if ($hours != 0) {
-                    $Thours = number_format((float)1 / $hours, 2, '.', '');
+                    $Thours = number_format((float)1 / $hours, 3, '.', '');
                 } else {
                     $Thours = 0;
                 }
-                $hours = number_format((float)$Thours / $nbrR, 2, '.', '');
 
                 return view('Kpis.pannes.TR', compact('date1','date2','hours',  'vehicule', 'option_type', 'Thours'));
             }
@@ -294,45 +271,74 @@ class PanneController extends Controller
                 $aa=0;
                 foreach ($dts as $dt) {
                 foreach ($missions as $mission) {
+                    $created_date = new Date($dt->enter_date);
+                    $created_date2= new Date($mission->start_date);
+                    if ($dt->state=='fait' && $created_date >= $date1_ && $created_date <= $date2_
+                    && $created_date2 >= $date1_ && $created_date2 <= $date2_
+                ) {
                     $aa=$aa+1;
                     $a = new DateTime($mission->end_date);
                     $b = new DateTime($mission->start_date);
                     $daysV = $daysV + ($a->diff($b))->format('%a');}
+
+
                 }
+                }
+
 
                 if ($daysV == 0) {
                     $MP = 0;
                 } else {
                     $MP = $aa / $daysV;
                 }
+                $MP = number_format((float)$MP, 3, '.', '');
 
-                $hours = number_format((float)$MP, 2, '.', '');
 
                 return view('Kpis.pannes.MP', compact('date1','date2','vehicule', 'option_type', 'MP'));
             }
-        }
+            if ($type== 'VA' ) {
+                $a1 = new DateTime($date1);
+                $b1 = new DateTime($date2);
+                $fulltime= ($a1->diff($b1))->format('%a');
+                $daysVA=0;
+                $VA=0;
+                foreach ($dts as $dt) {
+                foreach ($missions as $mission) {
+                    $created_date = new Date($dt->enter_date);
+                    $created_date2= new Date($mission->start_date);
+                    if ($dt->state=='fait' && $created_date >= $date1_ && $created_date <= $date2_
+                    && $created_date2 >= $date1_ && $created_date2 <= $date2_
+                ) {
+                    $a = new DateTime($mission->end_date);
+                    $b = new DateTime($mission->start_date);
+                    $daysVA = $daysVA + ($a->diff($b))->format('%a');}
+                }
+                }
+
+                $days = number_format((float)$daysVA, 2, '.', '');
+                $VA = number_format((float)$days/$fulltime*100, 2, '.', '');
+                return view('Kpis.pannes.VA', compact('date1','date2','vehicule', 'option_type', 'VA','days'));
+            }
+
         if ($option_type == 'Machine') {
             $machine = Material::find($id);
             $dts = Dt::all()->where('vehicle_id', '=', $id);
             if ( $type== 'MTTR') {
+                $dts = Dt::all()->where('vehicle_id', '=', $id)->where('type','=','Matériel Motorisés');
                 $c = 0;
                 $hours = 0;
-                $repairs = RepairsMaterial::all();
                 $nbrR = 0;
                 foreach ($dts as $dt) {
-                    foreach ($repairs as $repair) {
-                        $created_date = new Date($dt->created_at);
-                        if ($created_date >= $date1_ && $created_date <= $date2_) {
-                        if ($dt->id == $repair->dt_code) {
+                    $created_date = new Date($dt->enter_date);
+                    $end_date= new Date($dt->updated_at);
+                    if ($dt->state=='fait' && $created_date >= $date1_ && $created_date <= $date2_
+                        && $end_date >= $date1_ && $end_date <= $date2_
+                    ) {
                             $nbrR = $nbrR + 1;
-                            $a = new DateTime($repair->intervention_date);
-                            $b = new DateTime($repair->end_date);
+                            $a = new DateTime($dt->enter_date);
+                            $b = new DateTime($dt->updated_at);
                             $c = $c + ($a->diff($b))->format('%a');
-                            $hours = $hours + (($c - 1) * 8);
-                            $t1 = $repair->end_time;
-                            $t1 = substr($t1, 0, 2);
-                            $hours = $hours + (int)$t1 - 8;
-                        }}
+                            $hours = $hours + (($c ) * 8);
                     }
                 }
                 if ($nbrR == 0) {
@@ -340,35 +346,35 @@ class PanneController extends Controller
                 }
                 $hours = number_format((float)$hours / $nbrR, 2, '.', '');
 
+
                 return view('Kpis.pannes.MTTR', compact('date1','date2','hours', 'machine', 'option_type'));
             }
             if ($type == 'TR'  ) {
+                $dts = Dt::all()->where('vehicle_id', '=', $id)->where('type','=','Matériel Motorisés');
                 $c = 0;
                 $hours = 0;
-                $repairs = RepairsMaterial::all();
                 $nbrR = 0;
                 foreach ($dts as $dt) {
-                    foreach ($repairs as $repair) {
-                        $created_date = new Date($dt->created_at);
-                        if ($created_date >= $date1_ && $created_date <= $date2_) {
-                        if ($dt->id == $repair->dt_code) {
+                    $created_date = new Date($dt->enter_date);
+                    $end_date= new Date($dt->updated_at);
+                    if ($dt->state=='fait' && $created_date >= $date1_ && $created_date <= $date2_
+                        && $end_date >= $date1_ && $end_date <= $date2_
+                    ) {
                             $nbrR = $nbrR + 1;
-                            $a = new DateTime($repair->intervention_date);
-                            $b = new DateTime($repair->end_date);
+                            $a = new DateTime($dt->enter_date);
+                            $b = new DateTime($dt->updated_at);
                             $c = $c + ($a->diff($b))->format('%a');
-                            $hours = $hours + (($c - 1) * 8);
-                            $t1 = $repair->end_time;
-                            $t1 = substr($t1, 0, 2);
-                            $hours = $hours + (int)$t1 - 8;
-                        }}
+                            $hours = $hours + (($c ) * 8);
                     }
                 }
                 if ($nbrR == 0) {
                     $nbrR = 1;
                 }
-                $hours = number_format((float)$hours / $nbrR, 2, '.', '');
+                $hours = number_format((float)$hours / $nbrR, 3, '.', '');
+
+
                 if ($hours != 0) {
-                    $Thours = number_format((float)1 / $hours, 2, '.', '');
+                    $Thours = number_format((float)1 / $hours, 3, '.', '');
                 } else {
                     $Thours = 0;
                 }
@@ -381,133 +387,140 @@ class PanneController extends Controller
         if ($option_type == 'Staff') {
             if ($type == 'MTTR') {
                 $staff = Staff::find($id);
+                $repairs=Repair::all();
+                $repairsM=RepairsMaterial::all();
+                $dts = Dt::all();
                 $c = 0;
-                $hoursV = 0;
-                $hoursM = 0;
-
+                $c2 = 0;
+                $hours = 0;
+                $hours2 = 0;
+                $nbrR = 0;
+                $nbrR2 = 0;
+                $rs= Repair_Staff::all();
                 $rsm = RepairsMaterial_Staff::all();
-                $rs = Repair_Staff::all();
-                $repairsM = RepairsMaterial::all();
-                $repairs = Repair::all();
-                $nbrRv = 0;
-                $nbrRM = 0;
-                foreach ($repairs as $repair) {
-                    foreach ($rs as $r) {
+                foreach ($dts as $dt) {
+                    foreach ($repairs as $repair) {
+                        foreach($rs as $r){
+                            $created_date = new Date($dt->enter_date);
+                            $end_date= new Date($dt->updated_at);
+                            if ($dt->state=='fait' && $created_date >= $date1_ && $created_date <= $date2_
+                                && $end_date >= $date1_ && $end_date <= $date2_ && $repair->dt_code==$dt->id &&
+                                $r->repair_id==$repair->id
 
-                        $created_date = new Date($repair->created_at);
-                        if ($created_date >= $date1_ && $created_date <= $date2_) {
-                        if ($r->repair_id == $repair->id) {
-                            $nbrRM = $nbrRv + 1;
-                            $a = new DateTime($repair->intervention_date);
-                            $b = new DateTime($repair->end_date);
-                            $c = $c + ($a->diff($b))->format('%a');
-                            $hoursV = $hoursV + (($c - 1) * 8);
-                            $t1 = $repair->end_time;
-                            $t1 = substr($t1, 0, 2);
-                            $hoursV = $hoursV + (int)$t1 - 8;
-                        }}
+                            ) {
+                                    $nbrR = $nbrR + 1;
+                                    $a = new DateTime($dt->enter_date);
+                                    $b = new DateTime($dt->updated_at);
+                                    $c = $c + ($a->diff($b))->format('%a');
+                                    $hours = $hours + (($c ) * 8);
+                            }
+                        }
+                    }
+
+                    foreach ($repairsM as $repairm) {
+                        foreach($rsm as $rm){
+                            $created_date = new Date($dt->enter_date);
+                            $end_date= new Date($dt->updated_at);
+                            if ($dt->state=='fait' &&
+                            $created_date >= $date1_ && $created_date <= $date2_
+                            && $end_date >= $date1_ && $end_date <= $date2_
+                            && $repairm->dt_code==$dt->id &&
+                                $rm->repairmaterial_id ==$repairm->id
+
+                            ) {
+                                    $nbrR2 = $nbrR2 + 1;
+                                    $a2 = new DateTime($dt->enter_date);
+                                    $b2 = new DateTime($dt->updated_at);
+                                    $c2 = $c2 + ($a->diff($b2))->format('%a');
+                                    $hours2 = $hours2 + (($c2 ) * 8);
+                            }
+                        }
                     }
                 }
-                if ($nbrRv == 0) {
-                    $nbrRv = 1;
-                }
-                $hoursV = $hoursV / $nbrRv;
-                foreach ($repairsM as $repair) {
-                    foreach ($rsm as $r) {
 
-                        $created_date = new Date($repair->created_at);
-                        if ($created_date >= $date1_ && $created_date <= $date2_) {
-                        if ($r->repairmaterial_id == $repair->id) {
-                            $nbrRM = $nbrRM + 1;
-                            $a = new DateTime($repair->intervention_date);
-                            $b = new DateTime($repair->end_date);
-                            $c = $c + ($a->diff($b))->format('%a');
-                            $hoursM = $hoursM + (($c - 1) * 8);
-                            $t1 = $repair->end_time;
-                            $t1 = substr($t1, 0, 2);
-                            $hoursM = $hoursM + (int)$t1 - 8;
-                        }}
-                    }
+                if ($nbrR == 0) {
+                    $nbrR = 1;
                 }
-                if ($nbrRM == 0) {
-                    $nbrRM = 1;
-                }
-                $hoursV = $hoursV / $nbrRM;
+                $hours=$hours+$hours2;
+                $nbrR=$nbrR+$nbrR2;
+                $hours = number_format((float)$hours / $nbrR, 3, '.', '');
 
-                $hours = $hoursM + $hoursV;
-                if ($hours == 0) {
-                    $Thours = 0;
-                } else {
-                    $Thours = number_format((float) 1 / $hours, 2, '.', '');
-                }
 
-                return view('Kpis.pannes.MTTR', compact('date1','date2','hours',   'staff', 'option_type', 'Thours'));
+                return view('Kpis.pannes.MTTR', compact('date1','date2','hours',   'staff', 'option_type' ));
             }
             if ($type == 'TR') {
                 $staff = Staff::find($id);
+                $repairs=Repair::all();
+                $repairsM=RepairsMaterial::all();
+                $dts = Dt::all();
                 $c = 0;
-                $hoursV = 0;
-                $hoursM = 0;
-
+                $c2 = 0;
+                $hours = 0;
+                $hours2 = 0;
+                $nbrR = 0;
+                $nbrR2 = 0;
+                $rs= Repair_Staff::all();
                 $rsm = RepairsMaterial_Staff::all();
-                $rs = Repair_Staff::all();
-                $repairsM = RepairsMaterial::all();
-                $repairs = Repair::all();
-                $nbrRv = 0;
-                $nbrRM = 0;
-                foreach ($repairs as $repair) {
-                    foreach ($rs as $r) {
-                        $created_date = new Date($repair->created_at);
-                        if ($created_date >= $date1_ && $created_date <= $date2_) {
-                        if ($r->repair_id == $repair->id) {
-                            $nbrRM = $nbrRv + 1;
-                            $a = new DateTime($repair->intervention_date);
-                            $b = new DateTime($repair->end_date);
-                            $c = $c + ($a->diff($b))->format('%a');
-                            $hoursV = $hoursV + (($c - 1) * 8);
-                            $t1 = $repair->end_time;
-                            $t1 = substr($t1, 0, 2);
-                            $hoursV = $hoursV + (int)$t1 - 8;
-                        }}
+                foreach ($dts as $dt) {
+                    foreach ($repairs as $repair) {
+                        foreach($rs as $r){
+                            $created_date = new Date($dt->enter_date);
+                            $end_date= new Date($dt->updated_at);
+                            if ($dt->state=='fait' && $created_date >= $date1_ && $created_date <= $date2_
+                                && $end_date >= $date1_ && $end_date <= $date2_ && $repair->dt_code==$dt->id &&
+                                $r->repair_id==$repair->id
+
+                            ) {
+                                    $nbrR = $nbrR + 1;
+                                    $a = new DateTime($dt->enter_date);
+                                    $b = new DateTime($dt->updated_at);
+                                    $c = $c + ($a->diff($b))->format('%a');
+                                    $hours = $hours + (($c ) * 8);
+                            }
+                        }
+                    }
+
+                    foreach ($repairsM as $repairm) {
+                        foreach($rsm as $rm){
+                            $created_date = new Date($dt->enter_date);
+                            $end_date= new Date($dt->updated_at);
+                            if ($dt->state=='fait' &&
+                            $created_date >= $date1_ && $created_date <= $date2_
+                            && $end_date >= $date1_ && $end_date <= $date2_
+                            && $repairm->dt_code==$dt->id &&
+                                $rm->repairmaterial_id ==$repairm->id
+
+                            ) {
+                                    $nbrR2 = $nbrR2 + 1;
+                                    $a2 = new DateTime($dt->enter_date);
+                                    $b2 = new DateTime($dt->updated_at);
+                                    $c2 = $c2 + ($a->diff($b2))->format('%a');
+                                    $hours2 = $hours2 + (($c2 ) * 8);
+                            }
+                        }
                     }
                 }
-                if ($nbrRv == 0) {
-                    $nbrRv = 1;
-                }
-                $hoursV = $hoursV / $nbrRv;
-                foreach ($repairsM as $repair) {
-                    foreach ($rsm as $r) {
-                        $created_date = new Date($repair->created_at);
-                        if ($created_date >= $date1_ && $created_date <= $date2_) {
-                        if ($r->repairmaterial_id == $repair->id) {
-                            $nbrRM = $nbrRM + 1;
-                            $a = new DateTime($repair->intervention_date);
-                            $b = new DateTime($repair->end_date);
-                            $c = $c + ($a->diff($b))->format('%a');
-                            $hoursM = $hoursM + (($c - 1) * 8);
-                            $t1 = $repair->end_time;
-                            $t1 = substr($t1, 0, 2);
-                            $hoursM = $hoursM + (int)$t1 - 8;
-                        }}
-                    }
-                }
-                if ($nbrRM == 0) {
-                    $nbrRM = 1;
-                }
-                $hoursV = $hoursV / $nbrRM;
 
-                $hours = $hoursM + $hoursV;
+                if ($nbrR == 0) {
+                    $nbrR = 1;
+                }
+                $hours=$hours+$hours2;
+                $nbrR=$nbrR+$nbrR2;
+                $hours = number_format((float)$hours / $nbrR, 3, '.', '');
 
-                if ($hours == 0) {
-                    $Thours = 0;
+
+                if ($hours != 0) {
+                    $Thours = number_format((float)1 / $hours, 3, '.', '');
                 } else {
-                    $Thours = number_format((float) 1 / $hours, 2, '.', '');
+                    $Thours = 0;
                 }
+
+
 
                 return view('Kpis.pannes.TR', compact('hours' ,'date1','date2','staff', 'option_type', 'Thours'));
             }
         }
-    }
+    }}
 
     /**
      * Show the form for editing the specified resource.

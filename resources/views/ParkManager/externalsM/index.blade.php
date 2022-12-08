@@ -38,7 +38,7 @@
 									<tr>
                                         <th >ID</th>
                                         <th  > Contrat </th>
-                                        <th  >N° de la Demande de Travaux (DT)</th>
+                                        <th  >N° de la Demande de Réparation (DR)</th>
                                         <th  >Matériel</th>
                                       <th class="datatable-nosort">Action</th>
 

@@ -323,6 +323,34 @@
                                                                 <input type="hidden" value="MTTR" id="type"
                                                                     name="type">
                                                             </form>
+                                                            <form style=" left:-10%;" action="{{ route('Kpis.pannes.show', $vehicule->id) }}"
+                                                                method="get" class="dropdown-item">
+                                                                @csrf
+                                                                <button type="submit"
+                                                                    class="btn btn-outline-primary btn-round">{{ __('Temps de disponibilité') }}</button>
+
+                                                                <div class="form-group" style=" display: inline-block;">
+                                                                   Du
+                                                                </div>
+                                                                    <div class="form-group" style=" display: inline-block;">
+                                                                    <input type="date" style="width: 100px"
+                                                                    name="date1" class="form-control"
+                                                                    placeholder="Du">
+                                                                </div>
+                                                                <div class="form-group" style=" display: inline-block;">
+                                                                   Au
+                                                                </div>
+                                                                <div class="form-group" style=" display: inline-block;">
+                                                                    <input type="date"style="width: 100px"
+                                                                        name="date2" class="form-control"
+                                                                        placeholder="Au">
+                                                                </div>
+                                                                <input type="hidden" value="Vehicule"
+                                                                id="option_type" name="option_type">
+
+                                                                <input type="hidden" value="VA" id="type"
+                                                                    name="type">
+                                                            </form>
 
                                                     </div>
                                                 </div>
@@ -435,6 +463,7 @@
                                                                 <input type="hidden" value="MTTR" id="type"
                                                                     name="type">
                                                             </form>
+
                                                         </div>
                                                     </div>
 

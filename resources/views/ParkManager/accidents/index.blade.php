@@ -21,7 +21,7 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="title">
-                                <h3 style="color:#EE643A; ">Gestion des accidents</h3>
+                                <h3 style="color:#EE643A; ">Gestion des déclarations accidents</h3>
                             </div>
 
                         </div>
