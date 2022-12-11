@@ -115,9 +115,9 @@
                             <thead>
                                 <tr>
                                     <th>Numéro</th>
-                                    <th>ID</th>
-
-                                    <th> Numéro de Série</th>
+                                    <th>Marticule</th>
+                                    <th>Marque</th>
+                                    <th>Numéro de Série</th>
                                     <th>Action</th>
 
 
@@ -139,9 +139,11 @@
 
                                     <tr>
                                         <td> {{ $i }}</td>
-                                        <td>{{ $vehicule->id }}</td>
-
-                                        <td>{{ $vehicule->serial_numbers }} </td>
+                                        <td>{{ $vehicule->marticule }}</td>
+                                                <td>{{ $vehicule->mark }}</td>
+                                                <td>
+                                                    {{ $vehicule->serial_numbers }}
+                                                </td>
 
                                         <td style="color: orange;">
                                             <div class="dropdown">

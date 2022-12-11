@@ -228,4 +228,5 @@ Route::namespace('Kpis')->prefix('Kpis')->name('Kpis.')->group(function () {
     Route::resource('/staff', 'StaffController');
     Route::resource('/vehicules', 'VehiculesController');
     Route::resource('/repairs', 'RepairsController');
+    Route::resource('/amandes', 'AmendeController');
 });

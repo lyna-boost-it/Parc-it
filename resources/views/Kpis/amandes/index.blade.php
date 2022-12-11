@@ -24,7 +24,7 @@
                     <div class="card-box pd-20 height-100-p mb-30">
                         <div class="row align-items-center">
                             <div class="col-md-4">
-                                <img src="{{ URL('assets/vendors/images/staffstat.png') }}"; alt="" />
+                                <img src="{{ URL('assets/vendors/images/amendes.png') }}"; alt="" />
                             </div>
                             <div class="col-md-8">
                                 <h4 class="font-20 weight-500 mb-10 text-capitalize">
@@ -33,7 +33,7 @@
                                 </h4>
 
                                 <p class="font-18 max-width-600">
-                                    vous trouverez ici toutes les statistiques relatives au personnel <b>Le
+                                    Historique de profil des conducteurs (nombre d'amendes et infractions d'une période donnée)<b>Le
                                         {{ $date }}</b>
                                 </p>
                             </div>
@@ -59,7 +59,7 @@
                                 <div class="px-3 pt-12 pb-10 text-center relative z-20">
                                     <h1 class="text-sm uppercase text-gray-500 leading-tight" style="font-size: 2.5em;">
                                         Nombre
-                                        total du personnel:</h1>
+                                        totale du personnel:</h1>
                                     <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">
                                         {{ $totalstaff }}
                                         Personne</h3>
@@ -139,8 +139,7 @@
                                         <tr>
                                             <th>Numéro</th>
                                             <th> Nom Et Prénom</th>
-                                            <th>H supp cumulées</th>
-                                            <th> Recherche mois</th>
+                                            <th> Recherche </th>
 
 
                                         </tr>
@@ -162,123 +161,38 @@
                                                 <td> {{ $i }}</td>
                                                 <td>{{ $staff->name }} {{ $staff->last_name }}</td>
 
+
                                                 <td>
-                                                    <table>
+                                                    <form
+                                                    action="{{ route('Kpis.amandes.show', $staff->id) }}"
+                                                    method="get" class="dropdown-item">
+                                                    @csrf
+                                                    <button type="submit"
+                                                        class="btn btn-outline-primary btn-round">{{ __('Amendes') }}</button>
 
-                                                        <tr>
-                                                            <th>H Jour</th>
-                                                            <th>H Nuit</th>
+                                                        <div class="form-group" style=" display: inline-block;">
+                                                            Du
+                                                         </div>
+                                                         <input type="hidden" value="stat" id="type"
+                                                         name="type">
 
-                                                            <th> V</th>
-                                                            <th>J Fériés</th>
-                                                            <th>Récupération</th>
-
-
-                                                        </tr>
-
-                                                        <tr>
-                                                            <td> {{ DB::table('hours')->where('staff_id', '=', $staff->id)->where('type_days', '=', 'Journée de travail')->sum('day_hours') +
-                                                                DB::table('hours')->where('staff_id', '=', $staff->id)->where('type_days', '=', 'Nuit de travail')->sum('day_hours') }}
-                                                            </td>
-                                                            <td> {{ DB::table('hours')->where('staff_id', '=', $staff->id)->where('type_days', '=', 'Journée de travail')->sum('night_hours') +
-                                                                DB::table('hours')->where('staff_id', '=', $staff->id)->where('type_days', '=', 'Nuit de travail')->sum('night_hours') }}
-                                                            </td>
-                                                            <td> {{ DB::table('hours')->where('staff_id', '=', $staff->id)->where('type_days', '=', 'Vendredi')->count() }}
-                                                            </td>
-                                                            <td> {{ DB::table('hours')->where('staff_id', '=', $staff->id)->where('type_days', '=', 'Jour férié')->count() }}
-                                                            </td>
-
-                                                            <td>{{ round(
-                                                                (CheckDayHours(
-                                                                    DB::table('hours')->where('staff_id', '=', $staff->id)->where('type_days', '=', 'Journée de travail')->sum('day_hours') +
-                                                                        DB::table('hours')->where('staff_id', '=', $staff->id)->where('type_days', '=', 'Nuit de travail')->sum('day_hours'),
-                                                                ) +
-                                                                    (DB::table('hours')->where('staff_id', '=', $staff->id)->where('type_days', '=', 'Journée de travail')->sum('night_hours') +
-                                                                        DB::table('hours')->where('staff_id', '=', $staff->id)->where('type_days', '=', 'Nuit de travail')->sum('night_hours')) *
-                                                                        2 +
-                                                                    (DB::table('hours')->where('staff_id', '=', $staff->id)->where('type_days', '=', 'Vendredi')->count() +
-                                                                        DB::table('hours')->where('staff_id', '=', $staff->id)->where('type_days', '=', 'Jour férié')->count()) *
-                                                                        8) /
-                                                                    8,
-                                                            ) }}
-                                                                Jour(s) </td>
-
-                                                        </tr>
-
-                                                    </table>
-
-                                                </td>
-                                                <td>
-                                                    <div class="dropdown">
-                                                        <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
-                                                            href="#" role="button" data-toggle="dropdown">
-                                                            <i class="dw dw-more"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
-                                                            style="width: 650px;">
-                                                            <form
-                                                                action="{{ route('Kpis.staff.show', $staff->id) }}"
-                                                                method="get" class="dropdown-item">
-                                                                @csrf
-                                                                <button type="submit"
-                                                                    class="btn btn-outline-primary btn-round">{{ __('Stat') }}</button>
-
-                                                                    <div class="form-group" style=" display: inline-block;">
-                                                                        Du
-                                                                     </div>
-                                                                     <input type="hidden" value="stat" id="type"
-                                                                     name="type">
-
-                                                                         <div class="form-group" style=" display: inline-block;">
-                                                                         <input type="date" style="width: 200px"
-                                                                         name="date1" class="form-control"
-                                                                         placeholder="Du">
-                                                                     </div>
-                                                                     <div class="form-group" style=" display: inline-block;">
-                                                                        Au
-                                                                     </div>
-                                                                     <div class="form-group" style=" display: inline-block;">
-                                                                         <input type="date"style="width: 200px"
-                                                                             name="date2" class="form-control"
-                                                                             placeholder="Au">
-                                                                     </div>
+                                                             <div class="form-group" style=" display: inline-block;">
+                                                             <input type="date" style="width: 150px"
+                                                             name="date1" class="form-control"
+                                                             placeholder="Du">
+                                                         </div>
+                                                         <div class="form-group" style=" display: inline-block;">
+                                                            Au
+                                                         </div>
+                                                         <div class="form-group" style=" display: inline-block;">
+                                                             <input type="date"style="width: 150px"
+                                                                 name="date2" class="form-control"
+                                                                 placeholder="Au">
+                                                         </div>
 
 
 
-                                                            </form>
-
-
-
-
-                                                            <form action="{{  route('Kpis.staff.show', $staff->id) }}"
-                                                                method="get" class="dropdown-item">
-                                                                @csrf
-                                                                <button type="submit"
-                                                                    class="btn btn-outline-primary btn-round">{{ __('Absences ') }}</button>
-
-                                                                <div class="form-group" style=" display: inline-block;">
-                                                                   Du
-                                                                </div>
-                                                                    <div class="form-group" style=" display: inline-block;">
-                                                                    <input type="date" style="width: 200px"
-                                                                    name="date1" class="form-control"
-                                                                    placeholder="Du">
-                                                                </div>
-                                                                <div class="form-group" style=" display: inline-block;">
-                                                                   Au
-                                                                </div>
-                                                                <div class="form-group" style=" display: inline-block;">
-                                                                    <input type="date"style="width: 200px"
-                                                                        name="date2" class="form-control"
-                                                                        placeholder="Au">
-                                                                </div>
-
-                                                                <input type="hidden" value="abs" id="type"
-                                                                    name="type">
-
-                                                            </form>
-                                                        </div>
-                                                    </div>
+                                                </form>
                                                 </td>
                                             </tr>
                                         @endforeach

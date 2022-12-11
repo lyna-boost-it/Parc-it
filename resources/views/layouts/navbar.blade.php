@@ -150,7 +150,7 @@
                                 style="right: 60px;" href="{{ route('ParkManager.dts.index') }}">
 
 
-                                Demandes de travaux (DT)</a>
+                                Demandes de réparation (DR)</a>
                         </li>
                         @if (Auth::user()->type == 'Gestionnaire parc' ||
                             Auth::user()->type == 'Utilisateur' ||
@@ -352,7 +352,7 @@
                                 <b> KPI's Carburant</b></b></a>
                         </li>
 
-             
+
                         <li>
                             <a class="  {{ Request::is('*Kpis/pieces*') ? 'active' : '' }}" style="right: 50px;"
                                 href="{{ route('Kpis.pieces.index') }}">
@@ -390,6 +390,13 @@
                                 <b> KPI's Personnels </b></a>
                         </li>
 
+                        <li>
+                            <a class="  {{ Request::is('*Kpis/amandes*') ? 'active' : '' }}" style="right: 50px;"
+                                href="{{ route('Kpis.amandes.index') }}">
+
+
+                                <b> KPI's Amendes </b></a>
+                        </li>
 
                     </ul>
                 </li>

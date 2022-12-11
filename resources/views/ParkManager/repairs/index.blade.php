@@ -115,7 +115,7 @@
                                     <div class="row">
                                         <div class="col-md-6 col-sm-12">
                                             <div class="title">
-                                                <h4>Liste des Réparations pour Matériel Motorisés:</h4>
+                                                <h4>Liste des Réparations pour Matériels Motorisés:</h4>
                                             </div>
 
                                         </div>

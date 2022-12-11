@@ -123,7 +123,7 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="title">
-                                <h4>Liste des Maintenances externes pour Matériel Motorisés</h4>
+                                <h4>Liste des Maintenances externes pour Matériels Motorisés</h4>
                             </div>
 
                         </div>
