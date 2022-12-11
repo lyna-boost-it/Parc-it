@@ -44,7 +44,7 @@
 
         <div class="card-body" >
             <div class="row">
-                <label class="col-md-3 col-form-label">{{ __('Date d’intervention') }}</label>
+                <label class="col-md-3 col-form-label">{{ __('Date d’intervention') }}<span class="ob">*</span></label>
                 <div class="col-md-9" >
                     <div class="form-group">
                         <input type="date"
@@ -69,7 +69,7 @@
 
         <div class="card-body" >
             <div class="row">
-                <label class="col-md-3 col-form-label">{{ __(' Diagnostic') }}</label>
+                <label class="col-md-3 col-form-label">{{ __(' Diagnostic') }}<span class="ob">*</span></label>
                 <div class="col-md-9" >
                     <div class="form-group">
                         <input type="text"
@@ -103,7 +103,7 @@
 
         <div class="card-body" >
             <div class="row">
-                <label class="col-md-3 col-form-label">{{ __(' Pannes réparées') }}</label>
+                <label class="col-md-3 col-form-label">{{ __(' Pannes réparées') }}<span class="ob">*</span></label>
                 <div class="col-md-9" >
                     <div class="form-group">
                         <input type="text"
@@ -128,7 +128,7 @@
 
         <div class="card-body" >
             <div class="row">
-                <label class="col-md-3 col-form-label">{{ __('Date  de sortie') }}</label>
+                <label class="col-md-3 col-form-label">{{ __('Date  de sortie') }}<span class="ob">*</span></label>
                 <div class="col-md-9" >
                     <div class="form-group">
                         <input type="date"
@@ -151,7 +151,7 @@
 
         <div class="card-body" >
             <div class="row">
-                <label class="col-md-3 col-form-label">{{ __('Heure de sortie') }}</label>
+                <label class="col-md-3 col-form-label">{{ __('Heure de sortie') }}<span class="ob">*</span></label>
                 <div class="col-md-9" >
                     <div class="form-group">
                         <input type="time"
@@ -175,7 +175,7 @@
 
         <div class="card-body" >
             <div class="row">
-                <label class="col-md-3 col-form-label">{{ __(' Observation') }}</label>
+                <label class="col-md-3 col-form-label">{{ __(' Observation') }}<span class="ob">*</span></label>
                 <div class="col-md-9" >
                     <div class="form-group">
                         <input type="text"

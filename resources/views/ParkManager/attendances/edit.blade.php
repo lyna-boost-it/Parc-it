@@ -40,7 +40,7 @@
 
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __(' Heure de sortie ') }}</label>
+                                    <label class="col-md-3 col-form-label">{{ __(' Heure de sortie ') }}<span class="ob">*</span></label>
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <input type="time" id="left_at_time" name="left_at_time"
@@ -60,7 +60,7 @@
 
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __(' Observatione ') }}</label>
+                                    <label class="col-md-3 col-form-label">{{ __(' Observatione ') }}<span class="ob">*</span></label>
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <input type="text" id="observation" name="observation"

@@ -32,7 +32,7 @@
 
                         <div class="card-body" >
                             <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('  Nom et prénom du conducteur') }}</label>
+                                <label class="col-md-3 col-form-label">{{ __('  Nom et prénom du conducteur') }}<span class="ob">*</span></label>
                                 <div class="col-md-9" for="conducteur_field_for_absence">
                                     <div class="form-group">
                                         <select  name="driver_id"   placeholder="  Nom et prénom de l\'absent"
@@ -55,7 +55,7 @@
 
                         <div class="card-body" >
                             <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('  Agent remplisseur') }}</label>
+                                <label class="col-md-3 col-form-label">{{ __('  Agent remplisseur') }}<span class="ob">*</span></label>
                                 <div class="col-md-9" for="conducteur_field_for_absence">
                                     <div class="form-group">
                                         <select  name="staff_id"   placeholder="  Nom et prénom de l\'absent"
@@ -77,7 +77,7 @@
 
                             <div class="card-body" >
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __('  Unité destinataire') }}</label>
+                                    <label class="col-md-3 col-form-label">{{ __('  Unité destinataire') }}<span class="ob">*</span></label>
                                     <div class="col-md-9" for="Territoire">
                                         <div class="form-group">
 
@@ -102,7 +102,7 @@
 
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __('Type du Carburant') }}</label>
+                                    <label class="col-md-3 col-form-label">{{ __('Type du Carburant') }}<span class="ob">*</span></label>
                                     <div class="col-md-9">
                                         <div
                                                 style="width: 50%;
@@ -131,7 +131,7 @@
 
     <div class="card-body" >
         <div class="row">
-            <label class="col-md-3 col-form-label">{{ __('  N du ticket') }}</label>
+            <label class="col-md-3 col-form-label">{{ __('  N du ticket') }}<span class="ob">*</span></label>
             <div class="col-md-9" >
                 <div class="form-group">
                     <input type="number"   name="ticket" class="form-control"
@@ -152,7 +152,7 @@
 
     <div class="card-body" >
         <div class="row">
-            <label class="col-md-3 col-form-label">{{ __(' Coût') }}</label>
+            <label class="col-md-3 col-form-label">{{ __(' Coût') }}<span class="ob">*</span></label>
             <div class="col-md-9" >
                 <div class="form-group">
                     <input type="number" step="0.1"  name="price" class="form-control"
@@ -174,7 +174,7 @@
 
     <div class="card-body" >
         <div class="row">
-            <label class="col-md-3 col-form-label">{{ __('Litre') }}</label>
+            <label class="col-md-3 col-form-label">{{ __('Litre') }}<span class="ob">*</span></label>
             <div class="col-md-9" >
                 <div class="form-group">
                     <input type="number" step="0.1"  name="litter" class="form-control"

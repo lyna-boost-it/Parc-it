@@ -48,7 +48,7 @@
 
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __(' Heure d’Entrée ') }}</label>
+                                    <label class="col-md-3 col-form-label">{{ __(' Heure d’Entrée ') }}<span class="ob">*</span></label>
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <input type="time" id="arrived_at_time" name="arrived_at_time"
@@ -66,7 +66,7 @@
 
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __(' Type de journée') }}</label>
+                                    <label class="col-md-3 col-form-label">{{ __(' Type de journée') }}<span class="ob">*</span></label>
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <select id="day_type" type="text"
@@ -94,7 +94,7 @@
 
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __('Lieu des travaux') }}</label>
+                                    <label class="col-md-3 col-form-label">{{ __('Lieu des travaux') }}<span class="ob">*</span></label>
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <input type="work_place" name="work_place" class="form-control"
@@ -114,7 +114,7 @@
 
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __('Nature des travaux') }}</label>
+                                    <label class="col-md-3 col-form-label">{{ __('Nature des travaux') }}<span class="ob">*</span></label>
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <input type="work_type" name="work_type" class="form-control"

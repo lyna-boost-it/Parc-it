@@ -37,7 +37,7 @@
 
         <div class="card-body" >
             <div class="row">
-                <label class="col-md-3 col-form-label">{{ __('Réf du fournisseur ') }}</label>
+                <label class="col-md-3 col-form-label">{{ __('Réf du fournisseur ') }}<span class="ob">*</span></label>
                 <div class="col-md-9" >
                     <div class="form-group">
                         <input type="text" name="ref_vendor" class="form-control"
@@ -62,7 +62,7 @@
 
         <div class="card-body" >
             <div class="row">
-                <label class="col-md-3 col-form-label">{{ __('Nom et prénom du fournisseur ') }}</label>
+                <label class="col-md-3 col-form-label">{{ __('Nom et prénom du fournisseur ') }}<span class="ob">*</span></label>
                 <div class="col-md-9" >
                     <div class="form-group">
                         <input type="text" name="name_vendor" class="form-control"
@@ -87,7 +87,7 @@
 
         <div class="card-body" >
             <div class="row">
-                <label class="col-md-3 col-form-label">{{ __('Adresse du fournisseur ') }}</label>
+                <label class="col-md-3 col-form-label">{{ __('Adresse du fournisseur ') }}<span class="ob">*</span></label>
                 <div class="col-md-9" >
                     <div class="form-group">
                         <input type="text" name="address_vendor" class="form-control"
@@ -111,7 +111,7 @@
 
         <div class="card-body" >
             <div class="row">
-                <label class="col-md-3 col-form-label">{{ __('Service Après-Vente ') }}</label>
+                <label class="col-md-3 col-form-label">{{ __('Service Après-Vente ') }}<span class="ob">*</span></label>
                 <div class="col-md-9" >
                     <div class="form-group">
                         <input type="text" name="after_sold_service" class="form-control"

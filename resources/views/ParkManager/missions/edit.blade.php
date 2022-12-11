@@ -59,7 +59,7 @@
 
 <div class="card-body" >
 <div class="row">
-<label class="col-md-3 col-form-label">{{ __(' Date de validité (Début)') }}</label>
+<label class="col-md-3 col-form-label">{{ __(' Date de validité (Début)') }}<span class="ob">*</span></label>
 <div class="col-md-9" >
 <div class="form-group">
     <input type="date"
@@ -84,7 +84,7 @@
 
 <div class="card-body" >
 <div class="row">
-<label class="col-md-3 col-form-label">{{ __(' Date de validité (Fin)') }}</label>
+<label class="col-md-3 col-form-label">{{ __(' Date de validité (Fin)') }}<span class="ob">*</span></label>
 <div class="col-md-9" >
 <div class="form-group">
     <input type="date"

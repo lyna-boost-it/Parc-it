@@ -39,7 +39,7 @@
 
                         <div class="card-body" >
                             <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('Réf') }}</label>
+                                <label class="col-md-3 col-form-label">{{ __('Réf') }}<span class="ob">*</span></label>
                                 <div class="col-md-9" >
                                     <div class="form-group">
                                         <input type="text"
@@ -62,7 +62,7 @@
 
                         <div class="card-body" >
                             <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('Désignation') }}</label>
+                                <label class="col-md-3 col-form-label">{{ __('Désignation') }}<span class="ob">*</span></label>
                                 <div class="col-md-9" >
                                     <div class="form-group">
                                         <input type="text"
@@ -89,7 +89,7 @@
 
                         <div class="card-body" >
                             <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('Qte') }}</label>
+                                <label class="col-md-3 col-form-label">{{ __('Qte') }}<span class="ob">*</span></label>
                                 <div class="col-md-9" >
                                     <div class="form-group">
                                         <input type="number"
@@ -112,7 +112,7 @@
 
                         <div class="card-body" >
                             <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('Prix') }}</label>
+                                <label class="col-md-3 col-form-label">{{ __('Prix') }}<span class="ob">*</span></label>
                                 <div class="col-md-9" >
                                     <div class="form-group">
                                         <input type="number"

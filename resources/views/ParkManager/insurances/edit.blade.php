@@ -40,7 +40,7 @@
 
                                 <div class="card-body" >
                                     <div class="row">
-                                        <label class="col-md-3 col-form-label">{{ __(' Date d’effet ') }}</label>
+                                        <label class="col-md-3 col-form-label">{{ __(' Date d’effet ') }}<span class="ob">*</span></label>
                                         <div class="col-md-9" >
                                             <div class="form-group">
                                                 <input type="date"  name="effective_date" class="form-control"
@@ -60,7 +60,7 @@
 
                                 <div class="card-body" >
                                     <div class="row">
-                                        <label class="col-md-3 col-form-label">{{ __(' Date d’expiration ') }}</label>
+                                        <label class="col-md-3 col-form-label">{{ __(' Date d’expiration ') }}<span class="ob">*</span></label>
                                         <div class="col-md-9" >
                                             <div class="form-group">
                                                 <input type="date"  name="expiration_date" class="form-control"

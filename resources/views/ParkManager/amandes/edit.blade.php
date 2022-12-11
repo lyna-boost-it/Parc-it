@@ -40,7 +40,7 @@
 
                                 <div class="card-body">
                                     <div class="row">
-                                        <label class="col-md-3 col-form-label">{{ __('Infraction') }}</label>
+                                        <label class="col-md-3 col-form-label">{{ __('Infraction') }}<span class="ob">*</span></label>
                                         <div class="col-md-9">
                                             <div class="form-group">
                                                 <input type="text" name="infraction" class="form-control"
@@ -69,7 +69,7 @@
 
                                 <div class="card-body">
                                     <div class="row">
-                                        <label class="col-md-3 col-form-label">{{ __('Motif ') }}</label>
+                                        <label class="col-md-3 col-form-label">{{ __('Motif ') }}<span class="ob">*</span></label>
                                         <div class="col-md-9">
                                             <div class="form-group">
                                                 <input type="text" name="motive" class="form-control"
@@ -90,7 +90,7 @@
 
                                 <div class="card-body">
                                     <div class="row">
-                                        <label class="col-md-3 col-form-label">{{ __('Sanction ') }}</label>
+                                        <label class="col-md-3 col-form-label">{{ __('Sanction ') }}<span class="ob">*</span></label>
                                         <div class="col-md-9">
                                             <div class="form-group">
                                                 <input type="text" name="sanction" class="form-control"
@@ -111,7 +111,7 @@
 
                                 <div class="card-body">
                                     <div class="row">
-                                        <label class="col-md-3 col-form-label">{{ __('Période de la sanction ') }}</label>
+                                        <label class="col-md-3 col-form-label">{{ __('Période de la sanction ') }}<span class="ob">*</span></label>
                                         <div class="col-md-9">
                                             <div class="form-group">
                                                 <input type="text" name="period" class="form-control"

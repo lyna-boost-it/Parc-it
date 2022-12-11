@@ -37,7 +37,7 @@
 @if ($vehicules!=null)
 <div class="card-body">
     <div class="row">
-        <label class="col-md-3 col-form-label">{{ __('Véhicule') }}</label>
+        <label class="col-md-3 col-form-label">{{ __('Véhicule') }}<span class="ob">*</span></label>
         <div class="col-md-9">
             <div   style="width: 50%;
             float: left;
@@ -72,7 +72,7 @@
 
                         <div class="card-body" >
                             <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('  Numéro de police d’Assurance') }}</label>
+                                <label class="col-md-3 col-form-label">{{ __('  Numéro de police d’Assurance') }}<span class="ob">*</span></label>
                                 <div class="col-md-9" >
                                     <div class="form-group">
                                         <input type="number" maxlength="10" minlength="10"  name="police_number" class="form-control"
@@ -90,7 +90,7 @@
 
                         <div class="card-body" >
                             <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __(' Nom de la  compagnie ') }}</label>
+                                <label class="col-md-3 col-form-label">{{ __(' Nom de la  compagnie ') }}<span class="ob">*</span></label>
                                 <div class="col-md-9" >
                                     <div class="form-group">
                                         <input type="text"   name="company_name" class="form-control"
@@ -107,7 +107,7 @@
                         </div>
                     <div class="card-body" >
                             <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __(' Code de l’Agence ') }}</label>
+                                <label class="col-md-3 col-form-label">{{ __(' Code de l’Agence ') }}<span class="ob">*</span></label>
                                 <div class="col-md-9" >
                                     <div class="form-group">
                                         <input type="text"   name="agency_code" class="form-control"
@@ -124,7 +124,7 @@
                         </div>
                         <div class="card-body" >
                             <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __(' Adresse de l’agence  ') }}</label>
+                                <label class="col-md-3 col-form-label">{{ __(' Adresse de l’agence  ') }}<span class="ob">*</span></label>
                                 <div class="col-md-9" >
                                     <div class="form-group">
                                         <input type="text"   name="agency_address" class="form-control"
@@ -141,7 +141,7 @@
                         </div>
                         <div class="card-body" >
                             <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __(' Date d’effet ') }}</label>
+                                <label class="col-md-3 col-form-label">{{ __(' Date d’effet ') }}<span class="ob">*</span></label>
                                 <div class="col-md-9" >
                                     <div class="form-group">
                                         <input type="date"  name="effective_date" class="form-control"
@@ -158,7 +158,7 @@
                         </div>
                         <div class="card-body" >
                             <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __(' Date d’expiration ') }}</label>
+                                <label class="col-md-3 col-form-label">{{ __(' Date d’expiration ') }}<span class="ob">*</span></label>
                                 <div class="col-md-9" >
                                     <div class="form-group">
                                         <input type="date"  name="expiration_date" class="form-control"
@@ -175,7 +175,7 @@
                         </div>
                         <div class="card-body" >
                             <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('  Type d’assurance ') }}</label>
+                                <label class="col-md-3 col-form-label">{{ __('  Type d’assurance ') }}<span class="ob">*</span></label>
                                 <div class="col-md-9" >
                                     <div class="form-group">
                                         <input type="text"  name="insurance_type" class="form-control"

@@ -19,7 +19,6 @@
                     </a>
                 </li>
                 @if (Auth::user()->type == 'Gestionnaire parc' ||
-                    Auth::user()->type == 'Utilisateur' ||
                     Auth::user()->type == 'Gestionnaire Sup')
                     <li class="dropdown">
                         <a href="javascript:;"
@@ -79,7 +78,6 @@
                     </li>
                 @endif
                 @if (Auth::user()->type == 'Gestionnaire parc' ||
-                    Auth::user()->type == 'Utilisateur' ||
                     Auth::user()->type == 'Gestionnaire Sup')
                     <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle" style="font-size: 14px">
@@ -136,7 +134,8 @@
                         </ul>
                     </li>
                 @endif
-
+                @if (
+                Auth::user()->type != 'Utilisateur'  )
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle" style="font-size: 14px">
                         <span class="micon fa fa-toolbox"></span><span class="mtext">
@@ -153,7 +152,6 @@
                                 Demandes de réparation (DR)</a>
                         </li>
                         @if (Auth::user()->type == 'Gestionnaire parc' ||
-                            Auth::user()->type == 'Utilisateur' ||
                             Auth::user()->type == 'Gestionnaire Sup')
                             <li>
                                 <a class="  {{ Request::is('*ParkManager/repairs*') ? 'active' : '' }}"
@@ -194,11 +192,10 @@
 
                     </ul>
                 </li>
-
+                @endif
 
 
                 @if (Auth::user()->type == 'Gestionnaire parc' ||
-                    Auth::user()->type == 'Utilisateur' ||
                     Auth::user()->type == 'Gestionnaire Sup')
                     <li class="dropdown">
 
@@ -224,7 +221,6 @@
                 @endif
 
                 @if (Auth::user()->type == 'Gestionnaire parc' ||
-                    Auth::user()->type == 'Utilisateur' ||
                     Auth::user()->type == 'Gestionnaire Sup')
                     <li class="dropdown">
 
@@ -253,7 +249,6 @@
 
             </li>
             @if (Auth::user()->type == 'Gestionnaire parc' ||
-                Auth::user()->type == 'Utilisateur' ||
                 Auth::user()->type == 'Gestionnaire Sup')
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle"style="font-size: 14px">
@@ -283,7 +278,6 @@
                 </li>
             @endif
             @if (Auth::user()->type == 'Gestionnaire parc' ||
-                Auth::user()->type == 'Utilisateur' ||
                 Auth::user()->type == 'Gestionnaire Sup')
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle"style="font-size: 14px">
@@ -309,7 +303,6 @@
                 </li>
             @endif
             @if (Auth::user()->type == 'Gestionnaire parc' ||
-                Auth::user()->type == 'Utilisateur' ||
                 Auth::user()->type == 'Gestionnaire Sup')
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle"style="font-size: 14px">

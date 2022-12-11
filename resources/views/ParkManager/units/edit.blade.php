@@ -39,7 +39,7 @@
 
 <div class="card-body" >
 <div class="row">
-<label class="col-md-3 col-form-label">{{ __(' Nom de l’unité') }}</label>
+<label class="col-md-3 col-form-label">{{ __(' Nom de l’unité') }}<span class="ob">*</span></label>
 <div class="col-md-9" >
 <div class="form-group">
     <input type="text"  name="name" class="form-control"
@@ -58,7 +58,7 @@
 
 <div class="card-body" >
 <div class="row">
-<label class="col-md-3 col-form-label">{{ __(' Nom du contact ') }}</label>
+<label class="col-md-3 col-form-label">{{ __(' Nom du contact ') }}<span class="ob">*</span></label>
 <div class="col-md-9" >
 <div class="form-group">
     <input type="text"  name="contact_name" class="form-control"
@@ -76,7 +76,7 @@
 
 <div class="card-body" >
 <div class="row">
-<label class="col-md-3 col-form-label">{{ __(' Prénom du contact') }}</label>
+<label class="col-md-3 col-form-label">{{ __(' Prénom du contact') }}<span class="ob">*</span></label>
 <div class="col-md-9" >
 <div class="form-group">
     <input type="text"
@@ -102,7 +102,7 @@
 
 <div class="card-body" >
 <div class="row">
-    <label class="col-md-3 col-form-label">{{ __(' Fonction du contact') }}</label>
+    <label class="col-md-3 col-form-label">{{ __(' Fonction du contact') }}<span class="ob">*</span></label>
     <div class="col-md-9" >
         <div class="form-group">
             <input type="contact_function"
@@ -124,7 +124,7 @@
 
 <div class="card-body" >
 <div class="row">
-    <label class="col-md-3 col-form-label">{{ __(' N° du Téléphone') }}</label>
+    <label class="col-md-3 col-form-label">{{ __(' N° du Téléphone') }}<span class="ob">*</span></label>
     <div class="col-md-9" >
         <div class="form-group">
             <input type="contact_phone"
@@ -148,7 +148,7 @@
 
 <div class="card-body" >
 <div class="row">
-    <label class="col-md-3 col-form-label">{{ __(' Adresse E-mail') }}</label>
+    <label class="col-md-3 col-form-label">{{ __(' Adresse E-mail') }}<span class="ob">*</span></label>
     <div class="col-md-9" >
         <div class="form-group">
             <input type="contact_mail"

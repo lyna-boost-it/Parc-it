@@ -37,7 +37,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <label
-                                                class="col-md-3 col-form-label">{{ __('Nom conducteur adversaire') }}</label>
+                                                class="col-md-3 col-form-label">{{ __('Nom conducteur adversaire') }}<span class="ob">*</span></label>
                                             <div class="col-md-9">
                                                 <div class="form-group">
                                                     <input type="text" name="opponent_driver_name" class="form-control"
@@ -55,7 +55,7 @@
 
                                     <div class="card-body">
                                         <div class="row">
-                                            <label class="col-md-3 col-form-label">{{ __('Assurance du B') }}</label>
+                                            <label class="col-md-3 col-form-label">{{ __('Assurance du B') }}<span class="ob">*</span></label>
                                             <div class="col-md-9">
                                                 <div class="form-group">
                                                     <input type="text" name="opponent_insurance" class="form-control"
@@ -74,7 +74,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <label
-                                                class="col-md-3 col-form-label">{{ __('N° de l’assurance de l’adversaire ') }}</label>
+                                                class="col-md-3 col-form-label">{{ __('N° de l’assurance de l’adversaire ') }}<span class="ob">*</span></label>
                                             <div class="col-md-9">
                                                 <div class="form-group">
                                                     <input type="number" maxlength="10" minlength="10"
@@ -93,7 +93,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <label
-                                                class="col-md-3 col-form-label">{{ __(' Adresse de l’agence de l’assurance adversaire ') }}</label>
+                                                class="col-md-3 col-form-label">{{ __(' Adresse de l’agence de l’assurance adversaire ') }}<span class="ob">*</span></label>
                                             <div class="col-md-9">
                                                 <div class="form-group">
                                                     <input type="text" name="opponent_insurance_address"
@@ -115,7 +115,7 @@
 
                                     <div class="card-body">
                                         <div class="row">
-                                            <label class="col-md-3 col-form-label">{{ __(' Numero d\'accident') }}</label>
+                                            <label class="col-md-3 col-form-label">{{ __(' Numero d\'accident') }}<span class="ob">*</span></label>
                                             <div class="col-md-9">
                                                 <div class="form-group">
                                                     <input type="number" name="number" class="form-control"
@@ -132,7 +132,7 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
-                                            <label class="col-md-3 col-form-label">{{ __(' Type d’accident') }}</label>
+                                            <label class="col-md-3 col-form-label">{{ __(' Type d’accident') }}<span class="ob">*</span></label>
                                             <div class="col-md-9">
                                                 <div class="form-group">
                                                     <input type="text" name="accident_type" class="form-control"
@@ -149,7 +149,7 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
-                                            <label class="col-md-3 col-form-label">{{ __('Conséquences') }}</label>
+                                            <label class="col-md-3 col-form-label">{{ __('Conséquences') }}<span class="ob">*</span></label>
                                             <div class="col-md-9">
                                                 <div class="form-group">
                                                     <input type="text" name="result" class="form-control"
@@ -165,7 +165,7 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
-                                            <label class="col-md-3 col-form-label">{{ __(' Date de  déclaration ') }}</label>
+                                            <label class="col-md-3 col-form-label">{{ __(' Date de  déclaration ') }}<span class="ob">*</span></label>
                                             <div class="col-md-9">
                                                 <div class="form-group">
                                                     <input type="date" name="declaration_date" class="form-control"
@@ -183,7 +183,7 @@
 
                                     <div class="card-body">
                                         <div class="row">
-                                            <label class="col-md-3 col-form-label">{{ __('Date de l’expertise') }}</label>
+                                            <label class="col-md-3 col-form-label">{{ __('Date de l’expertise') }}<span class="ob">*</span></label>
                                             <div class="col-md-9">
                                                 <div class="form-group">
                                                     <input type="date" name="expertise_date" class="form-control"
@@ -201,7 +201,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <label
-                                                class="col-md-3 col-form-label">{{ __('État d’avancement du dossier') }}</label>
+                                                class="col-md-3 col-form-label">{{ __('État d’avancement du dossier') }}<span class="ob">*</span></label>
                                             <div class="col-md-9">
                                                 <div class="form-group">
                                                     <select name="state"
@@ -221,7 +221,7 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
-                                            <label class="col-md-3 col-form-label">{{ __('  Causes d’accident ') }}</label>
+                                            <label class="col-md-3 col-form-label">{{ __('  Causes d’accident ') }}<span class="ob">*</span></label>
                                             <div class="col-md-9">
                                                 <div class="form-group">
                                                     <input type="text" m name="cause" class="form-control"

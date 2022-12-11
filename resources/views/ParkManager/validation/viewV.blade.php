@@ -142,7 +142,7 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <label
-                                            class="col-md-3 col-form-label">{{ __('  Nom et prénom du Réception ') }}</label>
+                                            class="col-md-3 col-form-label">{{ __('  Nom et prénom du Réception ') }}<span class="ob">*</span></label>
                                         <div class="col-md-9" for="conducteur_field_for_absence">
                                             <div class="form-group">
                                                 <select name="staff_id" placeholder="  Nom et prénom de l\'absent"
@@ -162,7 +162,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
-                                        <label class="col-md-3 col-form-label">{{ __('Action d\'entrée') }}</label>
+                                        <label class="col-md-3 col-form-label">{{ __('Action d\'entrée') }}<span class="ob">*</span></label>
                                         <div class="col-md-9">
                                             <div class="form-group">
                                                 <select name="action" class="form-control" id="action">
@@ -189,7 +189,7 @@
 
                                 <div class="card-body">
                                     <div class="row">
-                                        <label class="col-md-3 col-form-label">{{ __('Date d\'entrée ') }}</label>
+                                        <label class="col-md-3 col-form-label">{{ __('Date d\'entrée ') }}<span class="ob">*</span></label>
                                         <div class="col-md-9">
                                             <div class="form-group">
                                                 <input type="date" name="enter_date" class="form-control"
@@ -206,7 +206,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
-                                        <label class="col-md-3 col-form-label">{{ __('Heure d\'entrée ') }}</label>
+                                        <label class="col-md-3 col-form-label">{{ __('Heure d\'entrée ') }}<span class="ob">*</span></label>
                                         <div class="col-md-9">
                                             <div class="form-group">
                                                 <input type="time" name="enter_time" class="form-control"
@@ -225,7 +225,7 @@
                                 <input type="hidden" value="Acceptée" id="answer" name="answer">
                                 <div class="card-body">
                                     <div class="row">
-                                        <label class="col-md-3 col-form-label">{{ __('Observation') }}</label>
+                                        <label class="col-md-3 col-form-label">{{ __('Observation') }}<span class="ob">*</span></label>
                                         <div class="col-md-9">
                                             <div class="form-group">
                                                 <input type="text" name="observation" class="form-control"
@@ -421,7 +421,7 @@
                                 <input type="hidden" value="Refusée" id="answer" name="answer">
                                 <div class="card-body">
                                     <div class="row">
-                                        <label class="col-md-3 col-form-label">{{ __('Observation') }}</label>
+                                        <label class="col-md-3 col-form-label">{{ __('Observation') }}<span class="ob">*</span></label>
                                         <div class="col-md-9">
                                             <div class="form-group">
                                                 <input type="text" name="observation" class="form-control"
@@ -608,7 +608,7 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <label
-                                            class="col-md-3 col-form-label">{{ __('  Nom et prénom du Réception ') }}</label>
+                                            class="col-md-3 col-form-label">{{ __('  Nom et prénom du Réception ') }}<span class="ob">*</span></label>
                                         <div class="col-md-9" for="conducteur_field_for_absence">
                                             <div class="form-group">
                                                 <select name="staff_id" placeholder="  Nom et prénom de l\'absent"
@@ -628,7 +628,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
-                                        <label class="col-md-3 col-form-label">{{ __('Action d\'entrée') }}</label>
+                                        <label class="col-md-3 col-form-label">{{ __('Action d\'entrée') }}<span class="ob">*</span></label>
                                         <div class="col-md-9">
                                             <div class="form-group">
                                                 <select name="action" class="form-control" id="action">
@@ -655,7 +655,7 @@
 
                                 <div class="card-body">
                                     <div class="row">
-                                        <label class="col-md-3 col-form-label">{{ __('Date d\'entrée ') }}</label>
+                                        <label class="col-md-3 col-form-label">{{ __('Date d\'entrée ') }}<span class="ob">*</span></label>
                                         <div class="col-md-9">
                                             <div class="form-group">
                                                 <input type="date" name="enter_date" class="form-control"
@@ -673,7 +673,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
-                                        <label class="col-md-3 col-form-label">{{ __('Heure d\'entrée ') }}</label>
+                                        <label class="col-md-3 col-form-label">{{ __('Heure d\'entrée ') }}<span class="ob">*</span></label>
                                         <div class="col-md-9">
                                             <div class="form-group">
                                                 <input type="time" name="enter_time" class="form-control"
@@ -692,7 +692,7 @@
                                 <input type="hidden" value="Acceptée" id="answer" name="answer">
                                 <div class="card-body">
                                     <div class="row">
-                                        <label class="col-md-3 col-form-label">{{ __('Observation') }}</label>
+                                        <label class="col-md-3 col-form-label">{{ __('Observation') }}<span class="ob">*</span></label>
                                         <div class="col-md-9">
                                             <div class="form-group">
                                                 <input type="text" name="observation" class="form-control"
@@ -888,7 +888,7 @@
                                 <input type="hidden" value="Refusée" id="answer" name="answer">
                                 <div class="card-body">
                                     <div class="row">
-                                        <label class="col-md-3 col-form-label">{{ __('Observation') }}</label>
+                                        <label class="col-md-3 col-form-label">{{ __('Observation') }}<span class="ob">*</span></label>
                                         <div class="col-md-9">
                                             <div class="form-group">
                                                 <input type="text" name="observation" class="form-control"

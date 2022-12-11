@@ -40,7 +40,7 @@
 
         <div class="card-body" >
             <div class="row">
-                <label class="col-md-3 col-form-label">{{ __(' Réf d’achat') }}</label>
+                <label class="col-md-3 col-form-label">{{ __(' Réf d’achat') }}<span class="ob">*</span></label>
                 <div class="col-md-9">
                     <div class="form-group">
                         <input type="text" name="ref" class="form-control"
@@ -58,7 +58,7 @@
 
         <div class="card-body" >
             <div class="row">
-                <label class="col-md-3 col-form-label">{{ __(' Code d’investissement') }}</label>
+                <label class="col-md-3 col-form-label">{{ __(' Code d’investissement') }}<span class="ob">*</span></label>
                                         <div class="col-md-9" >
                                             <div class="form-group">
                                                 <input type="text"
@@ -81,7 +81,7 @@
 
         <div class="card-body" >
             <div class="row">
-                <label class="col-md-3 col-form-label">{{ __(' Catégorie de la machine') }}</label>
+                <label class="col-md-3 col-form-label">{{ __(' Catégorie de la machine') }}<span class="ob">*</span></label>
                                         <div class="col-md-9" >
                                             <div class="form-group">
 
@@ -120,7 +120,7 @@
 
      <div class="card-body" >
             <div class="row">
-                <label class="col-md-3 col-form-label">{{ __('Marque') }}</label>
+                <label class="col-md-3 col-form-label">{{ __('Marque') }}<span class="ob">*</span></label>
                                         <div class="col-md-9" >
                                             <div class="form-group">
                                                 <input type="text"
@@ -146,7 +146,7 @@
 
      <div class="card-body" >
             <div class="row">
-                <label class="col-md-3 col-form-label">{{ __('Modèle') }}</label>
+                <label class="col-md-3 col-form-label">{{ __('Modèle') }}<span class="ob">*</span></label>
                                         <div class="col-md-9" >
                                             <div class="form-group">
                                                 <input type="text"
@@ -176,7 +176,7 @@
 
     <div class="card-body" >
         <div class="row">
-            <label class="col-md-3 col-form-label">{{ __(' Date d’acquisition') }}</label>
+            <label class="col-md-3 col-form-label">{{ __(' Date d’acquisition') }}<span class="ob">*</span></label>
             <div class="col-md-9" >
                 <div class="form-group">
                     <input type="date"
@@ -201,7 +201,7 @@
 
     <div class="card-body" >
         <div class="row">
-            <label class="col-md-3 col-form-label">{{ __('Date d’affectation') }}</label>
+            <label class="col-md-3 col-form-label">{{ __('Date d’affectation') }}<span class="ob">*</span></label>
             <div class="col-md-9" >
                 <div class="form-group">
                     <input type="date"

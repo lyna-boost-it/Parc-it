@@ -39,7 +39,7 @@
 
 <div class="card-body" >
     <div class="row">
-        <label class="col-md-3 col-form-label">{{ __('Contrat') }}</label>
+        <label class="col-md-3 col-form-label">{{ __('Contrat') }}<span class="ob">*</span></label>
         <div class="col-md-9" >
             <div class="form-group">
                 <input type="text"
@@ -63,7 +63,7 @@
 
 <div class="card-body">
     <div class="row">
-        <label class="col-md-3 col-form-label">{{ __('Nom du fournisseur') }}</label>
+        <label class="col-md-3 col-form-label">{{ __('Nom du fournisseur') }}<span class="ob">*</span></label>
         <div class="col-md-9">
             <div class="form-group">
                 <select id="supplier_id" type="text"
@@ -97,7 +97,7 @@
 
 <div class="card-body" >
     <div class="row">
-        <label class="col-md-3 col-form-label">{{ __(' Date d’entrée') }}</label>
+        <label class="col-md-3 col-form-label">{{ __(' Date d’entrée') }}<span class="ob">*</span></label>
         <div class="col-md-9" >
             <div class="form-group">
                 <input type="date"
@@ -121,7 +121,7 @@
 
 <div class="card-body" >
     <div class="row">
-        <label class="col-md-3 col-form-label">{{ __('Date de sortie') }}</label>
+        <label class="col-md-3 col-form-label">{{ __('Date de sortie') }}<span class="ob">*</span></label>
         <div class="col-md-9" >
             <div class="form-group">
                 <input type="date"
@@ -143,7 +143,7 @@
 
 <div class="card-body" >
     <div class="row">
-        <label class="col-md-3 col-form-label">{{ __('Type de panne') }}</label>
+        <label class="col-md-3 col-form-label">{{ __('Type de panne') }}<span class="ob">*</span></label>
         <div class="col-md-9" >
             <div class="form-group">
                 <input type="text"
@@ -166,7 +166,7 @@
 
 <div class="card-body" >
     <div class="row">
-        <label class="col-md-3 col-form-label">{{ __('Pièces rechangées') }}</label>
+        <label class="col-md-3 col-form-label">{{ __('Pièces rechangées') }}<span class="ob">*</span></label>
         <div class="col-md-9" >
             <div class="form-group">
                 <input type="text"
@@ -189,7 +189,7 @@
 
 <div class="card-body" >
     <div class="row">
-        <label class="col-md-3 col-form-label">{{ __('Coût') }}</label>
+        <label class="col-md-3 col-form-label">{{ __('Coût') }}<span class="ob">*</span></label>
         <div class="col-md-9" >
             <div class="form-group">
                 <input type="number"

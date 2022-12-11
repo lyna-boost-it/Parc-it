@@ -36,7 +36,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <label
-                                        class="col-md-3 col-form-label">{{ __('  Nom et prénom du conducteur') }}</label>
+                                        class="col-md-3 col-form-label">{{ __('  Nom et prénom du conducteur') }}<span class="ob">*</span></label>
                                     <div class="col-md-9" for="conducteur_field_for_absence">
                                         <div class="form-group">
                                             <select name="driver_id" placeholder="  Nom et prénom de l\'absent"
@@ -61,7 +61,7 @@
 
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __('Véhicule') }}</label>
+                                    <label class="col-md-3 col-form-label">{{ __('Véhicule') }}<span class="ob">*</span></label>
                                     <div class="col-md-9">
                                         <div   style="width: 50%;
                                         float: left;
@@ -106,7 +106,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <label
-                                        class="col-md-3 col-form-label">{{ __(' Nom du personne accompagnée') }}</label>
+                                        class="col-md-3 col-form-label">{{ __(' Nom du personne accompagnée') }}<span class="ob">*</span></label>
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <input type="text" name="p_name" class="form-control"
@@ -126,7 +126,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <label
-                                        class="col-md-3 col-form-label">{{ __(' Prénom du personne accompagnée') }}</label>
+                                        class="col-md-3 col-form-label">{{ __(' Prénom du personne accompagnée') }}<span class="ob">*</span></label>
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <input type="text" name="p_last_name" class="form-control"
@@ -156,7 +156,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <label
-                                        class="col-md-3 col-form-label">{{ __(' Date de validité (Début)') }}</label>
+                                        class="col-md-3 col-form-label">{{ __(' Date de validité (Début)') }}<span class="ob">*</span></label>
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <input type="date" name="start_date" class="form-control"
@@ -178,7 +178,7 @@
 
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __(' Date de validité (Fin)') }}</label>
+                                    <label class="col-md-3 col-form-label">{{ __(' Date de validité (Fin)') }}<span class="ob">*</span></label>
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <input type="date" name="end_date" class="form-control"
@@ -203,7 +203,7 @@
 
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __(' Description') }}</label>
+                                    <label class="col-md-3 col-form-label">{{ __(' Description') }}<span class="ob">*</span></label>
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <input type="text" name="description" class="form-control"
@@ -221,7 +221,7 @@
 
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __(' Motif') }}</label>
+                                    <label class="col-md-3 col-form-label">{{ __(' Motif') }}<span class="ob">*</span></label>
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <input type="text" name="reason" class="form-control"
@@ -239,7 +239,7 @@
 
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __('Type de destination') }}</label>
+                                    <label class="col-md-3 col-form-label">{{ __('Type de destination') }}<span class="ob">*</span></label>
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <select name="destination_type" class="form-control"
@@ -259,7 +259,7 @@
 
                                 <div class="card-body">
                                     <div class="row">
-                                        <label class="col-md-3 col-form-label">{{ __('Destination (A->B)') }}</label>
+                                        <label class="col-md-3 col-form-label">{{ __('Destination (A->B)') }}<span class="ob">*</span></label>
                                         <div class="col-md-9">
                                             <div class="form-group" for="AB">
                                                 <input type="text" name="from" class="form-control"
@@ -283,7 +283,7 @@
 
                                 <div class="card-body">
                                     <div class="row">
-                                        <label class="col-md-3 col-form-label">{{ __('  Territoire') }}</label>
+                                        <label class="col-md-3 col-form-label">{{ __('  Territoire') }}<span class="ob">*</span></label>
                                         <div class="col-md-9" for="Territoire">
                                             <div class="form-group">
                                                 <input type="text" id="territory" name="territory"

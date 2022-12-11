@@ -30,7 +30,7 @@
 
 
 
-      
+
 
 
 
@@ -38,7 +38,7 @@
 
         <div class="card-body">
             <div class="row">
-                <label class="col-md-3 col-form-label">{{ __('Institution') }}</label>
+                <label class="col-md-3 col-form-label">{{ __('Institution') }}<span class="ob">*</span></label>
                 <div class="col-md-9">
                     <div class="form-group">
                         <select name="institution"

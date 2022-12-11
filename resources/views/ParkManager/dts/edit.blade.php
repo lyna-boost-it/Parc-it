@@ -26,7 +26,7 @@
                                             </div>
                         <div class="card-body">
                             <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('Type de Panne') }}</label>
+                                <label class="col-md-3 col-form-label">{{ __('Type de Panne') }}<span class="ob">*</span></label>
                                 <div class="col-md-9">
                                     <div class="form-group">
                                         <select  name="type_panne" class="form-control"
@@ -43,7 +43,7 @@
                         </div>
                         <div class="card-body" >
                             <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('Nature De Panne') }}</label>
+                                <label class="col-md-3 col-form-label">{{ __('Nature De Panne') }}<span class="ob">*</span></label>
                                 <div class="col-md-9" >
                                     <div class="form-group">
                                         <input type="text"  name="nature_panne" class="form-control"
@@ -60,7 +60,7 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('Action d\'entre') }}</label>
+                                <label class="col-md-3 col-form-label">{{ __('Action d\'entre') }}<span class="ob">*</span></label>
                                 <div class="col-md-9">
                                     <div class="form-group">
                                         <select  name="action" class="form-control"
@@ -78,7 +78,7 @@
                         </div>
                         <div class="card-body" >
                             <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('Date d\'entre ') }}</label>
+                                <label class="col-md-3 col-form-label">{{ __('Date d\'entre ') }}<span class="ob">*</span></label>
                                 <div class="col-md-9" >
                                     <div class="form-group">
                                         <input type="date"  name="enter_date" class="form-control"
@@ -95,7 +95,7 @@
                         </div>
                         <div class="card-body" >
                             <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('Heure d\'entre ') }}</label>
+                                <label class="col-md-3 col-form-label">{{ __('Heure d\'entre ') }}<span class="ob">*</span></label>
                                 <div class="col-md-9" >
                                     <div class="form-group">
                                         <input type="time"  name="enter_time" class="form-control"
@@ -113,7 +113,7 @@
 
                         <div class="card-body" >
                             <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('Observation') }}</label>
+                                <label class="col-md-3 col-form-label">{{ __('Observation') }}<span class="ob">*</span></label>
                                 <div class="col-md-9" >
                                     <div class="form-group">
                                         <input type="text"  name="observation" class="form-control"
@@ -130,7 +130,7 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('Type de Maintenance') }}</label>
+                                <label class="col-md-3 col-form-label">{{ __('Type de Maintenance') }}<span class="ob">*</span></label>
                                 <div class="col-md-9">
                                     <div class="form-group">
                                         <select  name="type_maintenance" class="form-control"

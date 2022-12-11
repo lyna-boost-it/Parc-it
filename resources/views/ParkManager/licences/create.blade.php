@@ -36,7 +36,7 @@
 
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __('Date de début ') }}</label>
+                                    <label class="col-md-3 col-form-label">{{ __('Date de début ') }}<span class="ob">*</span></label>
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <input type="date" name="start_date" class="form-control"
@@ -59,7 +59,7 @@
 
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __('Date de fin') }}</label>
+                                    <label class="col-md-3 col-form-label">{{ __('Date de fin') }}<span class="ob">*</span></label>
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <input type="date" name="end_date" class="form-control"
@@ -83,7 +83,7 @@
 
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __('Institution') }}</label>
+                                    <label class="col-md-3 col-form-label">{{ __('Institution') }}<span class="ob">*</span></label>
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <select name="institution"
@@ -102,7 +102,7 @@
 
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __('Véhicule') }}</label>
+                                    <label class="col-md-3 col-form-label">{{ __('Véhicule') }}<span class="ob">*</span></label>
                                     <div class="col-md-9">
                                         <div   style="width: 50%;
                                         float: left;

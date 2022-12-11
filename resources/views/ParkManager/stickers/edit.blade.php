@@ -32,7 +32,7 @@
 
         <div class="card-body" >
             <div class="row">
-                <label class="col-md-3 col-form-label">{{ __('Année (en cours) ') }}</label>
+                <label class="col-md-3 col-form-label">{{ __('Année (en cours) ') }}<span class="ob">*</span></label>
                 <div class="col-md-9" >
                     <div class="form-group">
                         <input type="number" min="1900" max="2099" step="1"  name="year" class="form-control"

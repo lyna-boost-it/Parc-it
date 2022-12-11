@@ -39,17 +39,18 @@
                                     <div class="row">
 
                                         <div class="col-md-4">
-                                            <label>{{ __('Genre') }}</label>
+                                            <label>{{ __('Genre') }}<span class="ob">*</span></label>
                                             <div class="form-group">
                                                 <input type="text" name="genre" class="form-control"
                                                     placeholder="Genre de véhicule" value="{{ $vehicule->genre }}"
                                                     required>
+
                                             </div>
 
                                         </div>
 
                                         <div class="col-md-4">
-                                            <label>{{ __('Marque du véhicule') }}</label>
+                                            <label>{{ __('Marque du véhicule') }}<span class="ob">*</span></label>
                                             <div class="form-group">
                                                 <input type="text" name="mark" class="form-control"
                                                     placeholder="Marque du véhicule" value="{{ $vehicule->mark }}"
@@ -58,7 +59,7 @@
 
                                         </div>
                                         <div class="col-md-4">
-                                            <label>{{ __('Type du véhicule') }}</label>
+                                            <label>{{ __('Type du véhicule') }}<span class="ob">*</span></label>
                                             <div class="form-group">
                                                 <input type="text" name="type" class="form-control"
                                                     placeholder="Type du véhicule" value="{{ $vehicule->type }}"
@@ -73,7 +74,7 @@
                                     <div class="row">
 
                                         <div class="col-md-4">
-                                            <label>{{ __('Carrosserie') }}</label>
+                                            <label>{{ __('Carrosserie') }}<span class="ob">*</span></label>
                                             <div class="form-group">
                                                 <input type="text" name="crosserie" class="form-control"
                                                     placeholder="Carrosserie du véhicule"
@@ -83,7 +84,7 @@
                                         </div>
 
                                         <div class="col-md-4">
-                                            <label>{{ __('Energie du véhicule') }}</label>
+                                            <label>{{ __('Energie du véhicule') }}<span class="ob">*</span></label>
                                             <div class="form-group">
                                                 <select id="type_of_fuel" type="text"
                                                     class="form-control select2 @error('type_of_fuel') is-invalid @enderror"
@@ -105,7 +106,7 @@
 
                                         </div>
                                         <div class="col-md-4">
-                                            <label>{{ __('Puissance du véhicule') }}</label>
+                                            <label>{{ __('Puissance du véhicule') }}<span class="ob">*</span></label>
                                             <div class="form-group">
                                                 <input type="text" name="power" class="form-control"
                                                     placeholder="Puissance du véhicule" value="{{ $vehicule->power }}"
@@ -117,7 +118,7 @@
                                     <div class="row">
 
                                         <div class="col-md-4">
-                                            <label>{{ __('Places assises') }}</label>
+                                            <label>{{ __('Places assises') }}<span class="ob">*</span></label>
                                             <div class="form-group">
                                                 <input type="text" name="places" class="form-control"
                                                     placeholder="Places assises" value="{{ $vehicule->places }}"
@@ -127,7 +128,7 @@
                                         </div>
 
                                         <div class="col-md-4">
-                                            <label>{{ __('Poids total en charge') }}</label>
+                                            <label>{{ __('Poids total en charge') }}<span class="ob">*</span></label>
                                             <div class="form-group">
                                                 <input type="text" name="weight" step="0.01" class="form-control"
                                                     placeholder="Poids total en charge" value="{{ $vehicule->weight }}"
@@ -136,7 +137,7 @@
 
                                         </div>
                                         <div class="col-md-4">
-                                            <label>{{ __('Charge utile') }}</label>
+                                            <label>{{ __('Charge utile') }}<span class="ob">*</span></label>
                                             <div class="form-group">
                                                 <input type="text" name="charge" class="form-control"
                                                     placeholder="Charge utile" value="{{ $vehicule->charge }}"
@@ -149,7 +150,7 @@
                                     <div class="row">
 
                                         <div class="col-md-4">
-                                            <label>{{ __('N D\'imatriculation') }}</label>
+                                            <label>{{ __('N D\'imatriculation') }}<span class="ob">*</span></label>
                                             <div class="form-group">
                                                 <input type="text" name="marticule" class="form-control"
                                                     placeholder="N D\'imatriculation"
@@ -159,7 +160,7 @@
                                         </div>
 
                                         <div class="col-md-4">
-                                            <label>{{ __('Precedent numero') }}</label>
+                                            <label>{{ __('Precedent numero') }}<span class="ob">*</span></label>
                                             <div class="form-group">
                                                 <input type="text" name="precedent" class="form-control"
                                                     placeholder="Precedent numero" value="{{ $vehicule->precedent }}"
@@ -168,7 +169,7 @@
 
                                         </div>
                                         <div class="col-md-4">
-                                            <label>{{ __('Année de premiere mise en circulation') }}</label>
+                                            <label>{{ __('Année de premiere mise en circulation') }}<span class="ob">*</span></label>
                                             <div class="form-group">
                                                 <input type="date" name="moving_year" class="form-control"
                                                     placeholder="Année de premiere mise en circulation"
@@ -180,7 +181,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <label
-                                                class="col-md-3 col-form-label">{{ __('Uplode la carte grise') }}</label>
+                                                class="col-md-3 col-form-label">{{ __('Uplode la carte grise') }}<span class="ob">*</span></label>
 
 
                                             <input type="file" id="docpicker" name="path"
@@ -200,7 +201,7 @@
 
 
                                         <div class="col-md-4">
-                                            <label>{{ __('Code de véhicule') }}</label>
+                                            <label>{{ __('Code de véhicule') }}<span class="ob">*</span></label>
                                             <div class="form-group">
                                                 <input type="text" name="code" class="form-control"
                                                     placeholder="Code de véhicule" value="{{ $vehicule->code }}"
@@ -210,7 +211,7 @@
                                         </div>
 
                                         <div class="col-md-4">
-                                            <label>{{ __('Numéro de Série') }}</label>
+                                            <label>{{ __('Numéro de Série') }}<span class="ob">*</span></label>
                                             <div class="form-group">
                                                 <input type="text" name="serial_numbers" class="form-control"
                                                     placeholder=" Numéro de Série"
@@ -219,7 +220,7 @@
 
                                         </div>
                                         <div class="col-md-4">
-                                            <label>{{ __('Catégorie de véhicule') }}</label>
+                                            <label>{{ __('Catégorie de véhicule') }}<span class="ob">*</span></label>
                                             <div class="form-group">
                                                 <select id="vehicle_type" type="text"
                                                     class="form-control select2 @error('vehicle_type') is-invalid @enderror"
@@ -247,7 +248,7 @@
 
 
                                         <div class="col-md-4">
-                                            <label>{{ __('Année Mise en Service') }}</label>
+                                            <label>{{ __('Année Mise en Service') }}<span class="ob">*</span></label>
                                             <div class="form-group">
                                                 <input type="date" name="year_commissioned" class="form-control"
                                                     placeholder=" Année Mise en
@@ -257,7 +258,7 @@
 
                                         </div>
                                         <div class="col-md-4">
-                                            <label>{{ __('Capacité réservoir') }}</label>
+                                            <label>{{ __('Capacité réservoir') }}<span class="ob">*</span></label>
                                             <div class="form-group">
                                                 <input type="number" name="tank_capacity" class="form-control"
                                                     placeholder="Capacité réservoir en littre"
@@ -266,7 +267,7 @@
 
                                         </div>
                                         <div class="col-md-4">
-                                            <label>{{ __('LTR / 100Km') }}</label>
+                                            <label>{{ __('LTR / 100Km') }}<span class="ob">*</span></label>
                                             <input type="number"step="0.01" name="litter_by_100km"
                                                 class="form-control" placeholder="LTR / 100Km"
                                                 value="{{ $vehicule->litter_by_100km }}" required>
@@ -279,7 +280,7 @@
 
 
                                         <div class="col-md-4">
-                                            <label>{{ __('Dimensions pneus') }}</label>
+                                            <label>{{ __('Dimensions pneus') }}<span class="ob">*</span></label>
                                             <div class="form-group">
                                                 <input type="text" name="tire_size" class="form-control"
                                                     placeholder="Dimensions pneus" value="{{ $vehicule->tire_size }}"
@@ -288,7 +289,7 @@
 
                                         </div>
                                         <div class="col-md-4">
-                                            <label>{{ __('Pressions Av et Ar') }}</label>
+                                            <label>{{ __('Pressions Av et Ar') }}<span class="ob">*</span></label>
                                             <div class="form-group">
                                                 <input type="text" step="0.01" name="pressure_forward"
                                                     class="form-control" placeholder="Pressions Av"
@@ -300,7 +301,7 @@
 
                                         </div>
                                         <div class="col-md-4">
-                                            <label>{{ __('Type de Batterie') }}</label>
+                                            <label>{{ __('Type de Batterie') }}<span class="ob">*</span></label>
                                             <div class="form-group">
                                                 <select id="battery_type" type="text"
                                                     class="form-control select2 @error('battery_type') is-invalid
@@ -329,7 +330,7 @@
 
 
                                         <div class="col-md-4">
-                                            <label>{{ __('Date d’acquisition') }}</label>
+                                            <label>{{ __('Date d’acquisition') }}<span class="ob">*</span></label>
                                             <div class="form-group">
                                                 <input type="date" name="acquisition_date" class="form-control"
                                                     placeholder="Date d’acquisition"
@@ -338,7 +339,7 @@
 
                                         </div>
                                         <div class="col-md-4">
-                                            <label>{{ __('GPS') }}</label>
+                                            <label>{{ __('GPS') }}<span class="ob">*</span></label>
                                             <div class="form-group">
                                                 <select id="registration" type="text"
                                                     class="form-control select2 @error('registration') is-invalid
@@ -362,7 +363,7 @@
 
                                         </div>
                                         <div class="col-md-4">
-                                            <label>{{ __('Affectation') }}</label>
+                                            <label>{{ __('Affectation') }}<span class="ob">*</span></label>
                                             <div class="form-group">
                                                 <select id="unit_id" type="text"
                                                     class="form-control select2 @error('unit_id') is-invalid

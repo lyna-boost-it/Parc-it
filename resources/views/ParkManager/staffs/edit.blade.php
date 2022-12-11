@@ -43,7 +43,7 @@
 
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __(' Nom') }}</label>
+                                    <label class="col-md-3 col-form-label">{{ __(' Nom') }}<span class="ob">*</span></label>
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <input type="text" name="name" class="form-control"
@@ -61,7 +61,7 @@
 
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __(' Prénom') }}</label>
+                                    <label class="col-md-3 col-form-label">{{ __(' Prénom') }}<span class="ob">*</span></label>
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <input type="text" name="last_name" class="form-control"
@@ -78,7 +78,7 @@
 
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __(' Matricule') }}</label>
+                                    <label class="col-md-3 col-form-label">{{ __(' Matricule') }}<span class="ob">*</span></label>
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <input type="number" name="serial_numbers" class="form-control"
@@ -100,7 +100,7 @@
 
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __(' N SS') }}</label>
+                                    <label class="col-md-3 col-form-label">{{ __(' N SS') }}<span class="ob">*</span></label>
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <input type="number" name="number_ss" class="form-control"
@@ -117,7 +117,7 @@
 
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __('Sexe') }}</label>
+                                    <label class="col-md-3 col-form-label">{{ __('Sexe') }}<span class="ob">*</span></label>
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <select name="sex"
@@ -134,7 +134,7 @@
 
                                 <div class="card-body">
                                     <div class="row">
-                                        <label class="col-md-3 col-form-label">{{ __(' Date de naissance ') }}</label>
+                                        <label class="col-md-3 col-form-label">{{ __(' Date de naissance ') }}<span class="ob">*</span></label>
                                         <div class="col-md-9">
                                             <div class="form-group">
                                                 <input type="date" id="date_of_birth" name="date_of_birth"
@@ -153,7 +153,7 @@
 
                                 <div class="card-body">
                                     <div class="row">
-                                        <label class="col-md-3 col-form-label">{{ __('Lieu de naissance') }}</label>
+                                        <label class="col-md-3 col-form-label">{{ __('Lieu de naissance') }}<span class="ob">*</span></label>
                                         <div class="col-md-9">
                                             <div class="form-group">
                                                 <input type="place_of_birth" name="place_of_birth"
@@ -174,7 +174,7 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <label
-                                            class="col-md-3 col-form-label">{{ __(' Situation Familiale') }}</label>
+                                            class="col-md-3 col-form-label">{{ __(' Situation Familiale') }}<span class="ob">*</span></label>
                                         <div class="col-md-9">
                                             <div class="form-group">
                                                 <select name="family_situation"
@@ -193,7 +193,7 @@
 
                                 <div class="card-body">
                                     <div class="row">
-                                        <label class="col-md-3 col-form-label">{{ __(' Adresse') }}</label>
+                                        <label class="col-md-3 col-form-label">{{ __(' Adresse') }}<span class="ob">*</span></label>
                                         <div class="col-md-9">
                                             <div class="form-group">
                                                 <input type="address" name="address" class="form-control"
@@ -212,7 +212,7 @@
 
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __(' Date de recrutement ') }}</label>
+                                    <label class="col-md-3 col-form-label">{{ __(' Date de recrutement ') }}<span class="ob">*</span></label>
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <input type="date" id="date_of_recruitment" name="date_of_recruitment"
@@ -232,7 +232,7 @@
 
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __('Affectation') }}</label>
+                                    <label class="col-md-3 col-form-label">{{ __('Affectation') }}<span class="ob">*</span></label>
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <select id="unit_id" name="unit_id"
@@ -259,7 +259,7 @@
 
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __(' N° du Téléphone') }}</label>
+                                    <label class="col-md-3 col-form-label">{{ __(' N° du Téléphone') }}<span class="ob">*</span></label>
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <input type="phone" name="phone" class="form-control" maxlength="10"

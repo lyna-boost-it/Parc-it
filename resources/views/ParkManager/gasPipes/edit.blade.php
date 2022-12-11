@@ -34,7 +34,7 @@
 
             <div class="card-body" >
                 <div class="row">
-                    <label class="col-md-3 col-form-label">{{ __('  N du ticket') }}</label>
+                    <label class="col-md-3 col-form-label">{{ __('  N du ticket') }}<span class="ob">*</span></label>
                     <div class="col-md-9" >
                         <div class="form-group">
                             <input type="number"   name="ticket" class="form-control"
@@ -51,7 +51,7 @@
             </div>
             <div class="card-body" >
                 <div class="row">
-                    <label class="col-md-3 col-form-label">{{ __(' Coût') }}</label>
+                    <label class="col-md-3 col-form-label">{{ __(' Coût') }}<span class="ob">*</span></label>
                     <div class="col-md-9" >
                         <div class="form-group">
                             <input type="number" step="0.1"  name="price" class="form-control"
@@ -68,7 +68,7 @@
             </div>
             <div class="card-body" >
                 <div class="row">
-                    <label class="col-md-3 col-form-label">{{ __(' Litre de Carburant') }}</label>
+                    <label class="col-md-3 col-form-label">{{ __(' Litre de Carburant') }}<span class="ob">*</span></label>
                     <div class="col-md-9" >
                         <div class="form-group">
                             <input type="number" step="0.1"  name="litter" class="form-control"
@@ -85,7 +85,7 @@
             </div>
             <div class="card-body" >
                 <div class="row">
-                    <label class="col-md-3 col-form-label">{{ __('  Prix du litre') }}</label>
+                    <label class="col-md-3 col-form-label">{{ __('  Prix du litre') }}<span class="ob">*</span></label>
                     <div class="col-md-9" >
                         <div class="form-group">
                             <input type="number" step="0.1"  name="litter_price" class="form-control"

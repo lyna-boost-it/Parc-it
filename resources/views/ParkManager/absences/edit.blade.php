@@ -35,7 +35,7 @@
 
                                 <div class="card-body">
                                     <div class="row">
-                                        <label class="col-md-3 col-form-label">{{ __(' Date ') }}</label>
+                                        <label class="col-md-3 col-form-label">{{ __(' Date ') }}<span class="ob">*</span></label>
                                         <div class="col-md-9">
                                             <div class="form-group">
                                                 <input type="date" id="absence_date" name="absence_date"
@@ -56,7 +56,7 @@
 
                                 <div class="card-body">
                                     <div class="row">
-                                        <label class="col-md-3 col-form-label">{{ __(' Durée ') }}</label>
+                                        <label class="col-md-3 col-form-label">{{ __(' Durée ') }}<span class="ob">*</span></label>
                                         <div class="col-md-9">
                                             <div class="form-group">
                                                 <input type="number" id="duration" name="duration" class="form-control"
@@ -76,7 +76,7 @@
 
                                 <div class="card-body">
                                     <div class="row">
-                                        <label class="col-md-3 col-form-label">{{ __('Motif d’Absence ') }}</label>
+                                        <label class="col-md-3 col-form-label">{{ __('Motif d’Absence ') }}<span class="ob">*</span></label>
                                         <div class="col-md-9">
                                             <div class="form-group">
                                                 <input type="text" id="explanation" name="explanation"

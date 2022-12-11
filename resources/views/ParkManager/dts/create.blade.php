@@ -31,7 +31,7 @@
 
                         <div class="card-body">
                             <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('Type de Panne') }}</label>
+                                <label class="col-md-3 col-form-label">{{ __('Type de Panne') }}<span class="ob">*</span></label>
                                 <div class="col-md-9">
                                     <div class="form-group">
                                         <select  name="type_panne" class="form-control"
@@ -49,7 +49,7 @@
 
                         <div class="card-body" >
                             <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('Nature De Panne') }}</label>
+                                <label class="col-md-3 col-form-label">{{ __('Nature De Panne') }}<span class="ob">*</span></label>
                                 <div class="col-md-9" >
                                     <div class="form-group">
                                         <input type="text"  name="nature_panne" class="form-control"
@@ -71,7 +71,7 @@
 
                         <div class="card-body" >
                             <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('  Nom et prénom du conducteur EDEVAL') }}</label>
+                                <label class="col-md-3 col-form-label">{{ __('  Nom et prénom du conducteur EDEVAL') }}<span class="ob">*</span></label>
                                 <div class="col-md-9" for="conducteur_field_for_absence">
                                     <div class="form-group">
                                         <select  name="driver_id"   placeholder="  Nom et prénom de l\'absent"
@@ -96,7 +96,7 @@
 @if (Auth::user()->type=='Demandeur' )
 <div class="card-body" >
     <div class="row">
-        <label class="col-md-3 col-form-label">{{ __(' Affectation') }}</label>
+        <label class="col-md-3 col-form-label">{{ __(' Affectation') }}<span class="ob">*</span></label>
         <div class="col-md-9" for="conducteur_field_for_absence">
             <div class="form-group">
                 <select  name="unit_id"
@@ -120,7 +120,7 @@
 @else
 <div class="card-body" >
     <div class="row">
-        <label class="col-md-3 col-form-label">{{ __(' Affectation') }}</label>
+        <label class="col-md-3 col-form-label">{{ __(' Affectation') }}<span class="ob">*</span></label>
         <div class="col-md-9" for="conducteur_field_for_absence">
             <div class="form-group">
                 <select  name="unit_id"   placeholder="Choisissez une unite"
@@ -143,7 +143,7 @@
 
                         <div class="card-body">
                             <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('Type') }}</label>
+                                <label class="col-md-3 col-form-label">{{ __('Type') }}<span class="ob">*</span></label>
                                 <div class="col-md-9">
                                     <div class="form-group">
                                         <select name="type" class="form-control"
@@ -168,7 +168,7 @@
 <div id="conducteur_fieldDiv">
                         <div class="card-body">
                             <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('Véhicule') }}</label>
+                                <label class="col-md-3 col-form-label">{{ __('Véhicule') }}<span class="ob">*</span></label>
                                 <div class="col-md-9">
                                     <div   style="width: 50%;
                                     float: left;
@@ -203,7 +203,7 @@
 <div id="Mstaff_fieldDiv">
                         <div class="card-body" >
                             <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __(' MATÉRIELS MOTORISÉS') }}</label>
+                                <label class="col-md-3 col-form-label">{{ __(' MATÉRIELS MOTORISÉS') }}<span class="ob">*</span></label>
                                 <div class="col-md-9" for="Territoire">
                                     <div class="form-group">
                                         <div   style="width: 50%;
@@ -239,7 +239,7 @@
 
                                 <div class="card-body">
                                     <div class="row">
-                                        <label class="col-md-3 col-form-label">{{ __('Type de Maintenance') }}</label>
+                                        <label class="col-md-3 col-form-label">{{ __('Type de Maintenance') }}<span class="ob">*</span></label>
                                         <div class="col-md-9">
                                             <div class="form-group">
                                                 <select name="type_maintenance" class="form-control"

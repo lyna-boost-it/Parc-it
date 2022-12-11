@@ -39,7 +39,7 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('Type de Panne') }}</label>
+                                <label class="col-md-3 col-form-label">{{ __('Type de Panne') }}<span class="ob">*</span></label>
                                 <div class="col-md-9">
                                     <div class="form-group">
                                         <select  name="type_panne" class="form-control"
@@ -56,7 +56,7 @@
                         </div>
                         <div class="card-body" >
                             <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('Désignation') }}</label>
+                                <label class="col-md-3 col-form-label">{{ __('Désignation') }}<span class="ob">*</span></label>
                                 <div class="col-md-9" >
                                     <div class="form-group">
                                         <input type="text"
@@ -83,7 +83,7 @@
 
                         <div class="card-body" >
                             <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('KM') }}</label>
+                                <label class="col-md-3 col-form-label">{{ __('KM') }}<span class="ob">*</span></label>
                                 <div class="col-md-9" >
                                     <div class="form-group">
                                         <input type="number"
@@ -112,7 +112,7 @@
 
                         <div class="card-body" >
                             <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __(' Personne(s) intervenante(s)') }}</label>
+                                <label class="col-md-3 col-form-label">{{ __(' Personne(s) intervenante(s)') }}<span class="ob">*</span></label>
                                 <div class="col-md-9" for="conducteur_field_for_absence">
                                     <div class="form-group">
                                         <select  name="staff[]" class="selectpicker"  placeholder="  Nom et prénom de l\'absent"
@@ -148,7 +148,7 @@
 
                         <div class="card-body" >
                             <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __(' Conducteur EDVAL') }}</label>
+                                <label class="col-md-3 col-form-label">{{ __(' Conducteur EDVAL') }}<span class="ob">*</span></label>
                                 <div class="col-md-9" for="conducteur_field_for_absence">
                                     <div class="form-group">
                                         <select  name="driver_id"   placeholder="  Nom et prénom de l\'absent"

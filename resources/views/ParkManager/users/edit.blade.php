@@ -36,7 +36,7 @@
 
                         <div class="card-body">
                             <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('Username') }}</label>
+                                <label class="col-md-3 col-form-label">{{ __('Username') }}<span class="ob">*</span></label>
                                 <div class="col-md-9">
                                     <div class="form-group">
                                         <input type="text" name="username" class="form-control" placeholder="Username"
@@ -53,7 +53,7 @@
 
 
                             <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('Type d\'utilisateur') }}</label>
+                                <label class="col-md-3 col-form-label">{{ __('Type d\'utilisateur') }}<span class="ob">*</span></label>
                                 <div class="col-md-9">
                                     <div class="form-group">
                                         <select id="type" name="type"  class="form-control" placeholder="Type d'utilisateur"
@@ -77,7 +77,7 @@
 
 
                             <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('Adresse E-mail') }}</label>
+                                <label class="col-md-3 col-form-label">{{ __('Adresse E-mail') }}<span class="ob">*</span></label>
                                 <div class="col-md-9">
                                     <div class="form-group">
                                         <input type="email" name="email" class="form-control" placeholder="Adresse E-mail"
@@ -94,7 +94,7 @@
 
 
                             <div class="row" {{ $errors->has('password') ? ' has-danger' : '' }}>
-                                <label class="col-md-3 col-form-label">{{ __('Password') }}</label>
+                                <label class="col-md-3 col-form-label">{{ __('Password') }}<span class="ob">*</span></label>
                                 <div class="col-md-9">
                                     <div class="form-group">
                                         <input type="password" name="password" class="form-control" placeholder="Password"

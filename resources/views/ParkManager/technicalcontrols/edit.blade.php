@@ -32,7 +32,7 @@
 
         <div class="card-body" >
             <div class="row">
-                <label class="col-md-3 col-form-label">{{ __('Type du Contrôle technique   ') }}</label>
+                <label class="col-md-3 col-form-label">{{ __('Type du Contrôle technique   ') }}<span class="ob">*</span></label>
                 <div class="col-md-9" >
                     <div class="form-group">
                         <select id="type" type="text"
@@ -62,7 +62,7 @@
 
         <div class="card-body" >
             <div class="row">
-                <label class="col-md-3 col-form-label">{{ __('Réserve') }}</label>
+                <label class="col-md-3 col-form-label">{{ __('Réserve') }}<span class="ob">*</span></label>
                 <div class="col-md-9" >
                     <div class="form-group">
                         <input type="text"  name="reserve" class="form-control"
@@ -87,7 +87,7 @@
 
         <div class="card-body" >
             <div class="row">
-                <label class="col-md-3 col-form-label">{{ __('Numéro du contrôle Technique') }}</label>
+                <label class="col-md-3 col-form-label">{{ __('Numéro du contrôle Technique') }}<span class="ob">*</span></label>
                 <div class="col-md-9" >
                     <div class="form-group">
                         <input type="number" maxlength="10" minlength="10" name="technical_control_number" class="form-control"
@@ -113,7 +113,7 @@
 
         <div class="card-body" >
             <div class="row">
-                <label class="col-md-3 col-form-label">{{ __('L’organisme émetteur') }}</label>
+                <label class="col-md-3 col-form-label">{{ __('L’organisme émetteur') }}<span class="ob">*</span></label>
                 <div class="col-md-9" >
                     <div class="form-group">
                         <input type="text" name="transmitter" class="form-control"
@@ -143,7 +143,7 @@
 
         <div class="card-body" >
             <div class="row">
-                <label class="col-md-3 col-form-label">{{ __('Observation') }}</label>
+                <label class="col-md-3 col-form-label">{{ __('Observation') }}<span class="ob">*</span></label>
                 <div class="col-md-9" >
                     <div class="form-group">
                         <input type="text"  name="observation" class="form-control"
@@ -165,7 +165,7 @@
 
         <div class="card-body" >
             <div class="row">
-                <label class="col-md-3 col-form-label">{{ __('Date d’expiration') }}</label>
+                <label class="col-md-3 col-form-label">{{ __('Date d’expiration') }}<span class="ob">*</span></label>
                 <div class="col-md-9" >
                     <div class="form-group">
                         <input type="date"  name="expiration_date" class="form-control"

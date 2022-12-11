@@ -37,7 +37,7 @@
 
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __('Type de la Garantie') }}</label>
+                                    <label class="col-md-3 col-form-label">{{ __('Type de la Garantie') }}<span class="ob">*</span></label>
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <select name="garanti_type" class="form-control" id="guaranti_type">
@@ -53,7 +53,7 @@
                             <div id="date_dervice">
                                 <div class="card-body">
                                     <div class="row">
-                                        <label class="col-md-3 col-form-label">{{ __('Date de début') }}</label>
+                                        <label class="col-md-3 col-form-label">{{ __('Date de début') }}<span class="ob">*</span></label>
                                         <div class="col-md-9">
                                             <div class="form-group" for="service_">
                                                 <input type="date" name="start_date" id="service_"
@@ -66,7 +66,7 @@
 
                                 <div class="card-body">
                                     <div class="row">
-                                        <label class="col-md-3 col-form-label">{{ __('Durée en années') }}</label>
+                                        <label class="col-md-3 col-form-label">{{ __('Durée en années') }}<span class="ob">*</span></label>
                                         <div class="col-md-9">
                                             <div class="form-group" for="service_">
                                                 <input type="number" name="duration" id="service_"
@@ -80,7 +80,7 @@
 
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __(' Réf. de la garantie ') }}</label>
+                                    <label class="col-md-3 col-form-label">{{ __(' Réf. de la garantie ') }}<span class="ob">*</span></label>
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <input type="text" name="ref_garanti" class="form-control"
@@ -97,7 +97,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __('Durée de Garantie') }}</label>
+                                    <label class="col-md-3 col-form-label">{{ __('Durée de Garantie') }}<span class="ob">*</span></label>
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <select name="destination_type" class="form-control" id="destination_type">
@@ -114,7 +114,7 @@
                             <div id="AB_Div">
                                 <div class="card-body">
                                     <div class="row">
-                                        <label class="col-md-3 col-form-label">{{ __('KM') }}</label>
+                                        <label class="col-md-3 col-form-label">{{ __('KM') }}<span class="ob">*</span></label>
                                         <div class="col-md-9">
                                             <div class="form-group" for="AB">
                                                 <input type="numbe" step="0.1" name="km" id="km"
@@ -127,7 +127,7 @@
                             <div id="Territoire_Div">
                                 <div class="card-body">
                                     <div class="row">
-                                        <label class="col-md-3 col-form-label">{{ __('  Année') }}</label>
+                                        <label class="col-md-3 col-form-label">{{ __('  Année') }}<span class="ob">*</span></label>
                                         <div class="col-md-9" for="Territoire">
                                             <div class="form-group">
                                                 <input type="numbe" step="1" id="territory" id="year"
@@ -144,7 +144,7 @@
                             <div id="both_Div">
                                 <div class="card-body">
                                     <div class="row">
-                                        <label class="col-md-3 col-form-label">{{ __('KM') }}</label>
+                                        <label class="col-md-3 col-form-label">{{ __('KM') }}<span class="ob">*</span></label>
                                         <div class="col-md-9">
                                             <div class="form-group" for="AB">
                                                 <input type="numbe" step="0.1" name="kmBoth" id="km"
@@ -158,7 +158,7 @@
 
                                 <div class="card-body">
                                     <div class="row">
-                                        <label class="col-md-3 col-form-label">{{ __('  Année') }}</label>
+                                        <label class="col-md-3 col-form-label">{{ __('  Année') }}<span class="ob">*</span></label>
                                         <div class="col-md-9" for="Territoire">
                                             <div class="form-group">
                                                 <input type="numbe" step="1" id="territory" id="year"
@@ -179,7 +179,7 @@
 
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __('Réf ') }}</label>
+                                    <label class="col-md-3 col-form-label">{{ __('Réf ') }}<span class="ob">*</span></label>
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <input type="text" name="ref_vendor" class="form-control"
@@ -204,7 +204,7 @@
 
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __('Nom ') }}</label>
+                                    <label class="col-md-3 col-form-label">{{ __('Nom ') }}<span class="ob">*</span></label>
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <input type="text" name="name_vendor" class="form-control"
@@ -229,7 +229,7 @@
 
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __('Adresse') }}</label>
+                                    <label class="col-md-3 col-form-label">{{ __('Adresse') }}<span class="ob">*</span></label>
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <input type="text" name="address_vendor" class="form-control"
@@ -251,7 +251,7 @@
 
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __('Véhicule') }}</label>
+                                    <label class="col-md-3 col-form-label">{{ __('Véhicule') }}<span class="ob">*</span></label>
                                     <div class="col-md-9">
                                         <div
                                             style="width: 50%;

@@ -40,7 +40,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __('Type de Panne') }}</label>
+                                    <label class="col-md-3 col-form-label">{{ __('Type de Panne') }}<span class="ob">*</span></label>
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <select  name="type_panne" class="form-control"
@@ -57,7 +57,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __('Date d’intervention') }}</label>
+                                    <label class="col-md-3 col-form-label">{{ __('Date d’intervention') }}<span class="ob">*</span></label>
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <input type="date" name="intervention_date" class="form-control"
@@ -74,7 +74,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __(' Diagnostic') }}</label>
+                                    <label class="col-md-3 col-form-label">{{ __(' Diagnostic') }}<span class="ob">*</span></label>
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <input type="text" name="diagnostic" class="form-control"
@@ -96,7 +96,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <label
-                                        class="col-md-3 col-form-label">{{ __(' Personne(s) intervenante(s)') }}</label>
+                                        class="col-md-3 col-form-label">{{ __(' Personne(s) intervenante(s)') }}<span class="ob">*</span></label>
                                     <div class="col-md-9" for="conducteur_field_for_absence">
                                         <div class="form-group">
                                             <select name="staff[]" class="selectpicker"
@@ -118,7 +118,7 @@
 
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __(' Pannes réparées') }}</label>
+                                    <label class="col-md-3 col-form-label">{{ __(' Pannes réparées') }}<span class="ob">*</span></label>
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <input type="text" name="repaired_breakdowns" class="form-control"
@@ -140,7 +140,7 @@
 
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __('Date  de sortie') }}</label>
+                                    <label class="col-md-3 col-form-label">{{ __('Date  de sortie') }}<span class="ob">*</span></label>
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <input type="date" name="end_date" class="form-control"
@@ -160,7 +160,7 @@
 
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __('Heure de sortie') }}</label>
+                                    <label class="col-md-3 col-form-label">{{ __('Heure de sortie') }}<span class="ob">*</span></label>
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <input type="time" name="end_time" class="form-control"
@@ -181,7 +181,7 @@
 
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __(' Observation') }}</label>
+                                    <label class="col-md-3 col-form-label">{{ __(' Observation') }}<span class="ob">*</span></label>
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <input type="text" name="observation" class="form-control"
@@ -201,7 +201,7 @@
 
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-3 col-form-label">{{ __(' Conducteur EDVAL') }}</label>
+                                    <label class="col-md-3 col-form-label">{{ __(' Conducteur EDVAL') }}<span class="ob">*</span></label>
                                     <div class="col-md-9" for="conducteur_field_for_absence">
                                         <div class="form-group">
                                             <select name="driver_id" placeholder="  Nom et prénom de l\'absent"
