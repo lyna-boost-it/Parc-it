@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-@include('layouts.headForHome')
+    @include('layouts.head')
 
 <body>
     {{-- <div class="pre-loader">
@@ -331,7 +331,7 @@
                         <div class="icon h1 text-white"
                             style="border-right: 50px solid transparent;border-left: 140px solid transparent;">
                             <i class="icon-copy fa fa-vcard" aria-hidden="true"></i>
-                            <div class="font-14">Conducteurs <br> disponible</div>
+                            <div class="font-14">Conducteurs <br> disponibles</div>
                             <div class="font-24 weight-500">
                                 {{ DB::table('staff')->where('staff_state', '=', 'au travail')->count() }}</div>
 

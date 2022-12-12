@@ -301,9 +301,7 @@
 
                     </ul>
                 </li>
-            @endif
-            @if (Auth::user()->type == 'Gestionnaire parc' ||
-                Auth::user()->type == 'Gestionnaire Sup')
+
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle"style="font-size: 14px">
                         <span class="micon fa fa-car"></span><span class="mtext"><b>Gest. des Déplacements</b>
@@ -322,6 +320,9 @@
                     </ul>
                 </li>
             @endif
+             @if (Auth::user()->type == 'Gestionnaire parc' ||
+            Auth::user()->type == 'Utilisateur' ||
+            Auth::user()->type == 'Gestionnaire Sup')
             <li>
                 <div class="dropdown-divider"></div>
             </li>
@@ -329,9 +330,7 @@
                 <div class="sidebar-small-cap" style="color: grey"><b>Autre</b></div>
             </li>
 
-            @if (Auth::user()->type == 'Gestionnaire parc' ||
-                Auth::user()->type == 'Utilisateur' ||
-                Auth::user()->type == 'Gestionnaire Sup')
+
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle" style="font-size: 14px">
                         <span class="micon fa fa-bar-chart"></span><span class="mtext"><b>Statistiques/
@@ -394,7 +393,7 @@
                     </ul>
                 </li>
             @endif
-            @if (Auth::user()->type == 'Gestionnaire parc' || Auth::user()->type == 'Utilisateur')
+            @if (Auth::user()->type == 'Gestionnaire parc'  )
                 <li>
                     <a class="dropdown-toggle no-arrow {{ Request::is('history') ? 'active' : '' }}"
                         href="{{ URL('/history') }}" style="font-size: 14px">
@@ -407,7 +406,6 @@
                 </li>
             @endif
             @if (Auth::user()->type == 'Gestionnaire parc' ||
-                Auth::user()->type == 'Utilisateur' ||
                 Auth::user()->type == 'Gestionnaire Sup')
                 <li>
                     <a class="{{ Request::is('*ParkManager/users*') ? 'active' : '' }}  dropdown-toggle no-arrow"

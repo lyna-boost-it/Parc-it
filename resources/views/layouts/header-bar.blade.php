@@ -14,7 +14,11 @@
                 <a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
 
                     <span class="hovertext" data-hover="Toutes les notifications">
-                        <i class="fa fa-bell  " aria-hidden="true" style="color: grey" ></i>
+                        <i style="font-size: 2em;
+                           @if (Auth::user()->notifications->where('read_at','!=','null')->count()==0)
+                                                    color: grey
+                                                @endif
+                                                "  class="fa fa-bell  " aria-hidden="true" style="color: grey" ></i>
                       </span>
                     <b>
                         {{ Auth::user()->notifications->count() }}</b>
@@ -61,13 +65,16 @@
                 </div>
             </div>
         </div>
-
         <div class="user-notification">
             <div class="dropdown" style=" left:-10%;">
                 <a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
 
                     <span class="hovertext" data-hover="Permit de circulation">
-                 <i class="fa fa-id-card  " aria-hidden="true"style="color: grey" ></i>
+                 <i style="font-size: 2em;
+
+                 @if ( Auth::user()->notifications->where('type','=','App\Notifications\LicenseNotification')->count() ==0)
+                                                    color: grey
+                                                @endif"  class="fa fa-id-card  " aria-hidden="true"style="color: grey" ></i>
                       </span>
                     <b>
                         {{ Auth::user()->notifications->where('type','=','App\Notifications\LicenseNotification')->count() }}</b>
@@ -118,8 +125,10 @@
             <div class="dropdown" style=" left:-10%;">
                 <a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
 
-                    <span class="hovertext" data-hover="Contrôle technique">
-                        <i class="fa fa-book  " aria-hidden="true"style="color: grey" ></i>
+                    <span  class="hovertext" data-hover="Contrôle technique">
+                        <i style="font-size: 2em;   @if ( Auth::user()->notifications->where('type','=','App\Notifications\ControllNotification')->count() ==0)
+                            color: grey
+                        @endif" class="fa fa-book  " aria-hidden="true"style="color: grey" ></i>
                     </span>
                     <b>
                         {{ Auth::user()->notifications->where('type','=','App\Notifications\ControllNotification')->count() }}</b>
@@ -166,13 +175,15 @@
                 </div>
             </div>
         </div>
-
         <div class="user-notification">
             <div class="dropdown" style=" left:-10%;">
                 <a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
 
                     <span class="hovertext" data-hover="Absence">
-                        <i class="fa fa-address-book  " aria-hidden="true"style="color: grey" ></i>
+                        <i style="font-size: 2em;
+                         @if (Auth::user()->notifications->where('type','=','App\Notifications\AbsenceNotification')->count()  ==0)
+                            color: grey
+                        @endif"  class="fa fa-address-book  " aria-hidden="true"style="color: grey" ></i>
                     </span>
                     <b>
                         {{ Auth::user()->notifications->where('type','=','App\Notifications\AbsenceNotification')->count() }}</b>
@@ -219,16 +230,16 @@
                 </div>
             </div>
         </div>
-       
-
-
         <div class="user-notification">
             <div class="dropdown" style=" left:-10%;">
                 <a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
 
 
                     <span class="hovertext" data-hover="Missions ">
-                    <i class="fa-solid fa-car  "style="color: grey" ></i>
+                    <i style="font-size: 2em;
+                     @if ( Auth::user()->notifications->where('type','=','App\Notifications\MissionNotification')->count()  ==0)
+                            color: grey
+                        @endif"  class="fa-solid fa-car  "style="color: grey" ></i>
                     </span>
                     <b>
                         {{ Auth::user()->notifications->where('type','=','App\Notifications\MissionNotification')->count() }}</b>
@@ -275,14 +286,15 @@
                 </div>
             </div>
         </div>
-
-
         <div class="user-notification">
             <div class="dropdown" style=" left:-10%;">
                 <a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
 
                     <span class="hovertext" data-hover="Assurances ">
-                        <i class="fa-sharp fa-solid fa-shield  "style="color: grey" ></i>
+                        <i style="font-size: 2em;
+                           @if (Auth::user()->notifications->where('type','=','App\Notifications\InsuranceNotification')->count() ==0)
+                            color: grey
+                        @endif"  class="fa-sharp fa-solid fa-shield  "style="color: grey" ></i>
                     </span>
                     <b>
                         {{ Auth::user()->notifications->where('type','=','App\Notifications\InsuranceNotification')->count() }}</b>
@@ -335,7 +347,10 @@
                 <a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
 
                     <span class="hovertext" data-hover="Vignettes">
-                        <i class="fa-solid fa-note-sticky  "style="color: grey" ></i>
+                        <i style="font-size: 2em;
+                         @if ( Auth::user()->notifications->where('type','=','App\Notifications\StickersNotification')->count()  ==0)
+                            color: grey
+                        @endif"  class="fa-solid fa-note-sticky  "style="color: grey" ></i>
                     </span>
                     <b>
                         {{ Auth::user()->notifications->where('type','=','App\Notifications\StickersNotification')->count() }}</b>
@@ -385,8 +400,14 @@
         <div class="user-notification">
             <div class="dropdown" style=" left:-10%;">
                 <a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
-                    <span class="hovertext" data-hover="Demandes de travaux">
-                                                <i class="fa-sharp fa-solid fa-clipboard-question   "style="color: grey"  ></i>
+                    <span  class="hovertext" data-hover="Demandes de travaux">
+                                                <i style="font-size: 2em;
+                                                @if (
+                                                    Auth::user()->notifications->where('type','=','App\Notifications\DtMNotification')->count()
+                                                    +Auth::user()->notifications->where('type','=','App\Notifications\DtVNotification')->count()==0)
+                                                    color: grey
+                                                @endif
+                                                "  class="fa-sharp fa-solid fa-clipboard-question   "  ></i>
                     </span>
 
                     <b>
@@ -446,7 +467,7 @@
         <div class="dashboard-setting user-notification">
             <div class="dropdown">
                 <a class="dropdown-toggle no-arrow" href="/public"style="color: grey" >
-                    <i class="dw dw-logout"style="color: grey" ></i><b> Se déconnecter</b></a>
+                    <i style="font-size: 2em;"  class="dw dw-logout"style="color: grey" ></i><b> Se déconnecter</b></a>
                 </a>
             </div>
         </div>

@@ -315,7 +315,18 @@ function Insurance_checker(Insurance $insurance)
     $usersB = User::all()->where('type', '=', 'Utilisateur');
     $date = date($insurance->expiration_date);
     $ldate =  date(Carbon::now());
-
+    $tendays=date(Carbon::now()->addDays(10));
+    if ($tendays >= $date &&  $insurance->state == 'en cours') {
+        $notif = new MoreNotifs();
+        $notif->details = 'l\'assurance de vehcule: ' . $insurance->vehicle_id . ' expirera dans 10 jours';
+        $notif->save();
+        foreach ($usersA as $user) {
+            $user->notify(new InsuranceNotification($insurance, $notif));
+        }
+        foreach ($usersB as $user) {
+            $user->notify(new InsuranceNotification($insurance, $notif));
+        }
+    }
     if ($date <= $ldate &&  $insurance->state == 'en cours') {
         $notif = new MoreNotifs();
         $notif->details = 'l\'assurance de vehcule: ' . $insurance->vehicle_id . ' a expiré';
@@ -361,6 +372,8 @@ function Sticker_Checker(Sticker $sticker)
     $usersB = User::all()->where('type', '=', 'Utilisateur');
     $date = $sticker->year;
     $ldate =  Carbon::now()->format('Y');
+
+
     if ($date < $ldate && $sticker->validity == "Valide") {
 
         //dd($sticker);
@@ -385,11 +398,24 @@ function AllSticker_Checker()
     }
 }
 function Controll_Checker(TechnicalControl $technical)
-{   $usersA = User::all()->where('type', '=', 'Gestionnaire parc');
+{
+    $tendays=date(Carbon::now()->addDays(10));
+    $usersA = User::all()->where('type', '=', 'Gestionnaire parc');
     $usersB = User::all()->where('type', '=', 'Utilisateur');
     $date = date($technical->expiration_date);
     $ldate =  date(Carbon::now());
 
+    if ($date <= $tendays && $technical->state== "Valide" ) {
+        $notif = new MoreNotifs();
+        $notif->details = 'le contrôles techniques de vehcule: ' . $technical->vehicle_id . ' expirera dans 10 jours';
+        $notif->save();
+        foreach ($usersA as $user) {
+            $user->notify(new ControllNotification($technical, $notif));
+        }
+        foreach ($usersB as $user) {
+            $user->notify(new ControllNotification($technical, $notif));
+        }
+    }
     if ($date <= $ldate && $technical->state== "Valide" ) {
         $technical->state = "Non valide";
         $technical->save();
@@ -428,7 +454,19 @@ function Lisence_Checker(DrivingLicence $lisence)
     $usersB = User::all()->where('type', '=', 'Utilisateur');
     $date = date($lisence->end_date);
     $ldate =  date(Carbon::now());
+    $tendays=date(Carbon::now()->addDays(10));
+    if ($date <= $tendays && $lisence->state == "en cours") {
 
+        $notif = new MoreNotifs();
+        $notif->details = 'le permis de circulation de vehcule: ' . $lisence->vehicle_id . ' expirera dans 10 jours';
+        $notif->save();
+        foreach ($usersA as $user) {
+            $user->notify(new LicenseNotification($lisence, $notif));
+        }
+        foreach ($usersB as $user) {
+            $user->notify(new LicenseNotification($lisence, $notif));
+        }
+    }
     if ($date <= $ldate && $lisence->state == "en cours") {
         $lisence->state = "expiré";
         $lisence->save();
