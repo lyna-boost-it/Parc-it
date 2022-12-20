@@ -1,4 +1,5 @@
-@if(Auth::user()->type=='Gestionnaire parc' ||Auth::user()->type=='Utilisateur'   )
+@if(Auth::user()->type=='Gestionnaire parc' ||Auth::user()->type=='Utilisateur' ||
+Auth::user()->type == 'Technicien'  )
 
 
 

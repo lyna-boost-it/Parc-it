@@ -1,7 +1,9 @@
 @if (Auth::user()->type == 'Gestionnaire parc' ||
     Auth::user()->type == 'Utilisateur' ||
     Auth::user()->type == 'Demandeur' ||
-    Auth::user()->type == 'Gestionnaire Sup')
+    Auth::user()->type == 'Gestionnaire Sup'
+    ||
+                    Auth::user()->type == 'Cadre Technique')
 
 
     <!DOCTYPE html>
@@ -130,12 +132,12 @@
                                                                         </form>
                                                                     @endif
                                                                     @endif
-                                                                    @if ($maintenance->answer == 'en attente' || $maintenance->answer == 'en instance')
+                                                                    @if (($maintenance->answer == 'en attente' || $maintenance->answer == 'en instance') && Auth::user()->type != 'Gestionnaire Sup')
                                                                     <form style="display: inline;"
                                                                         action="{{ route('ParkManager.validation.archive', $maintenance->id) }}"
                                                                         method="get" class="dropdown-item">
                                                                         @csrf
-
+                                                                       @if (Auth::user()->type != 'Gestionnaire Sup')
                                                                         <button type="submit"
                                                                             style="display: inline; background-color: transparent; border-color: transparent;"
                                                                             onclick="return confirm('êtes-vous sûr?')">
@@ -147,6 +149,7 @@
                                                                                     style="color: red"></i>
                                                                             </span>
                                                                         </button>
+                                                                        @endif
                                                                     </form>
                                                                 </div>
                                                             @endif
@@ -281,6 +284,7 @@
                                                                         action="{{ route('ParkManager.validation.destroy', $maintenance->id) }}">
                                                                         @method('DELETE')
                                                                         @csrf
+                                                                        @if (Auth::user()->type != 'Gestionnaire Sup')
                                                                         <button type="submit"
                                                                             style="display: inline; background-color: transparent; border-color: transparent;
                                                                             "  onclick="return confirm('êtes-vous sûr?')">
@@ -296,6 +300,8 @@
                                                                                     style="color: red"></i>
                                                                             </span>
                                                                         </button>
+                                                            @endif
+
                                                                     </form>
                                                                 </div>
                                                             @endif

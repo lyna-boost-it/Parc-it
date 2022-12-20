@@ -28,7 +28,7 @@
 
 
         <div class="card-header">
-            <h3 class="title">{{ __('Créer un matériel motorisé ') }}</h3>
+            <h3 class="title">{{ __('Modifier un matériel motorisé ') }}</h3>
         </div>
 
 

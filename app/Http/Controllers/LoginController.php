@@ -29,6 +29,9 @@ class LoginController extends Controller
                 case 'Gestionnaire parc': return redirect ('/home');
                 case 'Gestionnaire Sup': return redirect ('/home');
                 case 'Demandeur': return redirect ('/home');
+                 case 'Cadre Technique': return redirect ('/home');
+                 case 'Technicien': return redirect ('/home');
+                 case 'Agent Administratif': return redirect ('/home');
          }
             return redirect()->back();
         }

@@ -1,6 +1,7 @@
 @if (Auth::user()->type == 'Gestionnaire parc' ||
     Auth::user()->type == 'Utilisateur' ||
-    Auth::user()->type == 'Gestionnaire Sup')
+    Auth::user()->type == 'Gestionnaire Sup' ||
+                    Auth::user()->type == 'Technicien')
 
 
     <!DOCTYPE html>
@@ -92,10 +93,19 @@
                                                             class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
 
                                                             <a class="dropdown-item">
+                                                                @if (Auth::user()->type == 'Gestionnaire Sup')
+                                                                <a class="dropdown-item"
+                                                                    style="  color: currentColor;
+                                                                            cursor: not-allowed;
+                                                                            opacity: 0.5;
+                                                                            text-decoration: none;">
+                                                                    <i class="dw dw-delete-3"></i>Modifier</a>
+                                                            @else
 
                                                         <a class="dropdown-item"
                                                             href="{{ route('ParkManager.amandes.edit',$amande->id) }}"><i
                                                                 class="dw dw-edit2"></i> Modifier</a>
+                                                                @endif
                                                         <a class="dropdown-item"
                                                             href="{{ route('ParkManager.amandes.show',$amande->id) }}"><i
                                                                 class="dw dw-eye"></i> Consulter</a>

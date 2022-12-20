@@ -19,7 +19,9 @@
                     </a>
                 </li>
                 @if (Auth::user()->type == 'Gestionnaire parc' ||
-                    Auth::user()->type == 'Gestionnaire Sup')
+                    Auth::user()->type == 'Gestionnaire Sup'||
+                    Auth::user()->type == 'Technicien')
+
                     <li class="dropdown">
                         <a href="javascript:;"
                             class="dropdown-toggle {{ Request::is('ParkManager/staffs') ? 'collapse active' : 'collapsed' }}"
@@ -37,12 +39,8 @@
                                     Gest. du Personnel </a>
                             </li>
 
-
-
-
-
-
-
+                            @if (Auth::user()->type == 'Gestionnaire parc' ||
+                            Auth::user()->type == 'Gestionnaire Sup')
                             <li>
 
                                 <a class="  {{ Request::is('*ParkManager/units*') ? 'active' : '' }}" style="right: 50px;"
@@ -52,8 +50,9 @@
                                     Gest. des Unités </a>
                             </li>
 
-
-
+                            @endif
+                            @if (Auth::user()->type == 'Gestionnaire parc' ||
+                            Auth::user()->type == 'Gestionnaire Sup')
                             <li>
 
                                 <a class="  {{ Request::is('*ParkManager/vehicules*') ? 'active' : '' }}"
@@ -61,10 +60,11 @@
                                     Gest. des Véhicules</a>
                             </li>
 
+                            @endif
 
 
-
-
+                            @if (Auth::user()->type == 'Gestionnaire parc' ||
+                            Auth::user()->type == 'Gestionnaire Sup')
                             <li>
 
                                 <a class="  {{ Request::is('*ParkManager/materialsmanager*') ? 'active' : '' }}"
@@ -73,7 +73,7 @@
 
                                     Gest. Matériels motorisés</a>
                             </li>
-
+                            @endif
                         </ul>
                     </li>
                 @endif
@@ -134,67 +134,53 @@
                         </ul>
                     </li>
                 @endif
-                @if (
-                Auth::user()->type != 'Utilisateur'  )
-                <li class="dropdown">
-                    <a href="javascript:;" class="dropdown-toggle" style="font-size: 14px">
-                        <span class="micon fa fa-toolbox"></span><span class="mtext">
-                            <b> Centre de Maintenance</b></span>
-                    </a>
-                    <ul class="submenu">
-                        <li class="dropdown">
-                        <li>
-
-                            <a class="  {{ Request::is('*ParkManager/dts*') ? 'active' : '' }}" style="right: 50px;"
-                                style="right: 60px;" href="{{ route('ParkManager.dts.index') }}">
-
-
-                                Demandes de réparation (DR)</a>
-                        </li>
-                        @if (Auth::user()->type == 'Gestionnaire parc' ||
-                            Auth::user()->type == 'Gestionnaire Sup')
+                @if (Auth::user()->type == 'Gestionnaire parc' ||
+                    Auth::user()->type == 'Gestionnaire Sup' ||
+                    Auth::user()->type == 'Cadre Technique'  ||
+                    Auth::user()->type == 'Demandeur' )
+                    <li class="dropdown">
+                        <a href="javascript:;" class="dropdown-toggle" style="font-size: 14px">
+                            <span class="micon fa fa-toolbox"></span><span class="mtext">
+                                <b> Centre de Maintenance</b></span>
+                        </a>
+                        <ul class="submenu">
+                            <li class="dropdown">
                             <li>
-                                <a class="  {{ Request::is('*ParkManager/repairs*') ? 'active' : '' }}"
-                                    style="right: 50px;" href="{{ route('ParkManager.repairs.index') }}">
+
+                                <a class="  {{ Request::is('*ParkManager/dts*') ? 'active' : '' }}" style="right: 50px;"
+                                    style="right: 60px;" href="{{ route('ParkManager.dts.index') }}">
 
 
-                                    Liste des Réparations</a>
+                                    Demandes de réparation (DR)</a>
                             </li>
-                            <li>
-                                <a class="  {{ Request::is('ParkManager/maintenances') ? 'active' : '' }}"
-                                    style="right: 50px;"
-                                    href="{{ route('ParkManager.maintenances.indexMaintenance') }}">
-
-
-                                    Liste des Entretiens</a>
-
-                            </li>
-                            <li>
-                                <a class="  {{ Request::is('*ParkManager/externals*') ? 'active' : '' }}"
-                                    style="right: 50px;" href="{{ route('ParkManager.externals.index') }}">
-
-
-                                    Liste des Maintenance externe</a>
-                            </li>
+                            @if (Auth::user()->type == 'Gestionnaire parc' ||
+                                Auth::user()->type == 'Gestionnaire Sup' ||
+                                Auth::user()->type == 'Cadre Technique' )
+                                <li>
+                                    <a class="  {{ Request::is('*ParkManager/repairs*') ? 'active' : '' }}"
+                                        style="right: 50px;" href="{{ route('ParkManager.repairs.index') }}">
+                                        Liste des Réparations</a>
+                                </li>
+                                <li>
+                                    <a class="  {{ Request::is('ParkManager/maintenances') ? 'active' : '' }}"
+                                        style="right: 50px;"
+                                        href="{{ route('ParkManager.maintenances.indexMaintenance') }}">
+                                        Liste des Entretiens</a>
+                                </li>
+                                <li>
+                                    <a class="  {{ Request::is('*ParkManager/externals*') ? 'active' : '' }}"
+                                        style="right: 50px;" href="{{ route('ParkManager.externals.index') }}">
+                                        Liste des Maintenance externe</a>
+                                </li>
                             @endif
-                            <li>
-                                <a class="  {{ Request::is('*ParkManager/archives*') ? 'active' : '' }}"
-                                    style="right: 50px;" href="{{ route('ParkManager.archives.index') }}">
-
-
-                                    Liste des DT archivées</a>
-                            </li>
-
-
-
-
-
-
-                    </ul>
-                </li>
+                                <li>
+                                    <a class="  {{ Request::is('*ParkManager/archives*') ? 'active' : '' }}"
+                                        style="right: 50px;" href="{{ route('ParkManager.archives.index') }}">
+                                        Liste des DT archivées</a>
+                                </li>
+                        </ul>
+                    </li>
                 @endif
-
-
                 @if (Auth::user()->type == 'Gestionnaire parc' ||
                     Auth::user()->type == 'Gestionnaire Sup')
                     <li class="dropdown">
@@ -219,9 +205,9 @@
                         </ul>
                     </li>
                 @endif
-
                 @if (Auth::user()->type == 'Gestionnaire parc' ||
-                    Auth::user()->type == 'Gestionnaire Sup')
+                    Auth::user()->type == 'Gestionnaire Sup' ||
+                    Auth::user()->type == 'Technicien')
                     <li class="dropdown">
 
                         <a href="javascript:;" class="dropdown-toggle" style="font-size: 14px">
@@ -244,12 +230,10 @@
                         </ul>
                     </li>
                 @endif
-
-
-
             </li>
             @if (Auth::user()->type == 'Gestionnaire parc' ||
-                Auth::user()->type == 'Gestionnaire Sup')
+                Auth::user()->type == 'Gestionnaire Sup'||
+                Auth::user()->type == 'Agent Administratif')
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle"style="font-size: 14px">
                         <span class="micon fa fa-gas-pump"></span><span class="mtext">
@@ -278,7 +262,8 @@
                 </li>
             @endif
             @if (Auth::user()->type == 'Gestionnaire parc' ||
-                Auth::user()->type == 'Gestionnaire Sup')
+                Auth::user()->type == 'Gestionnaire Sup' ||
+                Auth::user()->type == 'Technicien')
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle"style="font-size: 14px">
                         <span class="micon fa fa-clipboard-user"></span><span class="mtext"><b>Pointage &
@@ -320,15 +305,19 @@
                     </ul>
                 </li>
             @endif
-             @if (Auth::user()->type == 'Gestionnaire parc' ||
-            Auth::user()->type == 'Utilisateur' ||
-            Auth::user()->type == 'Gestionnaire Sup')
             <li>
                 <div class="dropdown-divider"></div>
             </li>
             <li>
                 <div class="sidebar-small-cap" style="color: grey"><b>Autre</b></div>
             </li>
+
+             @if (Auth::user()->type == 'Gestionnaire parc' ||
+            Auth::user()->type == 'Utilisateur' ||
+            Auth::user()->type == 'Gestionnaire Sup' ||
+            Auth::user()->type == 'Technicien' ||
+            Auth::user()->type == 'Agent Administratif')
+
 
 
                 <li class="dropdown">
@@ -337,13 +326,19 @@
                                 KPI's</b></span>
                     </a>
                     <ul class="submenu">
+                        @if (Auth::user()->type == 'Gestionnaire parc' ||
+                        Auth::user()->type == 'Utilisateur' ||
+                        Auth::user()->type == 'Gestionnaire Sup'||
+                        Auth::user()->type == 'Agent Administratif' )
                         <li>
                             <a class="  {{ Request::is('*Kpis/gas*') ? 'active' : '' }}" style="right: 50px;"
                                 href="{{ route('Kpis.gas.index') }}">
 
                                 <b> KPI's Carburant</b></b></a>
                         </li>
-
+                        @if (Auth::user()->type == 'Gestionnaire parc' ||
+                        Auth::user()->type == 'Utilisateur' ||
+                        Auth::user()->type == 'Gestionnaire Sup' )
 
                         <li>
                             <a class="  {{ Request::is('*Kpis/pieces*') ? 'active' : '' }}" style="right: 50px;"
@@ -373,7 +368,10 @@
 
                                 <b> KPI's Maintenances</b></a>
                         </li>
-
+                        @endif   @endif
+                        @if (Auth::user()->type == 'Gestionnaire parc' ||
+                        Auth::user()->type == 'Utilisateur' ||
+                        Auth::user()->type == 'Gestionnaire Sup' )
                         <li>
                             <a class="  {{ Request::is('*Kpis/staff*') ? 'active' : '' }}" style="right: 50px;"
                                 href="{{ route('Kpis.staff.index') }}">
@@ -389,7 +387,7 @@
 
                                 <b> KPI's Amendes </b></a>
                         </li>
-
+                        @endif
                     </ul>
                 </li>
             @endif
@@ -405,8 +403,7 @@
                     </a>
                 </li>
             @endif
-            @if (Auth::user()->type == 'Gestionnaire parc' ||
-                Auth::user()->type == 'Gestionnaire Sup')
+            @if (Auth::user()->type == 'Gestionnaire parc' )
                 <li>
                     <a class="{{ Request::is('*ParkManager/users*') ? 'active' : '' }}  dropdown-toggle no-arrow"
                         href="{{ route('ParkManager.users.index') }}" style="font-size: 14px">

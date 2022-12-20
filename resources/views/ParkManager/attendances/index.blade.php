@@ -1,6 +1,7 @@
 @if (Auth::user()->type == 'Gestionnaire parc' ||
     Auth::user()->type == 'Utilisateur' ||
-    Auth::user()->type == 'Gestionnaire Sup')
+    Auth::user()->type == 'Gestionnaire Sup' ||
+                    Auth::user()->type == 'Technicien')
 
     <!DOCTYPE html>
     <html>

@@ -114,7 +114,7 @@ class InsuranceController extends Controller
         $insurance=Insurance::find($id);
 $vehicules=null;
 $vehicle=Vehicule::find($insurance->vehicle_id);
-        return view("ParkManager.insurances.create", compact('insurance','vehicules','vehicle') );
+        return view("ParkManager.insurances.edit", compact('insurance','vehicules','vehicle') );
     }
 
     /**

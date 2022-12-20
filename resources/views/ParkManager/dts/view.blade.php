@@ -1,7 +1,9 @@
 @if (Auth::user()->type == 'Gestionnaire parc' ||
     Auth::user()->type == 'Utilisateur' ||
     Auth::user()->type == 'Gestionnaire Sup' ||
-    Auth::user()->type == 'Demandeur')
+    Auth::user()->type == 'Demandeur'
+    ||
+                    Auth::user()->type == 'Cadre Technique')
     <div class="main-container" id="makepdf">
         <!DOCTYPE html>
         <html>

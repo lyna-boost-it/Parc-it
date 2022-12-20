@@ -54,9 +54,12 @@
                                 <div class="col-md-9">
                                     <div class="form-group">
                                         <select id="type" name="type" value="{{ old('type'),$user->type }}"class="form-control">
-                                            <option value="Utilisateur">Utilisateur</option>
-                                              <option value="Gestionnaire parc">Gestionnaire parc</option>
-                                              <option value="Gestionnaire Sup">Gestionnaire Sup</option>
+                                            <option value="Gestionnaire parc">Chef de service /Gestionnaire parc</option>
+                                            <option value="Utilisateur">Chage du logiciel /Utilisateur</option>
+                                            <option value="Cadre Technique">Cadre Technique</option>
+                                            <option value="Technicien">Technicien</option>
+                                            <option value="Agent Administratif">Agent Administratif</option>
+                                            <option value="Gestionnaire Sup">Gestionnaire Sup</option>
                                             <option value="Demandeur ">Demandeur </option>
 
                                         </select>     </div>
@@ -121,8 +124,8 @@
                         </div>
                         <div class="card-footer ">
                             <div class="row">
-                                <div class="col-md-12 text-center">
-                                    <button type="submit" class="btn btn-success   btn-round">{{ __('Ajouter') }}</button>
+                             <div class="col-md-12 text-center">
+                                    <button type="submit" class="btn   btn-round"style="background:#EE643A;color:#ffffff;">{{ __('Ajouter') }}</button>
                                 </div>
                             </div>
                         </div>

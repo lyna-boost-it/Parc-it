@@ -46,7 +46,7 @@
                                         @php
                                             $i = $i + 1;
                                         @endphp
-                                        <button class="dropdown-btn">DT: Num {{ $i }}
+                                        <button class="dropdown-btn">DR: Num {{ $i }}
                                             <i class="fa fa-caret-down"></i>
                                         </button>
                                         <div class="dropdown-container">
@@ -54,8 +54,8 @@
                                                 <tr>
                                                     <th>
                                                         <h4 style="display: inline; color:#000000">N° de la demande de
-                                                            travaux
-                                                            (DT)
+                                                            réparation
+                                                            (DR)
                                                             : </h4>
                                                         <h5 style="display: inline;color:#000000">
                                                             {{ $maintenance->code_dt }}

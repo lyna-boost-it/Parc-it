@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-    @include('layouts.head')
+    @include('layouts.headForHome')
 
 <body>
     {{-- <div class="pre-loader">

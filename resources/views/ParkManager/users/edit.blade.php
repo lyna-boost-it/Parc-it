@@ -28,7 +28,7 @@
 
 
                         <div class="card-header">
-                            <h5 class="title">{{ __('Créer un utilisateur') }}</h5>
+                            <h5 class="title">{{ __('Modifier un utilisateur') }}</h5>
                         </div>
 
 
@@ -115,8 +115,8 @@
                         </div>
                         <div class="card-footer ">
                             <div class="row">
-                                <div class="col-md-12 text-center">
-                                    <button type="submit" class="btn btn-info btn-round">{{ __('Modifier') }}</button>
+                             <div class="col-md-12 text-center">
+                                    <button type="submit" class="btn   btn-round"style="background:#EE643A;color:#ffffff;">{{ __('Modifier') }}</button>
                                 </div>
                             </div>
                         </div>

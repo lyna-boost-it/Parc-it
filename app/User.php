@@ -46,6 +46,9 @@ class User extends Authenticatable
             case 'Gestionnaire parc': return'Gestionnaire parc';
             case 'Gestionnaire Sup': return 'Gestionnaire Sup';
             case 'Demandeur': return 'Demandeur';
+               case 'Cadre Technique': return 'Cadre Technique';
+               case 'Technicien': return 'Technicien';
+               case 'Agent Administratif': return 'Agent Administratif';
             default:
                 throw new \Exception('Unexpected value');
         }
