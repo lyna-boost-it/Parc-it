@@ -54,12 +54,9 @@
                                 <div class="col-md-9">
                                     <div class="form-group">
                                         <select id="type" name="type" value="{{ old('type'),$user->type }}"class="form-control">
-                                            <option value="Gestionnaire parc">Chef de service /Gestionnaire parc</option>
-                                            <option value="Utilisateur">Chage du logiciel /Utilisateur</option>
-                                            <option value="Cadre Technique">Cadre Technique</option>
-                                            <option value="Technicien">Technicien</option>
-                                            <option value="Agent Administratif">Agent Administratif</option>
-                                            <option value="Gestionnaire Sup">Gestionnaire Sup</option>
+                                            <option value="Utilisateur">Utilisateur</option>
+                                              <option value="Gestionnaire parc">Gestionnaire parc</option>
+                                              <option value="Gestionnaire Sup">Gestionnaire Sup</option>
                                             <option value="Demandeur ">Demandeur </option>
 
                                         </select>     </div>
@@ -73,7 +70,7 @@
                                         class="form-control select2 @error('unit_id') is-invalid
                                      @enderror"
                                         name="unit_id" required autocomplete="battery_type" autofocus>
-                                        <option value="0" >Administration
+                                        <option value="" disabled selected>choisissez une unité
                                         </option> @foreach ($units as $unit)
                                             <option value="{{ $unit->id }}">
                                                 {{ $unit->name }}</option>

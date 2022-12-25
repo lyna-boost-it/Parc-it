@@ -1,7 +1,6 @@
 @if (Auth::user()->type == 'Gestionnaire parc' ||
     Auth::user()->type == 'Utilisateur' ||
-    Auth::user()->type == 'Gestionnaire Sup' ||
-                    Auth::user()->type == 'Technicien')
+    Auth::user()->type == 'Gestionnaire Sup')
     <div class="main-container" id="makepdf">
         <!DOCTYPE html>
         <html>
@@ -22,6 +21,7 @@
                             <div class="row">
 
                                 <h3>Information de Mission: </h3>
+
                                 @if ($mission->mission_state == 'fait')
                                     <h5 style="display: inline; color:green">Fait</h5>
                                 @endif
@@ -29,12 +29,20 @@
                                     <h5 style="display: inline; color:rgb(201, 204, 45)"> En cours</h5>
                                 @endif
 
-                                @if ($mission->mission_state == 'en attente')
+                                @if ($mission->mission_state == 'En attente')
                                     <h5 style="display: inline; color:rgb(204, 45, 183)"> En Attente</h5>
                                 @endif
 
                             </div>
+                            <form  action="{{ route('view-pdf',$mission->id) }}" method="post" target="__blank">
+                                @csrf
+                                <div style=" float:right;">
+                                    <button type="submit" class="btn   btn-round" style="background:#EE643A;color:#ffffff; float:right;">
+                                        {{ __('Imprimer l\'ordre') }}</button>
+                                </div>
+                            </form>
                         </div>
+
                         <div class="page-header">
 
                             <div class="row">
@@ -124,8 +132,7 @@
                     </div>
                 </div>
             </div>
-            <br> <button id="button" class="btn btn-warning btn-round"><span class="fa fa-print  "
-                    style="color: #000000"> </span> Imprimer</button>
+
 
 
 

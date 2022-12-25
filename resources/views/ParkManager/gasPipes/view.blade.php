@@ -1,7 +1,6 @@
 @if (Auth::user()->type == 'Gestionnaire parc' ||
     Auth::user()->type == 'Utilisateur' ||
-    Auth::user()->type == 'Gestionnaire Sup' ||
-                        Auth::user()->type == 'Agent Administratif')
+    Auth::user()->type == 'Gestionnaire Sup')
     <div class="main-container" id="makepdf">
         <!DOCTYPE html>
         <html>
@@ -24,6 +23,12 @@
                                 <h3>Informations de Consommation: </h3>
 
                             </div>
+                            <form  action="{{ route('gas-pdf',$gaspipe->id) }}" method="post" target="__blank">
+                                @csrf
+                                <div style=" float:right;">
+                                    <button type="submit" class="btn   btn-round" style="background:#EE643A;color:#ffffff; float:right;">
+                                        {{ __('Imprimer l\'ordre') }}</button>
+                                </div>
                         </div>
                        <div class="page-header" >
 

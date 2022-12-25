@@ -458,7 +458,7 @@
         </div>
         <div class="dashboard-setting user-notification">
             <div class="dropdown">
-                <a class="dropdown-toggle no-arrow" href="#">
+                <a class="dropdown-toggle no-arrow" href="{{ route('ParkManager.profile.index') }}">
                     <span class="user-name" style="color: grey" ><b>{{ Auth::user()->username }}</b></span>
                 </a>
             </div>

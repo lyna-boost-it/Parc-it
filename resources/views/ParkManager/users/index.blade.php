@@ -16,6 +16,7 @@
 			<div class="xs-pd-20-10 pd-ltr-20">
 				<div class="page-header">
                     @include('inc.flash')
+                    <br><br><br>
 					<div class="row">
 						<div class="col-md-6 col-sm-12">
 							<div class="title">
@@ -23,16 +24,17 @@
                      		</div>
 
 						</div>
-                        <a  style="position: absolute;
-                        left: 1184px;background: #ee643a;
-    border-color: #f06431;
-                        @if (Auth::user()->type == 'Gestionnaire Sup')   color: currentColor;
-  cursor: not-allowed;
-  opacity: 0.5;
-  text-decoration: none;  @endif
+
+                        <a  style="position: absolute;  left: 90%;background: #ee643a;  border-color: #f06431;
+                            @if (Auth::user()->type == 'Gestionnaire Sup')   color: currentColor; cursor: not-allowed;
+                                opacity: 0.5;
+                                text-decoration: none;
+                            @endif
                         " href="{{route('ParkManager.users.create')}}" class="btn btn-sm btn-success">
                             Créer un utilisateur
                         </a>
+
+                       
 					</div>
 				</div>
 
@@ -63,6 +65,7 @@
 
 								<tbody>
                                     @foreach($users as $user)
+									@if($user->unit_id!=69696969)
                                     <tr>
                                             <td>{{$user->id}}</td>
                                             <td>
@@ -73,8 +76,10 @@
                                             @if ($unit->id==$user->unit_id)
                                             <td>  {{ $unit->name }}</td>
                                             @endif
-
-                                             @endforeach
+                                            @endforeach
+                                                @if ($user->unit_id==0)
+                                                <td>  Administration</td>
+                                                @endif
                                             <td>{{$user->type}}</td>
 
                                                 <td>
@@ -95,24 +100,24 @@
                                                                 cursor: not-allowed;
                                                                 opacity: 0.5;
                                                                 text-decoration: none;" @endif  ><i class="dw dw-edit2"></i> Modifier</a>
-  @if (Auth::user()->type == 'Gestionnaire Sup')   <a class="dropdown-item"  style="  color: currentColor;
-  cursor: not-allowed;
-  opacity: 0.5;
-  text-decoration: none;"  > <i class="dw dw-delete-3"></i>Supprimer</a>
+                                                            @if (Auth::user()->type == 'Gestionnaire Sup')   <a class="dropdown-item"  style="  color: currentColor;
+                                                            cursor: not-allowed;
+                                                            opacity: 0.5;
+                                                            text-decoration: none;"  > <i class="dw dw-delete-3"></i>Supprimer</a>
 
-@else
-<form class="form-delete dropdown-item" method="post" action="{{route('ParkManager.users.destroy',$user->id)}}">
-    @method('DELETE')
-    @csrf
-    <button  type="submit" style=" background-color: transparent;
-    border-color: transparent;" onclick="return confirm('êtes-vous sûr?')" >
+                                                            @else
+                                                            <form class="form-delete dropdown-item" method="post" action="{{route('ParkManager.users.destroy',$user->id)}}">
+                                                                @method('DELETE')
+                                                                @csrf
+                                                                <button  type="submit" style=" background-color: transparent;
+                                                                border-color: transparent;" onclick="return confirm('êtes-vous sûr?')" >
 
-        <i class="dw dw-delete-3">Supprimer</i>
+                                                                    <i class="dw dw-delete-3">Supprimer</i>
 
-    </button>
-</form>
+                                                                </button>
+                                                            </form>
 
-@endif
+                                                            @endif
 
                                                         </div>
                                                     </div>
@@ -121,8 +126,8 @@
 
 
 
-                                            </td>
-                                    </tr>  @endforeach
+
+                                    </tr>@endif  @endforeach
 
                                 </tbody>
                             </table>

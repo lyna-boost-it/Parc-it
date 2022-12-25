@@ -74,6 +74,22 @@
 
 
 
+                            <div class="row">
+                                <label class="col-md-3 col-form-label">{{ __('Affectation') }}<span class="ob">*</span></label>
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                        <select id="unit_id" type="text"
+                                        class="form-control select2 @error('unit_id') is-invalid
+                                     @enderror"
+                                        name="unit_id" required autocomplete="battery_type" autofocus>
+                                        <option value="0" >Administration
+                                        </option> @foreach ($units as $unit)
+                                            <option value="{{ $unit->id }}">
+                                                {{ $unit->name }}</option>
+                                        @endforeach
+                                        </select>     </div>
+                                </div>
+                            </div>
 
 
                             <div class="row">

@@ -93,8 +93,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-
-        return view("ParkManager.users.edit", compact('user') );
+        $units=Unit::all();
+        return view("ParkManager.users.edit", compact('user','units') );
     }
 
     /**
@@ -106,7 +106,11 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $user->update($request->only('username','email','type','unit_id'));
+        $user->update($request->only('username','email','type','unit_id','password'));
+        $password = Hash::make($request->password);
+        $user->password=$password;
+        $user->save();
+
         return redirect('/ParkManager/users')->with('success',"vous avez modifié un utilisateur avec succès");
     }
 

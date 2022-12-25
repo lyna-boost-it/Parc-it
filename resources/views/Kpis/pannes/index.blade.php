@@ -628,7 +628,7 @@
         // Draw the chart and set the chart values
         function drawChart() {
             var data = google.visualization.arrayToDataTable([
-                ['Consommation de Carburant', 'PAr Littre'],
+                ['Type des pannes', 'PAr Littre'],
                 ['Lourde', lourde],
                 ['Moyenne', moyene],
                 ['Légère', legere],
@@ -637,7 +637,7 @@
 
             // Optional; add a title and set the width and height of the chart
             var options = {
-                'title': 'consommation de Carburant ',
+                'title': 'Type des pannes ',
                 'width': 915,
                 'height': 500
             };

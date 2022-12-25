@@ -19,16 +19,16 @@
 
             </div>
             <div class="col-md-12 text-center">
-                                <form action="{{route('ParkManager.users.store',$user->id)}}" method="post">
+                                <form action="{{route('ParkManager.users.update',$user->id)}}" method="post">
 
-    @csrf
+    @csrf      {{method_field('PUT')}}
 
                     <div class="card">
 
 
 
                         <div class="card-header">
-                            <h3 class="title">{{ __('Créer un utilisateur') }}</h3>
+                            <h5 class="title">{{ __('Modifier un utilisateur') }}</h5>
                         </div>
 
 
@@ -39,7 +39,8 @@
                                 <label class="col-md-3 col-form-label">{{ __('Username') }}<span class="ob">*</span></label>
                                 <div class="col-md-9">
                                     <div class="form-group">
-                                        <input type="text" name="username" class="form-control" placeholder="Username" value="{{ $user->username }}" required>
+                                        <input type="text" name="username" class="form-control" placeholder="Username"
+                                         value="{{ $user->username }}" required>
                                     </div>
                                     @if ($errors->has('username'))
                                         <span class="invalid-feedback" style="display: block;" role="alert">
@@ -48,39 +49,30 @@
                                     @endif
                                 </div>
                             </div>
-                        <div class="card-body">
+
+
+
                             <div class="row">
                                 <label class="col-md-3 col-form-label">{{ __('Type d\'utilisateur') }}<span class="ob">*</span></label>
                                 <div class="col-md-9">
                                     <div class="form-group">
-                                        <select id="type" name="type" value="{{ old('type'),$user->type }}"class="form-control">
-                                            <option value="Gestionnaire parc">Chef de service /Gestionnaire parc</option>
-                                            <option value="Utilisateur">Chage du logiciel /Utilisateur</option>
-                                            <option value="Cadre Technique">Cadre Technique</option>
-                                            <option value="Technicien">Technicien</option>
-                                            <option value="Agent Administratif">Agent Administratif</option>
-                                            <option value="Gestionnaire Sup">Gestionnaire Sup</option>
-                                            <option value="Demandeur ">Demandeur </option>
+                                        <select id="type" name="type"  class="form-control" placeholder="Type d'utilisateur"
+                                        value="{{ old('type'),$user->type }}" required >
+                                            <option value="Utilisateur"  {{ $user->type == 'Utilisateur' ? 'selected' : '' }}>Utilisateur</option>
+                                              <option value="Gestionnaire parc" {{ $user->type == 'Gestionnaire parc' ? 'selected' : '' }}>Gestionnaire parc</option>
+                                              <option value="Gestionnaire Sup" {{ $user->type == 'Gestionnaire Sup' ? 'selected' : '' }}>Gestionnaire Sup</option>
+                                            <option value="Demandeur " {{ $user->type == 'Demandeur' ? 'selected' : '' }}>Demandeur </option>
 
-                                        </select>     </div>
+                                        </select>
+
+                                        @error('type')
+
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('Affectation') }}<span class="ob">*</span></label>
-                                <div class="col-md-9">
-                                    <div class="form-group">
-                                        <select id="unit_id" type="text"
-                                        class="form-control select2 @error('unit_id') is-invalid
-                                     @enderror"
-                                        name="unit_id" required autocomplete="battery_type" autofocus>
-                                        <option value="0" >Administration
-                                        </option> @foreach ($units as $unit)
-                                            <option value="{{ $unit->id }}">
-                                                {{ $unit->name }}</option>
-                                        @endforeach
-                                        </select>     </div>
-                                </div>
-                            </div>
+
+
 
 
 
@@ -88,7 +80,8 @@
                                 <label class="col-md-3 col-form-label">{{ __('Adresse E-mail') }}<span class="ob">*</span></label>
                                 <div class="col-md-9">
                                     <div class="form-group">
-                                        <input type="email" name="email" class="form-control" placeholder="Adresse E-mail" value="{{ $user->email }}" required>
+                                        <input type="email" name="email" class="form-control" placeholder="Adresse E-mail"
+                                         value="{{ $user->email }}" required>
                                     </div>
                                     @if ($errors->has('email'))
                                         <span class="invalid-feedback" style="display: block;" role="alert">
@@ -98,23 +91,21 @@
                                 </div>
                             </div>
 
+
+
                             <div class="row" {{ $errors->has('password') ? ' has-danger' : '' }}>
                                 <label class="col-md-3 col-form-label">{{ __('Password') }}<span class="ob">*</span></label>
                                 <div class="col-md-9">
                                     <div class="form-group">
-                                        <input type="password" name="password" class="form-control" placeholder="Password" value="{{ $user->email }}" required>
+                                        <input type="password" name="password" class="form-control" placeholder="Password"
+                                         value="{{ $user->password }}" required>
                                     </div>
                                     @if ($errors->has('password'))
                                         <span class="invalid-feedback" style="display: block;" role="alert">
                                             <strong>{{ $errors->first('password') }}</strong>
                                         </span>
                                     @endif
-                                    <input name="password_confirmation" type="password" class="form-control" placeholder="Password confirmation" required>
-                                    @if ($errors->has('password_confirmation'))
-                                        <span class="invalid-feedback" style="display: block;" role="alert">
-                                            <strong>{{ $errors->first('password_confirmation') }}</strong>
-                                        </span>
-                                    @endif
+
                                 </div>
                             </div>
 
@@ -125,7 +116,7 @@
                         <div class="card-footer ">
                             <div class="row">
                              <div class="col-md-12 text-center">
-                                    <button type="submit" class="btn   btn-round"style="background:#EE643A;color:#ffffff;">{{ __('Ajouter') }}</button>
+                                    <button type="submit" class="btn   btn-round"style="background:#EE643A;color:#ffffff;">{{ __('Modifier') }}</button>
                                 </div>
                             </div>
                         </div>

@@ -6,8 +6,10 @@ use Illuminate\Support\Facades\Auth;
 
 
 Route::get('/history', 'HistoryController@index')->name('history.index');
+Route::post('/ParkManager/units/view-pdf/{id}', 'PDFController@viewPDF')->name('view-pdf');
+Route::post('/ParkManager/gasVehicules/gasV/{id}', 'PDFController@gasV')->name('gas-pdf');
 
-
+Route::get('generate-invoice-pdf', array('as'=> 'generate.invoice.pdf', 'uses' => 'PDFController@generateInvoicePDF'));
 
 Route::get('/', function () {
     return view('auth/login');
@@ -103,15 +105,16 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::namespace('ParkManager')->prefix('ParkManager')->name('ParkManager.')->group(function () {
     Route::resource('/users', 'UserController');
+    Route::resource('/a', 'UsersImportController');
+    Route::resource('/b', 'VehicleImportController');
     Route::resource('/staffs', 'StaffController');
     Route::resource('/units', 'UnitController');
     Route::resource('/deleteUnit', 'UnitDeleteController');
     Route::resource('/vehicules', 'VehiculeController');
-
+    Route::resource('/profile', 'ProfileController');
     Route::resource('/designations', 'DesignationController');
     Route::resource('/Gazprice', 'GazPriceController');
-
- Route::resource('/GiveUnit', 'GiveUnit');
+    Route::resource('/GiveUnit', 'GiveUnit');
 
 
 
