@@ -64,7 +64,11 @@
                                 <tr>
                                     <th>
                                         <h4 style="display: inline;color:#000000 ">Energie du véhicule: </h4>
-                                        <h5 style="display: inline;">{{ $vehicule->type_of_fuel }}</h5>
+                                        <h5 style="display: inline;">@if($vehicule->type_of_fuel=='Gazole')
+                                                Gas-oil
+                                                @else 
+                                                {{ $vehicule->type_of_fuel }}
+                                                @endif</h5>
                                     </th>
 
 

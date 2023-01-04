@@ -78,7 +78,8 @@ class VehiculeController extends Controller
 'marticule','genre', 'type', 'crosserie','power','places'
 ,'weight','charge','precedent','moving_year'));
 
-
+if($request->path!=null){
+    
 $request->validate([
     'path' => 'required|mimes:pdf,xlx,csv,xlsx|max:2048',
 ]);
@@ -90,6 +91,7 @@ $request->path->move(public_path().'/files/carteGrise_files', $fileName);
 
 $vehicule->path=$fileName;
 $vehicule->save();
+}
 
         return redirect('ParkManager/vehicules')->with('success', "vous avez ajouté un vehicule avec succès");
     }

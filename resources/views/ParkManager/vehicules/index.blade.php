@@ -76,7 +76,11 @@
                                                 <td>
                                                     {{ $vehicule->serial_numbers }}
                                                 </td>
-                                                <td>{{ $vehicule->type_of_fuel }}</td>
+                                                <td>@if($vehicule->type_of_fuel=='Gazole')
+                                                Gas-oil
+                                                @else 
+                                                {{ $vehicule->type_of_fuel }}
+                                                @endif</td>
                                                 <td>{{ $vehicule->acquisition_date }}</td>
                                                 <td>{{ $vehicule->vehicle_type }}</td>
                                                 <td>                                           @php

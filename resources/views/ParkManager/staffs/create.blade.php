@@ -1,5 +1,4 @@
-@if (Auth::user()->type == 'Gestionnaire parc' || Auth::user()->type == 'Utilisateur' ||
-Auth::user()->type == 'Technicien')
+@if (Auth::user()->type == 'Gestionnaire parc' || Auth::user()->type == 'Utilisateur'  || Auth::user()->type == 'Technicien')
 
     <!DOCTYPE html>
     <html>
@@ -57,7 +56,7 @@ Auth::user()->type == 'Technicien')
                                         <div class="card-body">
                                             <div class="row">
                                                 <label
-                                                    class="col-md-3 col-form-label">{{ __(' N° Permis de conduire') }}<span class="ob">*</span></label>
+                                                    class="col-md-9 col-form-label">{{ __(' N° Permis de conduire') }}<span class="ob">*</span></label>
                                                 <div class="col-md-9" for="conducteur_field">
                                                     <div class="form-group">
                                                         <input type="number" id="conducteur_field"
@@ -73,7 +72,7 @@ Auth::user()->type == 'Technicien')
                                         <div class="card-body">
                                             <div class="row">
                                                 <label
-                                                    class="col-md-3 col-form-label">{{ __('Catégorie du permis') }}<span class="ob">*</span></label>
+                                                    class="col-md-9 col-form-label">{{ __('Catégorie du permis') }}<span class="ob">*</span></label>
                                                 <div class="col-md-9">
                                                     <div class="form-group">
                                                         <select name="driver_license_type"
@@ -139,7 +138,7 @@ Auth::user()->type == 'Technicien')
                                         <div class="card-body">
                                             <div class="row">
                                                 <label
-                                                    class="col-md-3 col-form-label">{{ __(' Date du Permis ') }}<span class="ob">*</span></label>
+                                                    class="col-md-9 col-form-label">{{ __(' Date du Permis ') }}<span class="ob">*</span></label>
                                                 <div class="col-md-9" for="conducteur_field">
                                                     <div class="form-group">
                                                         <input type="date" id="conducteur_field"
@@ -158,7 +157,7 @@ Auth::user()->type == 'Technicien')
                                         <div class="card-body">
                                             <div class="row">
                                                 <label
-                                                    class="col-md-3 col-form-label">{{ __(' Diplôme pour les conducteurs d\'engins') }}</label>
+                                                    class="col-md-12 col-form-label">{{ __(' Diplôme pour les conducteurs d\'engins') }}</label>
                                                 <div class="col-md-9" for="conducteur_field">
                                                     <div class="form-group">
                                                         <input type="text" id="conducteur_field" name="diploma"
@@ -182,7 +181,7 @@ Auth::user()->type == 'Technicien')
 
                                     <div class="card-body" style=" display: inline-block;">
                                         <div class="row">
-                                            <label class="col-md-3 col-form-label">{{ __('  Diplôme') }}<span class="ob">*</span></label>
+                                            <label class="col-md-9 col-form-label">{{ __('  Diplôme') }}<span class="ob">*</span></label>
                                             <div class="col-md-9" for="Mstaff_field">
                                                 <div class="form-group">
                                                     <input type="text" id="Mstaff_field" name="diploma"
@@ -195,7 +194,7 @@ Auth::user()->type == 'Technicien')
                                     </div>
                                     <div class="card-body" style=" display: inline-block;">
                                         <div class="row">
-                                            <label class="col-md-3 col-form-label">{{ __('Fonction') }}<span class="ob">*</span></label>
+                                            <label class="col-md-9 col-form-label">{{ __('Fonction') }}<span class="ob">*</span></label>
                                             <div class="col-md-9">
                                                 <div class="form-group">
                                                     <select name="function1"
@@ -226,7 +225,7 @@ Auth::user()->type == 'Technicien')
 
                                     <div class="card-body" style=" display: inline-block;">
                                         <div class="row">
-                                            <label class="col-md-3 col-form-label">{{ __('  Fonction') }}<span class="ob">*</span></label>
+                                            <label class="col-md-9 col-form-label">{{ __('  Fonction') }}<span class="ob">*</span></label>
                                             <div class="col-md-9" for="staff_field">
                                                 <div class="form-group">
                                                     <input type="text" id="Mstaff_field" name="function2"

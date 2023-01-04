@@ -466,7 +466,7 @@
 
         <div class="dashboard-setting user-notification">
             <div class="dropdown">
-                <a class="dropdown-toggle no-arrow" href="/public"style="color: grey" >
+                <a class="dropdown-toggle no-arrow" href="{{ route('logout.perform') }}" style="color: grey" >
                     <i style="font-size: 2em;"  class="dw dw-logout"style="color: grey" ></i><b> Se déconnecter</b></a>
                 </a>
             </div>

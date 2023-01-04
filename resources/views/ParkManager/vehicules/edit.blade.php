@@ -94,7 +94,7 @@
                                                         Essence</option>
                                                     <option value="Gazole"
                                                         {{ old('type_of_fuel', $vehicule->type_of_fuel) === 'Gazole' ? 'selected' : '' }}>
-                                                        Gazole</option>
+                                                        Gas-oil</option>
                                                     <option value="GLP"
                                                         {{ old('type_of_fuel', $vehicule->type_of_fuel) === 'GLP' ? 'selected' : '' }}>
                                                         GPL</option>

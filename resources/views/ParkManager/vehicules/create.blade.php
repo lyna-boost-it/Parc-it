@@ -50,20 +50,20 @@
                                         </div>
 
                                         <div class="col-md-4">
-                                            <label>{{ __('Marque du véhicule') }}<span class="ob">*</span></label>
+                                            <label>{{ __('Marque du véhicule') }}</label>
                                             <div class="form-group">
                                                 <input type="text" name="mark" class="form-control"
                                                     placeholder="Marque du véhicule" value="{{ $vehicule->mark }}"
-                                                    required>
+                                                    >
                                             </div>
 
                                         </div>
                                         <div class="col-md-4">
-                                            <label>{{ __('Type du véhicule') }}<span class="ob">*</span></label>
+                                            <label>{{ __('Type du véhicule') }}</label>
                                             <div class="form-group">
                                                 <input type="text" name="type" class="form-control"
                                                     placeholder="Type du véhicule" value="{{ $vehicule->type }}"
-                                                    required>
+                                                    >
                                             </div>
 
                                         </div>
@@ -74,28 +74,28 @@
                                     <div class="row">
 
                                         <div class="col-md-4">
-                                            <label>{{ __('Carrosserie') }}<span class="ob">*</span></label>
+                                            <label>{{ __('Carrosserie') }}</label>
                                             <div class="form-group">
                                                 <input type="text" name="crosserie" class="form-control"
                                                     placeholder="Carrosserie du véhicule"
-                                                    value="{{ $vehicule->crosserie }}" required>
+                                                    value="{{ $vehicule->crosserie }}" >
                                             </div>
 
                                         </div>
 
                                         <div class="col-md-4">
-                                            <label>{{ __('Energie du véhicule') }}<span class="ob">*</span></label>
+                                            <label>{{ __('Energie du véhicule') }}</label>
                                             <div class="form-group">
                                                 <select id="type_of_fuel" type="text"
                                                     class="form-control select2 @error('type_of_fuel') is-invalid @enderror"
-                                                    name="type_of_fuel" required autocomplete="type_of_fuel" autofocus>
+                                                    name="type_of_fuel"  autocomplete="type_of_fuel" autofocus>
                                                     <option value="" disabled selected>Type du Carburant</option>
                                                     <option value="Essence"
                                                         {{ old('type_of_fuel', $vehicule->type_of_fuel) === 'Essence' ? 'selected' : '' }}>
                                                         Essence</option>
                                                     <option value="Gazole"
                                                         {{ old('type_of_fuel', $vehicule->type_of_fuel) === 'Gazole' ? 'selected' : '' }}>
-                                                        Gazole</option>
+                                                        Gas-oil</option>
                                                     <option value="GLP"
                                                         {{ old('type_of_fuel', $vehicule->type_of_fuel) === 'GLP' ? 'selected' : '' }}>
                                                         GPL</option>
@@ -106,11 +106,11 @@
 
                                         </div>
                                         <div class="col-md-4">
-                                            <label>{{ __('Puissance du véhicule') }}<span class="ob">*</span></label>
+                                            <label>{{ __('Puissance du véhicule') }} </label>
                                             <div class="form-group">
                                                 <input type="text" name="power" class="form-control"
                                                     placeholder="Puissance du véhicule" value="{{ $vehicule->power }}"
-                                                    required>
+                                                     >
                                             </div>
 
                                         </div>
@@ -118,30 +118,30 @@
                                     <div class="row">
 
                                         <div class="col-md-4">
-                                            <label>{{ __('Places assises') }}<span class="ob">*</span></label>
+                                            <label>{{ __('Places assises') }} </label>
                                             <div class="form-group">
                                                 <input type="text" name="places" class="form-control"
                                                     placeholder="Places assises" value="{{ $vehicule->places }}"
-                                                    required>
+                                                     >
                                             </div>
 
                                         </div>
 
                                         <div class="col-md-4">
-                                            <label>{{ __('Poids total en charge') }}<span class="ob">*</span></label>
+                                            <label>{{ __('Poids total en charge') }} </label>
                                             <div class="form-group">
                                                 <input type="text" name="weight" step="0.01" class="form-control"
                                                     placeholder="Poids total en charge" value="{{ $vehicule->weight }}"
-                                                    required>
+                                                     >
                                             </div>
 
                                         </div>
                                         <div class="col-md-4">
-                                            <label>{{ __('Charge utile') }}<span class="ob">*</span></label>
+                                            <label>{{ __('Charge utile') }}</label>
                                             <div class="form-group">
                                                 <input type="text" name="charge" class="form-control"
                                                     placeholder="Charge utile" value="{{ $vehicule->charge }}"
-                                                    required>
+                                                    >
                                             </div>
 
                                         </div>
@@ -169,11 +169,11 @@
 
                                         </div>
                                         <div class="col-md-4">
-                                            <label>{{ __('Année de premiere mise en circulation') }}<span class="ob">*</span></label>
+                                            <label>{{ __('Année de premiere mise en circulation') }}</label>
                                             <div class="form-group">
                                                 <input type="date" name="moving_year" class="form-control"
                                                     placeholder="Année de premiere mise en circulation"
-                                                    value="{{ $vehicule->moving_year }}" required>
+                                                    value="{{ $vehicule->moving_year }}" >
                                             </div>
 
                                         </div>
@@ -181,11 +181,11 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <label
-                                                class="col-md-3 col-form-label">{{ __('Uplode la carte grise') }}<span class="ob">*</span></label>
+                                                class="col-md-3 col-form-label">{{ __('Uplode la carte grise') }} </label>
 
 
                                             <input type="file" id="docpicker" name="path"
-                                                accept=".doc,.xml,.pdf" required>
+                                                accept=".doc,.xml,.pdf"  >
 
                                         </div>
                                     </div>
@@ -211,29 +211,32 @@
                                         </div>
 
                                         <div class="col-md-4">
-                                            <label>{{ __('Numéro de Série') }}<span class="ob">*</span></label>
+                                            <label>{{ __('Numéro de Série') }}</label>
                                             <div class="form-group">
                                                 <input type="text" name="serial_numbers" class="form-control"
                                                     placeholder=" Numéro de Série"
-                                                    value="{{ $vehicule->serial_numbers }}" required>
+                                                    value="{{ $vehicule->serial_numbers }}" >
                                             </div>
 
                                         </div>
                                         <div class="col-md-4">
-                                            <label>{{ __('Catégorie de véhicule') }}<span class="ob">*</span></label>
+                                            <label>{{ __('Catégorie de véhicule') }} </label>
                                             <div class="form-group">
                                                 <select id="vehicle_type" type="text"
                                                     class="form-control select2 @error('vehicle_type') is-invalid @enderror"
                                                     name="vehicle_type" required autocomplete="vehicle_type"
-                                                    autofocus>
-                                                    <option value="camion citerne ">camion citerne </option>
-<option value="camion à benne ">camion à benne </option>
-<option value="camion plataux ">camion plataux </option>
-<option value="camion nacelle ">camion nacelle </option>
-<option value="engin ">engin </option>
-<option value="mini engin ">mini engin </option>
-<option value="véhicule touristique ">véhicule touristique </option>
-<option value="véhicule utilitaire ">véhicule utilitaire </option>
+                                                    autofocus placeholder="Catégorie de véhicule">
+                                                    <option value="aucune catégorie">Aucune catégorie</option>
+                                                    
+                                                    <option value="camion citerne ">Camion citerne </option>
+                                                    <option value="camion à benne ">Camion à benne </option>
+                                                    <option value="camion plataux ">Camion plataux </option>
+                                                    <option value="camion nacelle ">Camion nacelle </option>
+                                                    <option value="engin ">engin </option>
+                                                    <option value="mini engin ">Mini engin </option>
+                                                    <option value="véhicule touristique ">Véhicule touristique
+                                                    </option>
+                                                    <option value="véhicule utilitaire ">Véhicule utilitaire </option>
                                                 </select>
                                             </div>
 
@@ -248,7 +251,8 @@
 
 
                                         <div class="col-md-4">
-                                            <label>{{ __('Année Mise en Service') }}<span class="ob">*</span></label>
+                                            <label>{{ __('Année Mise en Service') }}<span
+                                                    class="ob">*</span></label>
                                             <div class="form-group">
                                                 <input type="date" name="year_commissioned" class="form-control"
                                                     placeholder=" Année Mise en
@@ -258,19 +262,19 @@
 
                                         </div>
                                         <div class="col-md-4">
-                                            <label>{{ __('Capacité réservoir') }}<span class="ob">*</span></label>
+                                            <label>{{ __('Capacité réservoir') }} </label>
                                             <div class="form-group">
                                                 <input type="number" name="tank_capacity" class="form-control"
                                                     placeholder="Capacité réservoir en littre"
-                                                    value="{{ $vehicule->tank_capacity }}" required>
+                                                    value="{{ $vehicule->tank_capacity }}" >
                                             </div>
 
                                         </div>
                                         <div class="col-md-4">
-                                            <label>{{ __('LTR / 100Km') }}<span class="ob">*</span></label>
+                                            <label>{{ __('LTR / 100Km') }}</label>
                                             <input type="number"step="0.01" name="litter_by_100km"
                                                 class="form-control" placeholder="LTR / 100Km"
-                                                value="{{ $vehicule->litter_by_100km }}" required>
+                                                value="{{ $vehicule->litter_by_100km }}" >
                                         </div>
 
                                     </div>
@@ -316,9 +320,12 @@
                                                     <option value="12 Volt / 95 Ampère">12 Volt / 95 Ampère</option>
                                                     <option value="12 Volt / 75 Ampère">12 Volt / 75 Ampère</option>
                                                     <option value="12 Volt / 60 Ampère">12 Volt / 60 Ampère</option>
-                                                    <option value="12 Volt / 55 Ampère Asiatique">12 Volt / 55 Ampère Asiatique</option>
-                                                    <option value="12 Volt / 45 Ampère Asiatique">12 Volt / 45 Ampère Asiatique</option>
-                                                    <option value="12 Volt / 50 Ampère Asiatique">12 Volt / 50 Ampère Asiatique</option>
+                                                    <option value="12 Volt / 55 Ampère Asiatique">12 Volt / 55 Ampère
+                                                        Asiatique</option>
+                                                    <option value="12 Volt / 45 Ampère Asiatique">12 Volt / 45 Ampère
+                                                        Asiatique</option>
+                                                    <option value="12 Volt / 50 Ampère Asiatique">12 Volt / 50 Ampère
+                                                        Asiatique</option>
 
 
                                                 </select>

@@ -14,7 +14,12 @@ Route::get('generate-invoice-pdf', array('as'=> 'generate.invoice.pdf', 'uses' =
 Route::get('/', function () {
     return view('auth/login');
 });
-
+Route::group(['middleware' => ['auth']], function() {
+    /**
+    * Logout Route
+    */
+    Route::get('/logout', 'LogoutController@perform')->name('logout.perform');
+ });
 Auth::routes();
 Route::post('/login/custom', [
     'uses' => 'LoginController@login',
